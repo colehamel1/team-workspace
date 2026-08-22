@@ -1,0 +1,16 @@
+{
+  "_comment": "Editable domain taxonomy for the knowledge brain. Drives BOTH card routing (knowledge_domain.py) and the per-domain rarity baseline (knowledge_fold.py). Add a domain by appending an entry here -- no code change. 'expert_baseline' is the persona rarity is scored against ('would THEY already know this'); phrase it as a noun phrase. Keep 'general' last as the fallback.",
+  "domains": [
+    {"key": "cold_outreach", "desc": "Cold email / cold DM / outbound to strangers: deliverability, sending infrastructure, list-building for cold outreach, cold scripts, reply rates, booking meetings cold.", "expert_baseline": "a seasoned B2B cold-outreach operator who runs high-volume cold email and DM at scale"},
+    {"key": "paid_ads", "desc": "Running PAID ads (Meta, TikTok, LinkedIn, Google): account structure, media buying, targeting, budgets, scaling, testing methodology, attribution.", "expert_baseline": "a seasoned 7-figure DTC performance marketer who buys and scales paid media daily"},
+    {"key": "ad_creative", "desc": "The ad CREATIVE itself: hooks, first three seconds, UGC formats, ad scripts, angles, visual concepts, what makes a scroll-stopping ad, creative testing.", "expert_baseline": "a seasoned direct-response creative strategist who has shipped thousands of performance ads"},
+    {"key": "landing_offer", "desc": "Landing pages, sales pages, offers, funnels, conversion-rate optimization, checkout, pricing of the offer.", "expert_baseline": "a seasoned CRO and offer strategist who has built and tested many sales funnels"},
+    {"key": "ecommerce", "desc": "Ecommerce / Shopify store operations, merchandising, product pages, retention, fulfillment, DTC business ops.", "expert_baseline": "an experienced DTC ecommerce operator who runs a Shopify store day to day"},
+    {"key": "email_lifecycle", "desc": "OWNED email and SMS lifecycle marketing (NOT cold): welcome / abandonment / post-purchase flows, newsletters, list retention and monetization.", "expert_baseline": "an experienced lifecycle and retention marketer who owns email and SMS flows"},
+    {"key": "content_organic", "desc": "Organic / short-form content: TikTok, Reels, YouTube, personal brand, content that builds an audience without paying for reach.", "expert_baseline": "an experienced content creator and organic-growth operator with a large audience"},
+    {"key": "tiktok_shop", "desc": "TikTok Shop selling and social commerce: affiliate / creator seeding, live shopping, TikTok Shop listings, GMV max, sample-to-creator ops. Distinct from generic ecommerce store ops.", "expert_baseline": "an experienced TikTok Shop and social-commerce operator running affiliate seeding and live selling"},
+    {"key": "brand_strategy", "desc": "Positioning, brand, offer strategy, business strategy, mindset, decision-making. Cross-cutting.", "expert_baseline": "a seasoned brand and business strategist and operator"},
+    {"key": "ai_tooling", "desc": "AI / automation tools, agents, and workflows used to run or scale the business. Cross-cutting.", "expert_baseline": "a technical operator fluent in AI tools, agents, and automation for business"},
+    {"key": "general", "desc": "Genuinely broad business insight with no single clear domain.", "expert_baseline": "a seasoned business operator"}
+  ]
+}
