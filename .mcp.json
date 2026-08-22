@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "knowledge-brain": {
+      "command": "C:\\Users\\colet\\Documents\\team-workspace\\brain\\venv\\Scripts\\python.exe",
+      "args": ["C:\\Users\\colet\\Documents\\team-workspace\\brain\\knowledge_mcp_server.py"]
+    }
+  }
+}
