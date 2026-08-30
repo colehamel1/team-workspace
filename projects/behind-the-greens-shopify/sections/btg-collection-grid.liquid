@@ -1,0 +1,68 @@
+{%- comment -%}
+  Behind The Greens collection/shop page. Fully dynamic: products,
+  pagination and filter chips all come from the real `collection` object.
+  Place in templates/collection.json.
+
+  Filter chips use Shopify's native tag-based collection filtering
+  (/collections/handle/tag-handle) — tag each product with its category
+  (e.g. "Headwear", "Tees", "Outerwear") in Shopify admin for the chips
+  to group products correctly. No app required.
+{%- endcomment -%}
+
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+  {{ 'btg-shop.css' | asset_url | stylesheet_tag }}
+
+  <div class="btg-container" style="padding-top:88px; padding-bottom:48px;">
+    <div class="btg-eyebrow" style="color:#A5402C; margin-bottom:16px;">{{ section.settings.eyebrow | default: 'The Collection' }}</div>
+    <h1 class="btg-display" style="font-size:64px; margin:0 0 18px; max-width:700px;">{{ collection.title }}</h1>
+    {%- if section.settings.tagline != blank -%}
+      <p class="btg-editorial" style="font-family:'Newsreader', serif; font-style:italic; font-size:19px; color:#3A392F; max-width:480px; margin:0;">{{ section.settings.tagline }}</p>
+    {%- endif -%}
+  </div>
+
+  {%- if collection.all_tags.size > 0 -%}
+    <div class="btg-container" style="padding-bottom:56px;">
+      <div class="btg-shop-filters">
+        <a href="{{ collection.url }}" class="btg-chip btg-eyebrow{% if collection.current_tags == blank %} is-active{% endif %}">{{ 'collections.general.all' | t | default: 'All' }}</a>
+        {%- for tag in collection.all_tags -%}
+          <a href="{{ collection.url }}/{{ tag | handle }}" class="btg-chip btg-eyebrow{% if collection.current_tags contains tag %} is-active{% endif %}">{{ tag }}</a>
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  <div class="btg-container" style="padding-bottom:120px;">
+    {%- paginate collection.products by 24 -%}
+      {%- if collection.products.size == 0 -%}
+        <p style="color:#3A392F;">{{ 'collections.general.no_matches' | t | default: 'No products found.' }}</p>
+      {%- else -%}
+        <div class="btg-grid-3">
+          {%- for product in collection.products -%}
+            {% render 'btg-product-card', product: product %}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if paginate.pages > 1 -%}
+        <nav class="btg-pagination">
+          {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}" class="btg-eyebrow">&larr; {{ 'general.pagination.previous' | t | default: 'Previous' }}</a>{%- endif -%}
+          {%- for part in paginate.parts -%}
+            {%- if part.is_link -%}<a href="{{ part.url }}" class="btg-eyebrow">{{ part.title }}</a>{%- else -%}<span class="btg-eyebrow is-active">{{ part.title }}</span>{%- endif -%}
+          {%- endfor -%}
+          {%- if paginate.next -%}<a href="{{ paginate.next.url }}" class="btg-eyebrow">{{ 'general.pagination.next' | t | default: 'Next' }} &rarr;</a>{%- endif -%}
+        </nav>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "BTG Collection Grid",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Collection" },
+    { "type": "text", "id": "tagline", "label": "Tagline", "default": "Built for the people who show up before the flag does." }
+  ]
+}
+{% endschema %}

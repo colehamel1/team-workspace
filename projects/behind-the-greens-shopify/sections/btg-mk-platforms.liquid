@@ -1,0 +1,74 @@
+{%- comment -%} Platform-by-platform stats — all placeholder values, editable per block. {%- endcomment -%}
+
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+  {{ 'btg-media-kit.css' | asset_url | stylesheet_tag }}
+
+  <div class="btg-mk-platforms-wrap">
+    <div class="btg-container">
+      {% render 'btg-section-heading', eyebrow: section.settings.eyebrow, title: section.settings.title, eyebrow_color: '#A5402C' %}
+      <div class="btg-mk-platforms">
+        {%- for block in section.blocks -%}
+          <div class="btg-mk-platform-card" {{ block.shopify_attributes }}>
+            <div class="btg-mk-platform-card__icon">
+              {%- case block.settings.icon -%}
+                {%- when 'instagram' -%}
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="#163A2B" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" stroke="#163A2B" stroke-width="1.6"/><circle cx="17.3" cy="6.7" r="1.1" fill="#163A2B"/></svg>
+                {%- when 'tiktok' -%}
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M16 3v9.5a3.5 3.5 0 1 1-3.5-3.5" stroke="#163A2B" stroke-width="1.6" stroke-linecap="round"/><path d="M16 3c0 2.4 1.8 4.2 4.2 4.2" stroke="#163A2B" stroke-width="1.6" stroke-linecap="round"/></svg>
+                {%- when 'youtube' -%}
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2.5" y="5.5" width="19" height="13" rx="3.5" stroke="#163A2B" stroke-width="1.6"/><path d="M10.5 9.5 14.5 12l-4 2.5v-5Z" fill="#163A2B"/></svg>
+                {%- else -%}
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#163A2B" stroke-width="1.6"/><path d="M3.5 6.5 12 13l8.5-6.5" stroke="#163A2B" stroke-width="1.6" stroke-linejoin="round"/></svg>
+              {%- endcase -%}
+            </div>
+            <div class="btg-eyebrow" style="color:#8A7F5C; margin-bottom:10px; font-size:11px;">{{ block.settings.name }}</div>
+            <div class="btg-display" style="font-size:24px; color:#14140F; margin-bottom:4px;">{{ block.settings.primary_stat }}</div>
+            <div style="font-size:13px; color:#8A7F5C;">{{ block.settings.secondary_stat }}</div>
+          </div>
+        {%- endfor -%}
+      </div>
+      <p class="btg-mk-proof__note" style="text-align:left; color:#8A7F5C;">{{ section.settings.note | default: 'Figures shown are placeholders — replace with current platform statistics before this kit goes out.' }}</p>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "BTG MK Platforms",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "By Platform" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Where We Show Up" },
+    { "type": "textarea", "id": "note", "label": "Disclaimer note", "default": "Figures shown are placeholders — replace with current platform statistics before this kit goes out." }
+  ],
+  "blocks": [
+    {
+      "type": "platform",
+      "name": "Platform",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "options": [
+          { "value": "instagram", "label": "Instagram" },
+          { "value": "tiktok", "label": "TikTok" },
+          { "value": "youtube", "label": "YouTube" },
+          { "value": "newsletter", "label": "Newsletter" }
+        ], "default": "instagram" },
+        { "type": "text", "id": "name", "label": "Platform name", "default": "Instagram" },
+        { "type": "text", "id": "primary_stat", "label": "Primary stat", "default": "[Followers]" },
+        { "type": "text", "id": "secondary_stat", "label": "Secondary stat", "default": "[Avg. Engagement Rate]" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "BTG MK Platforms",
+      "blocks": [
+        { "type": "platform", "settings": { "icon": "instagram", "name": "Instagram", "primary_stat": "[Followers]", "secondary_stat": "[Avg. Engagement Rate]" } },
+        { "type": "platform", "settings": { "icon": "tiktok", "name": "TikTok", "primary_stat": "[Followers]", "secondary_stat": "[Avg. Views]" } },
+        { "type": "platform", "settings": { "icon": "youtube", "name": "YouTube", "primary_stat": "[Subscribers]", "secondary_stat": "[Avg. Views]" } },
+        { "type": "platform", "settings": { "icon": "newsletter", "name": "Newsletter", "primary_stat": "[Subscribers]", "secondary_stat": "[Avg. Open Rate]" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

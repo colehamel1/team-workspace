@@ -1,0 +1,28 @@
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+  {{ 'btg-about.css' | asset_url | stylesheet_tag }}
+
+  <div class="btg-container-narrow">
+    <div class="btg-about-crest">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', class: 'btg-about-crest__image', alt: shop.name }}
+      {%- endif -%}
+      <div>
+        <div class="btg-eyebrow" style="color:#4C7A4A; margin-bottom:14px;">{{ section.settings.eyebrow | default: 'The Crest' }}</div>
+        <p class="btg-editorial" style="font-size:20px; line-height:1.6; color:#163A2B; margin:0;">{{ section.settings.text }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "BTG About Crest",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Crest image" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Crest" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "A crest, not a logo — the kind of mark a crew earns, not one a marketing team invents. Every piece we make carries it." }
+  ],
+  "presets": [{ "name": "BTG About Crest" }]
+}
+{% endschema %}

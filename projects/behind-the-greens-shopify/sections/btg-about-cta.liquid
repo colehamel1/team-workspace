@@ -1,0 +1,50 @@
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+  {{ 'btg-about.css' | asset_url | stylesheet_tag }}
+
+  <div class="btg-about-cta">
+    <div class="btg-container-narrow" style="text-align:center;">
+      <div class="btg-eyebrow" style="color:#78705C; margin-bottom:40px;">{{ section.settings.eyebrow | default: 'Media · Culture · Community · Commerce' }}</div>
+      <h2 class="btg-display" style="font-size:38px; color:#F3EEDF; margin:0 0 48px; max-width:700px; margin-left:auto; margin-right:auto;">{{ section.settings.heading }}</h2>
+      <div class="btg-about-cta__grid">
+        {%- for block in section.blocks -%}
+          <a href="{{ block.settings.link }}" class="btg-btn-outline-lt" style="padding:36px 28px; display:block; text-align:left;" {{ block.shopify_attributes }}>
+            <div class="btg-eyebrow" style="color:#C1922F; font-size:11px; margin-bottom:10px;">{{ block.settings.label }}</div>
+            <div class="btg-display" style="font-size:22px; color:#F3EEDF;">{{ block.settings.heading }} &rarr;</div>
+          </a>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "BTG About CTA",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Media · Culture · Community · Commerce" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "One Story, Told A Few Different Ways" }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Link",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Read" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "The Stories" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "max_blocks": 2,
+  "presets": [
+    {
+      "name": "BTG About CTA",
+      "blocks": [
+        { "type": "link", "settings": { "label": "Read", "heading": "The Stories" } },
+        { "type": "link", "settings": { "label": "Shop", "heading": "The Collection" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

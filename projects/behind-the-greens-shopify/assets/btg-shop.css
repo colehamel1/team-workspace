@@ -1,0 +1,11 @@
+.btg-shop-filters { display: flex; gap: 10px; flex-wrap: wrap; border-top: 1px solid var(--btg-hairline); border-bottom: 1px solid var(--btg-hairline); padding: 20px 0; }
+.btg-chip {
+  border: 1px solid rgba(20,20,15,0.3); color: var(--btg-ink); padding: 9px 18px;
+  font-size: 11px; transition: background 0.15s ease, color 0.15s ease; display: inline-block;
+}
+.btg-chip:hover { background: var(--btg-ink); color: var(--btg-cream); }
+.btg-chip.is-active { background: var(--btg-ink); color: var(--btg-cream); border-color: var(--btg-ink); }
+
+.btg-pagination { display: flex; justify-content: center; gap: 20px; margin-top: 64px; }
+.btg-pagination a, .btg-pagination span { font-size: 11px; color: var(--btg-ink); }
+.btg-pagination .is-active { color: var(--btg-ochre); }

@@ -1,0 +1,25 @@
+{%- comment -%}
+  Behind The Greens branded entrance — a brief crest reveal shown once per
+  browser session on first landing on the homepage. Skippable (click or
+  key press), respects prefers-reduced-motion, never blocks or delays
+  interaction with the real page underneath.
+
+  Include once, near the top of <body> in layout/theme.liquid, guarded to
+  the homepage only:
+    {% if template == 'index' %}{% render 'btg-entrance' %}{% endif %}
+{%- endcomment -%}
+
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+
+  <div class="btg-entrance" data-btg-entrance>
+    {%- if settings.logo != blank -%}
+      {{ settings.logo | image_url: width: 200 | image_tag: class: 'btg-entrance__crest', alt: shop.name, loading: 'eager' }}
+    {%- else -%}
+      <div class="btg-display btg-entrance__wordmark">{{ shop.name }}</div>
+    {%- endif -%}
+    <div class="btg-eyebrow btg-entrance__tag">Golf Starts Before Dawn</div>
+  </div>
+</div>
+
+<script src="{{ 'btg-entrance.js' | asset_url }}" defer="defer"></script>

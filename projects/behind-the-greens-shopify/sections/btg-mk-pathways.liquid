@@ -1,0 +1,52 @@
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+  {{ 'btg-media-kit.css' | asset_url | stylesheet_tag }}
+
+  <div class="btg-container" style="text-align:center; padding:80px 40px 8px;">
+    <div class="btg-eyebrow" style="color:#4C7A4A; margin-bottom:16px;">{{ section.settings.eyebrow | default: 'Work With Us' }}</div>
+    <h2 class="btg-display" style="font-size:42px; color:#14140F; margin:0;">{{ section.settings.title | default: 'Two Ways In' }}</h2>
+  </div>
+  <div class="btg-mk-pathways">
+    {%- for block in section.blocks -%}
+      <a href="{{ block.settings.anchor }}" class="btg-mk-pathway-card" {{ block.shopify_attributes }}>
+        <div class="btg-eyebrow" style="color:#A5402C; margin-bottom:14px;">{{ block.settings.eyebrow }}</div>
+        <div class="btg-display" style="font-size:30px; color:#14140F; margin-bottom:14px;">{{ block.settings.heading }}</div>
+        <p style="font-size:15px; line-height:1.6; color:#3A392F; margin:0 0 20px; max-width:400px;">{{ block.settings.text }}</p>
+        <span class="btg-link-underline" style="color:#14140F; border-color:#14140F;">{{ block.settings.link_label }} &darr;</span>
+      </a>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "BTG MK Pathways",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Work With Us" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Two Ways In" }
+  ],
+  "blocks": [
+    {
+      "type": "pathway",
+      "name": "Pathway",
+      "settings": [
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "For Brands" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Reach Our Audience" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Sponsored integrations, product features, and campaigns built around a trusted, engaged golf audience." },
+        { "type": "text", "id": "link_label", "label": "Jump-link label", "default": "Brand Partnerships" },
+        { "type": "text", "id": "anchor", "label": "Jump-link anchor (e.g. #for-brands)", "default": "#for-brands" }
+      ]
+    }
+  ],
+  "max_blocks": 2,
+  "presets": [
+    {
+      "name": "BTG MK Pathways",
+      "blocks": [
+        { "type": "pathway", "settings": { "eyebrow": "For Brands", "heading": "Reach Our Audience", "link_label": "Brand Partnerships", "anchor": "#for-brands" } },
+        { "type": "pathway", "settings": { "eyebrow": "For Golf Courses", "heading": "Tell Your Course's Story", "text": "A documentary-style feature on your property, your crew, and the operation behind the course.", "link_label": "Course Features", "anchor": "#for-courses" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,41 @@
+{%- comment -%} Behind The Greens homepage hero — image, copy and both CTAs are merchant-editable. {%- endcomment -%}
+
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+  {{ 'btg-home.css' | asset_url | stylesheet_tag }}
+
+  <div class="btg-hero">
+    {%- if section.settings.image != blank -%}
+      {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'eager', class: 'btg-hero__image', alt: section.settings.heading }}
+    {%- else -%}
+      <div class="btg-grain"></div>
+    {%- endif -%}
+    <div class="btg-hero__scrim"></div>
+    <div class="btg-hero__content">
+      {%- if section.settings.eyebrow != blank -%}<div class="btg-eyebrow" style="color:#C1922F; margin-bottom:18px;">{{ section.settings.eyebrow }}</div>{%- endif -%}
+      <h1 class="btg-display btg-hero__heading">{{ section.settings.heading }}</h1>
+      {%- if section.settings.subheading != blank -%}<p class="btg-hero__sub">{{ section.settings.subheading }}</p>{%- endif -%}
+      <div class="btg-hero__ctas">
+        {%- if section.settings.primary_label != blank -%}<a href="{{ section.settings.primary_link }}" class="btg-btn-primary">{{ section.settings.primary_label }}</a>{%- endif -%}
+        {%- if section.settings.secondary_label != blank -%}<a href="{{ section.settings.secondary_link }}" class="btg-link-underline-lt">{{ section.settings.secondary_label }}</a>{%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "BTG Hero",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Background image" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Behind The Greens · Golf Course Culture" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Golf Starts Before Dawn." },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Behind The Greens tells the story of the crews, culture, and craft that make the game possible — and builds the apparel that carries it." },
+    { "type": "text", "id": "primary_label", "label": "Primary button label", "default": "Shop The Collection" },
+    { "type": "url", "id": "primary_link", "label": "Primary button link" },
+    { "type": "text", "id": "secondary_label", "label": "Secondary link label", "default": "Explore Stories" },
+    { "type": "url", "id": "secondary_link", "label": "Secondary link" }
+  ],
+  "presets": [{ "name": "BTG Hero" }]
+}
+{% endschema %}

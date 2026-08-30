@@ -1,0 +1,57 @@
+{%- comment -%}
+  Proof of Scale. All three figures are merchant-entered placeholders —
+  update them in section settings once verified numbers exist. Nothing
+  here is invented by the template.
+{%- endcomment -%}
+
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+  {{ 'btg-media-kit.css' | asset_url | stylesheet_tag }}
+
+  <div class="btg-mk-proof">
+    <div class="btg-container">
+      <div class="btg-eyebrow" style="color:#78705C; margin-bottom:36px; text-align:center;">{{ section.settings.eyebrow | default: 'Proof Of Scale' }}</div>
+      <div class="btg-mk-proof__grid">
+        {%- for block in section.blocks -%}
+          <div class="btg-mk-proof__stat{% unless forloop.first or forloop.last %} btg-mk-proof__stat--bordered{% endunless %}" {{ block.shopify_attributes }}>
+            <div class="btg-display btg-mk-proof__number" style="color:{{ block.settings.color | default: '#F3EEDF' }};">{{ block.settings.value }}</div>
+            <div class="btg-eyebrow" style="color:#A79E86; font-size:11px;">{{ block.settings.label }}</div>
+          </div>
+        {%- endfor -%}
+      </div>
+      <p class="btg-mk-proof__note">{{ section.settings.note | default: 'Figures shown are placeholders — to be replaced with verified, current statistics.' }}</p>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "BTG MK Proof Of Scale",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Proof Of Scale" },
+    { "type": "textarea", "id": "note", "label": "Disclaimer note", "default": "Figures shown are placeholders — to be replaced with verified, current statistics." }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "text", "id": "value", "label": "Value", "default": "[XXX,XXX]" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Monthly Views" },
+        { "type": "color", "id": "color", "label": "Number color", "default": "#F3EEDF" }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "BTG MK Proof Of Scale",
+      "blocks": [
+        { "type": "stat", "settings": { "value": "[XXX,XXX]", "label": "Monthly Views" } },
+        { "type": "stat", "settings": { "value": "[XXX,XXX]", "label": "Total Audience", "color": "#C1922F" } },
+        { "type": "stat", "settings": { "value": "[X Platforms]", "label": "Cross-Platform Reach" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

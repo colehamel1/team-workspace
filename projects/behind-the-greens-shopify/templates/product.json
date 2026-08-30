@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "btg_product_main": {
+      "type": "btg-product-main",
+      "settings": {
+        "cross_sell_eyebrow": "Complete The Look",
+        "cross_sell_title": "You Might Also Like"
+      }
+    }
+  },
+  "order": ["btg_product_main"]
+}

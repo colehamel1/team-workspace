@@ -1,0 +1,49 @@
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+  {{ 'btg-about.css' | asset_url | stylesheet_tag }}
+
+  <div class="btg-about-values-wrap">
+    <div class="btg-container">
+      {% render 'btg-section-heading', eyebrow: section.settings.eyebrow, title: section.settings.title, eyebrow_color: '#A5402C' %}
+      <div class="btg-about-values">
+        {%- for block in section.blocks -%}
+          <div class="btg-about-values__item" {{ block.shopify_attributes }}>
+            <div class="btg-display" style="font-size:19px; color:#14140F; margin-bottom:10px;">{{ block.settings.title }}</div>
+            <p style="font-size:14px; line-height:1.65; color:#3A392F; margin:0;">{{ block.settings.text }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "BTG About Values",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "What We Believe" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "The Principles" }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Value",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "BTG About Values",
+      "blocks": [
+        { "type": "value", "settings": { "title": "The Crew Comes First", "text": "Every story starts with the people doing the work, not the people playing the round." } },
+        { "type": "value", "settings": { "title": "Culture Over Clichés", "text": "No country-club stereotypes, no golf-themed gimmicks — just the real texture of the game." } },
+        { "type": "value", "settings": { "title": "Built To Last", "text": "Apparel made the way the work it represents deserves — solid, useful, not disposable." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

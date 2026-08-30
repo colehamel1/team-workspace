@@ -1,0 +1,33 @@
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+  {{ 'btg-about.css' | asset_url | stylesheet_tag }}
+
+  <div class="btg-container-narrow">
+    <div class="btg-about-origin">
+      <div class="btg-eyebrow" style="color:#4C7A4A;">{{ section.settings.label | default: 'The Beginning' }}</div>
+      <div>
+        {%- if section.settings.pull_quote != blank -%}
+          <p class="btg-editorial btg-about-origin__pull">{{ section.settings.pull_quote }}</p>
+        {%- endif -%}
+        <div class="btg-about-origin__body">{{ section.settings.body }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "BTG About Origin",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "The Beginning" },
+    { "type": "textarea", "id": "pull_quote", "label": "Pull quote", "default": "Golf has a front of house and a back of house. Almost everything gets pointed at the front." },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body copy",
+      "default": "<p>Behind The Greens started as a simple idea: point the camera the other way. Follow the crews who are out on the course before the gates open, talk to the superintendents who carry the whole operation, and show the culture that never makes it into a broadcast.</p><p>That perspective found an audience fast, and what started as stories became a community that wanted something to wear that actually represented it.</p><p>So we built one — apparel made in the same spirit as the stories, for the people who show up before the flag does.</p>"
+    }
+  ],
+  "presets": [{ "name": "BTG About Origin" }]
+}
+{% endschema %}

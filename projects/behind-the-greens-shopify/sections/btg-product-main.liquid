@@ -1,0 +1,190 @@
+{%- comment -%}
+  Behind The Greens product page. Fully dynamic: gallery, options,
+  variants, price, availability and metafield specs all come live from
+  the `product` object — nothing is hardcoded. Place in templates/product.json.
+{%- endcomment -%}
+
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign related_collection = section.settings.related_collection
+  if related_collection == blank
+    assign related_collection = product.collections.first
+  endif
+-%}
+
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+  {{ 'btg-product.css' | asset_url | stylesheet_tag }}
+
+  <div class="btg-container" style="padding-top:24px;">
+    <div class="btg-eyebrow" style="display:flex; align-items:center; gap:8px;">
+      <a href="{{ routes.all_products_collection_url }}" style="color:#8A7F5C; font-size:11px;">{{ 'products.breadcrumb.shop' | t | default: 'Shop' }}</a>
+      {%- if product.collections.first -%}
+        <span style="color:#8A7F5C; font-size:11px;">/</span>
+        <a href="{{ product.collections.first.url }}" style="color:#8A7F5C; font-size:11px;">{{ product.collections.first.title }}</a>
+      {%- endif -%}
+      <span style="color:#8A7F5C; font-size:11px;">/</span>
+      <span style="color:#14140F; font-size:11px;">{{ product.title }}</span>
+    </div>
+  </div>
+
+  <div class="btg-container btg-pdp">
+    <div class="btg-pdp__grid">
+
+      <!-- GALLERY -->
+      <div class="btg-pdp__gallery">
+        <div class="btg-pdp__main-media">
+          {%- if product.featured_media -%}
+            {{ product.featured_media | image_url: width: 1200 | image_tag: id: 'btg-main-image', loading: 'eager', alt: product.featured_media.alt | default: product.title }}
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag }}
+          {%- endif -%}
+        </div>
+        {%- if product.media.size > 1 -%}
+          <div class="btg-pdp__thumbs">
+            {%- for media in product.media limit: 6 -%}
+              <button type="button" class="btg-thumb{% if forloop.first %} active{% endif %}" data-btg-thumb data-full="{{ media | image_url: width: 1200 }}">
+                {{ media | image_url: width: 300 | image_tag: loading: 'lazy', alt: media.alt | default: product.title }}
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <!-- INFO -->
+      <div class="btg-pdp__info">
+        {%- if product.type != blank -%}
+          <div class="btg-eyebrow" style="color:#8A7F5C; margin-bottom:14px;">{{ product.type }}</div>
+        {%- endif -%}
+        <h1 class="btg-display" style="font-size:38px; text-transform:none; margin:0 0 14px;">{{ product.title }}</h1>
+
+        <div class="btg-pdp__price" data-btg-price>
+          <span class="btg-display" style="font-size:24px;">{{ current_variant.price | money }}</span>
+          {%- if current_variant.compare_at_price > current_variant.price -%}
+            <span class="btg-pdp__compare-price">{{ current_variant.compare_at_price | money }}</span>
+          {%- endif -%}
+        </div>
+
+        {%- if product.description != blank -%}
+          <div class="btg-pdp__description">{{ product.description }}</div>
+        {%- endif -%}
+
+        {% form 'product', product, class: 'btg-pdp__form', id: 'btg-product-form' %}
+          <script type="application/json" data-btg-product-json>{{ product.variants | json }}</script>
+          <input type="hidden" name="id" value="{{ current_variant.id }}" data-btg-variant-id>
+
+          {%- unless product.has_only_default_variant -%}
+            {%- for option in product.options_with_values -%}
+              <div class="btg-pdp__option" data-btg-option-index="{{ forloop.index0 }}">
+                <div class="btg-pdp__option-label">
+                  <span class="btg-eyebrow" style="font-size:11px;">{{ option.name }}{%- if option.name == 'Color' or option.name == 'Colour' -%} &mdash; <span data-btg-option-value-label>{{ current_variant.options[forloop.index0] }}</span>{%- endif -%}</span>
+                </div>
+                <div class="btg-pdp__option-values">
+                  {%- if option.name == 'Color' or option.name == 'Colour' -%}
+                    {%- for value in option.values -%}
+                      <label class="btg-swatch{% if current_variant.options[forloop.parentloop.index0] == value %} active{% endif %}" style="background:{{ value.swatch.color | default: '#8A7F5C' }};" title="{{ value }}">
+                        <input type="radio" name="option{{ forloop.parentloop.index }}" value="{{ value | escape }}" {% if current_variant.options[forloop.parentloop.index0] == value %}checked{% endif %} data-btg-option-input hidden>
+                      </label>
+                    {%- endfor -%}
+                  {%- else -%}
+                    {%- for value in option.values -%}
+                      <label class="btg-size-pill{% if current_variant.options[forloop.parentloop.index0] == value %} active{% endif %}">
+                        <input type="radio" name="option{{ forloop.parentloop.index }}" value="{{ value | escape }}" {% if current_variant.options[forloop.parentloop.index0] == value %}checked{% endif %} data-btg-option-input hidden>
+                        <span class="btg-eyebrow" style="font-size:12px;">{{ value }}</span>
+                      </label>
+                    {%- endfor -%}
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          {%- endunless -%}
+
+          <div class="btg-pdp__add-row">
+            <div class="btg-qty-stepper">
+              <button type="button" class="btg-qty-btn" data-btg-pdp-qty-decrease aria-label="Decrease quantity">&minus;</button>
+              <span data-btg-pdp-qty-value>1</span>
+              <input type="hidden" name="quantity" value="1" data-btg-pdp-qty-input>
+              <button type="button" class="btg-qty-btn" data-btg-pdp-qty-increase aria-label="Increase quantity">+</button>
+            </div>
+            <button type="submit" class="btg-btn-primary" style="flex:1;" data-btg-add-to-cart {% unless current_variant.available %}disabled{% endunless %}>
+              <span data-btg-add-label>{% if current_variant.available %}{{ 'products.product.add_to_cart' | t | default: 'Add To Cart' }}{% else %}{{ 'products.product.sold_out' | t | default: 'Sold Out' }}{% endif %}</span>
+            </button>
+          </div>
+        {% endform %}
+
+        <div class="btg-eyebrow" data-btg-availability style="color:{% if current_variant.available %}#4C7A4A{% else %}#A5402C{% endif %}; font-size:11px; margin-bottom:36px;">
+          {%- if current_variant.available -%}
+            {{ 'products.product.in_stock' | t | default: 'In Stock — Ships In 2–3 Business Days' }}
+          {%- else -%}
+            {{ 'products.product.sold_out' | t | default: 'Sold Out' }}
+          {%- endif -%}
+        </div>
+
+        <div class="btg-pdp__accordions">
+          {%- assign has_specs = false -%}
+          {%- if product.metafields.shopify.fabric != blank or product.metafields.shopify.material != blank -%}
+            {%- assign has_specs = true -%}
+          {%- endif -%}
+
+          {%- if has_specs -%}
+            <details class="btg-accordion" open>
+              <summary><span class="btg-eyebrow" style="font-size:12px;">{{ 'products.product.fabric_care' | t | default: 'Fabric & Care' }}</span><span class="btg-acc-icon">+</span></summary>
+              <div class="btg-accordion__body">
+                {%- if product.metafields.shopify.fabric != blank -%}<p>{{ product.metafields.shopify.fabric }}</p>{%- endif -%}
+                {%- if product.metafields.shopify.material != blank -%}<p>{{ product.metafields.shopify.material }}</p>{%- endif -%}
+                {%- if product.metafields.shopify['headwear-features'] != blank -%}<p>{{ product.metafields.shopify['headwear-features'] }}</p>{%- endif -%}
+              </div>
+            </details>
+          {%- endif -%}
+
+          <details class="btg-accordion"{% unless has_specs %} open{% endunless %}>
+            <summary><span class="btg-eyebrow" style="font-size:12px;">{{ 'products.product.sizing' | t | default: 'Sizing' }}</span><span class="btg-acc-icon">+</span></summary>
+            <div class="btg-accordion__body">{{ section.settings.sizing_text | default: '[Size chart to be added]' }}</div>
+          </details>
+
+          <details class="btg-accordion">
+            <summary><span class="btg-eyebrow" style="font-size:12px;">{{ 'products.product.shipping_returns' | t | default: 'Shipping & Returns' }}</span><span class="btg-acc-icon">+</span></summary>
+            <div class="btg-accordion__body">{{ section.settings.shipping_text | default: '[Add your shipping & returns policy]' }}</div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {%- if related_collection and related_collection.products.size > 0 -%}
+    {%- assign cross_sell_eyebrow = section.settings.cross_sell_eyebrow | default: 'Complete The Look' -%}
+    {%- assign cross_sell_title = section.settings.cross_sell_title | default: 'You Might Also Like' -%}
+    <div class="btg-pdp__cross-sell">
+      <div class="btg-container">
+        {% render 'btg-section-heading', eyebrow: cross_sell_eyebrow, title: cross_sell_title, eyebrow_color: '#4C7A4A' %}
+        <div class="btg-grid-4">
+          {%- for related in related_collection.products limit: 4 -%}
+            {%- unless related.id == product.id -%}
+              {% render 'btg-product-card', product: related %}
+            {%- endunless -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+</div>
+
+<script src="{{ 'btg-product-form.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "BTG Product",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "related_collection",
+      "label": "Cross-sell collection",
+      "info": "Defaults to the product's own collection if left blank."
+    },
+    { "type": "text", "id": "cross_sell_eyebrow", "label": "Cross-sell eyebrow", "default": "Complete The Look" },
+    { "type": "text", "id": "cross_sell_title", "label": "Cross-sell heading", "default": "You Might Also Like" },
+    { "type": "richtext", "id": "sizing_text", "label": "Sizing accordion content", "default": "<p>[Size chart to be added]</p>" },
+    { "type": "richtext", "id": "shipping_text", "label": "Shipping & returns accordion content", "default": "<p>[Add your shipping & returns policy]</p>" }
+  ]
+}
+{% endschema %}

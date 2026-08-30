@@ -1,0 +1,124 @@
+{
+  "sections": {
+    "btg_mk_hero": {
+      "type": "btg-mk-hero",
+      "settings": {
+        "eyebrow": "Partnerships & Media Kit",
+        "heading": "An Audience That Shows Up Before Sunrise.",
+        "subheading": "Behind The Greens reaches golfers, course professionals, and industry insiders who care about the game's real culture. Here's how to reach them with us."
+      }
+    },
+    "btg_mk_proof": {
+      "type": "btg-mk-proof",
+      "blocks": {
+        "stat_views": { "type": "stat", "settings": { "value": "[XXX,XXX]", "label": "Monthly Views", "color": "#F3EEDF" } },
+        "stat_audience": { "type": "stat", "settings": { "value": "[XXX,XXX]", "label": "Total Audience", "color": "#C1922F" } },
+        "stat_reach": { "type": "stat", "settings": { "value": "[X Platforms]", "label": "Cross-Platform Reach", "color": "#F3EEDF" } }
+      },
+      "block_order": ["stat_views", "stat_audience", "stat_reach"],
+      "settings": {
+        "eyebrow": "Proof Of Scale",
+        "note": "Figures shown are placeholders — to be replaced with verified, current statistics."
+      }
+    },
+    "btg_mk_who_we_are": {
+      "type": "btg-mk-who-we-are",
+      "settings": {
+        "eyebrow": "Who We Are",
+        "heading": "A Golf Media Brand, From The Ground Up",
+        "text": "Behind The Greens covers the side of golf almost nobody films — the maintenance crews, the agronomy, and the course culture behind every playable fairway. That perspective is unique in golf media, and it has built a loyal, highly engaged audience of golfers and industry insiders who trust what we show them."
+      }
+    },
+    "btg_mk_platforms": {
+      "type": "btg-mk-platforms",
+      "blocks": {
+        "instagram": { "type": "platform", "settings": { "icon": "instagram", "name": "Instagram", "primary_stat": "[Followers]", "secondary_stat": "[Avg. Engagement Rate]" } },
+        "tiktok": { "type": "platform", "settings": { "icon": "tiktok", "name": "TikTok", "primary_stat": "[Followers]", "secondary_stat": "[Avg. Views]" } },
+        "youtube": { "type": "platform", "settings": { "icon": "youtube", "name": "YouTube", "primary_stat": "[Subscribers]", "secondary_stat": "[Avg. Views]" } },
+        "newsletter": { "type": "platform", "settings": { "icon": "newsletter", "name": "Newsletter", "primary_stat": "[Subscribers]", "secondary_stat": "[Avg. Open Rate]" } }
+      },
+      "block_order": ["instagram", "tiktok", "youtube", "newsletter"],
+      "settings": {
+        "eyebrow": "By Platform",
+        "title": "Where We Show Up"
+      }
+    },
+    "btg_mk_pathways": {
+      "type": "btg-mk-pathways",
+      "blocks": {
+        "brands": { "type": "pathway", "settings": { "eyebrow": "For Brands", "heading": "Reach Our Audience", "text": "Sponsored integrations, product features, and campaigns built around a trusted, engaged golf audience.", "link_label": "Brand Partnerships", "anchor": "#for-brands" } },
+        "courses": { "type": "pathway", "settings": { "eyebrow": "For Golf Courses", "heading": "Tell Your Course's Story", "text": "A documentary-style feature on your property, your crew, and the operation behind the course.", "link_label": "Course Features", "anchor": "#for-courses" } }
+      },
+      "block_order": ["brands", "courses"],
+      "settings": {
+        "eyebrow": "Work With Us",
+        "title": "Two Ways In"
+      }
+    },
+    "btg_mk_brands": {
+      "type": "btg-mk-brands",
+      "blocks": {
+        "format_1": { "type": "format", "settings": { "title": "Short-Form Integration", "text": "Sponsored placement inside our short-form video content." } },
+        "format_2": { "type": "format", "settings": { "title": "Long-Form Integration", "text": "Your brand woven into a full-length feature or story." } },
+        "format_3": { "type": "format", "settings": { "title": "Product Features", "text": "Your product, shown in the field, in our voice." } },
+        "format_4": { "type": "format", "settings": { "title": "Multi-Platform Campaigns", "text": "Coordinated placement across video, social, and newsletter." } },
+        "tier_1": { "type": "tier", "settings": { "title": "Single Placement", "text": "One integration, one platform — a focused way to test the audience.", "rate": "[Rate On Request]" } },
+        "tier_2": { "type": "tier", "settings": { "title": "Integrated Feature", "text": "A longer-form feature paired with supporting short-form and social.", "rate": "[Rate On Request]" } },
+        "tier_3": { "type": "tier", "settings": { "title": "Full Campaign", "text": "Coordinated placement across every platform we run.", "rate": "[Rate On Request]" } }
+      },
+      "block_order": ["format_1", "format_2", "format_3", "format_4", "tier_1", "tier_2", "tier_3"],
+      "settings": {
+        "eyebrow": "For Brands",
+        "heading": "Brand Partnerships",
+        "text": "Brand partnerships are about access — to an audience that trusts Behind The Greens' position inside golf course culture, and shows up for it. We build integrations around that trust, not around a media buy.",
+        "formats_label": "Partnership Formats",
+        "tiers_label": "Packages & Rates",
+        "tiers_note": "Package structure and rates shown are illustrative — final pricing to be confirmed before this kit goes out."
+      }
+    },
+    "btg_mk_courses": {
+      "type": "btg-mk-courses",
+      "blocks": {
+        "inc_1": { "type": "included", "settings": { "text": "Documentary-style long-form YouTube episode" } },
+        "inc_2": { "type": "included", "settings": { "text": "On-site filming alongside your maintenance crew" } },
+        "inc_3": { "type": "included", "settings": { "text": "On-camera interview with your superintendent" } },
+        "inc_4": { "type": "included", "settings": { "text": "Full coverage of the course and property" } },
+        "inc_5": { "type": "included", "settings": { "text": "Optional short-form & social distribution" } },
+        "inc_6": { "type": "included", "settings": { "text": "Scope tailored to your course and story" } }
+      },
+      "block_order": ["inc_1", "inc_2", "inc_3", "inc_4", "inc_5", "inc_6"],
+      "settings": {
+        "eyebrow": "For Golf Courses",
+        "heading": "Behind The Greens: Course Features",
+        "text": "Behind The Greens travels to your property to produce a documentary-style long-form episode telling the story of your course and the people who maintain it. We film alongside your crew, show what actually goes into keeping the course playable, and sit down with your superintendent to talk operation, philosophy, and history. This is a premium editorial feature — not videography for hire.",
+        "pricing_label": "Custom & By Inquiry Only",
+        "pricing_note": "Every Course Feature is scoped to the property. Reach out and we'll walk through what's possible."
+      }
+    },
+    "btg_mk_selected_work": {
+      "type": "btg-mk-selected-work",
+      "blocks": {
+        "case_1": { "type": "case_study", "settings": { "name": "[Name]", "project": "[Project Description]", "delivered": "[Content Delivered]", "results": "[Results]" } },
+        "case_2": { "type": "case_study", "settings": { "name": "[Name]", "project": "[Project Description]", "delivered": "[Content Delivered]", "results": "[Results]" } },
+        "case_3": { "type": "case_study", "settings": { "name": "[Name]", "project": "[Project Description]", "delivered": "[Content Delivered]", "results": "[Results]" } }
+      },
+      "block_order": ["case_1", "case_2", "case_3"],
+      "settings": {
+        "eyebrow": "Selected Work",
+        "title": "Collaborations & Case Studies",
+        "note": "Case studies will populate here as partnerships and course features are completed."
+      }
+    },
+    "btg_mk_closing": {
+      "type": "btg-mk-closing",
+      "settings": {
+        "eyebrow": "Get In Touch",
+        "heading": "Let's Build Something",
+        "brands_label": "Brand Partnerships & Rates",
+        "courses_label": "Feature Your Golf Course",
+        "pdf_label": "Download Media Kit (PDF)"
+      }
+    }
+  },
+  "order": ["btg_mk_hero", "btg_mk_proof", "btg_mk_who_we_are", "btg_mk_platforms", "btg_mk_pathways", "btg_mk_brands", "btg_mk_courses", "btg_mk_selected_work", "btg_mk_closing"]
+}

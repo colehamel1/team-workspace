@@ -1,0 +1,115 @@
+{
+  "sections": {
+    "btg_hero": {
+      "type": "btg-hero",
+      "settings": {
+        "eyebrow": "Behind The Greens · Golf Course Culture",
+        "heading": "Golf Starts Before Dawn.",
+        "subheading": "Behind The Greens tells the story of the crews, culture, and craft that make the game possible — and builds the apparel that carries it.",
+        "primary_label": "Shop The Collection",
+        "primary_link": "shopify://collections/all",
+        "secondary_label": "Explore Stories",
+        "secondary_link": "shopify://blogs/stories"
+      }
+    },
+    "btg_fork": {
+      "type": "btg-fork",
+      "blocks": {
+        "shop_panel": {
+          "type": "panel",
+          "settings": {
+            "eyebrow": "Commerce",
+            "heading": "Shop The Collection",
+            "link": "shopify://collections/all"
+          }
+        },
+        "stories_panel": {
+          "type": "panel",
+          "settings": {
+            "eyebrow": "Media",
+            "heading": "Read The Stories",
+            "link": "shopify://blogs/stories"
+          }
+        }
+      },
+      "block_order": ["shop_panel", "stories_panel"]
+    },
+    "btg_video": {
+      "type": "btg-video",
+      "settings": {
+        "eyebrow": "Behind The Camera",
+        "heading": "Watch The Work",
+        "text": "Documentary-style features from courses and crews across the country.",
+        "coming_soon_label": "New Episodes Coming Soon"
+      }
+    },
+    "btg_merch_teaser": {
+      "type": "btg-shop-teaser",
+      "settings": {
+        "eyebrow": "BTG Merch",
+        "title": "Officially Branded",
+        "view_all_label": "Shop BTG Merch",
+        "collection": "btg-merch",
+        "product_count": 4
+      }
+    },
+    "btg_crew_teaser": {
+      "type": "btg-shop-teaser",
+      "settings": {
+        "eyebrow": "For The Crew",
+        "title": "Built For Every Day",
+        "view_all_label": "Shop For The Crew",
+        "collection": "for-the-crew",
+        "product_count": 4
+      }
+    },
+    "btg_quote": {
+      "type": "btg-quote",
+      "settings": {
+        "quote": "You can walk a hundred golf courses and never see the people who made them playable. We started Behind The Greens to change that.",
+        "attribution": "The Behind The Greens Crew"
+      }
+    },
+    "btg_partnerships_teaser": {
+      "type": "btg-partnerships-teaser",
+      "blocks": {
+        "courses": {
+          "type": "card",
+          "settings": {
+            "eyebrow": "For Golf Courses",
+            "heading": "Behind The Greens: Course Features",
+            "text": "A documentary-style feature on your property, your crew, and the operation behind the course.",
+            "link_label": "Course Features",
+            "link": "shopify://pages/media-kit"
+          }
+        },
+        "brands": {
+          "type": "card",
+          "settings": {
+            "eyebrow": "For Brands",
+            "heading": "Brand Partnerships",
+            "text": "Sponsored integrations, product features, and campaigns built around a trusted golf audience.",
+            "link_label": "Brand Partnerships & Rates",
+            "link": "shopify://pages/media-kit"
+          }
+        }
+      },
+      "block_order": ["courses", "brands"],
+      "settings": {
+        "eyebrow": "Work With Us",
+        "heading": "For Brands & Golf Courses"
+      }
+    },
+    "btg_about_teaser": {
+      "type": "btg-about-teaser",
+      "settings": {
+        "eyebrow": "Our Story",
+        "heading": "More Than Merch",
+        "text": "A window into the world most golfers never see — now a community, and a uniform.",
+        "link_label": "Read Our Full Story",
+        "link": "shopify://pages/our-story"
+      }
+    }
+  },
+  "order": ["btg_hero", "btg_fork", "btg_video", "btg_merch_teaser", "btg_crew_teaser", "btg_quote", "btg_partnerships_teaser", "btg_about_teaser"]
+}

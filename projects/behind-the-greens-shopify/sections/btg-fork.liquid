@@ -1,0 +1,51 @@
+{%- comment -%} Two-panel Shop/Stories wayfinder — two editable blocks. {%- endcomment -%}
+
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+  {{ 'btg-home.css' | asset_url | stylesheet_tag }}
+
+  <div class="btg-fork">
+    {%- for block in section.blocks -%}
+      <a href="{{ block.settings.link }}" class="btg-fork__panel{% if block.settings.image == blank %} btg-fork__panel--fallback-{% cycle 'a', 'b' %}{% endif %}" {{ block.shopify_attributes }}>
+        {%- if block.settings.image != blank -%}
+          {{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: block.settings.heading }}
+        {%- else -%}
+          <div class="btg-grain"></div>
+        {%- endif -%}
+        <div class="btg-fork__scrim"></div>
+        <div class="btg-fork__content">
+          <div class="btg-eyebrow" style="color:#C1922F; margin-bottom:10px;">{{ block.settings.eyebrow }}</div>
+          <div class="btg-display" style="font-size:34px; color:#F3EEDF;">{{ block.settings.heading }} &rarr;</div>
+        </div>
+      </a>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "BTG Fork",
+  "blocks": [
+    {
+      "type": "panel",
+      "name": "Panel",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Commerce" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Shop The Collection" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "max_blocks": 2,
+  "presets": [
+    {
+      "name": "BTG Fork",
+      "blocks": [
+        { "type": "panel", "settings": { "eyebrow": "Commerce", "heading": "Shop The Collection" } },
+        { "type": "panel", "settings": { "eyebrow": "Media", "heading": "Read The Stories" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,54 @@
+{%- comment -%}
+  Homepage media/video moment. If a YouTube/Vimeo URL is set, embeds it
+  natively via Shopify's video_url setting type. If not, shows a strong
+  static frame with an honest "coming soon" label instead of an empty
+  block — never fabricates a video that doesn't exist.
+{%- endcomment -%}
+
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+  {{ 'btg-home.css' | asset_url | stylesheet_tag }}
+
+  <div class="btg-video">
+    <div class="btg-container">
+      <div class="btg-video__head">
+        <div class="btg-eyebrow" style="color:#C1922F; margin-bottom:16px;">{{ section.settings.eyebrow | default: 'Behind The Camera' }}</div>
+        <h2 class="btg-display" style="font-size:44px; color:#F3EEDF; margin:0 0 16px; max-width:640px;">{{ section.settings.heading | default: 'Watch The Work' }}</h2>
+        {%- if section.settings.text != blank -%}
+          <p style="font-size:16px; line-height:1.6; color:#A79E86; max-width:480px; margin:0;">{{ section.settings.text }}</p>
+        {%- endif -%}
+      </div>
+
+      <div class="btg-video__frame">
+        {%- if section.settings.video != blank -%}
+          {{ section.settings.video | external_video_tag: class: 'btg-video__embed' }}
+        {%- else -%}
+          {%- if section.settings.fallback_image != blank -%}
+            {{ section.settings.fallback_image | image_url: width: 1600 | image_tag: loading: 'lazy', class: 'btg-video__still', alt: section.settings.heading }}
+          {%- else -%}
+            <div class="btg-grain"></div>
+          {%- endif -%}
+          <div class="btg-video__coming-soon">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="25" stroke="#F3EEDF" stroke-width="1.4" opacity="0.6"/><path d="M21 17.5 35 26 21 34.5V17.5Z" fill="#F3EEDF"/></svg>
+            <span class="btg-eyebrow" style="color:#F3EEDF; margin-top:14px;">{{ section.settings.coming_soon_label | default: 'New Episodes Coming Soon' }}</span>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "BTG Video",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Behind The Camera" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Watch The Work" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Documentary-style features from courses and crews across the country." },
+    { "type": "video_url", "id": "video", "label": "YouTube or Vimeo URL", "accept": ["youtube", "vimeo"] },
+    { "type": "image_picker", "id": "fallback_image", "label": "Still image (shown until a video is added)" },
+    { "type": "text", "id": "coming_soon_label", "label": "\"No video yet\" label", "default": "New Episodes Coming Soon" }
+  ],
+  "presets": [{ "name": "BTG Video" }]
+}
+{% endschema %}

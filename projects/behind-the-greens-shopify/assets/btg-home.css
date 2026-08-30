@@ -1,0 +1,79 @@
+/* ---------- Hero ---------- */
+/* Fallback treatment (radial highlight + grain) covers the case where no
+   background image has been uploaded yet in section settings — the hero
+   never renders as an empty flat rectangle. */
+.btg-hero {
+  position: relative; min-height: 88vh; display: flex; align-items: flex-end; overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 18% 8%, rgba(76,122,74,0.35) 0%, rgba(76,122,74,0) 55%),
+    linear-gradient(155deg, var(--btg-forest) 0%, var(--btg-forest-deep) 55%, var(--btg-ink) 100%);
+}
+.btg-hero__image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+.btg-hero__scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,42,31,0.15) 0%, rgba(15,42,31,0.35) 55%, rgba(15,42,31,0.92) 100%); }
+.btg-hero__content { position: relative; z-index: 2; padding: 0 40px 76px; max-width: 900px; }
+.btg-hero__heading { color: var(--btg-cream); font-size: 88px; margin: 0 0 24px; }
+.btg-hero__sub { color: #EDE6D2; font-size: 19px; line-height: 1.55; max-width: 560px; margin: 0 0 34px; font-weight: 400; }
+.btg-hero__ctas { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+
+@media (max-width: 860px) {
+  .btg-hero__heading { font-size: 54px; }
+  .btg-hero__sub { font-size: 16px; max-width: 100%; }
+}
+
+/* ---------- Fork (Shop / Stories) ---------- */
+.btg-fork { display: grid; grid-template-columns: 1fr 1fr; }
+.btg-fork__panel { position: relative; display: block; aspect-ratio: 1/1; overflow: hidden; }
+.btg-fork__panel img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+.btg-fork__panel:hover img { transform: scale(1.04); }
+/* Fallback treatment when no panel image has been uploaded yet */
+.btg-fork__panel--fallback-a { background: linear-gradient(155deg, var(--btg-forest) 0%, var(--btg-ink) 100%); }
+.btg-fork__panel--fallback-b { background: linear-gradient(155deg, var(--btg-forest-deep) 0%, var(--btg-ink) 100%); }
+.btg-fork__scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,20,15,0) 40%, rgba(20,20,15,0.75) 100%); }
+.btg-fork__content { position: absolute; left: 0; right: 0; bottom: 0; padding: 32px; }
+
+@media (max-width: 860px) {
+  .btg-fork { grid-template-columns: 1fr; }
+}
+
+/* ---------- Video / media moment ---------- */
+.btg-video { background: var(--btg-ink); padding: 100px 40px; }
+.btg-video__head { margin-bottom: 44px; }
+.btg-video__frame { position: relative; aspect-ratio: 16/9; background: var(--btg-forest-deep); overflow: hidden; }
+.btg-video__embed { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+.btg-video__still { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.btg-video__coming-soon {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: rgba(15,20,15,0.38);
+}
+@media (max-width: 860px) {
+  .btg-video__frame { aspect-ratio: 4/5; }
+}
+
+/* ---------- Shop teaser ---------- */
+.btg-shop-teaser__head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 52px; flex-wrap: wrap; gap: 20px; }
+.btg-shop-teaser__head .btg-section-heading { margin-bottom: 0; }
+
+/* ---------- Partnerships teaser (Course Features / Brand Partnerships) ---------- */
+.btg-partnerships { background: var(--btg-cream-soft); padding: 100px 0; }
+.btg-partnerships__grid { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--btg-hairline); }
+.btg-partnerships__card { padding: 44px 40px; transition: background 0.2s ease; }
+.btg-partnerships__card:hover { background: rgba(20,20,15,0.03); }
+.btg-partnerships__grid .btg-partnerships__card:first-child { border-right: 1px solid var(--btg-hairline); }
+@media (max-width: 860px) {
+  .btg-partnerships__grid { grid-template-columns: 1fr; }
+  .btg-partnerships__grid .btg-partnerships__card:first-child { border-right: none; border-bottom: 1px solid var(--btg-hairline); }
+}
+
+/* ---------- Quote break ---------- */
+.btg-quote { position: relative; background: var(--btg-forest-deep); padding: 120px 40px; overflow: hidden; }
+.btg-quote__inner { position: relative; max-width: 780px; margin: 0 auto; text-align: center; }
+.btg-quote__text { font-size: 36px; line-height: 1.45; color: var(--btg-cream); margin: 0 0 28px; }
+@media (max-width: 860px) { .btg-quote__text { font-size: 26px; } }
+
+/* ---------- About teaser ---------- */
+.btg-about-teaser { padding: 120px 0; max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: auto 1fr; gap: 56px; align-items: center; }
+.btg-about-teaser__image { width: 140px; height: 140px; object-fit: contain; flex-shrink: 0; }
+@media (max-width: 860px) {
+  .btg-about-teaser { grid-template-columns: 1fr; text-align: center; padding: 80px 0; }
+  .btg-about-teaser__image { margin: 0 auto; }
+}

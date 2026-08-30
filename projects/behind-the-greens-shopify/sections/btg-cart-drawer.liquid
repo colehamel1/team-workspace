@@ -1,0 +1,88 @@
+{%- comment -%}
+  Behind The Greens cart drawer. Rendered once, globally, near the end
+  of layout/theme.liquid:
+    {% section 'btg-cart-drawer' %}
+
+  This section is a live mirror of Shopify's real cart object — it is
+  re-fetched via the Section Rendering API after every add/update/remove
+  so it always reflects real inventory, pricing, and line items. See
+  assets/btg-cart-drawer.js for the fetch logic.
+{%- endcomment -%}
+
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+  {{ 'btg-cart.css' | asset_url | stylesheet_tag }}
+
+  <div class="btg-scrim" data-btg-cart-scrim hidden></div>
+
+  <aside class="btg-cart-drawer" data-btg-cart-drawer hidden aria-hidden="true">
+    <div class="btg-cart-drawer__header">
+      <div class="btg-display btg-cart-drawer__title">
+        {{ 'cart.general.title' | t | default: 'Your Cart' }}
+        {%- if cart.item_count > 0 -%} ({{ cart.item_count }}){%- endif -%}
+      </div>
+      <button type="button" class="btg-close-btn" aria-label="Close cart" data-btg-cart-close>&times;</button>
+    </div>
+
+    <div class="btg-cart-drawer__items">
+      {%- if cart.item_count == 0 -%}
+        <div class="btg-cart-drawer__empty">
+          <p>{{ 'cart.general.empty' | t | default: 'Your cart is empty.' }}</p>
+          <a href="{{ routes.all_products_collection_url | default: routes.root_url }}" class="btg-link-underline">{{ 'cart.general.continue_shopping' | t | default: 'Continue Shopping' }}</a>
+        </div>
+      {%- else -%}
+        {%- for item in cart.items -%}
+          <div class="btg-cart-item" data-btg-cart-line="{{ forloop.index }}">
+            <div class="btg-cart-item__media">
+              {%- if item.image -%}
+                {{ item.image | image_url: width: 200 | image_tag: loading: 'lazy', alt: item.title }}
+              {%- endif -%}
+            </div>
+            <div class="btg-cart-item__body">
+              <div>
+                <div class="btg-cart-item__title">{{ item.product.title }}</div>
+                {%- if item.variant.title != 'Default Title' -%}
+                  <div class="btg-cart-item__variant">{{ item.variant.title | replace: ' / ', ' · ' }}</div>
+                {%- endif -%}
+              </div>
+              <div class="btg-cart-item__row">
+                <div class="btg-qty-stepper">
+                  <button type="button" class="btg-qty-btn" data-btg-qty-decrease data-line="{{ forloop.index }}" aria-label="Decrease quantity">&minus;</button>
+                  <span data-btg-qty-value>{{ item.quantity }}</span>
+                  <button type="button" class="btg-qty-btn" data-btg-qty-increase data-line="{{ forloop.index }}" aria-label="Increase quantity">+</button>
+                </div>
+                <span class="btg-cart-item__price">{{ item.final_line_price | money }}</span>
+              </div>
+              <button type="button" class="btg-remove-link btg-eyebrow" data-btg-remove-line data-line="{{ forloop.index }}">{{ 'cart.general.remove' | t | default: 'Remove' }}</button>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+
+    {%- if cart.item_count > 0 -%}
+      <div class="btg-cart-drawer__footer">
+        <div class="btg-cart-drawer__subtotal">
+          <span class="btg-eyebrow">{{ 'cart.general.subtotal' | t | default: 'Subtotal' }}</span>
+          <span class="btg-display" data-btg-cart-subtotal>{{ cart.total_price | money }}</span>
+        </div>
+        <p class="btg-cart-drawer__note">{{ 'cart.general.shipping_at_checkout' | t | default: 'Shipping and taxes calculated at checkout.' }}</p>
+        <form action="{{ routes.cart_url }}" method="post">
+          <button type="submit" class="btg-btn-primary" style="width:100%;">{{ 'cart.general.checkout' | t | default: 'Checkout' }}</button>
+        </form>
+        <div class="btg-cart-drawer__continue">
+          <a href="{{ routes.all_products_collection_url | default: routes.root_url }}" class="btg-eyebrow" style="color:#3A392F; border-bottom:1px solid rgba(20,20,15,0.3); padding-bottom:2px;">{{ 'cart.general.continue_shopping' | t | default: 'Continue Shopping' }}</a>
+        </div>
+      </div>
+    {%- endif -%}
+  </aside>
+</div>
+
+<script src="{{ 'btg-cart-drawer.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "BTG Cart Drawer",
+  "settings": []
+}
+{% endschema %}

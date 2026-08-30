@@ -1,0 +1,79 @@
+{%- comment -%}
+  Stories grid — pulls real articles from the Shopify Blog this template
+  is assigned to. Nothing is hardcoded; with zero published articles it
+  shows an honest empty state rather than fabricated placeholder posts.
+{%- endcomment -%}
+
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+  {{ 'btg-stories.css' | asset_url | stylesheet_tag }}
+
+  {%- paginate blog.articles by 13 -%}
+    {%- if blog.articles.size == 0 -%}
+      <div class="btg-container" style="padding-bottom:120px;">
+        <p style="color:#8A7F5C; font-size:14px;">{{ section.settings.empty_state_text | default: 'Stories will appear here once published.' }}</p>
+      </div>
+    {%- else -%}
+      {%- assign featured = blog.articles.first -%}
+      <div class="btg-container" style="padding-bottom:100px;">
+        <a href="{{ featured.url }}" class="btg-featured-story">
+          {%- if featured.image -%}
+            {{ featured.image | image_url: width: 1400 | image_tag: loading: 'eager', alt: featured.title }}
+          {%- endif -%}
+          <div class="btg-featured-story__body">
+            <div class="btg-eyebrow" style="color:#C1922F; margin-bottom:16px;">{{ 'blogs.article.featured' | t | default: 'Featured' }}{% if featured.tags.size > 0 %} &middot; {{ featured.tags.first }}{% endif %}</div>
+            <div class="btg-display" style="font-size:32px; color:#F3EEDF; margin-bottom:16px;">{{ featured.title }}</div>
+            {%- if featured.excerpt != blank -%}
+              <p style="font-size:14px; line-height:1.65; color:#A79E86; margin:0 0 20px;">{{ featured.excerpt | strip_html | truncate: 160 }}</p>
+            {%- endif -%}
+            <span class="btg-eyebrow" style="color:#F3EEDF; font-size:11px; border-bottom:1px solid rgba(243,238,223,0.4); padding-bottom:3px;">{{ 'blogs.article.read_more' | t | default: 'Read The Story' }} &rarr;</span>
+          </div>
+        </a>
+      </div>
+
+      {%- if blog.articles.size > 1 -%}
+        <div class="btg-container" style="padding-bottom:120px;">
+          <div class="btg-grid-3">
+            {%- for article in blog.articles offset: 1 -%}
+              <a href="{{ article.url }}" class="btg-story-card">
+                <div class="btg-story-card__media">
+                  {%- if article.image -%}
+                    {{ article.image | image_url: width: 700 | image_tag: loading: 'lazy', alt: article.title }}
+                  {%- endif -%}
+                </div>
+                <div class="btg-eyebrow" style="color:#8A7F5C; margin-bottom:8px; font-size:10px;">
+                  {%- if article.tags.size > 0 -%}{{ article.tags.first }} &middot; {%- endif -%}{{ article.published_at | date: '%B %-d, %Y' }}
+                </div>
+                <div class="btg-display" style="font-size:20px; color:#14140F; margin-bottom:8px;">{{ article.title }}</div>
+                {%- if article.excerpt != blank -%}
+                  <p style="font-size:13.5px; line-height:1.6; color:#3A392F; margin:0;">{{ article.excerpt | strip_html | truncate: 110 }}</p>
+                {%- endif -%}
+              </a>
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- if paginate.pages > 1 -%}
+      <div class="btg-container" style="padding-bottom:100px;">
+        <nav class="btg-pagination">
+          {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}" class="btg-eyebrow">&larr; {{ 'general.pagination.previous' | t | default: 'Previous' }}</a>{%- endif -%}
+          {%- for part in paginate.parts -%}
+            {%- if part.is_link -%}<a href="{{ part.url }}" class="btg-eyebrow">{{ part.title }}</a>{%- else -%}<span class="btg-eyebrow is-active">{{ part.title }}</span>{%- endif -%}
+          {%- endfor -%}
+          {%- if paginate.next -%}<a href="{{ paginate.next.url }}" class="btg-eyebrow">{{ 'general.pagination.next' | t | default: 'Next' }} &rarr;</a>{%- endif -%}
+        </nav>
+      </div>
+    {%- endif -%}
+  {%- endpaginate -%}
+</div>
+
+{% schema %}
+{
+  "name": "BTG Stories Grid",
+  "settings": [
+    { "type": "text", "id": "empty_state_text", "label": "Empty state text", "default": "Stories will appear here once published." }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,26 @@
+{%- comment -%} Editorial quote break — full-bleed forest background. {%- endcomment -%}
+
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+  {{ 'btg-home.css' | asset_url | stylesheet_tag }}
+
+  <div class="btg-quote">
+    <div class="btg-grain"></div>
+    <div class="btg-quote__inner">
+      <svg width="34" height="26" viewBox="0 0 34 26" fill="none" style="margin:0 auto 28px; display:block;"><path d="M0 26V15.6C0 6.9 5.4 1.3 14 0v6.5c-4.3 1.1-6.6 3.9-6.9 8.4H14V26H0Zm20 0V15.6c0-8.7 5.4-14.3 14-15.6v6.5c-4.3 1.1-6.6 3.9-6.9 8.4H34V26H20Z" fill="#C1922F"/></svg>
+      <p class="btg-editorial btg-quote__text">{{ section.settings.quote }}</p>
+      <div class="btg-eyebrow" style="color:#C1922F;">&mdash; {{ section.settings.attribution }}</div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "BTG Quote",
+  "settings": [
+    { "type": "textarea", "id": "quote", "label": "Quote", "default": "You can walk a hundred golf courses and never see the people who made them playable. We started Behind The Greens to change that." },
+    { "type": "text", "id": "attribution", "label": "Attribution", "default": "The Behind The Greens Crew" }
+  ],
+  "presets": [{ "name": "BTG Quote" }]
+}
+{% endschema %}

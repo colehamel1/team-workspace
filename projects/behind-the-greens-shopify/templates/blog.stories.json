@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "btg_stories_header": {
+      "type": "btg-stories-header",
+      "settings": {
+        "eyebrow": "Stories",
+        "heading": "From Behind The Greens",
+        "tagline": "The people, the culture, and the work most golfers never see."
+      }
+    },
+    "btg_stories_grid": {
+      "type": "btg-stories-grid",
+      "settings": {
+        "empty_state_text": "Stories will appear here once published."
+      }
+    }
+  },
+  "order": ["btg_stories_header", "btg_stories_grid"]
+}

@@ -1,0 +1,69 @@
+{%- comment -%}
+  Case-study cards. Every field defaults to a bracketed placeholder —
+  fill in real partner/course names, projects, deliverables and results
+  as they become available. Nothing is invented here.
+{%- endcomment -%}
+
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+  {{ 'btg-media-kit.css' | asset_url | stylesheet_tag }}
+
+  <div class="btg-container" style="padding:100px 40px;">
+    {% render 'btg-section-heading', eyebrow: section.settings.eyebrow, title: section.settings.title, eyebrow_color: '#4C7A4A' %}
+    <div class="btg-grid-3">
+      {%- for block in section.blocks -%}
+        <div class="btg-mk-case-card" {{ block.shopify_attributes }}>
+          <div class="btg-mk-case-card__media">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 700 | image_tag: loading: 'lazy', alt: block.settings.name }}
+            {%- else -%}
+              <span class="btg-eyebrow" style="color:rgba(243,238,223,0.5); font-size:10px;">{{ 'media_kit.image_pending' | t | default: 'Image Pending' }}</span>
+            {%- endif -%}
+          </div>
+          <div class="btg-mk-case-card__body">
+            <div><span class="btg-eyebrow" style="color:#8A7F5C; font-size:10px;">{{ 'media_kit.partner' | t | default: 'Partner / Course —' }} </span><span style="font-size:13px; color:#14140F;">{{ block.settings.name | default: '[Name]' }}</span></div>
+            <div><span class="btg-eyebrow" style="color:#8A7F5C; font-size:10px;">{{ 'media_kit.project' | t | default: 'Project —' }} </span><span style="font-size:13px; color:#14140F;">{{ block.settings.project | default: '[Project Description]' }}</span></div>
+            <div><span class="btg-eyebrow" style="color:#8A7F5C; font-size:10px;">{{ 'media_kit.delivered' | t | default: 'Delivered —' }} </span><span style="font-size:13px; color:#14140F;">{{ block.settings.delivered | default: '[Content Delivered]' }}</span></div>
+            <div><span class="btg-eyebrow" style="color:#8A7F5C; font-size:10px;">{{ 'media_kit.results' | t | default: 'Results —' }} </span><span style="font-size:13px; color:#14140F;">{{ block.settings.results | default: '[Results]' }}</span></div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+    <p style="color:#8A7F5C; font-size:13px; margin:24px 0 0;">{{ section.settings.note | default: 'Case studies will populate here as partnerships and course features are completed.' }}</p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "BTG MK Selected Work",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Selected Work" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Collaborations & Case Studies" },
+    { "type": "textarea", "id": "note", "label": "Note", "default": "Case studies will populate here as partnerships and course features are completed." }
+  ],
+  "blocks": [
+    {
+      "type": "case_study",
+      "name": "Case study",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "name", "label": "Partner / course name", "default": "[Name]" },
+        { "type": "text", "id": "project", "label": "Project", "default": "[Project Description]" },
+        { "type": "text", "id": "delivered", "label": "Content delivered", "default": "[Content Delivered]" },
+        { "type": "text", "id": "results", "label": "Results", "default": "[Results]" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "BTG MK Selected Work",
+      "blocks": [
+        { "type": "case_study" },
+        { "type": "case_study" },
+        { "type": "case_study" }
+      ]
+    }
+  ]
+}
+{% endschema %}

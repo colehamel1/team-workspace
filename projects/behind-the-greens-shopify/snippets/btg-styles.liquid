@@ -1,0 +1,10 @@
+{%- comment -%}
+  Behind The Greens — global style loader.
+  Include once in layout/theme.liquid, inside <head>, e.g.:
+    {% render 'btg-styles' %}
+{%- endcomment -%}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700;800;900&family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+{{ 'btg-base.css' | asset_url | stylesheet_tag }}

@@ -1,0 +1,13 @@
+{%- comment -%}
+  Shared eyebrow + display headline pattern.
+  Usage: {% render 'btg-section-heading', eyebrow: section.settings.eyebrow, title: section.settings.title, eyebrow_color: '#A5402C' %}
+{%- endcomment -%}
+
+<div class="btg-section-heading">
+  {%- if eyebrow != blank -%}
+    <div class="btg-eyebrow btg-section-heading__eyebrow" style="color: {{ eyebrow_color | default: '#A5402C' }};">{{ eyebrow }}</div>
+  {%- endif -%}
+  {%- if title != blank -%}
+    <h2 class="btg-display btg-section-heading__title">{{ title }}</h2>
+  {%- endif -%}
+</div>

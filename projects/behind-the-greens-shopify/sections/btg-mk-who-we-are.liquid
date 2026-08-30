@@ -1,0 +1,22 @@
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+  {{ 'btg-media-kit.css' | asset_url | stylesheet_tag }}
+
+  <div class="btg-container-narrow" style="padding:88px 40px; text-align:center;">
+    <div class="btg-eyebrow" style="color:#4C7A4A; margin-bottom:16px;">{{ section.settings.eyebrow | default: 'Who We Are' }}</div>
+    <h2 class="btg-display" style="font-size:42px; color:#14140F; margin:0 0 22px;">{{ section.settings.heading }}</h2>
+    <p style="font-size:17px; line-height:1.7; color:#3A392F; margin:0;">{{ section.settings.text }}</p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "BTG MK Who We Are",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Who We Are" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "A Golf Media Brand, From The Ground Up" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Behind The Greens covers the side of golf almost nobody films — the maintenance crews, the agronomy, and the course culture behind every playable fairway. That perspective is unique in golf media, and it has built a loyal, highly engaged audience of golfers and industry insiders who trust what we show them." }
+  ],
+  "presets": [{ "name": "BTG MK Who We Are" }]
+}
+{% endschema %}

@@ -1,0 +1,73 @@
+{%- comment -%}
+  Behind The Greens header. Rendered directly by layout/theme.liquid
+  (see README) — NOT added through the theme editor's "Add section"
+  picker, since Horizon restricts its Header group to its own section
+  allowlist regardless of enabled_on. Menu and logo are merchant-editable
+  through section settings; nothing here is hardcoded.
+{%- endcomment -%}
+
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+
+  <header class="btg-header">
+    <a href="{{ routes.root_url }}" class="btg-header__brand">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 80 | image_tag: class: 'btg-header__logo', alt: shop.name }}
+      {%- endif -%}
+      <span class="btg-display btg-header__wordmark">{{ shop.name }}</span>
+    </a>
+
+    <nav class="btg-header__nav">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}" class="btg-eyebrow{% if link.active %} active{% endif %}">{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+
+    <div class="btg-header__icons">
+      <a href="{{ routes.search_url }}" aria-label="{{ 'general.search.title' | t | default: 'Search' }}">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#F3EEDF" stroke-width="1.6"/><line x1="21" y1="21" x2="16.2" y2="16.2" stroke="#F3EEDF" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </a>
+      <div class="btg-header__cart-wrap">
+        <button type="button" aria-label="{{ 'cart.general.title' | t | default: 'Cart' }}" data-btg-cart-toggle>
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M6 8h12l-1 12.5a1.5 1.5 0 0 1-1.5 1.5h-8a1.5 1.5 0 0 1-1.5-1.5L6 8Z" stroke="#F3EEDF" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 8V6a3 3 0 0 1 6 0v2" stroke="#F3EEDF" stroke-width="1.6"/></svg>
+        </button>
+        {%- if cart.item_count > 0 -%}
+          <span class="btg-header__cart-count" data-btg-cart-count>{{ cart.item_count }}</span>
+        {%- endif -%}
+      </div>
+      <button type="button" class="btg-mobile-toggle" aria-label="Menu" data-btg-mobile-nav-toggle>
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="btg-mobile-nav" data-btg-mobile-nav>
+    <button type="button" class="btg-mobile-nav__close" aria-label="Close menu" data-btg-mobile-nav-close>&times;</button>
+    <nav class="btg-mobile-nav__links">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+  </div>
+</div>
+
+<script src="{{ 'btg-theme.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "BTG Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo / crest"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigation menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

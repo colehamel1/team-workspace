@@ -1,0 +1,106 @@
+{%- comment -%}
+  Behind The Greens footer. Rendered directly by layout/theme.liquid
+  (see README), not through the theme editor's "Add section" picker —
+  same reasoning as btg-header.liquid. Newsletter signup uses Shopify's
+  native customer form (tags the contact "newsletter" — no app required).
+  All three footer columns are merchant-editable navigation menus.
+{%- endcomment -%}
+
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+
+  <footer class="btg-footer">
+    <div class="btg-container" style="padding-left:0; padding-right:0; max-width:1240px;">
+
+      <div class="btg-footer__newsletter">
+        <div>
+          <h3 class="btg-display">{{ section.settings.newsletter_heading | default: 'Join The Crew' }}</h3>
+          <p>{{ section.settings.newsletter_text | default: "Stories from behind the greens, new drops, and the occasional dispatch from the crew — straight to your inbox." }}</p>
+        </div>
+        {% form 'customer', class: 'btg-footer__form' %}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          {%- if form.posted_successfully? -%}
+            <p style="color:#F3EEDF; font-size:14px;">{{ 'newsletter.confirmation' | t | default: "Thanks — you're on the list." }}</p>
+          {%- else -%}
+            <input type="email" name="contact[email]" placeholder="Your email address" required>
+            <button type="submit">{{ 'newsletter.submit' | t | default: 'Sign Up' }}</button>
+          {%- endif -%}
+        {% endform %}
+      </div>
+
+      <div class="btg-footer__cols">
+        <div class="btg-footer__brand">
+          {%- if section.settings.logo != blank -%}
+            {{ section.settings.logo | image_url: width: 68 | image_tag: width: 34, height: 34, style: 'object-fit:contain;' }}
+          {%- endif -%}
+          <span class="btg-display">{{ shop.name }}</span>
+        </div>
+
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'menu_column' -%}
+            <div {{ block.shopify_attributes }}>
+              <div class="btg-eyebrow btg-footer__col-title">{{ block.settings.title }}</div>
+              <div class="btg-footer__col">
+                {%- for link in block.settings.menu.links -%}
+                  <a href="{{ link.url }}">{{ link.title }}</a>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      <div class="btg-footer__bottom">
+        <span>&copy; {{ shop.name }}</span>
+        <div class="btg-footer__bottom-links">
+          <a href="{{ pages.privacy-policy.url | default: '#' }}">Privacy</a>
+          <a href="{{ pages.terms-of-service.url | default: '#' }}">Terms</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+</div>
+
+{% schema %}
+{
+  "name": "BTG Footer",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo / crest"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Newsletter heading",
+      "default": "Join The Crew"
+    },
+    {
+      "type": "textarea",
+      "id": "newsletter_text",
+      "label": "Newsletter text",
+      "default": "Stories from behind the greens, new drops, and the occasional dispatch from the crew — straight to your inbox."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu_column",
+      "name": "Menu column",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Column title", "default": "Shop" },
+        { "type": "link_list", "id": "menu", "label": "Menu" }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "default": {
+    "blocks": [
+      { "type": "menu_column", "settings": { "title": "Shop" } },
+      { "type": "menu_column", "settings": { "title": "Company" } },
+      { "type": "menu_column", "settings": { "title": "Support" } }
+    ]
+  }
+}
+{% endschema %}

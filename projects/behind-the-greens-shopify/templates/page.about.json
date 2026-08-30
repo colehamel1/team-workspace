@@ -1,0 +1,52 @@
+{
+  "sections": {
+    "btg_about_hero": {
+      "type": "btg-about-hero",
+      "settings": {
+        "eyebrow": "Our Story",
+        "heading": "Why We Started This"
+      }
+    },
+    "btg_about_origin": {
+      "type": "btg-about-origin",
+      "settings": {
+        "label": "The Beginning",
+        "pull_quote": "Golf has a front of house and a back of house. Almost everything gets pointed at the front.",
+        "body": "<p>Behind The Greens started as a simple idea: point the camera the other way. Follow the crews who are out on the course before the gates open — mowing lines at first light, setting pins, reading turf like a language only they speak. Talk to the superintendents who carry the whole operation on their shoulders. Show the culture, the routines, the unwritten rules that never make it into a broadcast.</p><p>That perspective found an audience fast — golfers and industry people alike, drawn to a side of the game they'd never really seen. What started as stories became a community, and that community wanted something to wear that actually represented it.</p><p>So we built one. Not golf merch. Not a landscaping brand. Apparel built in the same spirit as the stories — for the people who show up before the flag does, and everyone who respects them for it.</p>"
+      }
+    },
+    "btg_about_values": {
+      "type": "btg-about-values",
+      "blocks": {
+        "value_1": { "type": "value", "settings": { "title": "The Crew Comes First", "text": "Every story starts with the people doing the work, not the people playing the round." } },
+        "value_2": { "type": "value", "settings": { "title": "Culture Over Clichés", "text": "No country-club stereotypes, no golf-themed gimmicks — just the real texture of the game." } },
+        "value_3": { "type": "value", "settings": { "title": "Built To Last", "text": "Apparel made the way the work it represents deserves — solid, useful, not disposable." } }
+      },
+      "block_order": ["value_1", "value_2", "value_3"],
+      "settings": {
+        "eyebrow": "What We Believe",
+        "title": "The Principles"
+      }
+    },
+    "btg_about_crest": {
+      "type": "btg-about-crest",
+      "settings": {
+        "eyebrow": "The Crest",
+        "text": "A crest, not a logo — the kind of mark a crew earns, not one a marketing team invents. Every piece we make carries it."
+      }
+    },
+    "btg_about_cta": {
+      "type": "btg-about-cta",
+      "blocks": {
+        "link_stories": { "type": "link", "settings": { "label": "Read", "heading": "The Stories", "link": "shopify://blogs/stories" } },
+        "link_shop": { "type": "link", "settings": { "label": "Shop", "heading": "The Collection", "link": "shopify://collections/all" } }
+      },
+      "block_order": ["link_stories", "link_shop"],
+      "settings": {
+        "eyebrow": "Media · Culture · Community · Commerce",
+        "heading": "One Story, Told A Few Different Ways"
+      }
+    }
+  },
+  "order": ["btg_about_hero", "btg_about_origin", "btg_about_values", "btg_about_crest", "btg_about_cta"]
+}

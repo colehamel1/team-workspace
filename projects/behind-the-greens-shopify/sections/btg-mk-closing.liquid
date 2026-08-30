@@ -1,0 +1,41 @@
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+  {{ 'btg-media-kit.css' | asset_url | stylesheet_tag }}
+
+  <div class="btg-mk-closing">
+    <div class="btg-container-narrow" style="text-align:center;">
+      <div class="btg-eyebrow" style="color:#78705C; margin-bottom:16px;">{{ section.settings.eyebrow | default: 'Get In Touch' }}</div>
+      <h2 class="btg-display" style="font-size:42px; color:#F3EEDF; margin:0 0 48px;">{{ section.settings.heading | default: "Let's Build Something" }}</h2>
+      <div class="btg-mk-closing__grid">
+        <a href="{{ section.settings.brands_link | default: '#for-brands' }}" class="btg-mk-closing__cta btg-mk-closing__cta--primary">
+          <div class="btg-eyebrow" style="color:#14140F; font-size:11px; margin-bottom:10px; opacity:0.7;">{{ 'media_kit.for_brands' | t | default: 'For Brands' }}</div>
+          <div class="btg-display" style="font-size:22px; color:#14140F;">{{ section.settings.brands_label | default: 'Brand Partnerships & Rates' }}</div>
+        </a>
+        <a href="{{ section.settings.courses_link | default: '#for-courses' }}" class="btg-mk-closing__cta btg-mk-closing__cta--outline">
+          <div class="btg-eyebrow" style="color:#C1922F; font-size:11px; margin-bottom:10px; opacity:0.85;">{{ 'media_kit.for_courses' | t | default: 'For Golf Courses' }}</div>
+          <div class="btg-display" style="font-size:22px; color:#F3EEDF;">{{ section.settings.courses_label | default: 'Feature Your Golf Course' }}</div>
+        </a>
+      </div>
+      {%- if section.settings.pdf_link != blank -%}
+        <a href="{{ section.settings.pdf_link }}" class="btg-link-underline" style="color:#78705C; border-color:#444037;" target="_blank" rel="noopener">{{ section.settings.pdf_label | default: 'Download Media Kit (PDF)' }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "BTG MK Closing CTA",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Get In Touch" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Let's Build Something" },
+    { "type": "text", "id": "brands_label", "label": "Brands CTA label", "default": "Brand Partnerships & Rates" },
+    { "type": "url", "id": "brands_link", "label": "Brands CTA link (defaults to #for-brands)" },
+    { "type": "text", "id": "courses_label", "label": "Courses CTA label", "default": "Feature Your Golf Course" },
+    { "type": "url", "id": "courses_link", "label": "Courses CTA link (defaults to #for-courses)" },
+    { "type": "text", "id": "pdf_label", "label": "PDF download label", "default": "Download Media Kit (PDF)" },
+    { "type": "url", "id": "pdf_link", "label": "PDF file link", "info": "Upload the media kit PDF under Content → Files, then paste its link here." }
+  ],
+  "presets": [{ "name": "BTG MK Closing CTA" }]
+}
+{% endschema %}

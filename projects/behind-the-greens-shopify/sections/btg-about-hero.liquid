@@ -1,0 +1,27 @@
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+  {{ 'btg-about.css' | asset_url | stylesheet_tag }}
+
+  <div class="btg-about-hero">
+    {%- if section.settings.image != blank -%}
+      {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'eager', class: 'btg-about-hero__image', alt: section.settings.heading }}
+    {%- endif -%}
+    <div class="btg-about-hero__scrim"></div>
+    <div class="btg-about-hero__content">
+      <div class="btg-eyebrow" style="color:#C1922F; margin-bottom:18px;">{{ section.settings.eyebrow | default: 'Our Story' }}</div>
+      <h1 class="btg-display btg-about-hero__heading">{{ section.settings.heading }}</h1>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "BTG About Hero",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Background image" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Our Story" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Why We Started This" }
+  ],
+  "presets": [{ "name": "BTG About Hero" }]
+}
+{% endschema %}
