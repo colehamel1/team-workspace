@@ -21,7 +21,7 @@
   {%- if blog.all_tags.size > 0 -%}
     <div class="btg-container" style="padding-bottom:0;">
       <div class="btg-shop-filters">
-        <a href="{{ blog.url }}" class="btg-chip btg-eyebrow{% if blog.current_tags == blank %} is-active{% endif %}">{{ 'blogs.article.all' | t | default: 'All' }}</a>
+        <a href="{{ blog.url }}" class="btg-chip btg-eyebrow{% if blog.current_tags == blank %} is-active{% endif %}">All</a>
         {%- for tag in blog.all_tags -%}
           <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="btg-chip btg-eyebrow{% if blog.current_tags contains tag %} is-active{% endif %}">{{ tag }}</a>
         {%- endfor -%}

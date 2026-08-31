@@ -20,7 +20,7 @@
       </div>
 
       <div class="btg-video__frame">
-        {%- if section.settings.video != blank -%}
+        {%- if section.settings.video.type -%}
           {{ section.settings.video | external_video_tag: class: 'btg-video__embed' }}
         {%- else -%}
           {%- if section.settings.fallback_image != blank -%}

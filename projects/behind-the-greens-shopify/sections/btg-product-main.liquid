@@ -18,7 +18,7 @@
 
   <div class="btg-container" style="padding-top:24px;">
     <div class="btg-eyebrow" style="display:flex; align-items:center; gap:8px;">
-      <a href="{{ routes.all_products_collection_url }}" style="color:#8A7F5C; font-size:11px;">{{ 'products.breadcrumb.shop' | t | default: 'Shop' }}</a>
+      <a href="{{ routes.all_products_collection_url }}" style="color:#8A7F5C; font-size:11px;">Shop</a>
       {%- if product.collections.first -%}
         <span style="color:#8A7F5C; font-size:11px;">/</span>
         <a href="{{ product.collections.first.url }}" style="color:#8A7F5C; font-size:11px;">{{ product.collections.first.title }}</a>
@@ -107,16 +107,16 @@
               <button type="button" class="btg-qty-btn" data-btg-pdp-qty-increase aria-label="Increase quantity">+</button>
             </div>
             <button type="submit" class="btg-btn-primary" style="flex:1;" data-btg-add-to-cart {% unless current_variant.available %}disabled{% endunless %}>
-              <span data-btg-add-label>{% if current_variant.available %}{{ 'products.product.add_to_cart' | t | default: 'Add To Cart' }}{% else %}{{ 'products.product.sold_out' | t | default: 'Sold Out' }}{% endif %}</span>
+              <span data-btg-add-label>{% if current_variant.available %}Add To Cart{% else %}Sold Out{% endif %}</span>
             </button>
           </div>
         {% endform %}
 
         <div class="btg-eyebrow" data-btg-availability style="color:{% if current_variant.available %}#4C7A4A{% else %}#A5402C{% endif %}; font-size:11px; margin-bottom:36px;">
           {%- if current_variant.available -%}
-            {{ 'products.product.in_stock' | t | default: 'In Stock — Ships In 2–3 Business Days' }}
+            In Stock — Ships In 2–3 Business Days
           {%- else -%}
-            {{ 'products.product.sold_out' | t | default: 'Sold Out' }}
+            Sold Out
           {%- endif -%}
         </div>
 
@@ -128,7 +128,7 @@
 
           {%- if has_specs -%}
             <details class="btg-accordion" open>
-              <summary><span class="btg-eyebrow" style="font-size:12px;">{{ 'products.product.fabric_care' | t | default: 'Fabric & Care' }}</span><span class="btg-acc-icon">+</span></summary>
+              <summary><span class="btg-eyebrow" style="font-size:12px;">Fabric & Care</span><span class="btg-acc-icon">+</span></summary>
               <div class="btg-accordion__body">
                 {%- if product.metafields.shopify.fabric != blank -%}<p>{{ product.metafields.shopify.fabric }}</p>{%- endif -%}
                 {%- if product.metafields.shopify.material != blank -%}<p>{{ product.metafields.shopify.material }}</p>{%- endif -%}
@@ -138,12 +138,12 @@
           {%- endif -%}
 
           <details class="btg-accordion"{% unless has_specs %} open{% endunless %}>
-            <summary><span class="btg-eyebrow" style="font-size:12px;">{{ 'products.product.sizing' | t | default: 'Sizing' }}</span><span class="btg-acc-icon">+</span></summary>
+            <summary><span class="btg-eyebrow" style="font-size:12px;">Sizing</span><span class="btg-acc-icon">+</span></summary>
             <div class="btg-accordion__body">{{ section.settings.sizing_text | default: '[Size chart to be added]' }}</div>
           </details>
 
           <details class="btg-accordion">
-            <summary><span class="btg-eyebrow" style="font-size:12px;">{{ 'products.product.shipping_returns' | t | default: 'Shipping & Returns' }}</span><span class="btg-acc-icon">+</span></summary>
+            <summary><span class="btg-eyebrow" style="font-size:12px;">Shipping & Returns</span><span class="btg-acc-icon">+</span></summary>
             <div class="btg-accordion__body">{{ section.settings.shipping_text | default: '[Add your shipping & returns policy]' }}</div>
           </details>
         </div>

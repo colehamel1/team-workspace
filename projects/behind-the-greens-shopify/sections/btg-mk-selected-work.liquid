@@ -17,14 +17,14 @@
             {%- if block.settings.image != blank -%}
               {{ block.settings.image | image_url: width: 700 | image_tag: loading: 'lazy', alt: block.settings.name }}
             {%- else -%}
-              <span class="btg-eyebrow" style="color:rgba(243,238,223,0.5); font-size:10px;">{{ 'media_kit.image_pending' | t | default: 'Image Pending' }}</span>
+              <span class="btg-eyebrow" style="color:rgba(243,238,223,0.5); font-size:10px;">Image Pending</span>
             {%- endif -%}
           </div>
           <div class="btg-mk-case-card__body">
-            <div><span class="btg-eyebrow" style="color:#8A7F5C; font-size:10px;">{{ 'media_kit.partner' | t | default: 'Partner / Course —' }} </span><span style="font-size:13px; color:#14140F;">{{ block.settings.name | default: '[Name]' }}</span></div>
-            <div><span class="btg-eyebrow" style="color:#8A7F5C; font-size:10px;">{{ 'media_kit.project' | t | default: 'Project —' }} </span><span style="font-size:13px; color:#14140F;">{{ block.settings.project | default: '[Project Description]' }}</span></div>
-            <div><span class="btg-eyebrow" style="color:#8A7F5C; font-size:10px;">{{ 'media_kit.delivered' | t | default: 'Delivered —' }} </span><span style="font-size:13px; color:#14140F;">{{ block.settings.delivered | default: '[Content Delivered]' }}</span></div>
-            <div><span class="btg-eyebrow" style="color:#8A7F5C; font-size:10px;">{{ 'media_kit.results' | t | default: 'Results —' }} </span><span style="font-size:13px; color:#14140F;">{{ block.settings.results | default: '[Results]' }}</span></div>
+            <div><span class="btg-eyebrow" style="color:#8A7F5C; font-size:10px;">Partner / Course — </span><span style="font-size:13px; color:#14140F;">{{ block.settings.name | default: '[Name]' }}</span></div>
+            <div><span class="btg-eyebrow" style="color:#8A7F5C; font-size:10px;">Project — </span><span style="font-size:13px; color:#14140F;">{{ block.settings.project | default: '[Project Description]' }}</span></div>
+            <div><span class="btg-eyebrow" style="color:#8A7F5C; font-size:10px;">Delivered — </span><span style="font-size:13px; color:#14140F;">{{ block.settings.delivered | default: '[Content Delivered]' }}</span></div>
+            <div><span class="btg-eyebrow" style="color:#8A7F5C; font-size:10px;">Results — </span><span style="font-size:13px; color:#14140F;">{{ block.settings.results | default: '[Results]' }}</span></div>
           </div>
         </div>
       {%- endfor -%}

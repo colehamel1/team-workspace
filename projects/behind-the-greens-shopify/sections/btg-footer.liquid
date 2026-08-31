@@ -20,10 +20,10 @@
         {% form 'customer', class: 'btg-footer__form' %}
           <input type="hidden" name="contact[tags]" value="newsletter">
           {%- if form.posted_successfully? -%}
-            <p style="color:#F3EEDF; font-size:14px;">{{ 'newsletter.confirmation' | t | default: "Thanks — you're on the list." }}</p>
+            <p style="color:#F3EEDF; font-size:14px;">Thanks — you're on the list.</p>
           {%- else -%}
             <input type="email" name="contact[email]" placeholder="Your email address" required>
-            <button type="submit">{{ 'newsletter.submit' | t | default: 'Sign Up' }}</button>
+            <button type="submit">Sign Up</button>
           {%- endif -%}
         {% endform %}
       </div>

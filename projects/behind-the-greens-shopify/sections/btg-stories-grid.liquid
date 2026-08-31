@@ -21,12 +21,12 @@
             {{ featured.image | image_url: width: 1400 | image_tag: loading: 'eager', alt: featured.title }}
           {%- endif -%}
           <div class="btg-featured-story__body">
-            <div class="btg-eyebrow" style="color:#C1922F; margin-bottom:16px;">{{ 'blogs.article.featured' | t | default: 'Featured' }}{% if featured.tags.size > 0 %} &middot; {{ featured.tags.first }}{% endif %}</div>
+            <div class="btg-eyebrow" style="color:#C1922F; margin-bottom:16px;">Featured{% if featured.tags.size > 0 %} &middot; {{ featured.tags.first }}{% endif %}</div>
             <div class="btg-display" style="font-size:32px; color:#F3EEDF; margin-bottom:16px;">{{ featured.title }}</div>
             {%- if featured.excerpt != blank -%}
               <p style="font-size:14px; line-height:1.65; color:#A79E86; margin:0 0 20px;">{{ featured.excerpt | strip_html | truncate: 160 }}</p>
             {%- endif -%}
-            <span class="btg-eyebrow" style="color:#F3EEDF; font-size:11px; border-bottom:1px solid rgba(243,238,223,0.4); padding-bottom:3px;">{{ 'blogs.article.read_more' | t | default: 'Read The Story' }} &rarr;</span>
+            <span class="btg-eyebrow" style="color:#F3EEDF; font-size:11px; border-bottom:1px solid rgba(243,238,223,0.4); padding-bottom:3px;">Read The Story &rarr;</span>
           </div>
         </a>
       </div>
@@ -58,11 +58,11 @@
     {%- if paginate.pages > 1 -%}
       <div class="btg-container" style="padding-bottom:100px;">
         <nav class="btg-pagination">
-          {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}" class="btg-eyebrow">&larr; {{ 'general.pagination.previous' | t | default: 'Previous' }}</a>{%- endif -%}
+          {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}" class="btg-eyebrow">&larr; Previous</a>{%- endif -%}
           {%- for part in paginate.parts -%}
             {%- if part.is_link -%}<a href="{{ part.url }}" class="btg-eyebrow">{{ part.title }}</a>{%- else -%}<span class="btg-eyebrow is-active">{{ part.title }}</span>{%- endif -%}
           {%- endfor -%}
-          {%- if paginate.next -%}<a href="{{ paginate.next.url }}" class="btg-eyebrow">{{ 'general.pagination.next' | t | default: 'Next' }} &rarr;</a>{%- endif -%}
+          {%- if paginate.next -%}<a href="{{ paginate.next.url }}" class="btg-eyebrow">Next &rarr;</a>{%- endif -%}
         </nav>
       </div>
     {%- endif -%}

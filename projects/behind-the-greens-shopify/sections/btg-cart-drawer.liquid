@@ -18,7 +18,7 @@
   <aside class="btg-cart-drawer" data-btg-cart-drawer hidden aria-hidden="true">
     <div class="btg-cart-drawer__header">
       <div class="btg-display btg-cart-drawer__title">
-        {{ 'cart.general.title' | t | default: 'Your Cart' }}
+        Your Cart
         {%- if cart.item_count > 0 -%} ({{ cart.item_count }}){%- endif -%}
       </div>
       <button type="button" class="btg-close-btn" aria-label="Close cart" data-btg-cart-close>&times;</button>
@@ -27,8 +27,8 @@
     <div class="btg-cart-drawer__items">
       {%- if cart.item_count == 0 -%}
         <div class="btg-cart-drawer__empty">
-          <p>{{ 'cart.general.empty' | t | default: 'Your cart is empty.' }}</p>
-          <a href="{{ routes.all_products_collection_url | default: routes.root_url }}" class="btg-link-underline">{{ 'cart.general.continue_shopping' | t | default: 'Continue Shopping' }}</a>
+          <p>Your cart is empty.</p>
+          <a href="{{ routes.all_products_collection_url | default: routes.root_url }}" class="btg-link-underline">Continue Shopping</a>
         </div>
       {%- else -%}
         {%- for item in cart.items -%}
@@ -53,7 +53,7 @@
                 </div>
                 <span class="btg-cart-item__price">{{ item.final_line_price | money }}</span>
               </div>
-              <button type="button" class="btg-remove-link btg-eyebrow" data-btg-remove-line data-line="{{ forloop.index }}">{{ 'cart.general.remove' | t | default: 'Remove' }}</button>
+              <button type="button" class="btg-remove-link btg-eyebrow" data-btg-remove-line data-line="{{ forloop.index }}">Remove</button>
             </div>
           </div>
         {%- endfor -%}
@@ -63,15 +63,15 @@
     {%- if cart.item_count > 0 -%}
       <div class="btg-cart-drawer__footer">
         <div class="btg-cart-drawer__subtotal">
-          <span class="btg-eyebrow">{{ 'cart.general.subtotal' | t | default: 'Subtotal' }}</span>
+          <span class="btg-eyebrow">Subtotal</span>
           <span class="btg-display" data-btg-cart-subtotal>{{ cart.total_price | money }}</span>
         </div>
-        <p class="btg-cart-drawer__note">{{ 'cart.general.shipping_at_checkout' | t | default: 'Shipping and taxes calculated at checkout.' }}</p>
+        <p class="btg-cart-drawer__note">Shipping and taxes calculated at checkout.</p>
         <form action="{{ routes.cart_url }}" method="post">
-          <button type="submit" class="btg-btn-primary" style="width:100%;">{{ 'cart.general.checkout' | t | default: 'Checkout' }}</button>
+          <button type="submit" class="btg-btn-primary" style="width:100%;">Checkout</button>
         </form>
         <div class="btg-cart-drawer__continue">
-          <a href="{{ routes.all_products_collection_url | default: routes.root_url }}" class="btg-eyebrow" style="color:#3A392F; border-bottom:1px solid rgba(20,20,15,0.3); padding-bottom:2px;">{{ 'cart.general.continue_shopping' | t | default: 'Continue Shopping' }}</a>
+          <a href="{{ routes.all_products_collection_url | default: routes.root_url }}" class="btg-eyebrow" style="color:#3A392F; border-bottom:1px solid rgba(20,20,15,0.3); padding-bottom:2px;">Continue Shopping</a>
         </div>
       </div>
     {%- endif -%}
