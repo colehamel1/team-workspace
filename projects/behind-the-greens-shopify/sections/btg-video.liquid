@@ -20,8 +20,10 @@
       </div>
 
       <div class="btg-video__frame">
-        {%- if section.settings.video.type -%}
-          {{ section.settings.video | external_video_tag }}
+        {%- if section.settings.video.type == 'youtube' -%}
+          <iframe src="https://www.youtube.com/embed/{{ section.settings.video.id }}" title="{{ section.settings.heading }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        {%- elsif section.settings.video.type == 'vimeo' -%}
+          <iframe src="https://player.vimeo.com/video/{{ section.settings.video.id }}" title="{{ section.settings.heading }}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
         {%- else -%}
           {%- if section.settings.fallback_image != blank -%}
             {{ section.settings.fallback_image | image_url: width: 1600 | image_tag: loading: 'lazy', class: 'btg-video__still', alt: section.settings.heading }}
