@@ -5,6 +5,9 @@
   <div class="btg-about-hero">
     {%- if section.settings.image != blank -%}
       {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'eager', class: 'btg-about-hero__image', alt: section.settings.heading }}
+    {%- else -%}
+      <div class="btg-about-hero__default-image"></div>
+      <div class="btg-grain"></div>
     {%- endif -%}
     <div class="btg-about-hero__scrim"></div>
     <div class="btg-about-hero__content">

@@ -26,6 +26,7 @@
           {%- if section.settings.fallback_image != blank -%}
             {{ section.settings.fallback_image | image_url: width: 1600 | image_tag: loading: 'lazy', class: 'btg-video__still', alt: section.settings.heading }}
           {%- else -%}
+            <div class="btg-video__default-still"></div>
             <div class="btg-grain"></div>
           {%- endif -%}
           <div class="btg-video__coming-soon">

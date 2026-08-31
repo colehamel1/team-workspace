@@ -12,9 +12,12 @@ Your install is live and working. This round adds three things:
 2. **A new email signup popup** — appears once per visit (a few seconds
    in, or when someone scrolls past the hero), never nags twice in the
    same session, real Shopify signup (same mechanism as the footer).
-3. **Real photography** for the hero, both fork panels, the video
-   section's placeholder frame, the About page hero, and a transparent
-   version of your logo (no more tan background behind it).
+3. **Real photography baked directly into the code** for the hero, both
+   fork panels, the video section's placeholder frame, and the About
+   page hero — these now show automatically, no uploading required. You
+   can still replace any of them later by uploading a real photo through
+   that section's image picker — your upload always takes priority over
+   the built-in default.
 
 ### One more theme.liquid line (for the popup)
 
@@ -33,23 +36,24 @@ before. Add one more, right next to the cart-drawer line:
 are brand new files — drag-and-drop them in like normal, no
 delete-first needed since they don't already exist.
 
-### Uploading the images
+### The one image you do need to upload: the logo
 
-All 6 files are in this package's `brand-assets/` folder. Upload each
-one through the theme editor's image picker in the section named:
+Only the logo needs a manual upload (it appears in nav/UI chrome, not as
+a full-bleed background, so it can't be baked into CSS the same way).
+`brand-assets/behind-the-greens-logo-transparent.png` goes in two spots:
 
 | File | Goes in |
 |---|---|
 | `behind-the-greens-logo-transparent.png` | **Header** section → Logo/crest (replace whatever's there now) — and the same file again in **About Crest** section → Crest image |
-| `homepage-hero.jpg` | **BTG Hero** section (homepage) → Background image |
-| `fork-shop-panel.jpg` | **BTG Fork** section → first panel ("Shop The Collection") → Image |
-| `fork-stories-panel.jpg` | **BTG Fork** section → second panel ("Read The Stories") → Image |
-| `video-still.jpg` | **BTG Video** section → Still image |
-| `about-hero.jpg` | **BTG About Hero** section (Our Story page) → Background image |
 
-To upload: click into each section in the theme editor, find the image
-field, click "Select image" → "Upload," and choose the file from
+Click into each section in the theme editor, find the image field,
+click "Select image" → "Upload," and choose the file from
 `brand-assets/`.
+
+(The other 5 files in `brand-assets/` — hero, both fork panels, video
+still, about hero — are there too, in case you ever want to swap in a
+different photo than the built-in default via that section's image
+picker. Not required.)
 
 ---
 
