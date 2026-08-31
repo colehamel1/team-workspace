@@ -1,5 +1,59 @@
 # Behind The Greens — Horizon theme implementation
 
+---
+
+## Round 3 — bug fixes, email popup, and real imagery
+
+Your install is live and working. This round adds three things:
+
+1. **Two bug fixes** (video section error, "Translation missing" text on
+   several buttons) — already covered in the delete-then-redrop
+   instructions you just did for `sections`.
+2. **A new email signup popup** — appears once per visit (a few seconds
+   in, or when someone scrolls past the hero), never nags twice in the
+   same session, real Shopify signup (same mechanism as the footer).
+3. **Real photography** for the hero, both fork panels, the video
+   section's placeholder frame, the About page hero, and a transparent
+   version of your logo (no more tan background behind it).
+
+### One more theme.liquid line (for the popup)
+
+You already have the header/footer/cart-drawer/entrance lines from
+before. Add one more, right next to the cart-drawer line:
+
+```liquid
+{% section 'btg-cart-drawer' %}
+{% section 'btg-newsletter-popup' %}
+{% if template == 'index' %}{% render 'btg-entrance' %}{% endif %}
+```
+
+### Getting the popup section file in
+
+`sections/btg-newsletter-popup.liquid` and `assets/btg-newsletter-popup.js`
+are brand new files — drag-and-drop them in like normal, no
+delete-first needed since they don't already exist.
+
+### Uploading the images
+
+All 6 files are in this package's `brand-assets/` folder. Upload each
+one through the theme editor's image picker in the section named:
+
+| File | Goes in |
+|---|---|
+| `behind-the-greens-logo-transparent.png` | **Header** section → Logo/crest (replace whatever's there now) — and the same file again in **About Crest** section → Crest image |
+| `homepage-hero.jpg` | **BTG Hero** section (homepage) → Background image |
+| `fork-shop-panel.jpg` | **BTG Fork** section → first panel ("Shop The Collection") → Image |
+| `fork-stories-panel.jpg` | **BTG Fork** section → second panel ("Read The Stories") → Image |
+| `video-still.jpg` | **BTG Video** section → Still image |
+| `about-hero.jpg` | **BTG About Hero** section (Our Story page) → Background image |
+
+To upload: click into each section in the theme editor, find the image
+field, click "Select image" → "Upload," and choose the file from
+`brand-assets/`.
+
+---
+
+
 This package converts the approved design system into real Shopify
 Liquid: sections, snippets, JSON templates, CSS and JS. **Nothing here
 touches your live theme.** It's built to be installed into a

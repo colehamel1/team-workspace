@@ -52,3 +52,35 @@
 @media (max-width: 640px) {
   .btg-cart-drawer { width: 100vw; max-width: 100vw; }
 }
+
+/* ---------- Newsletter popup ---------- */
+.btg-popup {
+  position: fixed; top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0.96);
+  width: 480px; max-width: 92vw; max-height: 88vh; overflow-y: auto;
+  background: var(--btg-ink);
+  z-index: 1000;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.btg-popup.is-open { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1); }
+.btg-popup__close { position: absolute; top: 16px; right: 20px; color: var(--btg-cream); z-index: 2; }
+.btg-popup__media { aspect-ratio: 16/9; overflow: hidden; }
+.btg-popup__media img { width: 100%; height: 100%; object-fit: cover; }
+.btg-popup__body { padding: 40px 36px; }
+.btg-popup__form { display: flex; flex-direction: column; gap: 12px; }
+.btg-popup__form input {
+  background: transparent; border: none; border-bottom: 1px solid rgba(243,238,223,0.4);
+  color: var(--btg-cream); font-family: var(--btg-font-body); font-size: 15px; padding: 12px 4px; outline: none;
+}
+.btg-popup__form button {
+  background: var(--btg-ochre); color: var(--btg-ink); border: none; padding: 14px;
+  font-family: var(--btg-font-body); font-weight: 600; font-size: 12px; letter-spacing: 0.18em;
+  text-transform: uppercase; cursor: pointer; transition: background 0.18s ease;
+}
+.btg-popup__form button:hover { background: var(--btg-forest-deep); color: var(--btg-cream); }
+
+@media (max-width: 640px) {
+  .btg-popup { width: 92vw; }
+  .btg-popup__body { padding: 32px 24px; }
+}

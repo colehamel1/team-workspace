@@ -1,0 +1,61 @@
+{%- comment -%}
+  Behind The Greens email capture popup. Appears once per browser
+  session (not on every page load), a few seconds after landing or when
+  the visitor scrolls past the hero — whichever comes first. Uses
+  Shopify's native customer form (tagged "newsletter") — same real
+  signup as the footer, just a second entry point. Rendered once,
+  globally, near the end of layout/theme.liquid:
+    {% section 'btg-newsletter-popup' %}
+{%- endcomment -%}
+
+{%- if section.settings.enabled -%}
+<div class="btg-scope" data-btg-popup-delay="{{ section.settings.delay_seconds | default: 6 }}">
+  {% render 'btg-styles' %}
+  {{ 'btg-cart.css' | asset_url | stylesheet_tag }}
+
+  <div class="btg-scrim" data-btg-popup-scrim hidden></div>
+
+  <div class="btg-popup" data-btg-popup hidden aria-hidden="true">
+    <button type="button" class="btg-close-btn btg-popup__close" aria-label="Close" data-btg-popup-close>&times;</button>
+
+    {%- if section.settings.image != blank -%}
+      <div class="btg-popup__media">
+        {{ section.settings.image | image_url: width: 700 | image_tag: loading: 'lazy', alt: section.settings.heading }}
+      </div>
+    {%- endif -%}
+
+    <div class="btg-popup__body">
+      <div class="btg-eyebrow" style="color:#C1922F; margin-bottom:14px;">{{ section.settings.eyebrow | default: 'Join The Crew' }}</div>
+      <h2 class="btg-display" style="font-size:30px; color:#F3EEDF; margin:0 0 14px;">{{ section.settings.heading | default: 'Stories, Drops, And Dispatches From Behind The Greens' }}</h2>
+      <p style="font-size:14px; line-height:1.6; color:#A79E86; margin:0 0 24px;">{{ section.settings.text | default: 'No spam — just the occasional story worth reading and a heads up when new gear drops.' }}</p>
+
+      {% form 'customer', class: 'btg-popup__form' %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        {%- if form.posted_successfully? -%}
+          <p style="color:#F3EEDF; font-size:14px;">Thanks — you're on the list.</p>
+        {%- else -%}
+          <input type="email" name="contact[email]" placeholder="Your email address" required>
+          <button type="submit">{{ section.settings.button_label | default: 'Join The Crew' }}</button>
+        {%- endif -%}
+      {% endform %}
+    </div>
+  </div>
+</div>
+{%- endif -%}
+
+<script src="{{ 'btg-newsletter-popup.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "BTG Newsletter Popup",
+  "settings": [
+    { "type": "checkbox", "id": "enabled", "label": "Enable popup", "default": true },
+    { "type": "image_picker", "id": "image", "label": "Image (optional)" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Join The Crew" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Stories, Drops, And Dispatches From Behind The Greens" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "No spam — just the occasional story worth reading and a heads up when new gear drops." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Join The Crew" },
+    { "type": "range", "id": "delay_seconds", "label": "Delay before showing (seconds)", "min": 2, "max": 15, "step": 1, "default": 6 }
+  ]
+}
+{% endschema %}
