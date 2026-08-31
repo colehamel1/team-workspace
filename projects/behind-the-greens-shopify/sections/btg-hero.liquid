@@ -5,7 +5,14 @@
   {{ 'btg-home.css' | asset_url | stylesheet_tag }}
 
   <div class="btg-hero">
-    {%- if section.settings.image != blank -%}
+    {%- if section.settings.hero_video != blank -%}
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'eager', class: 'btg-hero__image', alt: section.settings.heading }}
+      {%- else -%}
+        <div class="btg-grain"></div>
+      {%- endif -%}
+      {{ section.settings.hero_video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false, preload: 'auto', image_size: '1920x', class: 'btg-hero__video' }}
+    {%- elsif section.settings.image != blank -%}
       {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'eager', class: 'btg-hero__image', alt: section.settings.heading }}
     {%- else -%}
       <div class="btg-grain"></div>
@@ -27,7 +34,8 @@
 {
   "name": "BTG Hero",
   "settings": [
-    { "type": "image_picker", "id": "image", "label": "Background image" },
+    { "type": "video", "id": "hero_video", "label": "Hero background video", "info": "Autoplays muted and loops. If set, this replaces the background image (the image below is still used as the poster frame shown while the video loads)." },
+    { "type": "image_picker", "id": "image", "label": "Background image / video poster frame" },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Behind The Greens · Golf Course Culture" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Golf Starts Before Dawn." },
     { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Behind The Greens tells the story of the crews, culture, and craft that make the game possible — and builds the apparel that carries it." },

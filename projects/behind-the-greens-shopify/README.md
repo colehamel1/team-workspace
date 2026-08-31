@@ -2,6 +2,38 @@
 
 ---
 
+## Round 4 — cinematic hero video
+
+The homepage hero now supports a real autoplaying background video (the
+approved 18-second "Golf Starts Before Dawn" montage) instead of a static
+image. It degrades gracefully: if no video is uploaded, the hero behaves
+exactly as before (background image, or the dark grain fallback).
+
+### Getting the video and poster in
+
+Both files are in `brand-assets/`:
+
+| File | Goes in |
+|---|---|
+| `behind-the-greens-hero-video.mp4` | **Hero** section → *Hero background video* → Select video → Upload |
+| `behind-the-greens-hero-poster.jpg` | **Hero** section → *Background image / video poster frame* → Select image → Upload |
+
+Upload the poster first, then the video — both are plain settings in the
+theme customizer, no code editor needed. The poster is a real frame pulled
+directly from the start of the approved video, so there's no flash or
+mismatch when playback begins.
+
+Also re-drop `sections/btg-hero.liquid` and `assets/btg-home.css` (select
+all, delete, paste for the CSS file — same as before) if you're updating
+an existing install rather than doing a fresh one.
+
+**Behavior:** autoplays muted and loops silently, respects "reduce motion"
+accessibility settings (shows the poster frame only, no video, no
+autoplay), and never blocks clicks on the header, popup, or hero buttons
+above it.
+
+---
+
 ## Round 3 — bug fixes, email popup, and real imagery
 
 Your install is live and working. This round adds three things:
