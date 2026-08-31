@@ -1,7 +1,6 @@
 /* Behind The Greens — email capture popup. Shows once per browser
-   session, after a delay or on scroll past the hero, whichever comes
-   first. Never reappears once shown (dismissed or submitted) in the
-   same session. */
+   session, a short fixed delay after landing. Never reappears once
+   shown (dismissed or submitted) in the same session. */
 (function () {
   var root = document.querySelector('[data-btg-popup]');
   var wrap = root ? root.closest('.btg-scope') : null;
@@ -13,16 +12,13 @@
   if (seen) return;
 
   var scrim = document.querySelector('[data-btg-popup-scrim]');
-  var delaySeconds = parseInt(wrap.getAttribute('data-btg-popup-delay'), 10) || 6;
-  var shown = false;
+  var delaySeconds = parseInt(wrap.getAttribute('data-btg-popup-delay'), 10) || 4;
 
   function markSeen() {
     try { sessionStorage.setItem(SEEN_KEY, '1'); } catch (e) { /* ignore */ }
   }
 
   function open() {
-    if (shown) return;
-    shown = true;
     markSeen();
     root.hidden = false;
     if (scrim) scrim.hidden = false;
@@ -31,7 +27,6 @@
       root.setAttribute('aria-hidden', 'false');
       if (scrim) scrim.classList.add('is-visible');
     });
-    window.removeEventListener('scroll', onScroll);
   }
 
   function close() {
@@ -44,11 +39,6 @@
     }, 300);
   }
 
-  function onScroll() {
-    if (window.scrollY > window.innerHeight * 0.6) open();
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
   var timer = setTimeout(open, delaySeconds * 1000);
 
   document.addEventListener('click', function (e) {

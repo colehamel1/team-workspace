@@ -1,41 +1,53 @@
 {%- comment -%}
   Behind The Greens email capture popup. Appears once per browser
-  session (not on every page load), a few seconds after landing or when
-  the visitor scrolls past the hero — whichever comes first. Uses
-  Shopify's native customer form (tagged "newsletter") — same real
-  signup as the footer, just a second entry point. Rendered once,
+  session, a short delay after landing — never twice in the same
+  session. Uses Shopify's native customer form (tagged "newsletter") —
+  same real signup as the footer, just a second entry point. Discount
+  code shown here must actually exist in Shopify (Discounts) — this
+  section only displays it, it doesn't create it. Rendered once,
   globally, near the end of layout/theme.liquid:
     {% section 'btg-newsletter-popup' %}
 {%- endcomment -%}
 
 {%- if section.settings.enabled -%}
-<div class="btg-scope" data-btg-popup-delay="{{ section.settings.delay_seconds | default: 6 }}">
+<div class="btg-scope" data-btg-popup-delay="{{ section.settings.delay_seconds | default: 4 }}">
   {% render 'btg-styles' %}
   {{ 'btg-cart.css' | asset_url | stylesheet_tag }}
 
   <div class="btg-scrim" data-btg-popup-scrim hidden></div>
 
-  <div class="btg-popup" data-btg-popup hidden aria-hidden="true">
+  <div class="btg-popup btg-popup--badge" data-btg-popup hidden aria-hidden="true">
     <button type="button" class="btg-close-btn btg-popup__close" aria-label="Close" data-btg-popup-close>&times;</button>
+    <div class="btg-grain"></div>
 
-    {%- if section.settings.image != blank -%}
-      <div class="btg-popup__media">
-        {{ section.settings.image | image_url: width: 700 | image_tag: loading: 'lazy', alt: section.settings.heading }}
-      </div>
-    {%- endif -%}
+    <div class="btg-popup__body btg-popup__body--center">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 200 | image_tag: loading: 'lazy', class: 'btg-popup__crest', alt: shop.name }}
+      {%- else -%}
+        <div class="btg-display btg-popup__wordmark">{{ shop.name }}</div>
+      {%- endif -%}
 
-    <div class="btg-popup__body">
-      <div class="btg-eyebrow" style="color:#C1922F; margin-bottom:14px;">{{ section.settings.eyebrow | default: 'Join The Crew' }}</div>
-      <h2 class="btg-display" style="font-size:30px; color:#F3EEDF; margin:0 0 14px;">{{ section.settings.heading | default: 'Stories, Drops, And Dispatches From Behind The Greens' }}</h2>
-      <p style="font-size:14px; line-height:1.6; color:#A79E86; margin:0 0 24px;">{{ section.settings.text | default: 'No spam — just the occasional story worth reading and a heads up when new gear drops.' }}</p>
+      <div class="btg-popup__rule"></div>
+
+      <div class="btg-eyebrow" style="color:#C1922F; margin-bottom:10px;">{{ section.settings.eyebrow | default: 'Join The Crew' }}</div>
+      <h2 class="btg-display btg-popup__offer">{{ section.settings.discount_percent | default: '10' }}% Off<br>Your First Order</h2>
+
+      {%- if section.settings.discount_code != blank -%}
+        <div class="btg-popup__code">
+          <span class="btg-popup__code-value">{{ section.settings.discount_code }}</span>
+          <span class="btg-eyebrow btg-popup__code-caption">Use At Checkout</span>
+        </div>
+      {%- endif -%}
+
+      <p style="font-size:14px; line-height:1.6; color:#A79E86; margin:20px 0 24px;">{{ section.settings.text | default: 'Stories from behind the greens, new drops, and a discount for showing up early.' }}</p>
 
       {% form 'customer', class: 'btg-popup__form' %}
         <input type="hidden" name="contact[tags]" value="newsletter">
         {%- if form.posted_successfully? -%}
-          <p style="color:#F3EEDF; font-size:14px;">Thanks — you're on the list.</p>
+          <p style="color:#F3EEDF; font-size:14px;">Thanks — you're on the list. Your code is above.</p>
         {%- else -%}
           <input type="email" name="contact[email]" placeholder="Your email address" required>
-          <button type="submit">{{ section.settings.button_label | default: 'Join The Crew' }}</button>
+          <button type="submit">{{ section.settings.button_label | default: 'Get My Code' }}</button>
         {%- endif -%}
       {% endform %}
     </div>
@@ -50,12 +62,19 @@
   "name": "BTG Newsletter Popup",
   "settings": [
     { "type": "checkbox", "id": "enabled", "label": "Enable popup", "default": true },
-    { "type": "image_picker", "id": "image", "label": "Image (optional)" },
+    { "type": "image_picker", "id": "logo", "label": "Crest / logo (falls back to wordmark)" },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Join The Crew" },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Stories, Drops, And Dispatches From Behind The Greens" },
-    { "type": "textarea", "id": "text", "label": "Text", "default": "No spam — just the occasional story worth reading and a heads up when new gear drops." },
-    { "type": "text", "id": "button_label", "label": "Button label", "default": "Join The Crew" },
-    { "type": "range", "id": "delay_seconds", "label": "Delay before showing (seconds)", "min": 2, "max": 15, "step": 1, "default": 6 }
+    { "type": "text", "id": "discount_percent", "label": "Discount percent (number only)", "default": "10" },
+    {
+      "type": "text",
+      "id": "discount_code",
+      "label": "Discount code",
+      "default": "CREW10",
+      "info": "This must be a real, active discount code you've created under Discounts — this section only displays it."
+    },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Stories from behind the greens, new drops, and a discount for showing up early." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Get My Code" },
+    { "type": "range", "id": "delay_seconds", "label": "Delay before showing (seconds)", "min": 2, "max": 15, "step": 1, "default": 4 }
   ]
 }
 {% endschema %}
