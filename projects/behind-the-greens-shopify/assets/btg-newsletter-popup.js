@@ -1,15 +1,18 @@
 /* Behind The Greens — email capture popup. Shows once per browser
    session, a short fixed delay after landing. Never reappears once
-   shown (dismissed or submitted) in the same session. */
+   shown (dismissed) in the same session — EXCEPT immediately after a
+   real, successful email submission, when it force-reopens so the
+   visitor actually sees the code they just unlocked. */
 (function () {
   var root = document.querySelector('[data-btg-popup]');
   var wrap = root ? root.closest('.btg-scope') : null;
   if (!root || !wrap) return;
 
   var SEEN_KEY = 'btg_popup_seen';
+  var justSucceeded = !!document.querySelector('[data-btg-popup-success]');
+
   var seen = false;
   try { seen = sessionStorage.getItem(SEEN_KEY) === '1'; } catch (e) { /* ignore */ }
-  if (seen) return;
 
   var scrim = document.querySelector('[data-btg-popup-scrim]');
   var delaySeconds = parseInt(wrap.getAttribute('data-btg-popup-delay'), 10) || 4;
@@ -39,11 +42,14 @@
     }, 300);
   }
 
-  var timer = setTimeout(open, delaySeconds * 1000);
+  if (justSucceeded) {
+    open();
+  } else if (!seen) {
+    setTimeout(open, delaySeconds * 1000);
+  }
 
   document.addEventListener('click', function (e) {
     if (e.target.closest('[data-btg-popup-close]') || e.target.closest('[data-btg-popup-scrim]')) {
-      clearTimeout(timer);
       close();
     }
   });
