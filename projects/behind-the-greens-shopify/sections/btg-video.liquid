@@ -21,7 +21,7 @@
 
       <div class="btg-video__frame">
         {%- if section.settings.video.type -%}
-          {{ section.settings.video | external_video_tag: class: 'btg-video__embed' }}
+          {{ section.settings.video | external_video_tag }}
         {%- else -%}
           {%- if section.settings.fallback_image != blank -%}
             {{ section.settings.fallback_image | image_url: width: 1600 | image_tag: loading: 'lazy', class: 'btg-video__still', alt: section.settings.heading }}
