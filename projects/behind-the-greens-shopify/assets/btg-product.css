@@ -115,8 +115,8 @@
      the container's existing cream background filling any letterboxed
      space instead of stretching or cropping anything. */
   .btg-pdp__slide-img, .btg-pdp__slide img {
-    object-fit: contain;
-    object-position: center;
+    object-fit: contain !important;
+    object-position: center !important;
   }
 
   /* Real touch targets: 26px swatches and tight gaps are well under the
