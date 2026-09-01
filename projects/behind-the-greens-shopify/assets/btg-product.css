@@ -5,6 +5,15 @@
 .btg-pdp__breadcrumb-link, .btg-pdp__breadcrumb-sep { color: #8A7F5C; font-size: 11px; }
 .btg-pdp__breadcrumb-current { color: #14140F; font-size: 11px; overflow-wrap: anywhere; }
 
+/* Grid items default to a minimum width equal to their widest child's
+   intrinsic content size — so a wide size-chart table (or any other
+   fixed-width content) buried in the merchant's product description
+   would silently force this whole column wider than the screen, with
+   everything past the edge just getting chopped off by overflow-x:hidden
+   below rather than actually fixed. min-width:0 lets both columns
+   actually shrink to the width they're given. */
+.btg-pdp__gallery, .btg-pdp__info { min-width: 0; }
+
 .btg-pdp__gallery { display: flex; flex-direction: column; gap: 14px; }
 .btg-pdp__main-media {
   display: flex;
@@ -37,6 +46,20 @@
 .btg-pdp__compare-price { font-size: 15px; color: var(--btg-muted); text-decoration: line-through; }
 .btg-pdp__description { font-size: 15px; line-height: 1.65; color: #3A392F; margin-bottom: 32px; max-width: 440px; }
 .btg-pdp__description p { margin: 0 0 12px; }
+.btg-pdp__description img { max-width: 100%; height: auto; }
+/* Merchant/supplier descriptions (size charts especially) often embed a
+   <table> that's naturally wider than a phone screen. Tables don't wrap,
+   so give it its own contained horizontal scroll instead of letting it
+   force the whole page wider — this makes the size chart still fully
+   usable on mobile rather than cut off. Applies to any table anywhere in
+   product copy, not one product's chart specifically. */
+.btg-pdp__description table, .btg-accordion__body table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-collapse: collapse;
+}
 
 .btg-pdp__option { margin-bottom: 28px; }
 .btg-pdp__option-label { margin-bottom: 12px; }
