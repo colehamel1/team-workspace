@@ -105,7 +105,7 @@
 
           {%- unless product.has_only_default_variant -%}
             {%- for option in product.options_with_values -%}
-              <div class="btg-pdp__option" data-btg-option-index="{{ forloop.index0 }}">
+              <div class="btg-pdp__option" data-btg-option-index="{{ forloop.index0 }}"{% if option.name == 'Color' or option.name == 'Colour' %} data-btg-color-option{% endif %}>
                 <div class="btg-pdp__option-label">
                   <span class="btg-eyebrow" style="font-size:11px;">{{ option.name }}{%- if option.name == 'Color' or option.name == 'Colour' -%} &mdash; <span data-btg-option-value-label>{{ current_variant.options[forloop.index0] }}</span>{%- endif -%}</span>
                 </div>

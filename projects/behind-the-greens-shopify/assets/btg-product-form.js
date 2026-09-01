@@ -16,6 +16,8 @@
   var addBtn = form.querySelector('[data-btg-add-to-cart]');
   var addLabel = form.querySelector('[data-btg-add-label]');
   var optionGroups = Array.prototype.slice.call(form.querySelectorAll('[data-btg-option-index]'));
+  var colorOptionGroup = form.querySelector('[data-btg-color-option]');
+  var colorOptionIndex = colorOptionGroup ? parseInt(colorOptionGroup.getAttribute('data-btg-option-index'), 10) : null;
 
   var gallery = document.querySelector('[data-btg-gallery]');
   var slides = gallery ? Array.prototype.slice.call(gallery.querySelectorAll('[data-btg-slide]')) : [];
@@ -80,6 +82,19 @@
     return -1;
   }
 
+  // A specific size+color variant may not have its own featured image set
+  // in Shopify even when the color as a whole does (common with bulk/POD
+  // imports, which often only tag the image on one size per color). Fall
+  // back to any variant sharing the same color value that does have one,
+  // so picking a color always jumps to that color's photo.
+  function imageIdForColor(colorValue) {
+    if (colorOptionIndex == null || colorValue == null) return null;
+    var match = variants.find(function (v) {
+      return v.options[colorOptionIndex] === colorValue && v.featured_image && v.featured_image.id;
+    });
+    return match ? match.featured_image.id : null;
+  }
+
   thumbs.forEach(function (thumb, i) {
     thumb.addEventListener('click', function () { setActiveSlide(i); });
   });
@@ -130,7 +145,7 @@
   }
 
   // ---------- Variant + UI sync ----------
-  function updateUI(variant) {
+  function updateUI(variant, selectedOpts) {
     if (!variant) {
       // No real variant matches the current selection (an option
       // combination that was never created in Shopify). Never leave a
@@ -165,8 +180,10 @@
       availabilityEl.style.color = variant.available ? '#4C7A4A' : '#A5402C';
     }
 
-    if (variant.featured_image && variant.featured_image.id) {
-      var slideIndex = slideIndexForMediaId(variant.featured_image.id);
+    var colorValue = colorOptionIndex != null && selectedOpts ? selectedOpts[colorOptionIndex] : null;
+    var targetMediaId = (variant.featured_image && variant.featured_image.id) || imageIdForColor(colorValue);
+    if (targetMediaId) {
+      var slideIndex = slideIndexForMediaId(targetMediaId);
       if (slideIndex > -1) setActiveSlide(slideIndex);
     }
   }
@@ -186,7 +203,8 @@
     }
 
     refreshOptionAvailability();
-    updateUI(findVariant(selectedOptions()));
+    var opts = selectedOptions();
+    updateUI(findVariant(opts), opts);
   });
 
   refreshOptionAvailability();
