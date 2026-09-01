@@ -47,7 +47,7 @@
       "type": "btg-shop-teaser",
       "settings": {
         "eyebrow": "BTG Merch",
-        "title": "Officially Branded",
+        "title": "Made For The Course",
         "view_all_label": "Shop BTG Merch",
         "collection": "btg-merch",
         "product_count": 4
@@ -80,7 +80,7 @@
             "heading": "Behind The Greens: Course Features",
             "text": "A documentary-style feature on your property, your crew, and the operation behind the course.",
             "link_label": "Course Features",
-            "link": "shopify://pages/media-kit"
+            "link": "shopify://pages/media-kit#for-courses"
           }
         },
         "brands": {
@@ -90,7 +90,7 @@
             "heading": "Brand Partnerships",
             "text": "Sponsored integrations, product features, and campaigns built around a trusted golf audience.",
             "link_label": "Brand Partnerships & Rates",
-            "link": "shopify://pages/media-kit"
+            "link": "shopify://pages/media-kit#for-brands"
           }
         }
       },

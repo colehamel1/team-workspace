@@ -52,7 +52,18 @@
 .btg-accordion__body p { margin: 0 0 6px; }
 
 .btg-pdp__cross-sell { background: var(--btg-cream-soft); padding: 100px 0; }
+.btg-pdp__title { font-size: 38px; }
 
 @media (max-width: 900px) {
   .btg-pdp__grid { grid-template-columns: 1fr; gap: 32px; }
+}
+
+@media (max-width: 640px) {
+  .btg-pdp { padding-top: 20px; padding-bottom: 64px; }
+  .btg-pdp__title { font-size: 28px; }
+  .btg-pdp__thumbs { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .btg-pdp__description { max-width: 100%; }
+  .btg-pdp__add-row { flex-direction: column; }
+  .btg-qty-stepper { justify-content: space-between; }
+  .btg-pdp__cross-sell { padding: 56px 0; }
 }

@@ -22,8 +22,15 @@
 .btg-hero__ctas { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
 
 @media (max-width: 860px) {
-  .btg-hero__heading { font-size: 54px; }
+  .btg-hero { min-height: 72vh; }
+  .btg-hero__image, .btg-hero__video { object-position: center center; }
+  .btg-hero__content { padding: 0 24px 48px; }
+  .btg-hero__heading { font-size: 44px; }
   .btg-hero__sub { font-size: 16px; max-width: 100%; }
+  .btg-hero__ctas { gap: 18px; }
+}
+@media (max-width: 420px) {
+  .btg-hero__heading { font-size: 36px; }
 }
 
 /* ---------- Fork (Shop / Stories) ---------- */
@@ -53,6 +60,7 @@
   background: rgba(15,20,15,0.38);
 }
 @media (max-width: 860px) {
+  .btg-video { padding: 56px 24px; }
   .btg-video__frame { aspect-ratio: 4/5; }
 }
 
@@ -67,20 +75,22 @@
 .btg-partnerships__card:hover { background: rgba(20,20,15,0.03); }
 .btg-partnerships__grid .btg-partnerships__card:first-child { border-right: 1px solid var(--btg-hairline); }
 @media (max-width: 860px) {
+  .btg-partnerships { padding: 64px 0; }
   .btg-partnerships__grid { grid-template-columns: 1fr; }
   .btg-partnerships__grid .btg-partnerships__card:first-child { border-right: none; border-bottom: 1px solid var(--btg-hairline); }
+  .btg-partnerships__card { padding: 36px 24px; }
 }
 
 /* ---------- Quote break ---------- */
 .btg-quote { position: relative; background: var(--btg-forest-deep); padding: 120px 40px; overflow: hidden; }
 .btg-quote__inner { position: relative; max-width: 780px; margin: 0 auto; text-align: center; }
 .btg-quote__text { font-size: 36px; line-height: 1.45; color: var(--btg-cream); margin: 0 0 28px; }
-@media (max-width: 860px) { .btg-quote__text { font-size: 26px; } }
+@media (max-width: 860px) { .btg-quote { padding: 72px 28px; } .btg-quote__text { font-size: 24px; } }
 
 /* ---------- About teaser ---------- */
 .btg-about-teaser { padding: 120px 0; max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: auto 1fr; gap: 56px; align-items: center; }
 .btg-about-teaser__image { width: 140px; height: 140px; object-fit: contain; flex-shrink: 0; }
 @media (max-width: 860px) {
-  .btg-about-teaser { grid-template-columns: 1fr; text-align: center; padding: 80px 0; }
+  .btg-about-teaser { grid-template-columns: 1fr; text-align: center; padding: 64px 24px; gap: 24px; }
   .btg-about-teaser__image { margin: 0 auto; }
 }

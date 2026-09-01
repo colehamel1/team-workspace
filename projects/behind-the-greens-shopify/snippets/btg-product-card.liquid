@@ -19,13 +19,16 @@
   endfor
 -%}
 
-<a href="{{ product.url }}" class="btg-card">
+<a href="{{ product.url }}" class="btg-card{% unless product.available %} btg-card--sold-out{% endunless %}">
   <div class="btg-card__media">
     {%- if product.featured_media -%}
       {{ product.featured_media | image_url: width: 800 | image_tag: loading: 'lazy', alt: product.featured_media.alt | default: product.title }}
     {%- else -%}
       {{ 'product-1' | placeholder_svg_tag }}
     {%- endif -%}
+    {%- unless product.available -%}
+      <span class="btg-card__badge">Sold Out</span>
+    {%- endunless -%}
   </div>
 
   {%- if product.type != blank -%}

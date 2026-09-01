@@ -249,14 +249,30 @@
 .btg-footer__bottom-links { display: flex; gap: 24px; }
 
 @media (max-width: 860px) {
+  .btg-footer { padding: 56px 24px 28px; }
   .btg-footer__cols { grid-template-columns: 1fr 1fr; row-gap: 28px; }
+  .btg-footer__newsletter { flex-direction: column; align-items: stretch; }
+  .btg-footer__form { max-width: 100%; }
+}
+
+/* Shared large section padding — used by sections with an unscaled
+   inline padding (homepage shop teaser, media kit selected work). */
+.btg-section-pad-lg { padding: 100px 0; }
+@media (max-width: 860px) {
+  .btg-section-pad-lg { padding: 56px 0; }
 }
 
 /* ---------- Product card (shared: collection grid, homepage teaser, cross-sell) ---------- */
 .btg-card { display: block; transition: opacity 0.15s ease; }
 .btg-card:hover { opacity: 0.82; }
-.btg-card__media { aspect-ratio: 1/1; overflow: hidden; background: var(--btg-cream-soft); margin-bottom: 16px; }
+.btg-card__media { position: relative; aspect-ratio: 1/1; overflow: hidden; background: var(--btg-cream-soft); margin-bottom: 16px; }
 .btg-card__media img { width: 100%; height: 100%; object-fit: cover; }
+.btg-card--sold-out .btg-card__media img { opacity: 0.55; }
+.btg-card__badge {
+  position: absolute; top: 12px; left: 12px; background: var(--btg-ink); color: var(--btg-cream);
+  font-family: var(--btg-font-body); font-weight: 600; font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; padding: 6px 10px;
+}
 .btg-card__cat { color: var(--btg-muted); margin-bottom: 6px; font-size: 11px; }
 .btg-card__title {
   font-family: var(--btg-font-display); font-weight: 700; font-size: 18px;
@@ -278,4 +294,17 @@
 .btg-section-heading__title { font-size: 44px; color: var(--btg-ink); margin: 0; }
 @media (max-width: 860px) {
   .btg-section-heading__title { font-size: 34px; }
+}
+
+/* Shared page/section heading scale — used by any large heading that
+   was previously an unscaled inline font-size (Shop, Stories, Media
+   Kit sections). Keeps every big heading responsive from one place. */
+.btg-heading-xl { font-size: 64px; }
+.btg-heading-lg { font-size: 44px; }
+@media (max-width: 860px) {
+  .btg-heading-xl { font-size: 36px; }
+  .btg-heading-lg { font-size: 28px; }
+}
+@media (max-width: 420px) {
+  .btg-heading-xl { font-size: 30px; }
 }

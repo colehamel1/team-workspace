@@ -56,7 +56,7 @@
         {%- if product.type != blank -%}
           <div class="btg-eyebrow" style="color:#8A7F5C; margin-bottom:14px;">{{ product.type }}</div>
         {%- endif -%}
-        <h1 class="btg-display" style="font-size:38px; text-transform:none; margin:0 0 14px;">{{ product.title }}</h1>
+        <h1 class="btg-display btg-pdp__title" style="text-transform:none; margin:0 0 14px;">{{ product.title }}</h1>
 
         <div class="btg-pdp__price" data-btg-price>
           <span class="btg-display" style="font-size:24px;">{{ current_variant.price | money }}</span>

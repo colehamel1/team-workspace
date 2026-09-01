@@ -8,7 +8,7 @@
   {{ 'btg-shop.css' | asset_url | stylesheet_tag }}
   {{ 'btg-home.css' | asset_url | stylesheet_tag }}
 
-  <div class="btg-container" style="padding:110px 0;">
+  <div class="btg-container btg-section-pad-lg">
     <div class="btg-shop-teaser__head">
       {% render 'btg-section-heading', eyebrow: section.settings.eyebrow, title: section.settings.title %}
       {%- if section.settings.collection != blank -%}
