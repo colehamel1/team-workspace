@@ -107,6 +107,18 @@
   .btg-thumb { flex: 0 0 60px; width: 60px; }
   .btg-pdp__dots { display: flex; }
 
+  /* object-fit:cover (desktop) always fills the square frame, which means
+     cropping in on any source photo that isn't itself roughly square —
+     that's what turns a portrait-shot jacket photo into a zoomed-in sliver
+     on a small screen. Switch to contain on mobile only: the whole photo
+     stays visible and centered, regardless of its native dimensions, with
+     the container's existing cream background filling any letterboxed
+     space instead of stretching or cropping anything. */
+  .btg-pdp__slide-img, .btg-pdp__slide img {
+    object-fit: contain;
+    object-position: center;
+  }
+
   /* Real touch targets: 26px swatches and tight gaps are well under the
      44px minimum, which is what causes mis-taps between adjacent colors. */
   .btg-pdp__option-values { gap: 16px; }
