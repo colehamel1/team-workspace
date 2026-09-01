@@ -3,7 +3,11 @@
   (see README), not through the theme editor's "Add section" picker —
   same reasoning as btg-header.liquid. Newsletter signup uses Shopify's
   native customer form (tags the contact "newsletter" — no app required).
-  All three footer columns are merchant-editable navigation menus.
+  Explore/Support columns point at fixed real destinations (same
+  reasoning as the header nav) — policy links only render if that
+  policy is actually configured in Shopify (Settings → Policies), so
+  there's never a dead link. Social links are optional and only show
+  once a real URL is filled in.
 {%- endcomment -%}
 
 <div class="btg-scope">
@@ -31,30 +35,60 @@
       <div class="btg-footer__cols">
         <div class="btg-footer__brand">
           {%- if section.settings.logo != blank -%}
-            {{ section.settings.logo | image_url: width: 68 | image_tag: width: 34, height: 34, style: 'object-fit:contain;' }}
+            {{ section.settings.logo | image_url: width: 68 | image_tag: width: 34, height: 34, style: 'object-fit:contain;', alt: shop.name }}
           {%- endif -%}
           <span class="btg-display">{{ shop.name }}</span>
         </div>
 
-        {%- for block in section.blocks -%}
-          {%- if block.type == 'menu_column' -%}
-            <div {{ block.shopify_attributes }}>
-              <div class="btg-eyebrow btg-footer__col-title">{{ block.settings.title }}</div>
-              <div class="btg-footer__col">
-                {%- for link in block.settings.menu.links -%}
-                  <a href="{{ link.url }}">{{ link.title }}</a>
-                {%- endfor -%}
-              </div>
+        <div>
+          <div class="btg-eyebrow btg-footer__col-title">Explore</div>
+          <div class="btg-footer__col">
+            <a href="{{ routes.all_products_collection_url }}">Shop</a>
+            <a href="{{ routes.root_url }}blogs/stories">Stories</a>
+            <a href="{{ routes.root_url }}pages/media-kit#for-courses">Course Features</a>
+            <a href="{{ routes.root_url }}pages/media-kit#for-brands">Brand Partnerships</a>
+          </div>
+        </div>
+
+        {%- assign has_support_link = false -%}
+        {%- if pages.contact or shop.policies.shipping_policy.url or shop.policies.refund_policy.url or shop.policies.privacy_policy.url or shop.policies.terms_of_service.url -%}
+          {%- assign has_support_link = true -%}
+        {%- endif -%}
+        {%- if has_support_link -%}
+          <div>
+            <div class="btg-eyebrow btg-footer__col-title">Support</div>
+            <div class="btg-footer__col">
+              {%- if pages.contact -%}<a href="{{ pages.contact.url }}">Contact</a>{%- endif -%}
+              {%- if shop.policies.shipping_policy.url -%}<a href="{{ shop.policies.shipping_policy.url }}">Shipping</a>{%- endif -%}
+              {%- if shop.policies.refund_policy.url -%}<a href="{{ shop.policies.refund_policy.url }}">Returns</a>{%- endif -%}
+              {%- if shop.policies.privacy_policy.url -%}<a href="{{ shop.policies.privacy_policy.url }}">Privacy</a>{%- endif -%}
+              {%- if shop.policies.terms_of_service.url -%}<a href="{{ shop.policies.terms_of_service.url }}">Terms</a>{%- endif -%}
             </div>
-          {%- endif -%}
-        {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- assign has_social = false -%}
+        {%- if section.settings.instagram_url != blank or section.settings.tiktok_url != blank or section.settings.youtube_url != blank or section.settings.facebook_url != blank -%}
+          {%- assign has_social = true -%}
+        {%- endif -%}
+        {%- if has_social -%}
+          <div>
+            <div class="btg-eyebrow btg-footer__col-title">Follow</div>
+            <div class="btg-footer__col">
+              {%- if section.settings.instagram_url != blank -%}<a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener">Instagram</a>{%- endif -%}
+              {%- if section.settings.tiktok_url != blank -%}<a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener">TikTok</a>{%- endif -%}
+              {%- if section.settings.youtube_url != blank -%}<a href="{{ section.settings.youtube_url }}" target="_blank" rel="noopener">YouTube</a>{%- endif -%}
+              {%- if section.settings.facebook_url != blank -%}<a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener">Facebook</a>{%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
       </div>
 
       <div class="btg-footer__bottom">
         <span>&copy; {{ shop.name }}</span>
         <div class="btg-footer__bottom-links">
-          <a href="{{ pages.privacy-policy.url | default: '#' }}">Privacy</a>
-          <a href="{{ pages.terms-of-service.url | default: '#' }}">Terms</a>
+          {%- if shop.policies.privacy_policy.url -%}<a href="{{ shop.policies.privacy_policy.url }}">Privacy</a>{%- endif -%}
+          {%- if shop.policies.terms_of_service.url -%}<a href="{{ shop.policies.terms_of_service.url }}">Terms</a>{%- endif -%}
         </div>
       </div>
 
@@ -82,25 +116,11 @@
       "id": "newsletter_text",
       "label": "Newsletter text",
       "default": "Stories from behind the greens, new drops, and the occasional dispatch from the crew — straight to your inbox."
-    }
-  ],
-  "blocks": [
-    {
-      "type": "menu_column",
-      "name": "Menu column",
-      "settings": [
-        { "type": "text", "id": "title", "label": "Column title", "default": "Shop" },
-        { "type": "link_list", "id": "menu", "label": "Menu" }
-      ]
-    }
-  ],
-  "max_blocks": 3,
-  "default": {
-    "blocks": [
-      { "type": "menu_column", "settings": { "title": "Shop" } },
-      { "type": "menu_column", "settings": { "title": "Company" } },
-      { "type": "menu_column", "settings": { "title": "Support" } }
-    ]
-  }
+    },
+    { "type": "url", "id": "instagram_url", "label": "Instagram URL" },
+    { "type": "url", "id": "tiktok_url", "label": "TikTok URL" },
+    { "type": "url", "id": "youtube_url", "label": "YouTube URL" },
+    { "type": "url", "id": "facebook_url", "label": "Facebook URL" }
+  ]
 }
 {% endschema %}

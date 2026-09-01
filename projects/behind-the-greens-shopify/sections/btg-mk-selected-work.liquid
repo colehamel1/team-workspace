@@ -8,7 +8,7 @@
   {% render 'btg-styles' %}
   {{ 'btg-media-kit.css' | asset_url | stylesheet_tag }}
 
-  <div class="btg-container btg-section-pad-lg" style="padding-left:40px; padding-right:40px;">
+  <div class="btg-container btg-section-pad-lg">
     {% render 'btg-section-heading', eyebrow: section.settings.eyebrow, title: section.settings.title, eyebrow_color: '#4C7A4A' %}
     <div class="btg-grid-3">
       {%- for block in section.blocks -%}

@@ -1,0 +1,32 @@
+{%- comment -%}
+  Atmospheric teaser for a future release. Deliberately not a
+  collection or product grid — no Shop button, no products, nothing
+  clickable that implies this is live. Just a quiet signal that
+  something is coming.
+{%- endcomment -%}
+
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+  {{ 'btg-home.css' | asset_url | stylesheet_tag }}
+
+  <div class="btg-drop-teaser">
+    <div class="btg-grain"></div>
+    <div class="btg-drop-teaser__inner">
+      <div class="btg-eyebrow btg-drop-teaser__eyebrow">{{ section.settings.eyebrow | default: 'Drop 02' }}</div>
+      <div class="btg-display btg-drop-teaser__heading">{{ section.settings.heading | default: 'For The Crew' }}</div>
+      <div class="btg-eyebrow btg-drop-teaser__label">{{ section.settings.label | default: 'Coming Soon' }}</div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "BTG Drop Teaser",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Drop 02" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "For The Crew" },
+    { "type": "text", "id": "label", "label": "Label", "default": "Coming Soon" }
+  ],
+  "presets": [{ "name": "BTG Drop Teaser" }]
+}
+{% endschema %}

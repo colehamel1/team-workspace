@@ -3,6 +3,7 @@
     "btg_hero": {
       "type": "btg-hero",
       "settings": {
+        "hero_video": "shopify://files/videos/btgheromontagev2.mp4",
         "eyebrow": "Behind The Greens · Golf Course Culture",
         "heading": "Golf Starts Before Dawn.",
         "subheading": "Behind The Greens tells the story of the crews, culture, and craft that make the game possible — and builds the apparel that carries it.",
@@ -34,6 +35,16 @@
       },
       "block_order": ["shop_panel", "stories_panel"]
     },
+    "btg_merch_teaser": {
+      "type": "btg-shop-teaser",
+      "settings": {
+        "eyebrow": "BTG Merch",
+        "title": "Made For The Course",
+        "view_all_label": "Shop All",
+        "collection": "home-page-1",
+        "product_count": 6
+      }
+    },
     "btg_video": {
       "type": "btg-video",
       "settings": {
@@ -41,26 +52,6 @@
         "heading": "Watch The Work",
         "text": "Documentary-style features from courses and crews across the country.",
         "coming_soon_label": "New Episodes Coming Soon"
-      }
-    },
-    "btg_merch_teaser": {
-      "type": "btg-shop-teaser",
-      "settings": {
-        "eyebrow": "BTG Merch",
-        "title": "Made For The Course",
-        "view_all_label": "Shop BTG Merch",
-        "collection": "btg-merch",
-        "product_count": 4
-      }
-    },
-    "btg_crew_teaser": {
-      "type": "btg-shop-teaser",
-      "settings": {
-        "eyebrow": "For The Crew",
-        "title": "Built For Every Day",
-        "view_all_label": "Shop For The Crew",
-        "collection": "for-the-crew",
-        "product_count": 4
       }
     },
     "btg_quote": {
@@ -109,7 +100,15 @@
         "link_label": "Read Our Full Story",
         "link": "shopify://pages/our-story"
       }
+    },
+    "btg_drop_teaser": {
+      "type": "btg-drop-teaser",
+      "settings": {
+        "eyebrow": "Drop 02",
+        "heading": "For The Crew",
+        "label": "Coming Soon"
+      }
     }
   },
-  "order": ["btg_hero", "btg_fork", "btg_video", "btg_merch_teaser", "btg_crew_teaser", "btg_quote", "btg_partnerships_teaser", "btg_about_teaser"]
+  "order": ["btg_hero", "btg_fork", "btg_merch_teaser", "btg_video", "btg_quote", "btg_partnerships_teaser", "btg_about_teaser", "btg_drop_teaser"]
 }

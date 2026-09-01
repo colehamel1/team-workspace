@@ -11,14 +11,12 @@
     "btg_mk_proof": {
       "type": "btg-mk-proof",
       "blocks": {
-        "stat_views": { "type": "stat", "settings": { "value": "[XXX,XXX]", "label": "Monthly Views", "color": "#F3EEDF" } },
-        "stat_audience": { "type": "stat", "settings": { "value": "[XXX,XXX]", "label": "Total Audience", "color": "#C1922F" } },
-        "stat_reach": { "type": "stat", "settings": { "value": "[X Platforms]", "label": "Cross-Platform Reach", "color": "#F3EEDF" } }
+        "stat_views": { "type": "stat", "settings": { "value": "200M+", "label": "Views — Last 28 Days", "color": "#C1922F" } }
       },
-      "block_order": ["stat_views", "stat_audience", "stat_reach"],
+      "block_order": ["stat_views"],
       "settings": {
         "eyebrow": "Proof Of Scale",
-        "note": "Figures shown are placeholders — to be replaced with verified, current statistics."
+        "note": ""
       }
     },
     "btg_mk_who_we_are": {
@@ -32,12 +30,12 @@
     "btg_mk_platforms": {
       "type": "btg-mk-platforms",
       "blocks": {
-        "instagram": { "type": "platform", "settings": { "icon": "instagram", "name": "Instagram", "primary_stat": "[Followers]", "secondary_stat": "[Avg. Engagement Rate]" } },
-        "tiktok": { "type": "platform", "settings": { "icon": "tiktok", "name": "TikTok", "primary_stat": "[Followers]", "secondary_stat": "[Avg. Views]" } },
-        "youtube": { "type": "platform", "settings": { "icon": "youtube", "name": "YouTube", "primary_stat": "[Subscribers]", "secondary_stat": "[Avg. Views]" } },
-        "newsletter": { "type": "platform", "settings": { "icon": "newsletter", "name": "Newsletter", "primary_stat": "[Subscribers]", "secondary_stat": "[Avg. Open Rate]" } }
+        "instagram": { "type": "platform", "settings": { "icon": "instagram", "name": "Instagram", "primary_stat": "108K+", "secondary_stat": "Followers" } },
+        "facebook": { "type": "platform", "settings": { "icon": "facebook", "name": "Facebook", "primary_stat": "150K+", "secondary_stat": "Followers" } },
+        "tiktok": { "type": "platform", "settings": { "icon": "tiktok", "name": "TikTok", "primary_stat": "54K+", "secondary_stat": "Followers" } },
+        "youtube": { "type": "platform", "settings": { "icon": "youtube", "name": "YouTube", "primary_stat": "77K+", "secondary_stat": "Subscribers" } }
       },
-      "block_order": ["instagram", "tiktok", "youtube", "newsletter"],
+      "block_order": ["instagram", "facebook", "tiktok", "youtube"],
       "settings": {
         "eyebrow": "By Platform",
         "title": "Where We Show Up"

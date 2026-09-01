@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "btg_article_main": {
+      "type": "btg-article-main"
+    }
+  },
+  "order": ["btg_article_main"]
+}

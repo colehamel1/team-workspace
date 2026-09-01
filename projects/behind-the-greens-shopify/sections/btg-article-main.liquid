@@ -1,0 +1,53 @@
+{%- comment -%}
+  Behind The Greens article template. Replaces Horizon's generic
+  main-blog-post section so individual stories match the rest of the
+  site instead of looking like a default Shopify blog post.
+
+  Editorial convention for sourced stories (no metafield/app required):
+  end the article body with a line linking to the original source,
+  e.g. "Source: GCSAA" linked to the original piece — any real link
+  Shopify's native rich text editor already supports. The last link in
+  the body is styled as a prominent "Read Original Story" callout.
+{%- endcomment -%}
+
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+  {{ 'btg-stories.css' | asset_url | stylesheet_tag }}
+
+  <article class="btg-article">
+    <div class="btg-container btg-container-narrow">
+      <div class="btg-eyebrow" style="color:#8A7F5C; margin-bottom:16px;">
+        <a href="{{ blog.url }}" style="color:#8A7F5C;">Stories</a>
+        {%- if article.tags.size > 0 -%} &middot; {{ article.tags.first }}{%- endif -%}
+        &middot; {{ article.published_at | date: '%B %-d, %Y' }}
+      </div>
+      <h1 class="btg-display btg-article__title">{{ article.title }}</h1>
+      {%- if article.excerpt != blank -%}
+        <p class="btg-article__excerpt">{{ article.excerpt | strip_html }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- if article.image -%}
+      <div class="btg-article__media">
+        {{ article.image | image_url: width: 1800 | image_tag: loading: 'eager', alt: article.title }}
+      </div>
+    {%- endif -%}
+
+    <div class="btg-container btg-container-narrow">
+      <div class="btg-article__body">
+        {{ article.content }}
+      </div>
+
+      <div class="btg-article__footer">
+        <a href="{{ blog.url }}" class="btg-link-underline" style="color:#163A2B; border-color:#163A2B;">&larr; Back To Stories</a>
+      </div>
+    </div>
+  </article>
+</div>
+
+{% schema %}
+{
+  "name": "BTG Article",
+  "settings": []
+}
+{% endschema %}

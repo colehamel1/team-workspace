@@ -48,7 +48,8 @@
     {%- if color_option -%}
       <span class="btg-card__swatches">
         {%- for value in color_option.values -%}
-          <span class="btg-card__swatch" style="background: {{ value.swatch.color | default: '#8A7F5C' }};" title="{{ value }}"></span>
+          {%- capture swatch_color %}{% render 'btg-swatch-color', value: value %}{% endcapture -%}
+          <span class="btg-card__swatch" style="background: {{ swatch_color | strip }};" title="{{ value }}"></span>
         {%- endfor -%}
       </span>
     {%- endif -%}

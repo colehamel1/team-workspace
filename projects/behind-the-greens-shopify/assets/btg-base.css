@@ -1,6 +1,14 @@
 /* Behind The Greens — design tokens and shared base styles
    Loaded once, globally, via snippets/btg-styles.liquid in theme.liquid */
 
+.btg-scope a:focus-visible,
+.btg-scope button:focus-visible,
+.btg-scope input:focus-visible,
+.btg-scope [tabindex]:focus-visible {
+  outline: 2px solid #C1922F;
+  outline-offset: 2px;
+}
+
 :root {
   --btg-ink: #14140F;
   --btg-forest: #163A2B;
@@ -236,7 +244,7 @@
   font-family: var(--btg-font-body); font-weight: 600; font-size: 12px; letter-spacing: 0.18em;
   text-transform: uppercase; cursor: pointer; flex-shrink: 0;
 }
-.btg-footer__cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; padding: 56px 0; }
+.btg-footer__cols { display: grid; grid-template-columns: 1.4fr repeat(auto-fit, minmax(110px, 1fr)); gap: 32px; padding: 56px 0; }
 .btg-footer__brand { display: flex; align-items: center; gap: 10px; }
 .btg-footer__brand span { color: var(--btg-cream); font-size: 16px; }
 .btg-footer__col-title { color: var(--btg-muted-lt); margin-bottom: 18px; font-size: 11px; }
@@ -256,10 +264,12 @@
 }
 
 /* Shared large section padding — used by sections with an unscaled
-   inline padding (homepage shop teaser, media kit selected work). */
-.btg-section-pad-lg { padding: 100px 0; }
+   inline padding (homepage shop teaser, media kit selected work).
+   Longhand top/bottom only, so it never clobbers .btg-container's own
+   left/right padding regardless of stylesheet source order. */
+.btg-section-pad-lg { padding-top: 100px; padding-bottom: 100px; }
 @media (max-width: 860px) {
-  .btg-section-pad-lg { padding: 56px 0; }
+  .btg-section-pad-lg { padding-top: 56px; padding-bottom: 56px; }
 }
 
 /* ---------- Product card (shared: collection grid, homepage teaser, cross-sell) ---------- */

@@ -2,8 +2,11 @@
   Behind The Greens header. Rendered directly by layout/theme.liquid
   (see README) — NOT added through the theme editor's "Add section"
   picker, since Horizon restricts its Header group to its own section
-  allowlist regardless of enabled_on. Menu and logo are merchant-editable
-  through section settings; nothing here is hardcoded.
+  allowlist regardless of enabled_on. Logo is merchant-editable through
+  section settings. Primary nav is intentionally fixed to the four real
+  site destinations (Shop / Stories / Course Features / Brand
+  Partnerships) rather than a merchant-editable menu, so it always
+  points somewhere real.
 {%- endcomment -%}
 
 <div class="btg-scope">
@@ -18,9 +21,10 @@
     </a>
 
     <nav class="btg-header__nav">
-      {%- for link in section.settings.menu.links -%}
-        <a href="{{ link.url }}" class="btg-eyebrow{% if link.active %} active{% endif %}">{{ link.title }}</a>
-      {%- endfor -%}
+      <a href="{{ routes.all_products_collection_url }}" class="btg-eyebrow{% if template.name == 'collection' or template.name == 'product' %} active{% endif %}">Shop</a>
+      <a href="{{ routes.root_url }}blogs/stories" class="btg-eyebrow{% if template.name == 'blog' or template.name == 'article' %} active{% endif %}">Stories</a>
+      <a href="{{ routes.root_url }}pages/media-kit#for-courses" class="btg-eyebrow">Course Features</a>
+      <a href="{{ routes.root_url }}pages/media-kit#for-brands" class="btg-eyebrow">Brand Partnerships</a>
     </nav>
 
     <div class="btg-header__icons">
@@ -44,9 +48,10 @@
   <div class="btg-mobile-nav" data-btg-mobile-nav>
     <button type="button" class="btg-mobile-nav__close" aria-label="Close menu" data-btg-mobile-nav-close>&times;</button>
     <nav class="btg-mobile-nav__links">
-      {%- for link in section.settings.menu.links -%}
-        <a href="{{ link.url }}">{{ link.title }}</a>
-      {%- endfor -%}
+      <a href="{{ routes.all_products_collection_url }}">Shop</a>
+      <a href="{{ routes.root_url }}blogs/stories">Stories</a>
+      <a href="{{ routes.root_url }}pages/media-kit#for-courses">Course Features</a>
+      <a href="{{ routes.root_url }}pages/media-kit#for-brands">Brand Partnerships</a>
     </nav>
   </div>
 </div>
@@ -61,12 +66,6 @@
       "type": "image_picker",
       "id": "logo",
       "label": "Logo / crest"
-    },
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "Navigation menu",
-      "default": "main-menu"
     }
   ]
 }

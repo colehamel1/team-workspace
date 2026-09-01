@@ -1,0 +1,70 @@
+{%- comment -%}
+  Behind The Greens swatch color resolver.
+
+  Shopify's native per-value swatch (Products → Options → Color → set
+  swatches) is the source of truth when configured. When it isn't (no
+  swatch set on that value), every color previously fell back to one
+  flat neutral tint, making every option look identical. This snippet
+  adds a real color-name lookup as the fallback so swatches are always
+  visually distinguishable, without ever inventing a variant/media
+  relationship — it only affects the dot's color, nothing else.
+
+  Usage: {% render 'btg-swatch-color', value: value %}
+  Renders a bare hex/rgb color (no quotes, no property name).
+{%- endcomment -%}
+{%- liquid
+  assign native = value.swatch.color
+  if native != blank
+    echo native
+  else
+    assign key = value | handle
+    case key
+      when 'white'
+        echo '#F5F3EE'
+      when 'off-white', 'ivory', 'cream'
+        echo '#EFE8D8'
+      when 'white-gray', 'white-grey', 'heather-white'
+        echo '#D9D6CE'
+      when 'black', 'jet-black'
+        echo '#1A1A18'
+      when 'blackish-green', 'forest-green', 'dark-green', 'hunter-green'
+        echo '#2B3A2F'
+      when 'navy-blue', 'navy'
+        echo '#1F2A44'
+      when 'dark-blue', 'royal-blue'
+        echo '#28407A'
+      when 'light-blue', 'sky-blue', 'baby-blue'
+        echo '#A9C4DE'
+      when 'coffee', 'brown', 'chocolate', 'espresso'
+        echo '#4A342A'
+      when 'beige-camel', 'camel', 'tan'
+        echo '#C6A272'
+      when 'khaki'
+        echo '#BFB182'
+      when 'apricot', 'peach'
+        echo '#E8A876'
+      when 'dark-gray', 'dark-grey', 'charcoal'
+        echo '#4A4A48'
+      when 'gray', 'grey', 'heather-gray', 'heather-grey'
+        echo '#8C8C88'
+      when 'light-gray', 'light-grey', 'flower-gray', 'flower-grey'
+        echo '#C7C6C0'
+      when 'red', 'crimson'
+        echo '#8A2A2A'
+      when 'maroon', 'burgundy', 'wine'
+        echo '#5C2230'
+      when 'orange', 'rust'
+        echo '#B5602C'
+      when 'yellow', 'mustard'
+        echo '#C9A227'
+      when 'gold', 'ochre'
+        echo '#C1922F'
+      when 'sand', 'stone', 'clay'
+        echo '#B8A888'
+      when 'olive'
+        echo '#6B6B3A'
+      else
+        echo '#8A7F5C'
+    endcase
+  endif
+-%}
