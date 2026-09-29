@@ -190,6 +190,13 @@
             </a>
           {%- endif -%}
 
+          {%- if section.settings.mission_text != blank -%}
+            <div class="btg-pdp__mission">
+              <span class="btg-mono">{{ section.settings.mission_label | default: 'Our Mission' }}</span>
+              <p>{{ section.settings.mission_text }}</p>
+            </div>
+          {%- endif -%}
+
           <ul class="btg-pdp__assurances">
             <li>Secure checkout</li>
             {%- if shop.policies.refund_policy.url -%}<li><a href="{{ shop.policies.refund_policy.url }}">30-day returns on unworn items</a></li>{%- endif -%}
@@ -320,6 +327,23 @@
       "id": "shipping_text",
       "label": "Shipping & Returns panel",
       "info": "Leave empty to show the default: shipping at checkout + link to your returns policy."
+    },
+    {
+      "type": "header",
+      "content": "Mission"
+    },
+    {
+      "type": "text",
+      "id": "mission_label",
+      "label": "Mission label",
+      "default": "Our Mission"
+    },
+    {
+      "type": "textarea",
+      "id": "mission_text",
+      "label": "Mission text",
+      "default": "Every course has a crew that makes the game possible. We exist to give superintendents and their crews the recognition they deserve. Every piece of gear helps us reach more courses and tell more of their stories.",
+      "info": "Shown under Add To Cart. Leave empty to hide."
     },
     {
       "type": "header",

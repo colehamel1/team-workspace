@@ -228,7 +228,8 @@
 .btg-header__nav a:hover { opacity: 1; }
 .btg-header__nav a.active { opacity: 1; border-bottom-color: var(--btg-ochre); }
 .btg-header__icons { display: flex; align-items: center; justify-content: flex-end; gap: 22px; grid-column: 3; }
-.btg-header__icons a, .btg-header__icons button { background: none; border: none; padding: 6px; margin: -6px; cursor: pointer; line-height: 0; color: var(--btg-cream); }
+.btg-scope h1, .btg-scope h2, .btg-scope h3 { overflow-wrap: break-word; }
+.btg-header__icons a, .btg-header__icons button { background: none; border: none; padding: 11px; margin: -11px; cursor: pointer; line-height: 0; color: var(--btg-cream); }
 .btg-header__cart-count {
   position: absolute; top: -4px; right: -8px;
   background: var(--btg-ochre); color: var(--btg-ink);
@@ -292,6 +293,9 @@
 .btg-footer__col-title { color: var(--btg-muted-lt); margin-bottom: 20px; }
 .btg-footer__col a { display: block; color: var(--btg-cream-soft); font-size: 15px; margin-bottom: 12px; transition: color 0.2s ease; }
 .btg-footer__col a:hover { color: var(--btg-ochre); }
+.btg-footer__social { display: flex; gap: 6px; margin-left: -10px; }
+.btg-footer__col .btg-footer__social a { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin: 0; color: var(--btg-cream-soft); }
+.btg-footer__col .btg-footer__social a:hover { color: var(--btg-ochre); }
 .btg-footer__brand { display: flex; align-items: center; gap: 14px; padding: 56px 0 40px; }
 .btg-footer__brand img { width: 48px; height: 48px; object-fit: contain; }
 .btg-footer__brand span { color: var(--btg-cream); font-size: clamp(28px, 4vw, 44px); }
@@ -317,6 +321,10 @@
 .btg-card__frame { position: absolute; inset: 0; }
 .btg-card__frame img, .btg-card__frame svg { width: 100%; height: 100%; object-fit: cover; display: block; }
 .btg-card__frame--alt { opacity: 0; transition: opacity 0.7s var(--btg-ease); }
+/* Product shots are square studio photos: show the whole garment (sleeves
+   included) inside the 4:5 frame. Multiply melts white backgrounds into the
+   card. Lifestyle frames stay full-bleed. */
+.btg-card__frame:not(.btg-card__frame--alt) img { object-fit: contain; padding: 7%; mix-blend-mode: multiply; }
 .btg-card__frame img { transition: transform 1.2s var(--btg-ease); }
 .btg-card__tag {
   position: absolute; left: 14px; bottom: 14px;
@@ -375,3 +383,6 @@ main#MainContent .shopify-policy__body { font-family: var(--btg-font-body); colo
 .shopify-policy__title h1 { font-family: var(--btg-font-display); font-weight: 800; text-transform: uppercase; font-size: clamp(40px, 6vw, 72px); line-height: 0.95; color: var(--btg-ink); margin-bottom: 40px; }
 .shopify-policy__body h2 { font-family: var(--btg-font-body); font-weight: 700; font-size: 18px; color: var(--btg-ink); margin: 40px 0 12px; }
 .shopify-policy__body a { color: var(--btg-ink); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Screen-reader-only text (icon labels). */
+.btg-visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }

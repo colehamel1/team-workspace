@@ -17,7 +17,7 @@
 .btg-about-crest { padding: var(--btg-section) 0; display: flex; align-items: center; gap: 64px; }
 .btg-about-crest__image { width: 180px; height: 180px; object-fit: contain; flex-shrink: 0; }
 
-.btg-about-cta { background: var(--btg-ink); padding: var(--btg-section) var(--btg-gutter); }
+.btg-about-cta { background: var(--btg-ink); padding: var(--btg-section) 0; }
 .btg-about-cta__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
 @media (max-width: 860px) {
