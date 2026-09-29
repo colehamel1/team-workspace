@@ -87,3 +87,14 @@
 @media (max-width: 420px) {
   .btg-mk-formats, .btg-mk-tiers { grid-template-columns: 1fr; }
 }
+
+/* Course Features price card: founding rate beside the standard rate. */
+.btg-mk-price { max-width: 560px; padding: 32px; border: 1px solid rgba(243,238,223,0.18); background: rgba(10,14,10,0.25); }
+.btg-mk-price__top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+.btg-mk-price__eyebrow { color: var(--btg-ochre); font-size: 11px; }
+.btg-mk-price__spots { color: var(--btg-cream); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 9px; border: 1px solid rgba(243,238,223,0.3); }
+.btg-mk-price__amount { font-size: clamp(40px, 5vw, 60px); line-height: 0.95; color: var(--btg-cream); }
+.btg-mk-price__standard { margin-top: 10px; font-size: 14px; color: #A79E86; }
+.btg-mk-price__note { font-size: 14px; line-height: 1.6; color: #A79E86; margin: 16px 0 0; }
+.btg-mk-price__cta { margin-top: 24px; }
+@media (max-width: 860px) { .btg-mk-price { padding: 24px 20px; } }

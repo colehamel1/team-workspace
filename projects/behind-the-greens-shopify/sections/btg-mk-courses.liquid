@@ -1,8 +1,9 @@
 {%- if section.settings.only_on_page == blank or section.settings.only_on_page == page.handle -%}
 {%- comment -%}
   Anchor id must match the "For Golf Courses" pathway block's jump-link
-  (default #for-courses). Pricing is intentionally not a number — this
-  offering is inquiry-only, per the brand's positioning.
+  (default #for-courses). Pricing: a limited founding rate shown next to
+  the standard rate, so the price can rise honestly once the spots fill.
+  Update "Founding spots" in the editor as courses book.
 {%- endcomment -%}
 
 <div class="btg-scope">
@@ -29,9 +30,16 @@
       {%- endif -%}
 
       <div class="btg-mk-courses__pricing">
-        <div class="btg-eyebrow" style="color:#A79E86; font-size:11px;">Pricing</div>
-        <div class="btg-display" style="font-size:22px; color:#F3EEDF; margin-top:8px;">{{ section.settings.pricing_label | default: 'Custom & By Inquiry Only' }}</div>
-        <p style="font-size:14px; color:#A79E86; margin:8px 0 0; max-width:500px;">{{ section.settings.pricing_note | default: "Every Course Feature is scoped to the property. Reach out and we'll walk through what's possible." }}</p>
+        <div class="btg-mk-price">
+          <div class="btg-mk-price__top">
+            <span class="btg-eyebrow btg-mk-price__eyebrow">{{ section.settings.pricing_eyebrow | default: 'Pricing' }}</span>
+            {%- if section.settings.pricing_spots != blank -%}<span class="btg-mono btg-mk-price__spots">{{ section.settings.pricing_spots }}</span>{%- endif -%}
+          </div>
+          <div class="btg-display btg-mk-price__amount">{{ section.settings.pricing_label | default: 'By Inquiry' }}</div>
+          {%- if section.settings.pricing_standard != blank -%}<div class="btg-mk-price__standard">{{ section.settings.pricing_standard }}</div>{%- endif -%}
+          {%- if section.settings.pricing_note != blank -%}<p class="btg-mk-price__note">{{ section.settings.pricing_note }}</p>{%- endif -%}
+          {%- if section.settings.cta_label != blank -%}<a href="{{ section.settings.cta_link | default: routes.root_url }}" class="btg-btn-gold btg-mk-price__cta">{{ section.settings.cta_label }}</a>{%- endif -%}
+        </div>
       </div>
     </div>
   </div>
@@ -62,8 +70,26 @@
     },
     {
       "type": "text",
+      "id": "pricing_eyebrow",
+      "label": "Price label",
+      "default": "Founding Rate"
+    },
+    {
+      "type": "text",
+      "id": "pricing_spots",
+      "label": "Founding spots",
+      "info": "e.g. 5 of 5 spots open. Update as courses book; clear to hide."
+    },
+    {
+      "type": "text",
+      "id": "pricing_standard",
+      "label": "Standard rate line",
+      "info": "e.g. Standard rate $5,000 + travel. Clear to hide."
+    },
+    {
+      "type": "text",
       "id": "pricing_label",
-      "label": "Pricing label",
+      "label": "Price",
       "default": "Custom & By Inquiry Only"
     },
     {
@@ -77,6 +103,17 @@
       "id": "only_on_page",
       "label": "Only show on page (handle)",
       "info": "Leave empty to always show. Used when several pages share one template."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button label",
+      "default": "Apply For A Founding Spot"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link"
     }
   ],
   "blocks": [

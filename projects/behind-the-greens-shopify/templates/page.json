@@ -376,9 +376,14 @@
         "eyebrow": "For Golf Courses",
         "heading": "Behind The Greens: Course Features",
         "text": "We come to your course and spend time with your grounds crew, working alongside them before the first tee time. Then we make editorial long-form and short-form films about the course and the people who maintain it, told in our voice to our audience. It's a feature, not videography for hire.",
-        "pricing_label": "Custom & By Inquiry Only",
-        "pricing_note": "Every Course Feature is scoped to the property. Reach out and we'll walk through what's possible.",
-        "only_on_page": "media-kit"
+        "pricing_note": "Open to our first five courses. Includes a day on site with your crew, one long-form film and three short-form cuts. Extra days, extra cuts and usage rights for your own marketing are quoted separately.",
+        "only_on_page": "media-kit",
+        "pricing_eyebrow": "Founding Rate",
+        "pricing_spots": "5 of 5 spots open",
+        "pricing_label": "$3,500 + Travel",
+        "pricing_standard": "Standard rate: $5,000 + travel",
+        "cta_label": "Apply For A Founding Spot",
+        "cta_link": "shopify://pages/contact"
       }
     },
     "btg_mk_closing_4pMVW8": {
@@ -441,18 +446,18 @@
         }
       },
       "block_order": [
+        "film_eagle_mountain",
         "film_prairie_vista",
         "film_oahu",
         "film_forty_niner",
-        "film_tpc_scottsdale",
-        "film_eagle_mountain"
+        "film_tpc_scottsdale"
       ],
       "settings": {
         "tone": "light",
         "anchor": "course-films",
         "eyebrow": "Course Features",
         "heading": "What A Feature Looks Like",
-        "text": "Every film is made on site, alongside the crew.",
+        "text": "Every film is made on site, alongside the crew. Start with Eagle Mountain.",
         "channel_url": "https://www.youtube.com/@behind_thegreens",
         "only_on_page": "media-kit"
       }
