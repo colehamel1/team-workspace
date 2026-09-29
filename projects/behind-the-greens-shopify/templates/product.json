@@ -4,10 +4,10 @@
       "type": "btg-product-main",
       "settings": {
         "cross_sell_eyebrow": "Complete The Kit",
-        "cross_sell_title": "You May Also Like",
+        "cross_sell_title": "More From The Collection",
         "show_film_band": true,
         "film_eyebrow": "Watch The Work",
-        "film_heading": "See The Course It Was Made For"
+        "film_heading": "Films From Behind The Greens"
       }
     }
   },

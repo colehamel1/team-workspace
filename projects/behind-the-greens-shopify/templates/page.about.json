@@ -15,44 +15,6 @@
         "body": "<p>Every round starts hours before the first tee time. Crews are out mowing lines, rolling greens, cutting cups and fixing what yesterday left behind. Most golfers never see any of it.</p><p>Behind The Greens started by pointing the camera the other way: at the superintendents, the crews and the craft that make a course playable. We go to courses, spend time with the people who maintain them, and make films about that work. Those films found an audience of golfers, course professionals and people across the industry who recognized it.</p><p>The apparel comes from the same place. Gear made for the people in those films, and for anyone who respects the work.</p>"
       }
     },
-    "story_proof": {
-      "type": "btg-proof-strip",
-      "blocks": {
-        "followers": {
-          "type": "stat",
-          "settings": {
-            "value": "410K+",
-            "label": "Followers across Instagram, Facebook, YouTube and TikTok"
-          }
-        },
-        "views": {
-          "type": "stat",
-          "settings": {
-            "value": "213M",
-            "label": "Views, Jul 23 – Aug 21, 2026"
-          }
-        },
-        "engagement": {
-          "type": "stat",
-          "settings": {
-            "value": "1M+",
-            "label": "Facebook engagements, same period"
-          }
-        }
-      },
-      "block_order": [
-        "followers",
-        "views",
-        "engagement"
-      ],
-      "settings": {
-        "style": "light",
-        "eyebrow": "The Community",
-        "heading": "The Crew Is Bigger Than You Think",
-        "note": "Followers as of Sep 2026: Instagram 110K, Facebook 164K, YouTube 81K, TikTok 55K. Views and engagements from each platform's analytics, Jul 23 – Aug 21, 2026.",
-        "compact": true
-      }
-    },
     "story_values": {
       "type": "btg-about-values",
       "blocks": {
@@ -94,7 +56,7 @@
       "settings": {
         "image": "shopify://shop_images/F8C7F1A0-4475-4C74-A418-D18024040C87_1.png",
         "eyebrow": "The Crest",
-        "text": "A crest, not a logo — the kind of mark a crew earns, not one a marketing team invents. Every piece we make carries it."
+        "text": "A crest, not a logo. The kind of mark a crew earns."
       }
     },
     "story_cta": {
@@ -130,7 +92,6 @@
   "order": [
     "story_hero",
     "story_origin",
-    "story_proof",
     "story_values",
     "story_crest",
     "story_cta"

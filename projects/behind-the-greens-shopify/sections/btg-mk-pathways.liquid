@@ -4,13 +4,13 @@
   {{ 'btg-media-kit.css' | asset_url | stylesheet_tag }}
 
   <div class="btg-container" style="text-align:center; padding:80px 40px 8px;">
-    <div class="btg-eyebrow" style="color:#4C7A4A; margin-bottom:16px;">{{ section.settings.eyebrow | default: 'Work With Us' }}</div>
+    <div class="btg-eyebrow" style="color:var(--btg-muted); margin-bottom:16px;">{{ section.settings.eyebrow | default: 'Work With Us' }}</div>
     <h2 class="btg-display btg-heading-lg" style="color:#14140F; margin:0;">{{ section.settings.title | default: 'Two Ways In' }}</h2>
   </div>
   <div class="btg-mk-pathways">
     {%- for block in section.blocks -%}
       <a href="{{ block.settings.anchor }}" class="btg-mk-pathway-card" {{ block.shopify_attributes }}>
-        <div class="btg-eyebrow" style="color:#A5402C; margin-bottom:14px;">{{ block.settings.eyebrow }}</div>
+        <div class="btg-eyebrow" style="color:var(--btg-muted); margin-bottom:14px;">{{ block.settings.eyebrow }}</div>
         <div class="btg-display" style="font-size:30px; color:#14140F; margin-bottom:14px;">{{ block.settings.heading }}</div>
         <p style="font-size:15px; line-height:1.6; color:#3A392F; margin:0 0 20px; max-width:400px;">{{ block.settings.text }}</p>
         <span class="btg-link-underline" style="color:#14140F; border-color:#14140F;">{{ block.settings.link_label }} &darr;</span>

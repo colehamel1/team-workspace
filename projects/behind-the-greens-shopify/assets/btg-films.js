@@ -74,6 +74,17 @@
       stage.appendChild(playerFor(id, courseEl ? courseEl.textContent : ''));
     });
 
+    // Warm the big thumbnail before the click so the swap never flashes.
+    var preloaded = {};
+    function preload(e) {
+      var card = e.target.closest && e.target.closest('[data-btg-film-select]');
+      var t = card && card.getAttribute('data-thumb');
+      if (t && !preloaded[t]) { preloaded[t] = true; var im = new Image(); im.src = t; }
+    }
+    section.addEventListener('pointerover', preload, { passive: true });
+    section.addEventListener('touchstart', preload, { passive: true });
+    section.addEventListener('focusin', preload);
+
     section.addEventListener('click', function (e) {
       var card = e.target.closest('[data-btg-film-select]');
       if (!card || !section.contains(card)) return;

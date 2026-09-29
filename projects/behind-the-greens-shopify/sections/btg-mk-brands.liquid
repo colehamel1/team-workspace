@@ -16,14 +16,14 @@
   <div id="for-brands" class="btg-mk-brands">
     <div class="btg-container">
       <div class="btg-mk-brands__intro">
-        <div class="btg-eyebrow" style="color:#A5402C; margin-bottom:16px;">{{ section.settings.eyebrow | default: 'For Brands' }}</div>
+        <div class="btg-eyebrow" style="color:var(--btg-muted); margin-bottom:16px;">{{ section.settings.eyebrow | default: 'For Brands' }}</div>
         <h2 class="btg-display btg-heading-lg" style="color:#14140F; margin:0 0 20px;">{{ section.settings.heading | default: 'Brand Partnerships' }}</h2>
         <p style="font-size:16px; line-height:1.65; color:#3A392F; margin:0;">{{ section.settings.text }}</p>
       </div>
 
       {%- if formats.size > 0 -%}
         <div class="btg-mk-formats-block">
-          <div class="btg-eyebrow" style="color:#8A7F5C; margin-bottom:24px; font-size:11px;">{{ section.settings.formats_label | default: 'Partnership Formats' }}</div>
+          <div class="btg-eyebrow" style="color:var(--btg-muted); margin-bottom:24px; font-size:11px;">{{ section.settings.formats_label | default: 'Partnership Formats' }}</div>
           <div class="btg-mk-formats">
             {%- for block in formats -%}
               <div class="btg-mk-format-card" {{ block.shopify_attributes }}>
@@ -37,17 +37,17 @@
 
       {%- if tiers.size > 0 -%}
         <div>
-          <div class="btg-eyebrow" style="color:#8A7F5C; margin-bottom:24px; font-size:11px;">{{ section.settings.tiers_label | default: 'Packages & Rates' }}</div>
+          <div class="btg-eyebrow" style="color:var(--btg-muted); margin-bottom:24px; font-size:11px;">{{ section.settings.tiers_label | default: 'Packages & Rates' }}</div>
           <div class="btg-mk-tiers">
             {%- for block in tiers -%}
               <div class="btg-mk-tier-card" {{ block.shopify_attributes }}>
                 <div class="btg-display" style="font-size:20px; color:#14140F; margin-bottom:10px;">{{ block.settings.title }}</div>
                 <p style="font-size:13px; line-height:1.6; color:#3A392F; margin:0 0 22px;">{{ block.settings.text }}</p>
-                <div class="btg-eyebrow" style="color:#A5402C; font-size:12px;">{{ block.settings.rate | default: '[Rate On Request]' }}</div>
+                <div class="btg-display btg-mk-tier__rate">{{ block.settings.rate | default: 'On Request' }}</div>
               </div>
             {%- endfor -%}
           </div>
-          <p class="btg-mk-proof__note" style="text-align:left; color:#8A7F5C;">{{ section.settings.tiers_note | default: 'Package structure and rates shown are illustrative — final pricing to be confirmed before this kit goes out.' }}</p>
+          {%- if section.settings.tiers_note != blank -%}<p class="btg-mk-proof__note" style="text-align:left; color:var(--btg-muted); margin:24px 0 0;">{{ section.settings.tiers_note }}</p>{%- endif -%}
         </div>
       {%- endif -%}
     </div>
@@ -139,7 +139,7 @@
           "type": "text",
           "id": "rate",
           "label": "Rate",
-          "default": "[Rate On Request]"
+          "default": ""
         }
       ]
     }
@@ -181,7 +181,7 @@
           "settings": {
             "title": "Single Placement",
             "text": "One integration, one platform — a focused way to test the audience.",
-            "rate": "[Rate On Request]"
+            "rate": ""
           }
         },
         {
@@ -189,7 +189,7 @@
           "settings": {
             "title": "Integrated Feature",
             "text": "A longer-form feature paired with supporting short-form and social.",
-            "rate": "[Rate On Request]"
+            "rate": ""
           }
         },
         {
@@ -197,7 +197,7 @@
           "settings": {
             "title": "Full Campaign",
             "text": "Coordinated placement across every platform we run.",
-            "rate": "[Rate On Request]"
+            "rate": ""
           }
         }
       ]

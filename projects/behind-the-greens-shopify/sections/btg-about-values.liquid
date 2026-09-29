@@ -5,7 +5,7 @@
 
   <div class="btg-about-values-wrap">
     <div class="btg-container">
-      {% render 'btg-section-heading', eyebrow: section.settings.eyebrow, title: section.settings.title, eyebrow_color: '#A5402C' %}
+      {% render 'btg-section-heading', eyebrow: section.settings.eyebrow, title: section.settings.title %}
       <div class="btg-about-values">
         {%- for block in section.blocks -%}
           <div class="btg-about-values__item" {{ block.shopify_attributes }}>

@@ -6,7 +6,7 @@
       "settings": {
         "eyebrow": "Partnerships & Media Kit",
         "heading": "An Audience That Shows Up Before Sunrise.",
-        "subheading": "We film the side of golf nobody else does, for golfers, course professionals and the people who run the industry. Here's how to work with us."
+        "subheading": "We film the side of golf nobody else does. Here's how to be part of it."
       }
     },
     "btg_mk_proof_im9FW4": {
@@ -16,15 +16,15 @@
           "type": "stat",
           "settings": {
             "value": "213M+",
-            "label": "Total Views — Jul 23 – Aug 21, 2026",
+            "label": "Views, Jul 23 – Aug 21, 2026",
             "color": "#c1922f"
           }
         },
         "stat_PbQfgJ": {
           "type": "stat",
           "settings": {
-            "value": "10M+",
-            "label": "Instagram Accounts Reached",
+            "value": "410K+",
+            "label": "Combined followers, Sep 2026",
             "color": "#f3eedf"
           }
         },
@@ -32,7 +32,7 @@
           "type": "stat",
           "settings": {
             "value": "1M+",
-            "label": "Facebook Engagements",
+            "label": "Facebook engagements, same month",
             "color": "#f3eedf"
           }
         }
@@ -44,8 +44,8 @@
       ],
       "name": "BTG MK Proof Of Scale",
       "settings": {
-        "eyebrow": "Proof Of Scale",
-        "note": "Combined across Facebook, Instagram, YouTube and TikTok, from each platform's own analytics."
+        "eyebrow": "The Audience",
+        "note": "Followers: Instagram 110K · Facebook 164K · YouTube 81K · TikTok 55K."
       }
     },
     "btg_mk_platforms_RxdKgP": {
@@ -109,8 +109,8 @@
           "settings": {
             "eyebrow": "For Brands",
             "heading": "Reach Our Audience",
-            "text": "Sponsored integrations, product features, and campaigns built around a trusted, engaged golf audience.",
-            "link_label": "Brand Partnerships",
+            "text": "Integrations built into the films and posts our audience already watches.",
+            "link_label": "Partnerships & Rates",
             "anchor": "#for-brands"
           }
         },
@@ -119,7 +119,7 @@
           "settings": {
             "eyebrow": "For Golf Courses",
             "heading": "Tell Your Course's Story",
-            "text": "A documentary-style feature on your property, your crew, and the operation behind the course.",
+            "text": "We spend time with your grounds crew and tell your course's story.",
             "link_label": "Course Features",
             "anchor": "#for-courses"
           }
@@ -336,50 +336,6 @@
         "channel_url": "https://www.youtube.com/@behind_thegreens"
       }
     },
-    "btg_mk_selected_work_ybwREh": {
-      "type": "btg-mk-selected-work",
-      "blocks": {
-        "case_study_cyU7xj": {
-          "type": "case_study",
-          "settings": {
-            "name": "[Name]",
-            "project": "[Project Description]",
-            "delivered": "[Content Delivered]",
-            "results": "[Results]"
-          }
-        },
-        "case_study_rcdYFK": {
-          "type": "case_study",
-          "settings": {
-            "name": "[Name]",
-            "project": "[Project Description]",
-            "delivered": "[Content Delivered]",
-            "results": "[Results]"
-          }
-        },
-        "case_study_E8GaEt": {
-          "type": "case_study",
-          "settings": {
-            "name": "[Name]",
-            "project": "[Project Description]",
-            "delivered": "[Content Delivered]",
-            "results": "[Results]"
-          }
-        }
-      },
-      "block_order": [
-        "case_study_cyU7xj",
-        "case_study_rcdYFK",
-        "case_study_E8GaEt"
-      ],
-      "name": "BTG MK Selected Work",
-      "settings": {
-        "eyebrow": "Selected Work",
-        "title": "Collaborations & Case Studies",
-        "note": "Case studies will populate here as partnerships and course features are completed."
-      },
-      "disabled": true
-    },
     "btg_mk_closing_4pMVW8": {
       "type": "btg-mk-closing",
       "name": "BTG MK Closing CTA",
@@ -403,7 +359,6 @@
     "btg_mk_brands_9icgpw",
     "btg_mk_courses_QLLyWK",
     "mk_course_films",
-    "btg_mk_selected_work_ybwREh",
     "btg_mk_closing_4pMVW8"
   ]
 }

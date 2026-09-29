@@ -4,7 +4,7 @@
   {{ 'btg-media-kit.css' | asset_url | stylesheet_tag }}
 
   <div class="btg-container-narrow" style="padding:88px 40px; text-align:center;">
-    <div class="btg-eyebrow" style="color:#4C7A4A; margin-bottom:16px;">{{ section.settings.eyebrow | default: 'Who We Are' }}</div>
+    <div class="btg-eyebrow" style="color:var(--btg-muted); margin-bottom:16px;">{{ section.settings.eyebrow | default: 'Who We Are' }}</div>
     <h2 class="btg-display btg-heading-lg" style="color:#14140F; margin:0 0 22px;">{{ section.settings.heading }}</h2>
     <p style="font-size:17px; line-height:1.7; color:#3A392F; margin:0;">{{ section.settings.text }}</p>
   </div>

@@ -44,7 +44,7 @@
           "settings": {
             "eyebrow": "For Golf Courses",
             "heading": "Course Features",
-            "text": "A documentary-style feature on your property, your crew, and the operation behind the course.",
+            "text": "We spend time with your crew and make a film about your course.",
             "link_label": "Course Features",
             "link": "shopify://pages/media-kit#for-courses"
           }
@@ -54,7 +54,7 @@
           "settings": {
             "eyebrow": "For Brands",
             "heading": "Brand Partnerships",
-            "text": "Sponsored integrations built around an audience that trusts what we show them.",
+            "text": "Integrations with an audience that trusts what we show them.",
             "link_label": "Partnerships & Rates",
             "link": "shopify://pages/media-kit#for-brands"
           }
@@ -87,7 +87,7 @@
           "type": "stat",
           "settings": {
             "value": "410K+",
-            "label": "Followers across Instagram, Facebook, YouTube and TikTok"
+            "label": "Combined followers"
           }
         },
         "views": {
@@ -178,7 +178,7 @@
         "heading": "Films From Behind The Greens",
         "text": "The crews, the superintendents and the work that happens before anyone tees off.",
         "channel_url": "https://www.youtube.com/@behind_thegreens",
-        "gear_collection": "home-page-1",
+        "gear_collection": "",
         "gear_eyebrow": "The Uniform",
         "gear_text": "Made for the people in these films."
       }

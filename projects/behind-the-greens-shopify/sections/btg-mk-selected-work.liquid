@@ -10,7 +10,7 @@
   {{ 'btg-media-kit.css' | asset_url | stylesheet_tag }}
 
   <div class="btg-container btg-section-pad-lg">
-    {% render 'btg-section-heading', eyebrow: section.settings.eyebrow, title: section.settings.title, eyebrow_color: '#4C7A4A' %}
+    {% render 'btg-section-heading', eyebrow: section.settings.eyebrow, title: section.settings.title %}
     <div class="btg-grid-3">
       {%- for block in section.blocks -%}
         <div class="btg-mk-case-card" {{ block.shopify_attributes }}>
@@ -78,25 +78,25 @@
           "type": "text",
           "id": "name",
           "label": "Partner / course name",
-          "default": "[Name]"
+          "default": ""
         },
         {
           "type": "text",
           "id": "project",
           "label": "Project",
-          "default": "[Project Description]"
+          "default": ""
         },
         {
           "type": "text",
           "id": "delivered",
           "label": "Content delivered",
-          "default": "[Content Delivered]"
+          "default": ""
         },
         {
           "type": "text",
           "id": "results",
           "label": "Results",
-          "default": "[Results]"
+          "default": ""
         }
       ]
     }

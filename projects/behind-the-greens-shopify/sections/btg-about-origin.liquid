@@ -5,7 +5,7 @@
 
   <div class="btg-container-narrow">
     <div class="btg-about-origin">
-      <div class="btg-eyebrow" style="color:#4C7A4A;">{{ section.settings.label | default: 'The Beginning' }}</div>
+      <div class="btg-eyebrow" style="color:var(--btg-muted);">{{ section.settings.label | default: 'The Beginning' }}</div>
       <div>
         {%- if section.settings.pull_quote != blank -%}
           <p class="btg-editorial btg-about-origin__pull">{{ section.settings.pull_quote }}</p>

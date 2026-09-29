@@ -34,7 +34,7 @@
     {%- comment -%} Behind The Greens brand layer: fonts + tokens load once in the head, then
     Horizon's own font variables are pointed at the brand fonts so native pages (contact,
     search, account, cart page) match the custom BTG sections. Checkout is unaffected. {%- endcomment -%}
-    {%- render 'btg-styles' -%}
+    {%- render 'btg-head' -%}
     <style>
       :root {
         --font-body--family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;

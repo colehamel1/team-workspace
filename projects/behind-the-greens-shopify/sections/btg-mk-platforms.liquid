@@ -7,7 +7,7 @@
 
   <div class="btg-mk-platforms-wrap">
     <div class="btg-container">
-      {% render 'btg-section-heading', eyebrow: section.settings.eyebrow, title: section.settings.title, eyebrow_color: '#A5402C' %}
+      {% render 'btg-section-heading', eyebrow: section.settings.eyebrow, title: section.settings.title %}
       <div class="btg-mk-platforms">
         {%- for block in section.blocks -%}
           <div class="btg-mk-platform-card" {{ block.shopify_attributes }}>
@@ -110,13 +110,13 @@
           "type": "text",
           "id": "primary_stat",
           "label": "Primary stat",
-          "default": "[Followers]"
+          "default": ""
         },
         {
           "type": "text",
           "id": "secondary_stat",
           "label": "Secondary stat",
-          "default": "[Avg. Engagement Rate]"
+          "default": ""
         }
       ]
     }
@@ -131,8 +131,8 @@
           "settings": {
             "icon": "instagram",
             "name": "Instagram",
-            "primary_stat": "[Followers]",
-            "secondary_stat": "[Avg. Engagement Rate]"
+            "primary_stat": "",
+            "secondary_stat": ""
           }
         },
         {
@@ -140,8 +140,8 @@
           "settings": {
             "icon": "tiktok",
             "name": "TikTok",
-            "primary_stat": "[Followers]",
-            "secondary_stat": "[Avg. Views]"
+            "primary_stat": "",
+            "secondary_stat": ""
           }
         },
         {
@@ -149,8 +149,8 @@
           "settings": {
             "icon": "youtube",
             "name": "YouTube",
-            "primary_stat": "[Subscribers]",
-            "secondary_stat": "[Avg. Views]"
+            "primary_stat": "",
+            "secondary_stat": ""
           }
         },
         {
@@ -158,8 +158,8 @@
           "settings": {
             "icon": "newsletter",
             "name": "Newsletter",
-            "primary_stat": "[Subscribers]",
-            "secondary_stat": "[Avg. Open Rate]"
+            "primary_stat": "",
+            "secondary_stat": ""
           }
         }
       ]
