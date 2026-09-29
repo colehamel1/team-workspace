@@ -19,7 +19,7 @@
       "settings": {
         "label": "Where It Started",
         "pull_quote": "You can walk a hundred golf courses and never see the people who made them playable.",
-        "body": "<p>Every round starts hours before the first tee time. Crews are out before sunrise mowing lines, rolling greens, cutting cups and fixing what yesterday left behind. Most golfers never see any of it.</p><p>Behind The Greens started by pointing the camera the other way: at the superintendents, the crews and the craft that make a course playable. Those stories found an audience fast. Golfers, course professionals and people across the industry recognized the work, and kept coming back for more of it.</p><p>The apparel grew out of that community. Gear made in the same spirit as the stories, for the people who show up before the flag does.</p>",
+        "body": "<p>Every round starts hours before the first tee time. Crews are out mowing lines, rolling greens, cutting cups and fixing what yesterday left behind. Most golfers never see any of it.</p><p>Behind The Greens started by pointing the camera the other way: at the superintendents, the crews and the craft that make a course playable. We go to courses, spend time with the people who maintain them, and make films about that work. Those films found an audience of golfers, course professionals and people across the industry who recognized it.</p><p>The apparel comes from the same place. Gear made for the people in those films, and for anyone who respects the work.</p>",
         "only_on_page": "our-story"
       }
     },
@@ -29,8 +29,8 @@
         "followers": {
           "type": "stat",
           "settings": {
-            "value": "450K+",
-            "label": "Followers across four platforms"
+            "value": "410K+",
+            "label": "Followers across Instagram, Facebook, YouTube and TikTok"
           }
         },
         "views": {
@@ -57,7 +57,7 @@
         "style": "light",
         "eyebrow": "The Community",
         "heading": "The Crew Is Bigger Than You Think",
-        "note": "Follower count as of Sep 2026. Views and engagements from each platform's analytics, Jul 23 – Aug 21, 2026.",
+        "note": "Followers as of Sep 2026: Instagram 110K, Facebook 164K, YouTube 81K, TikTok 55K. Views and engagements from each platform's analytics, Jul 23 – Aug 21, 2026.",
         "only_on_page": "our-story",
         "compact": true
       }
@@ -114,9 +114,9 @@
         "link_stories": {
           "type": "link",
           "settings": {
-            "label": "Read",
-            "heading": "The Stories",
-            "link": "shopify://blogs/stories"
+            "label": "Watch",
+            "heading": "The Films",
+            "link": "/#watch-the-work"
           }
         },
         "link_shop": {
@@ -197,7 +197,7 @@
             "icon": "instagram",
             "name": "Instagram",
             "primary_stat": "22.4M",
-            "secondary_stat": "Views · 108K+ Followers"
+            "secondary_stat": "Views · 110K Followers"
           }
         },
         "platform_JCy3jJ": {
@@ -206,7 +206,7 @@
             "icon": "facebook",
             "name": "Facebook",
             "primary_stat": "174M",
-            "secondary_stat": "Views · 150K+ Followers"
+            "secondary_stat": "Views · 164K Followers"
           }
         },
         "platform_3VbPJn": {
@@ -215,7 +215,7 @@
             "icon": "youtube",
             "name": "YouTube",
             "primary_stat": "11.1M",
-            "secondary_stat": "Views · 78K+ Subscribers"
+            "secondary_stat": "Views · 81K Subscribers"
           }
         },
         "platform_6eyx8P": {
@@ -224,7 +224,7 @@
             "icon": "tiktok",
             "name": "TikTok",
             "primary_stat": "5.6M",
-            "secondary_stat": "Views · 53K+ Followers"
+            "secondary_stat": "Views · 55K Followers"
           }
         }
       },
@@ -238,7 +238,7 @@
       "settings": {
         "eyebrow": "By Platform",
         "title": "Where We Show Up",
-        "note": "Views from each platform's own analytics, Jul 23 – Aug 21, 2026 (Instagram: 30 days; Facebook, YouTube, TikTok: 28 days).",
+        "note": "Views from each platform's own analytics, Jul 23 – Aug 21, 2026 (Instagram: 30 days; Facebook, YouTube, TikTok: 28 days). Followers as of Sep 2026: 410K+ combined.",
         "only_on_page": "media-kit"
       }
     },
@@ -368,37 +368,37 @@
         "included_HdyUdU": {
           "type": "included",
           "settings": {
-            "text": "Documentary-style long-form YouTube episode"
+            "text": "Time on site with your grounds crew"
           }
         },
         "included_3n6rJ4": {
           "type": "included",
           "settings": {
-            "text": "On-site filming alongside your maintenance crew"
+            "text": "Working alongside the crew, not just filming them"
           }
         },
         "included_yPpCft": {
           "type": "included",
           "settings": {
-            "text": "On-camera interview with your superintendent"
+            "text": "Long-form documentary episode on YouTube"
           }
         },
         "included_zxFBzm": {
           "type": "included",
           "settings": {
-            "text": "Full coverage of the course and property"
+            "text": "Short-form cuts for Instagram, TikTok and Facebook"
           }
         },
         "included_3cEHnJ": {
           "type": "included",
           "settings": {
-            "text": "Optional short-form & social distribution"
+            "text": "An on-camera conversation with your superintendent"
           }
         },
         "included_LFxtFi": {
           "type": "included",
           "settings": {
-            "text": "Scope tailored to your course and story"
+            "text": "Scope built around your course and its people"
           }
         }
       },
@@ -414,7 +414,7 @@
       "settings": {
         "eyebrow": "For Golf Courses",
         "heading": "Behind The Greens: Course Features",
-        "text": "We come to your course and make a film about it: the crew, the superintendent and the work that keeps it playable. It's an editorial feature, told in our voice to our audience. Not videography for hire.",
+        "text": "We come to your course and spend time with your grounds crew, working alongside them before the first tee time. Then we make editorial long-form and short-form films about the course and the people who maintain it, told in our voice to our audience. It's a feature, not videography for hire.",
         "pricing_label": "Custom & By Inquiry Only",
         "pricing_note": "Every Course Feature is scoped to the property. Reach out and we'll walk through what's possible.",
         "only_on_page": "media-kit"
@@ -487,35 +487,40 @@
           "type": "film",
           "settings": {
             "course": "Prairie Vista Golf Course",
-            "location": "Bloomington, IL"
+            "location": "Bloomington-Normal, IL",
+            "youtube": "https://www.youtube.com/watch?v=ZQQuq7-Mpvc"
           }
         },
         "film_oahu": {
           "type": "film",
           "settings": {
             "course": "Oahu Country Club",
-            "location": "Honolulu, HI"
+            "location": "Honolulu, HI",
+            "youtube": "https://www.youtube.com/watch?v=gUN9-ttaNw4"
           }
         },
         "film_forty_niner": {
           "type": "film",
           "settings": {
             "course": "Forty Niner Country Club",
-            "location": "Tucson, AZ"
+            "location": "Tucson, AZ",
+            "youtube": "https://www.youtube.com/watch?v=chlC023n_ck"
           }
         },
         "film_tpc_scottsdale": {
           "type": "film",
           "settings": {
             "course": "TPC Scottsdale",
-            "location": "Scottsdale, AZ"
+            "location": "Scottsdale, AZ",
+            "youtube": "https://www.youtube.com/watch?v=MpKfn5FJRow"
           }
         },
         "film_eagle_mountain": {
           "type": "film",
           "settings": {
-            "course": "Eagle Mountain Golf Course",
-            "location": ""
+            "course": "Eagle Mountain Golf Club",
+            "location": "Fountain Hills, AZ",
+            "youtube": "https://www.youtube.com/watch?v=Kn-Qtw8J0gA"
           }
         }
       },
@@ -531,7 +536,7 @@
         "anchor": "course-films",
         "eyebrow": "Course Features",
         "heading": "What A Feature Looks Like",
-        "text": "Every film is made on site, with the crew, in their words.",
+        "text": "Every film is made on site, alongside the crew.",
         "channel_url": "https://www.youtube.com/@behind_thegreens",
         "only_on_page": "media-kit"
       }

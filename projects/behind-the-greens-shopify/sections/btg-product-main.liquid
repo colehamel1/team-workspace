@@ -167,6 +167,29 @@
             {%- unless current_variant.available -%}Sold Out{%- endunless -%}
           </p>
 
+          {%- liquid
+            assign film_title = product.metafields.custom.film_title.value
+            assign film_url = product.metafields.custom.film_video.value | default: ''
+            assign film_id = ''
+            if film_url contains 'youtu.be/'
+              assign film_id = film_url | split: 'youtu.be/' | last | split: '?' | first
+            elsif film_url contains 'v='
+              assign film_id = film_url | split: 'v=' | last | split: '&' | first
+            endif
+          -%}
+          {%- if film_title != blank -%}
+            <a class="btg-pdp__seen" href="{% if film_id != blank %}{{ routes.root_url }}?film={{ film_id }}#watch-the-work{% else %}{{ film_url }}{% endif %}">
+              {%- if film_id != blank -%}
+                <span class="btg-pdp__seen-thumb"><img src="https://i.ytimg.com/vi/{{ film_id }}/mqdefault.jpg" alt="" loading="lazy" width="160" height="90"><span aria-hidden="true"><svg width="10" height="11" viewBox="0 0 11 12"><path d="M0 0l11 6-11 6z" fill="currentColor"/></svg></span></span>
+              {%- endif -%}
+              <span class="btg-pdp__seen-text">
+                <span class="btg-mono">Seen in the film</span>
+                <span class="btg-pdp__seen-title">{{ film_title }}</span>
+                <span class="btg-pdp__seen-cta">Watch The Work</span>
+              </span>
+            </a>
+          {%- endif -%}
+
           <ul class="btg-pdp__assurances">
             <li>Secure checkout</li>
             {%- if shop.policies.refund_policy.url -%}<li><a href="{{ shop.policies.refund_policy.url }}">30-day returns on unworn items</a></li>{%- endif -%}

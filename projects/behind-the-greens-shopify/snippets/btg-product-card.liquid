@@ -70,7 +70,9 @@
   <div class="btg-card__body">
     <div>
       <h3 class="btg-card__title">{{ product.title }}</h3>
-      {%- if color_option and color_option.values.size > 1 -%}
+      {%- if product.metafields.custom.film_title.value != blank -%}
+        <div class="btg-card__film btg-mono">Seen in film &middot; {{ product.metafields.custom.film_title.value }}</div>
+      {%- elsif color_option and color_option.values.size > 1 -%}
         <div class="btg-card__sub">{{ color_option.values.size }} colors</div>
       {%- endif -%}
     </div>

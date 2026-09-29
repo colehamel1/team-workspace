@@ -12,7 +12,7 @@
       "settings": {
         "label": "Where It Started",
         "pull_quote": "You can walk a hundred golf courses and never see the people who made them playable.",
-        "body": "<p>Every round starts hours before the first tee time. Crews are out before sunrise mowing lines, rolling greens, cutting cups and fixing what yesterday left behind. Most golfers never see any of it.</p><p>Behind The Greens started by pointing the camera the other way: at the superintendents, the crews and the craft that make a course playable. Those stories found an audience fast. Golfers, course professionals and people across the industry recognized the work, and kept coming back for more of it.</p><p>The apparel grew out of that community. Gear made in the same spirit as the stories, for the people who show up before the flag does.</p>"
+        "body": "<p>Every round starts hours before the first tee time. Crews are out mowing lines, rolling greens, cutting cups and fixing what yesterday left behind. Most golfers never see any of it.</p><p>Behind The Greens started by pointing the camera the other way: at the superintendents, the crews and the craft that make a course playable. We go to courses, spend time with the people who maintain them, and make films about that work. Those films found an audience of golfers, course professionals and people across the industry who recognized it.</p><p>The apparel comes from the same place. Gear made for the people in those films, and for anyone who respects the work.</p>"
       }
     },
     "story_proof": {
@@ -21,8 +21,8 @@
         "followers": {
           "type": "stat",
           "settings": {
-            "value": "450K+",
-            "label": "Followers across four platforms"
+            "value": "410K+",
+            "label": "Followers across Instagram, Facebook, YouTube and TikTok"
           }
         },
         "views": {
@@ -49,7 +49,7 @@
         "style": "light",
         "eyebrow": "The Community",
         "heading": "The Crew Is Bigger Than You Think",
-        "note": "Follower count as of Sep 2026. Views and engagements from each platform's analytics, Jul 23 – Aug 21, 2026.",
+        "note": "Followers as of Sep 2026: Instagram 110K, Facebook 164K, YouTube 81K, TikTok 55K. Views and engagements from each platform's analytics, Jul 23 – Aug 21, 2026.",
         "compact": true
       }
     },
@@ -103,9 +103,9 @@
         "link_stories": {
           "type": "link",
           "settings": {
-            "label": "Read",
-            "heading": "The Stories",
-            "link": "shopify://blogs/stories"
+            "label": "Watch",
+            "heading": "The Films",
+            "link": "/#watch-the-work"
           }
         },
         "link_shop": {

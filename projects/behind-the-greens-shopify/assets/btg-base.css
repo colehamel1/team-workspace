@@ -351,6 +351,7 @@
 .btg-card__body { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
 .btg-card__title { font-family: var(--btg-font-body); font-weight: 600; font-size: 15px; line-height: 1.35; color: var(--btg-ink); margin: 0 0 4px; }
 .btg-card__sub { font-size: 13px; color: var(--btg-muted); }
+.btg-card__film { font-size: 10px; color: var(--btg-fairway); margin-top: 2px; }
 .btg-card__price { font-size: 15px; color: var(--btg-ink); white-space: nowrap; }
 
 .btg-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px 24px; }

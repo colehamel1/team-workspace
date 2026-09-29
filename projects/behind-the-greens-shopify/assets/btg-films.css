@@ -106,3 +106,16 @@
 @media (prefers-reduced-motion: reduce) {
   .btg-films__poster img, .btg-films__stage.is-swapping .btg-films__poster img { transition: none; animation: none; }
 }
+
+/* "Seen in this film" — only renders for films with a verified product. */
+.btg-films__seen { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 14px; padding: 12px 0; border-bottom: 1px solid var(--btg-hairline-lt); }
+.btg-films__seen[hidden] { display: none; }
+.btg-films__seen > .btg-mono { color: var(--btg-ochre); }
+.btg-films__seen-link { display: inline-flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 600; }
+.btg-films__seen-img { width: 44px; height: 44px; background: var(--btg-cream-soft); overflow: hidden; flex-shrink: 0; }
+.btg-films__seen-img:empty { display: none; }
+.btg-films__seen-img img { width: 100%; height: 100%; object-fit: cover; }
+.btg-films__seen-price { font-weight: 400; color: var(--btg-muted-lt); }
+.btg-films__seen-link:hover [data-btg-seen-title] { text-decoration: underline; text-underline-offset: 3px; }
+.btg-films--light .btg-films__seen { border-color: var(--btg-hairline); }
+@media (max-width: 860px) { .btg-films__seen { margin: 12px var(--btg-gutter) 4px; } }

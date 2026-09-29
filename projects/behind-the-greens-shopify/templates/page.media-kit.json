@@ -57,7 +57,7 @@
             "icon": "instagram",
             "name": "Instagram",
             "primary_stat": "22.4M",
-            "secondary_stat": "Views · 108K+ Followers"
+            "secondary_stat": "Views · 110K Followers"
           }
         },
         "platform_JCy3jJ": {
@@ -66,7 +66,7 @@
             "icon": "facebook",
             "name": "Facebook",
             "primary_stat": "174M",
-            "secondary_stat": "Views · 150K+ Followers"
+            "secondary_stat": "Views · 164K Followers"
           }
         },
         "platform_3VbPJn": {
@@ -75,7 +75,7 @@
             "icon": "youtube",
             "name": "YouTube",
             "primary_stat": "11.1M",
-            "secondary_stat": "Views · 78K+ Subscribers"
+            "secondary_stat": "Views · 81K Subscribers"
           }
         },
         "platform_6eyx8P": {
@@ -84,7 +84,7 @@
             "icon": "tiktok",
             "name": "TikTok",
             "primary_stat": "5.6M",
-            "secondary_stat": "Views · 53K+ Followers"
+            "secondary_stat": "Views · 55K Followers"
           }
         }
       },
@@ -98,7 +98,7 @@
       "settings": {
         "eyebrow": "By Platform",
         "title": "Where We Show Up",
-        "note": "Views from each platform's own analytics, Jul 23 – Aug 21, 2026 (Instagram: 30 days; Facebook, YouTube, TikTok: 28 days)."
+        "note": "Views from each platform's own analytics, Jul 23 – Aug 21, 2026 (Instagram: 30 days; Facebook, YouTube, TikTok: 28 days). Followers as of Sep 2026: 410K+ combined."
       }
     },
     "btg_mk_pathways_WP6JRy": {
@@ -225,37 +225,37 @@
         "included_HdyUdU": {
           "type": "included",
           "settings": {
-            "text": "Documentary-style long-form YouTube episode"
+            "text": "Time on site with your grounds crew"
           }
         },
         "included_3n6rJ4": {
           "type": "included",
           "settings": {
-            "text": "On-site filming alongside your maintenance crew"
+            "text": "Working alongside the crew, not just filming them"
           }
         },
         "included_yPpCft": {
           "type": "included",
           "settings": {
-            "text": "On-camera interview with your superintendent"
+            "text": "Long-form documentary episode on YouTube"
           }
         },
         "included_zxFBzm": {
           "type": "included",
           "settings": {
-            "text": "Full coverage of the course and property"
+            "text": "Short-form cuts for Instagram, TikTok and Facebook"
           }
         },
         "included_3cEHnJ": {
           "type": "included",
           "settings": {
-            "text": "Optional short-form & social distribution"
+            "text": "An on-camera conversation with your superintendent"
           }
         },
         "included_LFxtFi": {
           "type": "included",
           "settings": {
-            "text": "Scope tailored to your course and story"
+            "text": "Scope built around your course and its people"
           }
         }
       },
@@ -271,7 +271,7 @@
       "settings": {
         "eyebrow": "For Golf Courses",
         "heading": "Behind The Greens: Course Features",
-        "text": "We come to your course and make a film about it: the crew, the superintendent and the work that keeps it playable. It's an editorial feature, told in our voice to our audience. Not videography for hire.",
+        "text": "We come to your course and spend time with your grounds crew, working alongside them before the first tee time. Then we make editorial long-form and short-form films about the course and the people who maintain it, told in our voice to our audience. It's a feature, not videography for hire.",
         "pricing_label": "Custom & By Inquiry Only",
         "pricing_note": "Every Course Feature is scoped to the property. Reach out and we'll walk through what's possible."
       }
@@ -283,35 +283,40 @@
           "type": "film",
           "settings": {
             "course": "Prairie Vista Golf Course",
-            "location": "Bloomington, IL"
+            "location": "Bloomington-Normal, IL",
+            "youtube": "https://www.youtube.com/watch?v=ZQQuq7-Mpvc"
           }
         },
         "film_oahu": {
           "type": "film",
           "settings": {
             "course": "Oahu Country Club",
-            "location": "Honolulu, HI"
+            "location": "Honolulu, HI",
+            "youtube": "https://www.youtube.com/watch?v=gUN9-ttaNw4"
           }
         },
         "film_forty_niner": {
           "type": "film",
           "settings": {
             "course": "Forty Niner Country Club",
-            "location": "Tucson, AZ"
+            "location": "Tucson, AZ",
+            "youtube": "https://www.youtube.com/watch?v=chlC023n_ck"
           }
         },
         "film_tpc_scottsdale": {
           "type": "film",
           "settings": {
             "course": "TPC Scottsdale",
-            "location": "Scottsdale, AZ"
+            "location": "Scottsdale, AZ",
+            "youtube": "https://www.youtube.com/watch?v=MpKfn5FJRow"
           }
         },
         "film_eagle_mountain": {
           "type": "film",
           "settings": {
-            "course": "Eagle Mountain Golf Course",
-            "location": ""
+            "course": "Eagle Mountain Golf Club",
+            "location": "Fountain Hills, AZ",
+            "youtube": "https://www.youtube.com/watch?v=Kn-Qtw8J0gA"
           }
         }
       },
@@ -327,7 +332,7 @@
         "anchor": "course-films",
         "eyebrow": "Course Features",
         "heading": "What A Feature Looks Like",
-        "text": "Every film is made on site, with the crew, in their words.",
+        "text": "Every film is made on site, alongside the crew.",
         "channel_url": "https://www.youtube.com/@behind_thegreens"
       }
     },

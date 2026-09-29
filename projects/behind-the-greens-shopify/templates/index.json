@@ -86,8 +86,8 @@
         "followers": {
           "type": "stat",
           "settings": {
-            "value": "450K+",
-            "label": "Followers across four platforms"
+            "value": "410K+",
+            "label": "Followers across Instagram, Facebook, YouTube and TikTok"
           }
         },
         "views": {
@@ -115,7 +115,7 @@
         "compact": true,
         "eyebrow": "The Crew",
         "heading": "A Community Built On The Course",
-        "note": "Follower count as of Sep 2026. Views and engagements from each platform's analytics, Jul 23 – Aug 21, 2026.",
+        "note": "Followers as of Sep 2026: Instagram 110K, Facebook 164K, YouTube 81K, TikTok 55K. Views and engagements from each platform's analytics, Jul 23 – Aug 21, 2026.",
         "only_on_page": ""
       }
     },
@@ -126,35 +126,41 @@
           "type": "film",
           "settings": {
             "course": "Prairie Vista Golf Course",
-            "location": "Bloomington, IL"
+            "location": "Bloomington-Normal, IL",
+            "youtube": "https://www.youtube.com/watch?v=ZQQuq7-Mpvc"
           }
         },
         "film_oahu": {
           "type": "film",
           "settings": {
             "course": "Oahu Country Club",
-            "location": "Honolulu, HI"
+            "location": "Honolulu, HI",
+            "youtube": "https://www.youtube.com/watch?v=gUN9-ttaNw4"
           }
         },
         "film_forty_niner": {
           "type": "film",
           "settings": {
             "course": "Forty Niner Country Club",
-            "location": "Tucson, AZ"
+            "location": "Tucson, AZ",
+            "youtube": "https://www.youtube.com/watch?v=chlC023n_ck"
           }
         },
         "film_tpc_scottsdale": {
           "type": "film",
           "settings": {
             "course": "TPC Scottsdale",
-            "location": "Scottsdale, AZ"
+            "location": "Scottsdale, AZ",
+            "youtube": "https://www.youtube.com/watch?v=MpKfn5FJRow"
           }
         },
         "film_eagle_mountain": {
           "type": "film",
           "settings": {
-            "course": "Eagle Mountain Golf Course",
-            "location": ""
+            "course": "Eagle Mountain Golf Club",
+            "location": "Fountain Hills, AZ",
+            "youtube": "https://www.youtube.com/watch?v=Kn-Qtw8J0gA",
+            "product": "behind-the-greens-performance-hat"
           }
         }
       },

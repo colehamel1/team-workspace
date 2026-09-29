@@ -29,6 +29,25 @@
     var placeEl = poster.querySelector('[data-btg-stage-place]');
     var fallbackSrc = img ? img.getAttribute('src') : '';
 
+    var seen = section.querySelector('[data-btg-stage-seen]');
+    function updateSeen(card) {
+      if (!seen) return;
+      var url = card.getAttribute('data-product-url');
+      seen.hidden = !url;
+      if (!url) return;
+      seen.querySelector('[data-btg-seen-link]').setAttribute('href', url);
+      seen.querySelector('[data-btg-seen-title]').textContent = card.getAttribute('data-product-title') || '';
+      seen.querySelector('[data-btg-seen-price]').textContent = card.getAttribute('data-product-price') || '';
+      var imgWrap = seen.querySelector('[data-btg-seen-img]');
+      var src = card.getAttribute('data-product-img');
+      imgWrap.innerHTML = '';
+      if (src) {
+        var im = document.createElement('img');
+        im.src = src; im.alt = ''; im.width = 44; im.height = 44; im.loading = 'lazy';
+        imgWrap.appendChild(im);
+      }
+    }
+
     function closePlayer() {
       var p = stage.querySelector('.btg-films__player');
       if (p) p.remove();
@@ -79,6 +98,7 @@
         img.onerror = id ? function () { img.onerror = null; img.src = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg'; } : null;
         img.src = thumb || fallbackSrc;
       }
+      updateSeen(card);
       stage.classList.remove('is-swapping');
       void stage.offsetWidth; // restart the crossfade
       stage.classList.add('is-swapping');
@@ -89,5 +109,15 @@
         if (top < 60) window.scrollBy({ top: top - 80, behavior: 'smooth' });
       }
     });
+
+    // Deep link: /?film=<youtube id>#watch-the-work opens on that film
+    // (used by "Seen in the film" links on product pages).
+    try {
+      var want = new URLSearchParams(window.location.search).get('film');
+      if (want) {
+        var match = section.querySelector('[data-btg-film-select][data-video-id="' + want.replace(/[^A-Za-z0-9_-]/g, '') + '"]');
+        if (match) match.click();
+      }
+    } catch (err) { /* ignore */ }
   });
 })();
