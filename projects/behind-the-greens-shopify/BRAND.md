@@ -212,3 +212,9 @@ that order; nothing that only makes the site "fancier".
 
 ## Theme settings file
 `config/settings_data.json` is a snapshot of the draft's global settings (header, footer, popup, colors) as of Sep 29, 2026. The Shopify editor changes this file, so re-download it from the draft before editing and uploading it again. The popup shows the real CREW10 code (10% off, one use per customer); the offer text only appears when a code is set.
+
+## Course Features pricing (decided Sep 29, 2026)
+- Founding rate: $3,500 + travel, for the first 5 paying courses. Standard rate: $5,000 + travel.
+- Founding rate includes 1 day on site with the crew, 1 long-form film, 3 short-form cuts. Extras quoted separately: second day, extra cuts, usage rights for the course's own marketing, raw footage.
+- No course has paid yet. Update "Founding spots" (Theme editor → Work With Us page → Course Features) as courses book.
+- Eagle Mountain is the lead example on the page and in pitches. Paid features must be disclosed as paid partnerships.
