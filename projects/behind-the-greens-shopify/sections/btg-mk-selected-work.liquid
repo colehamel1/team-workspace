@@ -22,15 +22,15 @@
             {%- endif -%}
           </div>
           <div class="btg-mk-case-card__body">
-            <div><span class="btg-eyebrow" style="color:#8A7F5C; font-size:10px;">Partner / Course — </span><span style="font-size:13px; color:#14140F;">{{ block.settings.name | default: '[Name]' }}</span></div>
-            <div><span class="btg-eyebrow" style="color:#8A7F5C; font-size:10px;">Project — </span><span style="font-size:13px; color:#14140F;">{{ block.settings.project | default: '[Project Description]' }}</span></div>
-            <div><span class="btg-eyebrow" style="color:#8A7F5C; font-size:10px;">Delivered — </span><span style="font-size:13px; color:#14140F;">{{ block.settings.delivered | default: '[Content Delivered]' }}</span></div>
-            <div><span class="btg-eyebrow" style="color:#8A7F5C; font-size:10px;">Results — </span><span style="font-size:13px; color:#14140F;">{{ block.settings.results | default: '[Results]' }}</span></div>
+            <div><span class="btg-eyebrow" style="color:var(--btg-muted); font-size:10px;">Partner / Course — </span><span style="font-size:13px; color:#14140F;">{{ block.settings.name | default: '[Name]' }}</span></div>
+            <div><span class="btg-eyebrow" style="color:var(--btg-muted); font-size:10px;">Project — </span><span style="font-size:13px; color:#14140F;">{{ block.settings.project | default: '[Project Description]' }}</span></div>
+            <div><span class="btg-eyebrow" style="color:var(--btg-muted); font-size:10px;">Delivered — </span><span style="font-size:13px; color:#14140F;">{{ block.settings.delivered | default: '[Content Delivered]' }}</span></div>
+            <div><span class="btg-eyebrow" style="color:var(--btg-muted); font-size:10px;">Results — </span><span style="font-size:13px; color:#14140F;">{{ block.settings.results | default: '[Results]' }}</span></div>
           </div>
         </div>
       {%- endfor -%}
     </div>
-    <p style="color:#8A7F5C; font-size:13px; margin:24px 0 0;">{{ section.settings.note | default: 'Case studies will populate here as partnerships and course features are completed.' }}</p>
+    <p style="color:var(--btg-muted); font-size:13px; margin:24px 0 0;">{{ section.settings.note | default: 'Case studies will populate here as partnerships and course features are completed.' }}</p>
   </div>
 </div>
 {%- endif -%}

@@ -73,40 +73,11 @@
       "btg-header": {
         "type": "btg-header",
         "settings": {
-          "logo": "shopify://shop_images/F8C7F1A0-4475-4C74-A418-D18024040C87_1.png",
-          "menu": "main-menu"
+          "logo": "shopify://shop_images/F8C7F1A0-4475-4C74-A418-D18024040C87_1.png"
         }
       },
       "btg-footer": {
         "type": "btg-footer",
-        "blocks": {
-          "btg-footer-0": {
-            "type": "menu_column",
-            "settings": {
-              "title": "Shop",
-              "menu": ""
-            }
-          },
-          "btg-footer-1": {
-            "type": "menu_column",
-            "settings": {
-              "title": "Company",
-              "menu": ""
-            }
-          },
-          "btg-footer-2": {
-            "type": "menu_column",
-            "settings": {
-              "title": "Support",
-              "menu": ""
-            }
-          }
-        },
-        "block_order": [
-          "btg-footer-0",
-          "btg-footer-1",
-          "btg-footer-2"
-        ],
         "settings": {
           "newsletter_heading": "Join The Crew",
           "newsletter_text": "New films, new drops and the occasional note from the crew."
@@ -124,7 +95,7 @@
           "heading": "New Films. New Gear.",
           "text": "Sign up for your code, plus a heads up when a new film or new gear drops. No spam.",
           "button_label": "Get My Code",
-          "delay_seconds": 6,
+          "delay_seconds": 15,
           "discount_code": "CREW10"
         }
       }

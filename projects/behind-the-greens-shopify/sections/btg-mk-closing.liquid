@@ -5,7 +5,7 @@
 
   <div class="btg-mk-closing">
     <div class="btg-container-narrow" style="text-align:center;">
-      <div class="btg-eyebrow" style="color:#78705C; margin-bottom:16px;">{{ section.settings.eyebrow | default: 'Get In Touch' }}</div>
+      <div class="btg-eyebrow" style="color:#A79E86; margin-bottom:16px;">{{ section.settings.eyebrow | default: 'Get In Touch' }}</div>
       <h2 class="btg-display btg-heading-lg" style="color:#F3EEDF; margin:0 0 48px;">{{ section.settings.heading | default: "Let's Build Something" }}</h2>
       <div class="btg-mk-closing__grid">
         <a href="{{ section.settings.brands_link | default: '#for-brands' }}" class="btg-mk-closing__cta btg-mk-closing__cta--primary">
@@ -18,7 +18,7 @@
         </a>
       </div>
       {%- if section.settings.pdf_link != blank -%}
-        <a href="{{ section.settings.pdf_link }}" class="btg-link-underline" style="color:#78705C; border-color:#444037;" target="_blank" rel="noopener">{{ section.settings.pdf_label | default: 'Download Media Kit (PDF)' }}</a>
+        <a href="{{ section.settings.pdf_link }}" class="btg-link-underline" style="color:#A79E86; border-color:#444037;" target="_blank" rel="noopener">{{ section.settings.pdf_label | default: 'Download Media Kit (PDF)' }}</a>
       {%- endif -%}
     </div>
   </div>

@@ -10,7 +10,7 @@
 
 {%- liquid
   assign words = article.content | strip_html | split: ' ' | size
-  assign minutes = words | divided_by: 220 | plus: 1
+  assign minutes = words | plus: 219 | divided_by: 220 | at_least: 1
   assign gear = collections[section.settings.gear_collection_handle]
 -%}
 

@@ -91,6 +91,7 @@
   .btg-films .btg-container { padding-left: 0; padding-right: 0; }
   .btg-films__head, .btg-films__gear { padding-left: var(--btg-gutter); padding-right: var(--btg-gutter); }
   .btg-films__stage { aspect-ratio: 4/5; }
+  .btg-films__stage.is-playing { aspect-ratio: 16/9; }
   .btg-films__frame { inset: 12px; }
   .btg-films__caption { left: 20px; right: 20px; bottom: 22px; }
   .btg-films__play { width: 68px; height: 68px; margin: -34px 0 0 -34px; }
@@ -119,3 +120,10 @@
 .btg-films__seen-link:hover [data-btg-seen-title] { text-decoration: underline; text-underline-offset: 3px; }
 .btg-films--light .btg-films__seen { border-color: var(--btg-hairline); }
 @media (max-width: 860px) { .btg-films__seen { margin: 12px var(--btg-gutter) 4px; } }
+
+/* Light tone: ochre text is too faint on paper, so accents switch to forest. */
+.btg-films--light .btg-films__kicker,
+.btg-films--light .btg-films__card.is-active .btg-films__no,
+.btg-films--light .btg-films__seen > .btg-mono,
+.btg-films--light .btg-films__gear-head .btg-mono { color: var(--btg-forest); }
+.btg-films--light .btg-films__card.is-active .btg-films__thumb { outline-color: var(--btg-forest); }

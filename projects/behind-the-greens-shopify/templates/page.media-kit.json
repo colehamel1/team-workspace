@@ -15,7 +15,7 @@
         "stat_9zYrkX": {
           "type": "stat",
           "settings": {
-            "value": "213M+",
+            "value": "213M",
             "label": "Views, Jul 23 – Aug 21, 2026",
             "color": "#c1922f"
           }
@@ -341,7 +341,7 @@
       "name": "BTG MK Closing CTA",
       "settings": {
         "eyebrow": "Get In Touch",
-        "heading": "Let's Build Something",
+        "heading": "Start The Conversation",
         "brands_label": "Start A Brand Partnership",
         "brands_link": "shopify://pages/contact",
         "courses_label": "Feature Your Golf Course",

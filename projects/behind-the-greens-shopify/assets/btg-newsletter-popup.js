@@ -54,6 +54,10 @@
     setTimeout(open, delaySeconds * 1000);
   }
 
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !root.hidden) close();
+  });
+
   document.addEventListener('click', function (e) {
     if (e.target.closest('[data-btg-popup-close]') || e.target.closest('[data-btg-popup-scrim]')) {
       close();

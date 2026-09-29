@@ -177,7 +177,7 @@
               assign film_id = film_url | split: 'v=' | last | split: '&' | first
             endif
           -%}
-          {%- if film_title != blank -%}
+          {%- if film_title != blank and film_url != blank -%}
             <a class="btg-pdp__seen" href="{% if film_id != blank %}{{ routes.root_url }}?film={{ film_id }}#watch-the-work{% else %}{{ film_url }}{% endif %}">
               {%- if film_id != blank -%}
                 <span class="btg-pdp__seen-thumb"><img src="https://i.ytimg.com/vi/{{ film_id }}/mqdefault.jpg" alt="" loading="lazy" width="160" height="90"><span aria-hidden="true"><svg width="10" height="11" viewBox="0 0 11 12"><path d="M0 0l11 6-11 6z" fill="currentColor"/></svg></span></span>

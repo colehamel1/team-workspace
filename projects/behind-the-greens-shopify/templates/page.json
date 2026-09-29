@@ -18,7 +18,7 @@
       "type": "btg-about-origin",
       "settings": {
         "label": "Where It Started",
-        "pull_quote": "You can walk a hundred golf courses and never see the people who made them playable.",
+        "pull_quote": "Golf has a front of house and a back of house. We film the back.",
         "body": "<p>Every round starts hours before the first tee time. Crews are out mowing lines, rolling greens, cutting cups and fixing what yesterday left behind. Most golfers never see any of it.</p><p>Behind The Greens started by pointing the camera the other way: at the superintendents, the crews and the craft that make a course playable. We go to courses, spend time with the people who maintain them, and make films about that work. Those films found an audience of golfers, course professionals and people across the industry who recognized it.</p><p>The apparel comes from the same place. Gear made for the people in those films, and for anyone who respects the work.</p>",
         "only_on_page": "our-story"
       }
@@ -37,7 +37,7 @@
           "type": "value",
           "settings": {
             "title": "Culture Over Clichés",
-            "text": "No country-club stereotypes and no golf gimmicks. Just the real texture of the game."
+            "text": "No stereotypes, no gimmicks. Just the real work behind the game."
           }
         },
         "value_3": {
@@ -95,7 +95,7 @@
       ],
       "settings": {
         "eyebrow": "Keep Going",
-        "heading": "See It For Yourself",
+        "heading": "Watch The Films. Wear The Gear.",
         "only_on_page": "our-story"
       }
     },
@@ -115,7 +115,7 @@
         "stat_9zYrkX": {
           "type": "stat",
           "settings": {
-            "value": "213M+",
+            "value": "213M",
             "label": "Views, Jul 23 – Aug 21, 2026",
             "color": "#c1922f"
           }
@@ -386,7 +386,7 @@
       "name": "BTG MK Closing CTA",
       "settings": {
         "eyebrow": "Get In Touch",
-        "heading": "Let's Build Something",
+        "heading": "Start The Conversation",
         "brands_label": "Start A Brand Partnership",
         "brands_link": "shopify://pages/contact",
         "courses_label": "Feature Your Golf Course",

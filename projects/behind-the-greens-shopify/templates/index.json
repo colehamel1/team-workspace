@@ -45,7 +45,7 @@
             "eyebrow": "For Golf Courses",
             "heading": "Course Features",
             "text": "We spend time with your crew and make a film about your course.",
-            "link_label": "Course Features",
+            "link_label": "How It Works",
             "link": "shopify://pages/media-kit#for-courses"
           }
         },
@@ -114,7 +114,7 @@
         "style": "light",
         "compact": true,
         "eyebrow": "The Crew",
-        "heading": "A Community Built On The Course",
+        "heading": "People Who Follow The Work",
         "note": "Followers as of Sep 2026: Instagram 110K, Facebook 164K, YouTube 81K, TikTok 55K. Views and engagements from each platform's analytics, Jul 23 – Aug 21, 2026.",
         "only_on_page": ""
       }

@@ -33,6 +33,11 @@
     }, 300);
   }
 
+  document.addEventListener('keydown', function (e) {
+    var d = drawerEl();
+    if (e.key === 'Escape' && d && !d.hidden) closeDrawer();
+  });
+
   function updateHeaderCount(html) {
     var tmp = document.createElement('div');
     tmp.innerHTML = html;

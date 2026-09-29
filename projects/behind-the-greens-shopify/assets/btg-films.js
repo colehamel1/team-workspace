@@ -52,6 +52,7 @@
       var p = stage.querySelector('.btg-films__player');
       if (p) p.remove();
       poster.hidden = false;
+      stage.classList.remove('is-playing');
     }
 
     // Preconnect to YouTube on first intent, so play starts fast.
@@ -66,12 +67,17 @@
     section.addEventListener('pointerover', warm, { once: true });
     section.addEventListener('focusin', warm, { once: true });
 
+    function newTabClick(e) { return e.metaKey || e.ctrlKey || e.shiftKey || e.button > 0; }
+
     poster.addEventListener('click', function (e) {
       var id = poster.getAttribute('data-video-id');
-      if (!id) return; // no film id yet: follow the link to the channel
+      if (!id || newTabClick(e)) return; // no film id, or opening in a new tab: follow the link
       e.preventDefault();
       poster.hidden = true;
-      stage.appendChild(playerFor(id, courseEl ? courseEl.textContent : ''));
+      var player = playerFor(id, courseEl ? courseEl.textContent : '');
+      stage.appendChild(player);
+      stage.classList.add('is-playing');
+      player.querySelector('iframe').focus();
     });
 
     // Warm the big thumbnail before the click so the swap never flashes.
@@ -87,7 +93,7 @@
 
     section.addEventListener('click', function (e) {
       var card = e.target.closest('[data-btg-film-select]');
-      if (!card || !section.contains(card)) return;
+      if (!card || !section.contains(card) || newTabClick(e)) return;
       e.preventDefault();
       closePlayer();
 
