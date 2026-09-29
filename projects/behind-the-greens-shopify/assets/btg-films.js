@@ -23,7 +23,7 @@
     var stage = section.querySelector('[data-btg-films-stage]');
     var poster = stage && stage.querySelector('[data-btg-film-play]');
     if (!stage || !poster) return;
-    var img = poster.querySelector('[data-btg-stage-img]');
+    var img = poster.querySelector('.btg-films__stage-img');
     var noEl = poster.querySelector('[data-btg-stage-no]');
     var courseEl = poster.querySelector('[data-btg-stage-course]');
     var placeEl = poster.querySelector('[data-btg-stage-place]');

@@ -42,11 +42,11 @@
         <div class="btg-films__stage" data-btg-films-stage>
           <a class="btg-films__poster" href="{% if f_id != blank %}https://www.youtube.com/watch?v={{ f_id }}{% else %}{{ channel }}{% endif %}" target="_blank" rel="noopener" data-btg-film-play data-video-id="{{ f_id }}" aria-label="Play {{ first.settings.course | escape }}">
             {%- if first.settings.thumbnail != blank -%}
-              {{ first.settings.thumbnail | image_url: width: 1600 | image_tag: loading: 'lazy', sizes: '(min-width: 1320px) 1224px, 100vw', widths: '600, 900, 1200, 1600', alt: '', data-btg-stage-img: '' }}
+              {{ first.settings.thumbnail | image_url: width: 1600 | image_tag: loading: 'lazy', sizes: '(min-width: 1320px) 1224px, 100vw', widths: '600, 900, 1200, 1600', alt: '', class: 'btg-films__stage-img' }}
             {%- elsif f_id != blank -%}
-              <img src="https://i.ytimg.com/vi/{{ f_id }}/maxresdefault.jpg" alt="" loading="lazy" width="1280" height="720" data-btg-stage-img onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/{{ f_id }}/hqdefault.jpg'">
+              <img src="https://i.ytimg.com/vi/{{ f_id }}/maxresdefault.jpg" alt="" loading="lazy" width="1280" height="720" class="btg-films__stage-img" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/{{ f_id }}/hqdefault.jpg'">
             {%- else -%}
-              <img src="https://cdn.shopify.com/s/files/1/0632/2172/7335/files/btg-img-video-still.jpg?v=1790710191" alt="" loading="lazy" width="1000" height="558" data-btg-stage-img>
+              <img src="https://cdn.shopify.com/s/files/1/0632/2172/7335/files/btg-img-video-still.jpg?v=1790710191" alt="" loading="lazy" width="1000" height="558" class="btg-films__stage-img">
             {%- endif -%}
             <span class="btg-films__shade" aria-hidden="true"></span>
             <span class="btg-films__frame" aria-hidden="true"></span>
@@ -139,7 +139,7 @@
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Watch The Work" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Films From Behind The Greens" },
     { "type": "textarea", "id": "text", "label": "Intro" },
-    { "type": "url", "id": "channel_url", "label": "YouTube channel URL", "default": "https://www.youtube.com/@behind_thegreens" },
+    { "type": "url", "id": "channel_url", "label": "YouTube channel URL", "info": "Defaults to youtube.com/@behind_thegreens." },
     { "type": "header", "content": "Shop the gear" },
     { "type": "collection", "id": "gear_collection", "label": "Gear collection", "info": "A quiet row of products under the films. Leave empty to hide." },
     { "type": "text", "id": "gear_eyebrow", "label": "Gear label", "default": "The Uniform" },
