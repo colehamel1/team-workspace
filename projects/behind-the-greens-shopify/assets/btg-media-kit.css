@@ -30,7 +30,7 @@
 .btg-mk-formats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
 .btg-mk-format-card { border-top: 1px solid var(--btg-hairline); padding: 24px 20px 0 20px; }
 .btg-mk-format-card:first-child { padding-left: 0; }
-.btg-mk-tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.btg-mk-tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 20px; }
 .btg-mk-tier-card { padding: 32px 28px; background: var(--btg-cream); border: 1px solid var(--btg-hairline); }
 
 .btg-mk-courses { background: var(--btg-forest-deep); padding: 100px 40px; }

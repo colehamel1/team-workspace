@@ -133,6 +133,16 @@ draft/illustrative ones that could be mistaken for real.**
 - Theme fallback photos live in Shopify Files (`btg-img-*.jpg`) and are
   referenced by full CDN URL from `btg-home.css` / `btg-about.css`. Five
   same-named `assets/btg-img-*.jpg` in the draft theme are unused leftovers.
+- **The live Media Kit page renders `templates/page.json`** (the default
+  page template), NOT `page.media-kit.json`. The Media Kit, Our Story and
+  other pages point at template suffix "page", which falls back to
+  page.json, so edit page.json for Media Kit changes. Untangling this
+  (Media Kit -> page.media-kit, Our Story -> page.about) is an open item.
 - **Media Kit stats** are real, from Cole's platform screenshots dated
   Jul 23 – Aug 21, 2026, and labeled with that range. Refresh them
-  periodically. Rates and case studies are still placeholders.
+  periodically.
+- **Brand rates (set by Cole, Sep 29 2026):** 1 video $1,000 · 3 videos
+  $2,500 · 5 videos $3,500 · Long-term / month-to-month: custom pricing by
+  deliverable. Case studies hidden until real ones exist.
+- **Homepage headline** is "Behind The Greens" (eyebrow "Golf Course
+  Culture"), replacing "Golf Starts Before Dawn." per Cole.

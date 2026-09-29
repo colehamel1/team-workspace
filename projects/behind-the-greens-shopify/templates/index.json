@@ -4,8 +4,8 @@
       "type": "btg-hero",
       "settings": {
         "hero_video": "shopify://files/videos/btgheromontagev2.mp4",
-        "eyebrow": "Behind The Greens",
-        "heading": "Golf Starts Before Dawn.",
+        "eyebrow": "Golf Course Culture",
+        "heading": "Behind The Greens",
         "subheading": "Behind The Greens tells the story of the crews, culture, and craft that make the game possible",
         "primary_label": "Shop The Collection",
         "primary_link": "shopify://collections/all",
@@ -19,7 +19,7 @@
         "shop_panel": {
           "type": "panel",
           "settings": {
-            "eyebrow": "Commerce",
+            "eyebrow": "Shop",
             "heading": "Shop The Collection",
             "link": "shopify://collections/all"
           }
@@ -28,7 +28,7 @@
           "type": "panel",
           "settings": {
             "image": "shopify://shop_images/10a3135f-fairway-mowers.jpg",
-            "eyebrow": "Media",
+            "eyebrow": "Stories",
             "heading": "Read The Stories",
             "link": "https://behindthegreens.com/blogs/stories"
           }
