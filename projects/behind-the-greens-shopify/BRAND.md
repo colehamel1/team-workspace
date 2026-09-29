@@ -124,25 +124,41 @@ draft/illustrative ones that could be mistaken for real.**
 
 ## Themes & install (as of Sep 29, 2026)
 
-- **Live theme:** "Copy of BTG FINAL". Never write to it directly.
-- **Working draft:** "Copy of BTG DRAFT" (theme ID 166536642663), a copy of
-  live. Claude writes changes here via the Shopify connector; Cole previews
-  and publishes. The repo's `templates/*.json` can drift from the theme
-  (the theme editor changes them), so fetch the theme's copy before
-  overwriting any template.
-- Theme fallback photos live in Shopify Files (`btg-img-*.jpg`) and are
-  referenced by full CDN URL from `btg-home.css` / `btg-about.css`. Five
-  same-named `assets/btg-img-*.jpg` in the draft theme are unused leftovers.
-- **The live Media Kit page renders `templates/page.json`** (the default
-  page template), NOT `page.media-kit.json`. The Media Kit, Our Story and
-  other pages point at template suffix "page", which falls back to
-  page.json, so edit page.json for Media Kit changes. Untangling this
-  (Media Kit -> page.media-kit, Our Story -> page.about) is an open item.
+- **Live theme:** "Copy of BTG FINAL". Never written to directly.
+- **Working draft:** "Copy of BTG DRAFT" (theme ID 166536642663). Claude
+  uploads here; Cole previews and publishes. Upload method: push to this
+  repo, then `themeFilesUpsert` with URL bodies pointing at
+  raw.githubusercontent.com/<commit sha>/... (verify with checksumMd5;
+  JSON templates get a Shopify header so compare those by content).
+  Always re-fetch the draft's files first: the theme editor changes
+  templates, and this repo can drift.
+- **Premium redesign (Sep 29, 2026):** design system in `assets/btg-base.css`
+  (tokens, type scale, square buttons: ink on light / cream on dark,
+  4:5 product cards, sticky header with Shop / Stories / Our Story /
+  Work With Us, footer with official socials). Brand fonts are also
+  pushed into Horizon's native pages via the `<style>` block in
+  `layout/theme.liquid`. The intro splash was removed; the email popup
+  waits 15s+ and shows at most once per 30 days.
+- **Page routing:** Our Story and Media Kit pages both use template suffix
+  "page", so they render `templates/page.json`. Sections in it carry an
+  `only_on_page` setting (our-story / media-kit), and `btg-page-main`
+  hides itself on those two handles, so each page shows only its own
+  content and every other page (e.g. Your Privacy Choices) shows plain
+  content. `page.about.json` / `page.media-kit.json` mirror the same
+  content if the pages are ever switched to dedicated templates.
+- **Official socials:** instagram.com/behind_thegreens,
+  facebook.com/MrGreenskeeper, tiktok.com/@behind_thegreens,
+  youtube.com/@behind_thegreens.
 - **Media Kit stats** are real, from Cole's platform screenshots dated
-  Jul 23 – Aug 21, 2026, and labeled with that range. Refresh them
+  Jul 23 – Aug 21, 2026 (also used in the homepage / Our Story proof
+  strip: 380K+ followers = sum of per-platform counts). Refresh them
   periodically.
 - **Brand rates (set by Cole, Sep 29 2026):** 1 video $1,000 · 3 videos
   $2,500 · 5 videos $3,500 · Long-term / month-to-month: custom pricing by
   deliverable. Case studies hidden until real ones exist.
 - **Homepage headline** is "Behind The Greens" (eyebrow "Golf Course
   Culture"), replacing "Golf Starts Before Dawn." per Cole.
+- **No invented facts:** product pages show no shipping-time promise
+  (checkout shows it) and no size chart unless real measurements are
+  entered in the product section's Size & Fit setting. "30-day returns"
+  comes from the store's own refund policy.
