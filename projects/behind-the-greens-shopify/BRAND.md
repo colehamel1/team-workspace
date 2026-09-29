@@ -163,6 +163,25 @@ draft/illustrative ones that could be mistaken for real.**
   entered in the product section's Size & Fit setting. "30-day returns"
   comes from the store's own refund policy.
 
+## Current state (Sep 29, 2026, end of day)
+
+- **Films (verified by Cole):** Prairie Vista GC (Bloomington-Normal, IL)
+  ZQQuq7-Mpvc · Oahu CC (Honolulu, HI) gUN9-ttaNw4 · Forty Niner CC
+  (Tucson, AZ) chlC023n_ck · TPC Scottsdale (Scottsdale, AZ) MpKfn5FJRow ·
+  Eagle Mountain Golf Club (Fountain Hills, AZ) Kn-Qtw8J0gA.
+- **Only verified product-to-film link:** Ground Crew Performance Hat was
+  worn in the Eagle Mountain film (product metafields `custom.film_title`
+  / `custom.film_video`; film block "Gear seen in this film"). Never add
+  others without Cole confirming.
+- **Audience (Sep 2026):** 410K+ combined — Instagram 110K, Facebook 164K,
+  YouTube 81K, TikTok 55K. View numbers remain dated Jul 23 – Aug 21, 2026.
+- **On The Job images:** Cole's own images assigned via `custom.lifestyle_image`
+  for jacket, tee, hoodie, polo, long sleeve. Hat has none yet. Cards only
+  swap on hover/swipe when one is assigned; otherwise the normal photo.
+  Never generate AI lifestyle images (Cole's instruction).
+- **Policies:** the connector lacks write_legal_policies; Cole edits them
+  in admin. Privacy policy still contained his home address as of this date.
+
 ## Second creative pass (Sep 29, 2026)
 
 Priority order from Cole: 1) "I want that gear" 2) "This content is sick"
