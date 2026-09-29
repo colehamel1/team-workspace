@@ -1,31 +1,36 @@
 {%- comment -%}
-  Homepage product teaser. Pulls real products from a merchant-chosen
-  collection — nothing hardcoded, automatically reflects catalog changes.
+  Homepage product showcase. Pulls real products from a merchant-chosen
+  collection — nothing hardcoded, reflects catalog changes automatically.
 {%- endcomment -%}
 
 <div class="btg-scope">
   {% render 'btg-styles' %}
-  {{ 'btg-shop.css' | asset_url | stylesheet_tag }}
   {{ 'btg-home.css' | asset_url | stylesheet_tag }}
 
-  <div class="btg-container btg-section-pad-lg">
-    <div class="btg-shop-teaser__head">
-      {% render 'btg-section-heading', eyebrow: section.settings.eyebrow, title: section.settings.title %}
-      {%- if section.settings.collection != blank -%}
-        <a href="{{ section.settings.collection.url }}" class="btg-link-underline">{{ section.settings.view_all_label | default: 'View All Products' }} &rarr;</a>
+  <section class="btg-section">
+    <div class="btg-container">
+      <div class="btg-section-head-row">
+        <div class="btg-section-heading">
+          {%- if section.settings.eyebrow != blank -%}<div class="btg-eyebrow btg-section-heading__eyebrow" style="color:var(--btg-muted);">{{ section.settings.eyebrow }}</div>{%- endif -%}
+          <h2 class="btg-display btg-section-heading__title">{{ section.settings.title }}</h2>
+          {%- if section.settings.text != blank -%}<p class="btg-lede" style="margin-top:18px;">{{ section.settings.text }}</p>{%- endif -%}
+        </div>
+        {%- if section.settings.collection != blank -%}
+          <a href="{{ routes.all_products_collection_url }}" class="btg-link-underline">{{ section.settings.view_all_label | default: 'Shop All' }}</a>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.collection != blank and section.settings.collection.products.size > 0 -%}
+        <div class="{% if section.settings.columns == '4' %}btg-grid-4{% else %}btg-grid-3{% endif %}">
+          {%- for product in section.settings.collection.products limit: section.settings.product_count -%}
+            {% render 'btg-product-card', product: product %}
+          {%- endfor -%}
+        </div>
+      {%- elsif request.design_mode -%}
+        <p class="btg-small">{{ section.settings.empty_state_text | default: 'Choose a collection in section settings to feature products here.' }}</p>
       {%- endif -%}
     </div>
-
-    {%- if section.settings.collection != blank and section.settings.collection.products.size > 0 -%}
-      <div class="btg-grid-4">
-        {%- for product in section.settings.collection.products limit: section.settings.product_count -%}
-          {% render 'btg-product-card', product: product %}
-        {%- endfor -%}
-      </div>
-    {%- else -%}
-      <p style="color:#8A7F5C; font-size:13px; margin:0;">{{ section.settings.empty_state_text | default: 'Choose a collection in section settings to feature products here.' }}</p>
-    {%- endif -%}
-  </div>
+  </section>
 </div>
 
 {% schema %}
@@ -33,11 +38,13 @@
   "name": "BTG Shop Teaser",
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Collection" },
-    { "type": "text", "id": "title", "label": "Heading", "default": "Apparel For The Crew" },
-    { "type": "text", "id": "view_all_label", "label": "View all label", "default": "View All Products" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Made For The Course" },
+    { "type": "textarea", "id": "text", "label": "Intro text" },
+    { "type": "text", "id": "view_all_label", "label": "View all label", "default": "Shop All" },
     { "type": "collection", "id": "collection", "label": "Collection to feature" },
-    { "type": "range", "id": "product_count", "label": "Number of products", "min": 2, "max": 8, "step": 1, "default": 4 },
-    { "type": "text", "id": "empty_state_text", "label": "Empty state text", "default": "Choose a collection in section settings to feature products here." }
+    { "type": "range", "id": "product_count", "label": "Number of products", "min": 2, "max": 9, "step": 1, "default": 6 },
+    { "type": "select", "id": "columns", "label": "Columns (desktop)", "options": [{ "value": "3", "label": "3" }, { "value": "4", "label": "4" }], "default": "3" },
+    { "type": "text", "id": "empty_state_text", "label": "Empty state text (editor only)", "default": "Choose a collection in section settings to feature products here." }
   ],
   "presets": [{ "name": "BTG Shop Teaser" }]
 }

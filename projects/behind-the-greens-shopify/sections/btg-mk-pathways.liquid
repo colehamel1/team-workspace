@@ -1,3 +1,4 @@
+{%- if section.settings.only_on_page == blank or section.settings.only_on_page == page.handle -%}
 <div class="btg-scope">
   {% render 'btg-styles' %}
   {{ 'btg-media-kit.css' | asset_url | stylesheet_tag }}
@@ -17,24 +18,66 @@
     {%- endfor -%}
   </div>
 </div>
+{%- endif -%}
 
 {% schema %}
 {
   "name": "BTG MK Pathways",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Work With Us" },
-    { "type": "text", "id": "title", "label": "Heading", "default": "Two Ways In" }
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Work With Us"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Two Ways In"
+    },
+    {
+      "type": "text",
+      "id": "only_on_page",
+      "label": "Only show on page (handle)",
+      "info": "Leave empty to always show. Used when several pages share one template."
+    }
   ],
   "blocks": [
     {
       "type": "pathway",
       "name": "Pathway",
       "settings": [
-        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "For Brands" },
-        { "type": "text", "id": "heading", "label": "Heading", "default": "Reach Our Audience" },
-        { "type": "textarea", "id": "text", "label": "Text", "default": "Sponsored integrations, product features, and campaigns built around a trusted, engaged golf audience." },
-        { "type": "text", "id": "link_label", "label": "Jump-link label", "default": "Brand Partnerships" },
-        { "type": "text", "id": "anchor", "label": "Jump-link anchor (e.g. #for-brands)", "default": "#for-brands" }
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow",
+          "default": "For Brands"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Reach Our Audience"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Sponsored integrations, product features, and campaigns built around a trusted, engaged golf audience."
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Jump-link label",
+          "default": "Brand Partnerships"
+        },
+        {
+          "type": "text",
+          "id": "anchor",
+          "label": "Jump-link anchor (e.g. #for-brands)",
+          "default": "#for-brands"
+        }
       ]
     }
   ],
@@ -43,8 +86,25 @@
     {
       "name": "BTG MK Pathways",
       "blocks": [
-        { "type": "pathway", "settings": { "eyebrow": "For Brands", "heading": "Reach Our Audience", "link_label": "Brand Partnerships", "anchor": "#for-brands" } },
-        { "type": "pathway", "settings": { "eyebrow": "For Golf Courses", "heading": "Tell Your Course's Story", "text": "A documentary-style feature on your property, your crew, and the operation behind the course.", "link_label": "Course Features", "anchor": "#for-courses" } }
+        {
+          "type": "pathway",
+          "settings": {
+            "eyebrow": "For Brands",
+            "heading": "Reach Our Audience",
+            "link_label": "Brand Partnerships",
+            "anchor": "#for-brands"
+          }
+        },
+        {
+          "type": "pathway",
+          "settings": {
+            "eyebrow": "For Golf Courses",
+            "heading": "Tell Your Course's Story",
+            "text": "A documentary-style feature on your property, your crew, and the operation behind the course.",
+            "link_label": "Course Features",
+            "anchor": "#for-courses"
+          }
+        }
       ]
     }
   ]

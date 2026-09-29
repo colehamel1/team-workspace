@@ -1,29 +1,31 @@
 {%- comment -%}
-  Homepage B2B strip — gives Course Features and Brand Partnerships their
-  own visible moment without duplicating the full Media Kit page. Mirrors
-  the Media Kit's own two-pathway pattern for visual consistency.
+  Homepage "Work With Us" strip — a quiet, two-card pointer to the Media
+  Kit for golf courses and brands. Deliberately understated so it never
+  competes with the shop.
 {%- endcomment -%}
 
 <div class="btg-scope">
   {% render 'btg-styles' %}
   {{ 'btg-home.css' | asset_url | stylesheet_tag }}
 
-  <div class="btg-partnerships">
+  <section class="btg-section btg-bg-paper">
     <div class="btg-container">
-      <div class="btg-eyebrow" style="color:#78705C; margin-bottom:16px;">{{ section.settings.eyebrow | default: 'Work With Us' }}</div>
-      <h2 class="btg-display" style="font-size:38px; color:#14140F; margin:0 0 44px; max-width:600px;">{{ section.settings.heading | default: 'For Brands & Golf Courses' }}</h2>
+      <div class="btg-section-heading">
+        <div class="btg-eyebrow btg-section-heading__eyebrow" style="color:var(--btg-muted);">{{ section.settings.eyebrow | default: 'Work With Us' }}</div>
+        <h2 class="btg-display btg-section-heading__title">{{ section.settings.heading | default: 'For Brands & Golf Courses' }}</h2>
+      </div>
+      <div class="btg-partnerships__grid">
+        {%- for block in section.blocks -%}
+          <a href="{{ block.settings.link }}" class="btg-partnerships__card" {{ block.shopify_attributes }}>
+            <div class="btg-eyebrow" style="color:var(--btg-muted); margin-bottom:18px;">{{ block.settings.eyebrow }}</div>
+            <div class="btg-display btg-heading-md" style="margin-bottom:16px;">{{ block.settings.heading }}</div>
+            <p style="font-size:15px; line-height:1.65; color:var(--btg-body); margin:0 0 28px; max-width:400px;">{{ block.settings.text }}</p>
+            <span class="btg-link-underline">{{ block.settings.link_label }}</span>
+          </a>
+        {%- endfor -%}
+      </div>
     </div>
-    <div class="btg-partnerships__grid">
-      {%- for block in section.blocks -%}
-        <a href="{{ block.settings.link }}" class="btg-partnerships__card" {{ block.shopify_attributes }}>
-          <div class="btg-eyebrow" style="color:#A5402C; margin-bottom:14px;">{{ block.settings.eyebrow }}</div>
-          <div class="btg-display" style="font-size:26px; color:#14140F; margin-bottom:14px;">{{ block.settings.heading }}</div>
-          <p style="font-size:14px; line-height:1.6; color:#3A392F; margin:0 0 20px; max-width:360px;">{{ block.settings.text }}</p>
-          <span class="btg-link-underline" style="color:#14140F; border-color:#14140F;">{{ block.settings.link_label }} &rarr;</span>
-        </a>
-      {%- endfor -%}
-    </div>
-  </div>
+  </section>
 </div>
 
 {% schema %}
@@ -39,7 +41,7 @@
       "name": "Card",
       "settings": [
         { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "For Golf Courses" },
-        { "type": "text", "id": "heading", "label": "Heading", "default": "Behind The Greens: Course Features" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Course Features" },
         { "type": "textarea", "id": "text", "label": "Text", "default": "A documentary-style feature on your property, your crew, and the operation behind the course." },
         { "type": "text", "id": "link_label", "label": "Link label", "default": "Course Features" },
         { "type": "url", "id": "link", "label": "Link" }
@@ -51,8 +53,8 @@
     {
       "name": "BTG Partnerships Teaser",
       "blocks": [
-        { "type": "card", "settings": { "eyebrow": "For Golf Courses", "heading": "Behind The Greens: Course Features", "text": "A documentary-style feature on your property, your crew, and the operation behind the course.", "link_label": "Course Features" } },
-        { "type": "card", "settings": { "eyebrow": "For Brands", "heading": "Brand Partnerships", "text": "Sponsored integrations, product features, and campaigns built around a trusted golf audience.", "link_label": "Brand Partnerships & Rates" } }
+        { "type": "card", "settings": { "eyebrow": "For Golf Courses", "heading": "Course Features", "text": "A documentary-style feature on your property, your crew, and the operation behind the course.", "link_label": "Course Features" } },
+        { "type": "card", "settings": { "eyebrow": "For Brands", "heading": "Brand Partnerships", "text": "Sponsored integrations built around an audience that trusts what we show them.", "link_label": "Partnerships & Rates" } }
       ]
     }
   ]

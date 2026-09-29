@@ -6,49 +6,22 @@
         "hero_video": "shopify://files/videos/btgheromontagev2.mp4",
         "eyebrow": "Golf Course Culture",
         "heading": "Behind The Greens",
-        "subheading": "Behind The Greens tells the story of the crews, culture, and craft that make the game possible",
+        "subheading": "The crews, the culture and the craft behind every fairway. Stories from the course, and gear made for the people who keep it.",
         "primary_label": "Shop The Collection",
         "primary_link": "shopify://collections/all",
-        "secondary_label": "Explore Stories",
+        "secondary_label": "Read The Stories",
         "secondary_link": "shopify://blogs/stories"
       }
-    },
-    "btg_fork": {
-      "type": "btg-fork",
-      "blocks": {
-        "shop_panel": {
-          "type": "panel",
-          "settings": {
-            "eyebrow": "Shop",
-            "heading": "Shop The Collection",
-            "link": "shopify://collections/all"
-          }
-        },
-        "stories_panel": {
-          "type": "panel",
-          "settings": {
-            "image": "shopify://shop_images/10a3135f-fairway-mowers.jpg",
-            "eyebrow": "Stories",
-            "heading": "Read The Stories",
-            "link": "https://behindthegreens.com/blogs/stories"
-          }
-        }
-      },
-      "block_order": [
-        "shop_panel",
-        "stories_panel"
-      ],
-      "settings": {}
     },
     "btg_merch_teaser": {
       "type": "btg-shop-teaser",
       "settings": {
-        "eyebrow": "BTG Merch",
+        "eyebrow": "The Collection",
         "title": "Made For The Course",
         "view_all_label": "Shop All",
         "collection": "home-page-1",
         "product_count": 6,
-        "empty_state_text": "Choose a collection in section settings to feature products here."
+        "columns": "3"
       }
     },
     "btg_video": {
@@ -75,7 +48,7 @@
           "type": "card",
           "settings": {
             "eyebrow": "For Golf Courses",
-            "heading": "Behind The Greens: Course Features",
+            "heading": "Course Features",
             "text": "A documentary-style feature on your property, your crew, and the operation behind the course.",
             "link_label": "Course Features",
             "link": "shopify://pages/media-kit#for-courses"
@@ -86,8 +59,8 @@
           "settings": {
             "eyebrow": "For Brands",
             "heading": "Brand Partnerships",
-            "text": "Sponsored integrations, product features, and campaigns built around a trusted golf audience.",
-            "link_label": "Brand Partnerships & Rates",
+            "text": "Sponsored integrations built around an audience that trusts what we show them.",
+            "link_label": "Partnerships & Rates",
             "link": "shopify://pages/media-kit#for-brands"
           }
         }
@@ -104,31 +77,59 @@
     "btg_about_teaser": {
       "type": "btg-about-teaser",
       "settings": {
+        "image": "shopify://shop_images/10a3135f-fairway-mowers.jpg",
         "eyebrow": "Our Story",
-        "heading": "More Than Merch",
-        "text": "A window into the world most golfers never see — now a community, and a uniform.",
-        "link_label": "Read Our Full Story",
+        "heading": "Golf Has A Back Of House",
+        "text": "Before the first tee time, a crew has already mowed, rolled and set every hole. We started Behind The Greens to show that work, and to make gear worthy of the people who do it.",
+        "link_label": "Read Our Story",
         "link": "shopify://pages/our-story"
       }
     },
-    "btg_drop_teaser": {
-      "type": "btg-drop-teaser",
-      "settings": {
-        "eyebrow": "Drop 02",
-        "heading": "For The Crew",
-        "label": "Coming Soon"
+    "btg_proof": {
+      "type": "btg-proof-strip",
+      "blocks": {
+        "followers": {
+          "type": "stat",
+          "settings": {
+            "value": "380K+",
+            "label": "Followers across four platforms"
+          }
+        },
+        "views": {
+          "type": "stat",
+          "settings": {
+            "value": "213M",
+            "label": "Views in a single month"
+          }
+        },
+        "engagement": {
+          "type": "stat",
+          "settings": {
+            "value": "1M+",
+            "label": "Facebook engagements in that month"
+          }
+        }
       },
-      "disabled": true
+      "block_order": [
+        "followers",
+        "views",
+        "engagement"
+      ],
+      "settings": {
+        "style": "dark",
+        "eyebrow": "The Crew",
+        "heading": "A Community Built On The Course",
+        "note": "Views and engagements from each platform's analytics, Jul 23 – Aug 21, 2026."
+      }
     }
   },
   "order": [
     "btg_hero",
-    "btg_fork",
     "btg_merch_teaser",
-    "btg_video",
+    "btg_proof",
     "btg_quote",
-    "btg_partnerships_teaser",
+    "btg_video",
     "btg_about_teaser",
-    "btg_drop_teaser"
+    "btg_partnerships_teaser"
   ]
 }

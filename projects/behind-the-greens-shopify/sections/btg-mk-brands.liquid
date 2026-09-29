@@ -1,3 +1,4 @@
+{%- if section.settings.only_on_page == blank or section.settings.only_on_page == page.handle -%}
 {%- comment -%}
   Anchor id must match the "For Brands" pathway block's jump-link
   (default #for-brands) — keep both in sync if you rename it.
@@ -52,34 +53,94 @@
     </div>
   </div>
 </div>
+{%- endif -%}
 
 {% schema %}
 {
   "name": "BTG MK Brand Partnerships",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "For Brands" },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Brand Partnerships" },
-    { "type": "textarea", "id": "text", "label": "Positioning text", "default": "Brand partnerships are about access — to an audience that trusts Behind The Greens' position inside golf course culture, and shows up for it. We build integrations around that trust, not around a media buy." },
-    { "type": "text", "id": "formats_label", "label": "Formats block label", "default": "Partnership Formats" },
-    { "type": "text", "id": "tiers_label", "label": "Rates block label", "default": "Packages & Rates" },
-    { "type": "textarea", "id": "tiers_note", "label": "Rates disclaimer", "default": "Package structure and rates shown are illustrative — final pricing to be confirmed before this kit goes out." }
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "For Brands"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Brand Partnerships"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Positioning text",
+      "default": "Brand partnerships are about access — to an audience that trusts Behind The Greens' position inside golf course culture, and shows up for it. We build integrations around that trust, not around a media buy."
+    },
+    {
+      "type": "text",
+      "id": "formats_label",
+      "label": "Formats block label",
+      "default": "Partnership Formats"
+    },
+    {
+      "type": "text",
+      "id": "tiers_label",
+      "label": "Rates block label",
+      "default": "Packages & Rates"
+    },
+    {
+      "type": "textarea",
+      "id": "tiers_note",
+      "label": "Rates disclaimer",
+      "default": "Package structure and rates shown are illustrative — final pricing to be confirmed before this kit goes out."
+    },
+    {
+      "type": "text",
+      "id": "only_on_page",
+      "label": "Only show on page (handle)",
+      "info": "Leave empty to always show. Used when several pages share one template."
+    }
   ],
   "blocks": [
     {
       "type": "format",
       "name": "Partnership format",
       "settings": [
-        { "type": "text", "id": "title", "label": "Title", "default": "Short-Form Integration" },
-        { "type": "textarea", "id": "text", "label": "Description" }
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Short-Form Integration"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description"
+        }
       ]
     },
     {
       "type": "tier",
       "name": "Package tier",
       "settings": [
-        { "type": "text", "id": "title", "label": "Tier name", "default": "Single Placement" },
-        { "type": "textarea", "id": "text", "label": "Description" },
-        { "type": "text", "id": "rate", "label": "Rate", "default": "[Rate On Request]" }
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tier name",
+          "default": "Single Placement"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "rate",
+          "label": "Rate",
+          "default": "[Rate On Request]"
+        }
       ]
     }
   ],
@@ -87,13 +148,58 @@
     {
       "name": "BTG MK Brand Partnerships",
       "blocks": [
-        { "type": "format", "settings": { "title": "Short-Form Integration", "text": "Sponsored placement inside our short-form video content." } },
-        { "type": "format", "settings": { "title": "Long-Form Integration", "text": "Your brand woven into a full-length feature or story." } },
-        { "type": "format", "settings": { "title": "Product Features", "text": "Your product, shown in the field, in our voice." } },
-        { "type": "format", "settings": { "title": "Multi-Platform Campaigns", "text": "Coordinated placement across video, social, and newsletter." } },
-        { "type": "tier", "settings": { "title": "Single Placement", "text": "One integration, one platform — a focused way to test the audience.", "rate": "[Rate On Request]" } },
-        { "type": "tier", "settings": { "title": "Integrated Feature", "text": "A longer-form feature paired with supporting short-form and social.", "rate": "[Rate On Request]" } },
-        { "type": "tier", "settings": { "title": "Full Campaign", "text": "Coordinated placement across every platform we run.", "rate": "[Rate On Request]" } }
+        {
+          "type": "format",
+          "settings": {
+            "title": "Short-Form Integration",
+            "text": "Sponsored placement inside our short-form video content."
+          }
+        },
+        {
+          "type": "format",
+          "settings": {
+            "title": "Long-Form Integration",
+            "text": "Your brand woven into a full-length feature or story."
+          }
+        },
+        {
+          "type": "format",
+          "settings": {
+            "title": "Product Features",
+            "text": "Your product, shown in the field, in our voice."
+          }
+        },
+        {
+          "type": "format",
+          "settings": {
+            "title": "Multi-Platform Campaigns",
+            "text": "Coordinated placement across video, social, and newsletter."
+          }
+        },
+        {
+          "type": "tier",
+          "settings": {
+            "title": "Single Placement",
+            "text": "One integration, one platform — a focused way to test the audience.",
+            "rate": "[Rate On Request]"
+          }
+        },
+        {
+          "type": "tier",
+          "settings": {
+            "title": "Integrated Feature",
+            "text": "A longer-form feature paired with supporting short-form and social.",
+            "rate": "[Rate On Request]"
+          }
+        },
+        {
+          "type": "tier",
+          "settings": {
+            "title": "Full Campaign",
+            "text": "Coordinated placement across every platform we run.",
+            "rate": "[Rate On Request]"
+          }
+        }
       ]
     }
   ]

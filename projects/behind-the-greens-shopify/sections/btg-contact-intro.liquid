@@ -1,0 +1,36 @@
+{%- comment -%} Contact page intro, sits above Shopify's native contact form. {%- endcomment -%}
+
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+  <header class="btg-container-narrow" style="padding-top:clamp(64px, 9vw, 120px); padding-bottom:40px; text-align:center;">
+    <div class="btg-eyebrow" style="color:var(--btg-muted); margin-bottom:18px;">{{ section.settings.eyebrow }}</div>
+    <h1 class="btg-display btg-heading-xl" style="margin:0 0 24px;">{{ section.settings.heading | default: page.title }}</h1>
+    {%- if section.settings.text != blank -%}
+      <p class="btg-lede" style="margin:0 auto;">{{ section.settings.text }}</p>
+    {%- endif -%}
+    {%- if section.settings.show_topics -%}
+      <div class="btg-contact-topics">
+        <span>Orders &amp; returns</span>
+        <a href="{{ routes.root_url }}pages/media-kit#for-brands">Brand partnerships</a>
+        <a href="{{ routes.root_url }}pages/media-kit#for-courses">Course features</a>
+      </div>
+    {%- endif -%}
+  </header>
+</div>
+<style>
+  .btg-contact-topics { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+  .btg-contact-topics > * { display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border: 1px solid var(--btg-hairline-strong); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--btg-ink); }
+  .btg-contact-topics a:hover { border-color: var(--btg-ink); }
+</style>
+
+{% schema %}
+{
+  "name": "BTG Contact Intro",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Get In Touch" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Contact" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Questions about an order, a brand partnership or a course feature? Send a note and we'll get back to you." },
+    { "type": "checkbox", "id": "show_topics", "label": "Show topic links", "default": true }
+  ]
+}
+{% endschema %}

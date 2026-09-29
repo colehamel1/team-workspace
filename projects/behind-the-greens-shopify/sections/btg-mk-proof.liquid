@@ -1,3 +1,4 @@
+{%- if section.settings.only_on_page == blank or section.settings.only_on_page == page.handle -%}
 {%- comment -%}
   Proof of Scale. All figures are merchant-entered in section settings —
   nothing here is invented by the template.
@@ -24,22 +25,53 @@
     </div>
   </div>
 </div>
+{%- endif -%}
 
 {% schema %}
 {
   "name": "BTG MK Proof Of Scale",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Proof Of Scale" },
-    { "type": "textarea", "id": "note", "label": "Disclaimer note" }
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Proof Of Scale"
+    },
+    {
+      "type": "textarea",
+      "id": "note",
+      "label": "Disclaimer note"
+    },
+    {
+      "type": "text",
+      "id": "only_on_page",
+      "label": "Only show on page (handle)",
+      "info": "Leave empty to always show. Used when several pages share one template."
+    }
   ],
   "blocks": [
     {
       "type": "stat",
       "name": "Stat",
       "settings": [
-        { "type": "text", "id": "value", "label": "Value", "default": "[XXX,XXX]" },
-        { "type": "text", "id": "label", "label": "Label", "default": "Monthly Views" },
-        { "type": "color", "id": "color", "label": "Number color", "default": "#F3EEDF" }
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value",
+          "default": "[XXX,XXX]"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Monthly Views"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Number color",
+          "default": "#F3EEDF"
+        }
       ]
     }
   ],
@@ -48,9 +80,28 @@
     {
       "name": "BTG MK Proof Of Scale",
       "blocks": [
-        { "type": "stat", "settings": { "value": "[XXX,XXX]", "label": "Monthly Views" } },
-        { "type": "stat", "settings": { "value": "[XXX,XXX]", "label": "Total Audience", "color": "#C1922F" } },
-        { "type": "stat", "settings": { "value": "[X Platforms]", "label": "Cross-Platform Reach" } }
+        {
+          "type": "stat",
+          "settings": {
+            "value": "[XXX,XXX]",
+            "label": "Monthly Views"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "[XXX,XXX]",
+            "label": "Total Audience",
+            "color": "#C1922F"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "[X Platforms]",
+            "label": "Cross-Platform Reach"
+          }
+        }
       ]
     }
   ]

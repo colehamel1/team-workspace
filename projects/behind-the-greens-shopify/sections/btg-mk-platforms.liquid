@@ -1,3 +1,4 @@
+{%- if section.settings.only_on_page == blank or section.settings.only_on_page == page.handle -%}
 {%- comment -%} Platform-by-platform stats, editable per block. {%- endcomment -%}
 
 <div class="btg-scope">
@@ -36,30 +37,87 @@
     </div>
   </div>
 </div>
+{%- endif -%}
 
 {% schema %}
 {
   "name": "BTG MK Platforms",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "By Platform" },
-    { "type": "text", "id": "title", "label": "Heading", "default": "Where We Show Up" },
-    { "type": "textarea", "id": "note", "label": "Disclaimer note" }
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "By Platform"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Where We Show Up"
+    },
+    {
+      "type": "textarea",
+      "id": "note",
+      "label": "Disclaimer note"
+    },
+    {
+      "type": "text",
+      "id": "only_on_page",
+      "label": "Only show on page (handle)",
+      "info": "Leave empty to always show. Used when several pages share one template."
+    }
   ],
   "blocks": [
     {
       "type": "platform",
       "name": "Platform",
       "settings": [
-        { "type": "select", "id": "icon", "label": "Icon", "options": [
-          { "value": "instagram", "label": "Instagram" },
-          { "value": "facebook", "label": "Facebook" },
-          { "value": "tiktok", "label": "TikTok" },
-          { "value": "youtube", "label": "YouTube" },
-          { "value": "newsletter", "label": "Newsletter" }
-        ], "default": "instagram" },
-        { "type": "text", "id": "name", "label": "Platform name", "default": "Instagram" },
-        { "type": "text", "id": "primary_stat", "label": "Primary stat", "default": "[Followers]" },
-        { "type": "text", "id": "secondary_stat", "label": "Secondary stat", "default": "[Avg. Engagement Rate]" }
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            {
+              "value": "instagram",
+              "label": "Instagram"
+            },
+            {
+              "value": "facebook",
+              "label": "Facebook"
+            },
+            {
+              "value": "tiktok",
+              "label": "TikTok"
+            },
+            {
+              "value": "youtube",
+              "label": "YouTube"
+            },
+            {
+              "value": "newsletter",
+              "label": "Newsletter"
+            }
+          ],
+          "default": "instagram"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Platform name",
+          "default": "Instagram"
+        },
+        {
+          "type": "text",
+          "id": "primary_stat",
+          "label": "Primary stat",
+          "default": "[Followers]"
+        },
+        {
+          "type": "text",
+          "id": "secondary_stat",
+          "label": "Secondary stat",
+          "default": "[Avg. Engagement Rate]"
+        }
       ]
     }
   ],
@@ -68,10 +126,42 @@
     {
       "name": "BTG MK Platforms",
       "blocks": [
-        { "type": "platform", "settings": { "icon": "instagram", "name": "Instagram", "primary_stat": "[Followers]", "secondary_stat": "[Avg. Engagement Rate]" } },
-        { "type": "platform", "settings": { "icon": "tiktok", "name": "TikTok", "primary_stat": "[Followers]", "secondary_stat": "[Avg. Views]" } },
-        { "type": "platform", "settings": { "icon": "youtube", "name": "YouTube", "primary_stat": "[Subscribers]", "secondary_stat": "[Avg. Views]" } },
-        { "type": "platform", "settings": { "icon": "newsletter", "name": "Newsletter", "primary_stat": "[Subscribers]", "secondary_stat": "[Avg. Open Rate]" } }
+        {
+          "type": "platform",
+          "settings": {
+            "icon": "instagram",
+            "name": "Instagram",
+            "primary_stat": "[Followers]",
+            "secondary_stat": "[Avg. Engagement Rate]"
+          }
+        },
+        {
+          "type": "platform",
+          "settings": {
+            "icon": "tiktok",
+            "name": "TikTok",
+            "primary_stat": "[Followers]",
+            "secondary_stat": "[Avg. Views]"
+          }
+        },
+        {
+          "type": "platform",
+          "settings": {
+            "icon": "youtube",
+            "name": "YouTube",
+            "primary_stat": "[Subscribers]",
+            "secondary_stat": "[Avg. Views]"
+          }
+        },
+        {
+          "type": "platform",
+          "settings": {
+            "icon": "newsletter",
+            "name": "Newsletter",
+            "primary_stat": "[Subscribers]",
+            "secondary_stat": "[Avg. Open Rate]"
+          }
+        }
       ]
     }
   ]

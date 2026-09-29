@@ -1,93 +1,273 @@
 {
   "sections": {
-    "btg_mk_hero": {
+    "btg_mk_hero_BBYzKH": {
       "type": "btg-mk-hero",
+      "name": "BTG MK Hero",
       "settings": {
         "eyebrow": "Partnerships & Media Kit",
         "heading": "An Audience That Shows Up Before Sunrise.",
         "subheading": "Behind The Greens reaches golfers, course professionals, and industry insiders who care about the game's real culture. Here's how to reach them with us."
       }
     },
-    "btg_mk_proof": {
+    "btg_mk_proof_im9FW4": {
       "type": "btg-mk-proof",
       "blocks": {
-        "stat_views": { "type": "stat", "settings": { "value": "213M+", "label": "Total Views — Jul 23 – Aug 21, 2026", "color": "#C1922F" } },
-        "stat_reach": { "type": "stat", "settings": { "value": "10M+", "label": "Instagram Accounts Reached" } },
-        "stat_engagement": { "type": "stat", "settings": { "value": "1M+", "label": "Facebook Engagements" } }
+        "stat_9zYrkX": {
+          "type": "stat",
+          "settings": {
+            "value": "213M+",
+            "label": "Total Views — Jul 23 – Aug 21, 2026",
+            "color": "#c1922f"
+          }
+        },
+        "stat_PbQfgJ": {
+          "type": "stat",
+          "settings": {
+            "value": "10M+",
+            "label": "Instagram Accounts Reached",
+            "color": "#f3eedf"
+          }
+        },
+        "stat_Hd4XGG": {
+          "type": "stat",
+          "settings": {
+            "value": "1M+",
+            "label": "Facebook Engagements",
+            "color": "#f3eedf"
+          }
+        }
       },
-      "block_order": ["stat_views", "stat_reach", "stat_engagement"],
+      "block_order": [
+        "stat_9zYrkX",
+        "stat_PbQfgJ",
+        "stat_Hd4XGG"
+      ],
+      "name": "BTG MK Proof Of Scale",
       "settings": {
         "eyebrow": "Proof Of Scale",
         "note": "Combined across Facebook, Instagram, YouTube and TikTok, from each platform's own analytics."
       }
     },
-    "btg_mk_who_we_are": {
-      "type": "btg-mk-who-we-are",
-      "settings": {
-        "eyebrow": "Who We Are",
-        "heading": "A Golf Media Brand, From The Ground Up",
-        "text": "Behind The Greens covers the side of golf almost nobody films — the maintenance crews, the agronomy, and the course culture behind every playable fairway. That perspective is unique in golf media, and it has built a loyal, highly engaged audience of golfers and industry insiders who trust what we show them."
-      }
-    },
-    "btg_mk_platforms": {
+    "btg_mk_platforms_RxdKgP": {
       "type": "btg-mk-platforms",
       "blocks": {
-        "instagram": { "type": "platform", "settings": { "icon": "instagram", "name": "Instagram", "primary_stat": "22.4M", "secondary_stat": "Views · 108K+ Followers" } },
-        "facebook": { "type": "platform", "settings": { "icon": "facebook", "name": "Facebook", "primary_stat": "174M", "secondary_stat": "Views · 150K+ Followers" } },
-        "tiktok": { "type": "platform", "settings": { "icon": "tiktok", "name": "TikTok", "primary_stat": "5.6M", "secondary_stat": "Views · 54K+ Followers" } },
-        "youtube": { "type": "platform", "settings": { "icon": "youtube", "name": "YouTube", "primary_stat": "11.1M", "secondary_stat": "Views · 77K+ Subscribers" } }
+        "platform_KxNWaE": {
+          "type": "platform",
+          "settings": {
+            "icon": "instagram",
+            "name": "Instagram",
+            "primary_stat": "22.4M",
+            "secondary_stat": "Views · 108K+ Followers"
+          }
+        },
+        "platform_JCy3jJ": {
+          "type": "platform",
+          "settings": {
+            "icon": "facebook",
+            "name": "Facebook",
+            "primary_stat": "174M",
+            "secondary_stat": "Views · 150K+ Followers"
+          }
+        },
+        "platform_3VbPJn": {
+          "type": "platform",
+          "settings": {
+            "icon": "youtube",
+            "name": "YouTube",
+            "primary_stat": "11.1M",
+            "secondary_stat": "Views · 78K+ Subscribers"
+          }
+        },
+        "platform_6eyx8P": {
+          "type": "platform",
+          "settings": {
+            "icon": "tiktok",
+            "name": "TikTok",
+            "primary_stat": "5.6M",
+            "secondary_stat": "Views · 53K+ Followers"
+          }
+        }
       },
-      "block_order": ["instagram", "facebook", "tiktok", "youtube"],
+      "block_order": [
+        "platform_KxNWaE",
+        "platform_JCy3jJ",
+        "platform_3VbPJn",
+        "platform_6eyx8P"
+      ],
+      "name": "BTG MK Platforms",
       "settings": {
         "eyebrow": "By Platform",
         "title": "Where We Show Up",
         "note": "Views from each platform's own analytics, Jul 23 – Aug 21, 2026 (Instagram: 30 days; Facebook, YouTube, TikTok: 28 days)."
       }
     },
-    "btg_mk_pathways": {
+    "btg_mk_pathways_WP6JRy": {
       "type": "btg-mk-pathways",
       "blocks": {
-        "brands": { "type": "pathway", "settings": { "eyebrow": "For Brands", "heading": "Reach Our Audience", "text": "Sponsored integrations, product features, and campaigns built around a trusted, engaged golf audience.", "link_label": "Brand Partnerships", "anchor": "#for-brands" } },
-        "courses": { "type": "pathway", "settings": { "eyebrow": "For Golf Courses", "heading": "Tell Your Course's Story", "text": "A documentary-style feature on your property, your crew, and the operation behind the course.", "link_label": "Course Features", "anchor": "#for-courses" } }
+        "pathway_3cqPYr": {
+          "type": "pathway",
+          "settings": {
+            "eyebrow": "For Brands",
+            "heading": "Reach Our Audience",
+            "text": "Sponsored integrations, product features, and campaigns built around a trusted, engaged golf audience.",
+            "link_label": "Brand Partnerships",
+            "anchor": "#for-brands"
+          }
+        },
+        "pathway_BMbdLf": {
+          "type": "pathway",
+          "settings": {
+            "eyebrow": "For Golf Courses",
+            "heading": "Tell Your Course's Story",
+            "text": "A documentary-style feature on your property, your crew, and the operation behind the course.",
+            "link_label": "Course Features",
+            "anchor": "#for-courses"
+          }
+        }
       },
-      "block_order": ["brands", "courses"],
+      "block_order": [
+        "pathway_3cqPYr",
+        "pathway_BMbdLf"
+      ],
+      "name": "BTG MK Pathways",
       "settings": {
         "eyebrow": "Work With Us",
         "title": "Two Ways In"
       }
     },
-    "btg_mk_brands": {
+    "btg_mk_brands_9icgpw": {
       "type": "btg-mk-brands",
       "blocks": {
-        "format_1": { "type": "format", "settings": { "title": "Short-Form Integration", "text": "Sponsored placement inside our short-form video content." } },
-        "format_2": { "type": "format", "settings": { "title": "Long-Form Integration", "text": "Your brand woven into a full-length feature or story." } },
-        "format_3": { "type": "format", "settings": { "title": "Product Features", "text": "Your product, shown in the field, in our voice." } },
-        "format_4": { "type": "format", "settings": { "title": "Multi-Platform Campaigns", "text": "Coordinated placement across video, social, and newsletter." } },
-        "tier_1": { "type": "tier", "settings": { "title": "Single Placement", "text": "One integration, one platform — a focused way to test the audience.", "rate": "[Rate On Request]" } },
-        "tier_2": { "type": "tier", "settings": { "title": "Integrated Feature", "text": "A longer-form feature paired with supporting short-form and social.", "rate": "[Rate On Request]" } },
-        "tier_3": { "type": "tier", "settings": { "title": "Full Campaign", "text": "Coordinated placement across every platform we run.", "rate": "[Rate On Request]" } }
+        "format_jE6NT6": {
+          "type": "format",
+          "settings": {
+            "title": "Short-Form Integration",
+            "text": "Sponsored placement inside our short-form video content."
+          }
+        },
+        "format_6mtQdt": {
+          "type": "format",
+          "settings": {
+            "title": "Long-Form Integration",
+            "text": "Your brand woven into a full-length feature or story."
+          }
+        },
+        "format_FEdqFE": {
+          "type": "format",
+          "settings": {
+            "title": "Product Features",
+            "text": "Your product, shown in the field, in our voice."
+          }
+        },
+        "format_CjGgK6": {
+          "type": "format",
+          "settings": {
+            "title": "Multi-Platform Campaigns",
+            "text": "Coordinated placement across video, social, and newsletter."
+          }
+        },
+        "tier_pYykzb": {
+          "type": "tier",
+          "settings": {
+            "title": "1 Video",
+            "text": "One sponsored integration — a focused way to test the audience.",
+            "rate": "$1,000"
+          }
+        },
+        "tier_4LiziG": {
+          "type": "tier",
+          "settings": {
+            "title": "3 Videos",
+            "text": "Three integrations for repeated exposure across our channels.",
+            "rate": "$2,500"
+          }
+        },
+        "tier_VWBC6t": {
+          "type": "tier",
+          "settings": {
+            "title": "5 Videos",
+            "text": "Five integrations — our strongest package for reach and recall.",
+            "rate": "$3,500"
+          }
+        },
+        "tier_long_term": {
+          "type": "tier",
+          "settings": {
+            "title": "Long-Term Partnership",
+            "text": "Month-to-month or long-term. Priced around the deliverables you need.",
+            "rate": "Custom Pricing"
+          }
+        }
       },
-      "block_order": ["format_1", "format_2", "format_3", "format_4", "tier_1", "tier_2", "tier_3"],
+      "block_order": [
+        "format_jE6NT6",
+        "format_6mtQdt",
+        "format_FEdqFE",
+        "format_CjGgK6",
+        "tier_pYykzb",
+        "tier_4LiziG",
+        "tier_VWBC6t",
+        "tier_long_term"
+      ],
+      "name": "BTG MK Brand Partnerships",
       "settings": {
         "eyebrow": "For Brands",
         "heading": "Brand Partnerships",
         "text": "Brand partnerships are about access — to an audience that trusts Behind The Greens' position inside golf course culture, and shows up for it. We build integrations around that trust, not around a media buy.",
         "formats_label": "Partnership Formats",
         "tiers_label": "Packages & Rates",
-        "tiers_note": "Package structure and rates shown are illustrative — final pricing to be confirmed before this kit goes out."
+        "tiers_note": "Every partnership is scoped to your brief. Reach out and we'll put together a proposal."
       }
     },
-    "btg_mk_courses": {
+    "btg_mk_courses_QLLyWK": {
       "type": "btg-mk-courses",
       "blocks": {
-        "inc_1": { "type": "included", "settings": { "text": "Documentary-style long-form YouTube episode" } },
-        "inc_2": { "type": "included", "settings": { "text": "On-site filming alongside your maintenance crew" } },
-        "inc_3": { "type": "included", "settings": { "text": "On-camera interview with your superintendent" } },
-        "inc_4": { "type": "included", "settings": { "text": "Full coverage of the course and property" } },
-        "inc_5": { "type": "included", "settings": { "text": "Optional short-form & social distribution" } },
-        "inc_6": { "type": "included", "settings": { "text": "Scope tailored to your course and story" } }
+        "included_HdyUdU": {
+          "type": "included",
+          "settings": {
+            "text": "Documentary-style long-form YouTube episode"
+          }
+        },
+        "included_3n6rJ4": {
+          "type": "included",
+          "settings": {
+            "text": "On-site filming alongside your maintenance crew"
+          }
+        },
+        "included_yPpCft": {
+          "type": "included",
+          "settings": {
+            "text": "On-camera interview with your superintendent"
+          }
+        },
+        "included_zxFBzm": {
+          "type": "included",
+          "settings": {
+            "text": "Full coverage of the course and property"
+          }
+        },
+        "included_3cEHnJ": {
+          "type": "included",
+          "settings": {
+            "text": "Optional short-form & social distribution"
+          }
+        },
+        "included_LFxtFi": {
+          "type": "included",
+          "settings": {
+            "text": "Scope tailored to your course and story"
+          }
+        }
       },
-      "block_order": ["inc_1", "inc_2", "inc_3", "inc_4", "inc_5", "inc_6"],
+      "block_order": [
+        "included_HdyUdU",
+        "included_3n6rJ4",
+        "included_yPpCft",
+        "included_zxFBzm",
+        "included_3cEHnJ",
+        "included_LFxtFi"
+      ],
+      "name": "BTG MK Course Features",
       "settings": {
         "eyebrow": "For Golf Courses",
         "heading": "Behind The Greens: Course Features",
@@ -96,30 +276,73 @@
         "pricing_note": "Every Course Feature is scoped to the property. Reach out and we'll walk through what's possible."
       }
     },
-    "btg_mk_selected_work": {
+    "btg_mk_selected_work_ybwREh": {
       "type": "btg-mk-selected-work",
       "blocks": {
-        "case_1": { "type": "case_study", "settings": { "name": "[Name]", "project": "[Project Description]", "delivered": "[Content Delivered]", "results": "[Results]" } },
-        "case_2": { "type": "case_study", "settings": { "name": "[Name]", "project": "[Project Description]", "delivered": "[Content Delivered]", "results": "[Results]" } },
-        "case_3": { "type": "case_study", "settings": { "name": "[Name]", "project": "[Project Description]", "delivered": "[Content Delivered]", "results": "[Results]" } }
+        "case_study_cyU7xj": {
+          "type": "case_study",
+          "settings": {
+            "name": "[Name]",
+            "project": "[Project Description]",
+            "delivered": "[Content Delivered]",
+            "results": "[Results]"
+          }
+        },
+        "case_study_rcdYFK": {
+          "type": "case_study",
+          "settings": {
+            "name": "[Name]",
+            "project": "[Project Description]",
+            "delivered": "[Content Delivered]",
+            "results": "[Results]"
+          }
+        },
+        "case_study_E8GaEt": {
+          "type": "case_study",
+          "settings": {
+            "name": "[Name]",
+            "project": "[Project Description]",
+            "delivered": "[Content Delivered]",
+            "results": "[Results]"
+          }
+        }
       },
-      "block_order": ["case_1", "case_2", "case_3"],
+      "block_order": [
+        "case_study_cyU7xj",
+        "case_study_rcdYFK",
+        "case_study_E8GaEt"
+      ],
+      "name": "BTG MK Selected Work",
       "settings": {
         "eyebrow": "Selected Work",
         "title": "Collaborations & Case Studies",
         "note": "Case studies will populate here as partnerships and course features are completed."
-      }
+      },
+      "disabled": true
     },
-    "btg_mk_closing": {
+    "btg_mk_closing_4pMVW8": {
       "type": "btg-mk-closing",
+      "name": "BTG MK Closing CTA",
       "settings": {
         "eyebrow": "Get In Touch",
         "heading": "Let's Build Something",
-        "brands_label": "Brand Partnerships & Rates",
+        "brands_label": "Start A Brand Partnership",
+        "brands_link": "shopify://pages/contact",
         "courses_label": "Feature Your Golf Course",
-        "pdf_label": "Download Media Kit (PDF)"
+        "courses_link": "shopify://pages/contact",
+        "pdf_label": "Download Media Kit (PDF)",
+        "pdf_link": ""
       }
     }
   },
-  "order": ["btg_mk_hero", "btg_mk_proof", "btg_mk_who_we_are", "btg_mk_platforms", "btg_mk_pathways", "btg_mk_brands", "btg_mk_courses", "btg_mk_selected_work", "btg_mk_closing"]
+  "order": [
+    "btg_mk_hero_BBYzKH",
+    "btg_mk_proof_im9FW4",
+    "btg_mk_platforms_RxdKgP",
+    "btg_mk_pathways_WP6JRy",
+    "btg_mk_brands_9icgpw",
+    "btg_mk_courses_QLLyWK",
+    "btg_mk_selected_work_ybwREh",
+    "btg_mk_closing_4pMVW8"
+  ]
 }

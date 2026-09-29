@@ -1,13 +1,9 @@
 {%- comment -%}
-  Behind The Greens product card — used on the collection grid, homepage
-  shop teaser, and PDP cross-sell. Pulls everything live from Shopify.
+  Behind The Greens product card — collection grid, homepage, PDP related.
+  Everything is live product data. Shows the second product image on hover
+  when one exists. Color dots use the product's own swatch settings.
 
   Usage: {% render 'btg-product-card', product: product %}
-
-  Color swatches use the product's native "Color" option and its
-  merchant-configured swatch color (Shopify admin → product → Options →
-  swatches). If no swatch is set for a value, a neutral dot is shown
-  instead of guessing a color.
 {%- endcomment -%}
 
 {%- liquid
@@ -17,12 +13,16 @@
       assign color_option = option
     endif
   endfor
+  assign images = product.media | where: 'media_type', 'image'
 -%}
 
 <a href="{{ product.url }}" class="btg-card{% unless product.available %} btg-card--sold-out{% endunless %}">
   <div class="btg-card__media">
     {%- if product.featured_media -%}
-      {{ product.featured_media | image_url: width: 800 | image_tag: loading: 'lazy', alt: product.featured_media.alt | default: product.title }}
+      {{ product.featured_media | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 1000px) 30vw, 50vw', widths: '360, 540, 720, 900', alt: product.featured_media.alt | default: product.title }}
+      {%- if images.size > 1 -%}
+        {{ images[1] | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 1000px) 30vw, 50vw', widths: '360, 540, 720, 900', alt: '', class: 'btg-card__img-alt' }}
+      {%- endif -%}
     {%- else -%}
       {{ 'product-1' | placeholder_svg_tag }}
     {%- endif -%}
@@ -31,27 +31,15 @@
     {%- endunless -%}
   </div>
 
-  {%- if product.type != blank -%}
-    <div class="btg-eyebrow btg-card__cat">{{ product.type }}</div>
-  {%- endif -%}
-
-  <div class="btg-card__title">{{ product.title }}</div>
-
-  <div class="btg-card__meta">
-    <span class="btg-card__price">
-      {%- if product.price_varies -%}
-        {{ product.price_min | money }}
-      {%- else -%}
-        {{ product.price | money }}
+  <div class="btg-card__body">
+    <div>
+      <h3 class="btg-card__title">{{ product.title }}</h3>
+      {%- if color_option and color_option.values.size > 1 -%}
+        <div class="btg-card__sub">{{ color_option.values.size }} colors</div>
       {%- endif -%}
+    </div>
+    <span class="btg-card__price">
+      {%- if product.price_varies -%}From {{ product.price_min | money }}{%- else -%}{{ product.price | money }}{%- endif -%}
     </span>
-    {%- if color_option -%}
-      <span class="btg-card__swatches">
-        {%- for value in color_option.values -%}
-          {%- capture swatch_color %}{% render 'btg-swatch-color', value: value %}{% endcapture -%}
-          <span class="btg-card__swatch" style="background: {{ swatch_color | strip }};" title="{{ value }}"></span>
-        {%- endfor -%}
-      </span>
-    {%- endif -%}
   </div>
 </a>

@@ -40,7 +40,7 @@
             </div>
             <div class="btg-cart-item__body">
               <div>
-                <div class="btg-cart-item__title">{{ item.product.title }}</div>
+                <a href="{{ item.url }}" class="btg-cart-item__title">{{ item.product.title }}</a>
                 {%- if item.variant.title != 'Default Title' -%}
                   <div class="btg-cart-item__variant">{{ item.variant.title | replace: ' / ', ' · ' }}</div>
                 {%- endif -%}
@@ -68,10 +68,10 @@
         </div>
         <p class="btg-cart-drawer__note">Shipping and taxes calculated at checkout.</p>
         <form action="{{ routes.cart_url }}" method="post">
-          <button type="submit" class="btg-btn-primary" style="width:100%;">Checkout</button>
+          <button type="submit" name="checkout" class="btg-btn-primary btg-btn-block">Checkout</button>
         </form>
         <div class="btg-cart-drawer__continue">
-          <a href="{{ routes.all_products_collection_url | default: routes.root_url }}" class="btg-eyebrow" style="color:#3A392F; border-bottom:1px solid rgba(20,20,15,0.3); padding-bottom:2px;">Continue Shopping</a>
+          <button type="button" class="btg-link-underline" style="background-color:transparent; border:none; cursor:pointer; color:var(--btg-body);" data-btg-cart-close>Continue Shopping</button>
         </div>
       </div>
     {%- endif -%}

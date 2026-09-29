@@ -1,50 +1,140 @@
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "btg_page": {
+      "type": "btg-page-main",
+      "settings": {
+        "hide_on_pages": "our-story,media-kit"
+      }
+    },
+    "story_hero": {
+      "type": "btg-about-hero",
+      "settings": {
+        "eyebrow": "Our Story",
+        "heading": "Golf Has A Back Of House",
+        "only_on_page": "our-story"
+      }
+    },
+    "story_origin": {
+      "type": "btg-about-origin",
+      "settings": {
+        "label": "Where It Started",
+        "pull_quote": "You can walk a hundred golf courses and never see the people who made them playable.",
+        "body": "<p>Every round starts hours before the first tee time. Crews are out before sunrise mowing lines, rolling greens, cutting cups and fixing what yesterday left behind. Most golfers never see any of it.</p><p>Behind The Greens started by pointing the camera the other way: at the superintendents, the crews and the craft that make a course playable. Those stories found an audience fast. Golfers, course professionals and people across the industry recognized the work, and kept coming back for more of it.</p><p>The apparel grew out of that community. Gear made in the same spirit as the stories, for the people who show up before the flag does.</p>",
+        "only_on_page": "our-story"
+      }
+    },
+    "story_proof": {
+      "type": "btg-proof-strip",
       "blocks": {
-        "heading": {
-          "type": "text",
-          "name": "Title",
+        "followers": {
+          "type": "stat",
           "settings": {
-            "text": "<h1>{{ closest.page.title }}</h1>",
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-primary--family)",
-            "font_size": "",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "value": "380K+",
+            "label": "Followers across four platforms"
+          }
         },
-        "page-content": {
-          "type": "page-content",
-          "settings": {},
-          "blocks": {}
+        "views": {
+          "type": "stat",
+          "settings": {
+            "value": "213M",
+            "label": "Views in a single month"
+          }
+        },
+        "engagement": {
+          "type": "stat",
+          "settings": {
+            "value": "1M+",
+            "label": "Facebook engagements in that month"
+          }
         }
       },
       "block_order": [
-        "heading",
-        "page-content"
+        "followers",
+        "views",
+        "engagement"
       ],
       "settings": {
-        "content_direction": "column",
-        "gap": 32,
-        "color_scheme": "",
-        "padding-block-start": 40,
-        "padding-block-end": 80
+        "style": "light",
+        "eyebrow": "The Community",
+        "heading": "The Crew Is Bigger Than You Think",
+        "note": "Views and engagements from each platform's analytics, Jul 23 – Aug 21, 2026.",
+        "only_on_page": "our-story"
+      }
+    },
+    "story_values": {
+      "type": "btg-about-values",
+      "blocks": {
+        "value_1": {
+          "type": "value",
+          "settings": {
+            "title": "The Crew Comes First",
+            "text": "Every story starts with the people doing the work, not the people playing the round."
+          }
+        },
+        "value_2": {
+          "type": "value",
+          "settings": {
+            "title": "Culture Over Clichés",
+            "text": "No country-club stereotypes and no golf gimmicks. Just the real texture of the game."
+          }
+        },
+        "value_3": {
+          "type": "value",
+          "settings": {
+            "title": "Made To Be Worn",
+            "text": "Designed for early mornings and long days on the course, and everywhere after."
+          }
+        }
+      },
+      "block_order": [
+        "value_1",
+        "value_2",
+        "value_3"
+      ],
+      "settings": {
+        "eyebrow": "What We Believe",
+        "title": "How We Work",
+        "only_on_page": "our-story"
+      }
+    },
+    "story_crest": {
+      "type": "btg-about-crest",
+      "name": "BTG About Crest",
+      "settings": {
+        "image": "shopify://shop_images/F8C7F1A0-4475-4C74-A418-D18024040C87_1.png",
+        "eyebrow": "The Crest",
+        "text": "A crest, not a logo — the kind of mark a crew earns, not one a marketing team invents. Every piece we make carries it.",
+        "only_on_page": "our-story"
+      }
+    },
+    "story_cta": {
+      "type": "btg-about-cta",
+      "blocks": {
+        "link_stories": {
+          "type": "link",
+          "settings": {
+            "label": "Read",
+            "heading": "The Stories",
+            "link": "shopify://blogs/stories"
+          }
+        },
+        "link_shop": {
+          "type": "link",
+          "settings": {
+            "label": "Shop",
+            "heading": "The Collection",
+            "link": "shopify://collections/all"
+          }
+        }
+      },
+      "block_order": [
+        "link_stories",
+        "link_shop"
+      ],
+      "settings": {
+        "eyebrow": "Keep Going",
+        "heading": "See It For Yourself",
+        "only_on_page": "our-story"
       }
     },
     "btg_mk_hero_BBYzKH": {
@@ -53,7 +143,8 @@
       "settings": {
         "eyebrow": "Partnerships & Media Kit",
         "heading": "An Audience That Shows Up Before Sunrise.",
-        "subheading": "Behind The Greens reaches golfers, course professionals, and industry insiders who care about the game's real culture. Here's how to reach them with us."
+        "subheading": "Behind The Greens reaches golfers, course professionals, and industry insiders who care about the game's real culture. Here's how to reach them with us.",
+        "only_on_page": "media-kit"
       }
     },
     "btg_mk_proof_im9FW4": {
@@ -92,7 +183,8 @@
       "name": "BTG MK Proof Of Scale",
       "settings": {
         "eyebrow": "Proof Of Scale",
-        "note": "Combined across Facebook, Instagram, YouTube and TikTok, from each platform's own analytics."
+        "note": "Combined across Facebook, Instagram, YouTube and TikTok, from each platform's own analytics.",
+        "only_on_page": "media-kit"
       }
     },
     "btg_mk_platforms_RxdKgP": {
@@ -145,7 +237,8 @@
       "settings": {
         "eyebrow": "By Platform",
         "title": "Where We Show Up",
-        "note": "Views from each platform's own analytics, Jul 23 – Aug 21, 2026 (Instagram: 30 days; Facebook, YouTube, TikTok: 28 days)."
+        "note": "Views from each platform's own analytics, Jul 23 – Aug 21, 2026 (Instagram: 30 days; Facebook, YouTube, TikTok: 28 days).",
+        "only_on_page": "media-kit"
       }
     },
     "btg_mk_pathways_WP6JRy": {
@@ -179,7 +272,8 @@
       "name": "BTG MK Pathways",
       "settings": {
         "eyebrow": "Work With Us",
-        "title": "Two Ways In"
+        "title": "Two Ways In",
+        "only_on_page": "media-kit"
       }
     },
     "btg_mk_brands_9icgpw": {
@@ -263,7 +357,8 @@
         "text": "Brand partnerships are about access — to an audience that trusts Behind The Greens' position inside golf course culture, and shows up for it. We build integrations around that trust, not around a media buy.",
         "formats_label": "Partnership Formats",
         "tiers_label": "Packages & Rates",
-        "tiers_note": "Every partnership is scoped to your brief. Reach out and we'll put together a proposal."
+        "tiers_note": "Every partnership is scoped to your brief. Reach out and we'll put together a proposal.",
+        "only_on_page": "media-kit"
       }
     },
     "btg_mk_courses_QLLyWK": {
@@ -320,7 +415,8 @@
         "heading": "Behind The Greens: Course Features",
         "text": "Behind The Greens travels to your property to produce a documentary-style long-form episode telling the story of your course and the people who maintain it. We film alongside your crew, show what actually goes into keeping the course playable, and sit down with your superintendent to talk operation, philosophy, and history. This is a premium editorial feature — not videography for hire.",
         "pricing_label": "Custom & By Inquiry Only",
-        "pricing_note": "Every Course Feature is scoped to the property. Reach out and we'll walk through what's possible."
+        "pricing_note": "Every Course Feature is scoped to the property. Reach out and we'll walk through what's possible.",
+        "only_on_page": "media-kit"
       }
     },
     "btg_mk_selected_work_ybwREh": {
@@ -363,7 +459,8 @@
       "settings": {
         "eyebrow": "Selected Work",
         "title": "Collaborations & Case Studies",
-        "note": "Case studies will populate here as partnerships and course features are completed."
+        "note": "Case studies will populate here as partnerships and course features are completed.",
+        "only_on_page": "media-kit"
       },
       "disabled": true
     },
@@ -378,21 +475,19 @@
         "courses_label": "Feature Your Golf Course",
         "courses_link": "shopify://pages/contact",
         "pdf_label": "Download Media Kit (PDF)",
-        "pdf_link": ""
-      }
-    },
-    "btg_about_crest_p3EQJ4": {
-      "type": "btg-about-crest",
-      "name": "BTG About Crest",
-      "settings": {
-        "image": "shopify://shop_images/F8C7F1A0-4475-4C74-A418-D18024040C87_1.png",
-        "eyebrow": "The Crest",
-        "text": "A crest, not a logo — the kind of mark a crew earns, not one a marketing team invents. Every piece we make carries it."
+        "pdf_link": "",
+        "only_on_page": "media-kit"
       }
     }
   },
   "order": [
-    "main",
+    "btg_page",
+    "story_hero",
+    "story_origin",
+    "story_proof",
+    "story_values",
+    "story_crest",
+    "story_cta",
     "btg_mk_hero_BBYzKH",
     "btg_mk_proof_im9FW4",
     "btg_mk_platforms_RxdKgP",
@@ -400,7 +495,6 @@
     "btg_mk_brands_9icgpw",
     "btg_mk_courses_QLLyWK",
     "btg_mk_selected_work_ybwREh",
-    "btg_mk_closing_4pMVW8",
-    "btg_about_crest_p3EQJ4"
+    "btg_mk_closing_4pMVW8"
   ]
 }

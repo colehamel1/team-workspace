@@ -1,52 +1,137 @@
 {
   "sections": {
-    "btg_about_hero": {
+    "story_hero": {
       "type": "btg-about-hero",
       "settings": {
         "eyebrow": "Our Story",
-        "heading": "Why We Started This"
+        "heading": "Golf Has A Back Of House"
       }
     },
-    "btg_about_origin": {
+    "story_origin": {
       "type": "btg-about-origin",
       "settings": {
-        "label": "The Beginning",
-        "pull_quote": "Golf has a front of house and a back of house. Almost everything gets pointed at the front.",
-        "body": "<p>Behind The Greens started as a simple idea: point the camera the other way. Follow the crews who are out on the course before the gates open — mowing lines at first light, setting pins, reading turf like a language only they speak. Talk to the superintendents who carry the whole operation on their shoulders. Show the culture, the routines, the unwritten rules that never make it into a broadcast.</p><p>That perspective found an audience fast — golfers and industry people alike, drawn to a side of the game they'd never really seen. What started as stories became a community, and that community wanted something to wear that actually represented it.</p><p>So we built one. Not golf merch. Not a landscaping brand. Apparel built in the same spirit as the stories — for the people who show up before the flag does, and everyone who respects them for it.</p>"
+        "label": "Where It Started",
+        "pull_quote": "You can walk a hundred golf courses and never see the people who made them playable.",
+        "body": "<p>Every round starts hours before the first tee time. Crews are out before sunrise mowing lines, rolling greens, cutting cups and fixing what yesterday left behind. Most golfers never see any of it.</p><p>Behind The Greens started by pointing the camera the other way: at the superintendents, the crews and the craft that make a course playable. Those stories found an audience fast. Golfers, course professionals and people across the industry recognized the work, and kept coming back for more of it.</p><p>The apparel grew out of that community. Gear made in the same spirit as the stories, for the people who show up before the flag does.</p>"
       }
     },
-    "btg_about_values": {
+    "story_proof": {
+      "type": "btg-proof-strip",
+      "blocks": {
+        "followers": {
+          "type": "stat",
+          "settings": {
+            "value": "380K+",
+            "label": "Followers across four platforms"
+          }
+        },
+        "views": {
+          "type": "stat",
+          "settings": {
+            "value": "213M",
+            "label": "Views in a single month"
+          }
+        },
+        "engagement": {
+          "type": "stat",
+          "settings": {
+            "value": "1M+",
+            "label": "Facebook engagements in that month"
+          }
+        }
+      },
+      "block_order": [
+        "followers",
+        "views",
+        "engagement"
+      ],
+      "settings": {
+        "style": "light",
+        "eyebrow": "The Community",
+        "heading": "The Crew Is Bigger Than You Think",
+        "note": "Views and engagements from each platform's analytics, Jul 23 – Aug 21, 2026."
+      }
+    },
+    "story_values": {
       "type": "btg-about-values",
       "blocks": {
-        "value_1": { "type": "value", "settings": { "title": "The Crew Comes First", "text": "Every story starts with the people doing the work, not the people playing the round." } },
-        "value_2": { "type": "value", "settings": { "title": "Culture Over Clichés", "text": "No country-club stereotypes, no golf-themed gimmicks — just the real texture of the game." } },
-        "value_3": { "type": "value", "settings": { "title": "Built To Last", "text": "Apparel made the way the work it represents deserves — solid, useful, not disposable." } }
+        "value_1": {
+          "type": "value",
+          "settings": {
+            "title": "The Crew Comes First",
+            "text": "Every story starts with the people doing the work, not the people playing the round."
+          }
+        },
+        "value_2": {
+          "type": "value",
+          "settings": {
+            "title": "Culture Over Clichés",
+            "text": "No country-club stereotypes and no golf gimmicks. Just the real texture of the game."
+          }
+        },
+        "value_3": {
+          "type": "value",
+          "settings": {
+            "title": "Made To Be Worn",
+            "text": "Designed for early mornings and long days on the course, and everywhere after."
+          }
+        }
       },
-      "block_order": ["value_1", "value_2", "value_3"],
+      "block_order": [
+        "value_1",
+        "value_2",
+        "value_3"
+      ],
       "settings": {
         "eyebrow": "What We Believe",
-        "title": "The Principles"
+        "title": "How We Work"
       }
     },
-    "btg_about_crest": {
+    "story_crest": {
       "type": "btg-about-crest",
+      "name": "BTG About Crest",
       "settings": {
+        "image": "shopify://shop_images/F8C7F1A0-4475-4C74-A418-D18024040C87_1.png",
         "eyebrow": "The Crest",
         "text": "A crest, not a logo — the kind of mark a crew earns, not one a marketing team invents. Every piece we make carries it."
       }
     },
-    "btg_about_cta": {
+    "story_cta": {
       "type": "btg-about-cta",
       "blocks": {
-        "link_stories": { "type": "link", "settings": { "label": "Read", "heading": "The Stories", "link": "shopify://blogs/stories" } },
-        "link_shop": { "type": "link", "settings": { "label": "Shop", "heading": "The Collection", "link": "shopify://collections/all" } }
+        "link_stories": {
+          "type": "link",
+          "settings": {
+            "label": "Read",
+            "heading": "The Stories",
+            "link": "shopify://blogs/stories"
+          }
+        },
+        "link_shop": {
+          "type": "link",
+          "settings": {
+            "label": "Shop",
+            "heading": "The Collection",
+            "link": "shopify://collections/all"
+          }
+        }
       },
-      "block_order": ["link_stories", "link_shop"],
+      "block_order": [
+        "link_stories",
+        "link_shop"
+      ],
       "settings": {
-        "eyebrow": "Media · Culture · Community · Commerce",
-        "heading": "One Story, Told A Few Different Ways"
+        "eyebrow": "Keep Going",
+        "heading": "See It For Yourself"
       }
     }
   },
-  "order": ["btg_about_hero", "btg_about_origin", "btg_about_values", "btg_about_crest", "btg_about_cta"]
+  "order": [
+    "story_hero",
+    "story_origin",
+    "story_proof",
+    "story_values",
+    "story_crest",
+    "story_cta"
+  ]
 }

@@ -1,0 +1,43 @@
+{%- comment -%}
+  Behind The Greens standard page: title + the page's own content, in the
+  brand type system. Used by templates/page.json. Pages whose handle is
+  listed in "Hide on pages" skip this block because they are fully built
+  from their own sections (e.g. Our Story, Media Kit).
+{%- endcomment -%}
+
+{%- liquid
+  assign hidden_handles = section.settings.hide_on_pages | default: '' | remove: ' ' | split: ','
+  assign show = true
+  if hidden_handles contains page.handle
+    assign show = false
+  endif
+-%}
+
+{%- if show -%}
+<div class="btg-scope">
+  {% render 'btg-styles' %}
+  <article class="btg-container-narrow btg-page">
+    <h1 class="btg-display btg-heading-xl" style="margin:0 0 48px;">{{ page.title }}</h1>
+    <div class="btg-page__content">{{ page.content }}</div>
+  </article>
+</div>
+<style>
+  .btg-page { padding-top: clamp(64px, 9vw, 120px); padding-bottom: var(--btg-section); max-width: 820px; }
+  .btg-page__content { font-size: 17px; line-height: 1.75; color: var(--btg-body); }
+  .btg-page__content p { margin: 0 0 18px; }
+  .btg-page__content h2, .btg-page__content h3 { font-family: var(--btg-font-display); font-weight: 800; text-transform: uppercase; color: var(--btg-ink); line-height: 1; margin: 48px 0 16px; }
+  .btg-page__content h2 { font-size: 32px; }
+  .btg-page__content h3 { font-size: 24px; }
+  .btg-page__content a { color: var(--btg-ink); text-decoration: underline; text-underline-offset: 3px; }
+  .btg-page__content ul, .btg-page__content ol { padding-left: 20px; margin: 0 0 18px; }
+</style>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "BTG Page",
+  "settings": [
+    { "type": "text", "id": "hide_on_pages", "label": "Hide on pages (handles, comma-separated)", "default": "our-story,media-kit" }
+  ]
+}
+{% endschema %}

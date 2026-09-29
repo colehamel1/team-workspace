@@ -1,29 +1,32 @@
-.btg-about-hero { position: relative; min-height: 52vh; display: flex; align-items: flex-end; background: var(--btg-forest-deep); overflow: hidden; }
+.btg-about-hero { position: relative; min-height: 78svh; display: flex; align-items: flex-end; background: var(--btg-forest-deep); overflow: hidden; }
 .btg-about-hero__image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
 .btg-about-hero__default-image { position: absolute; inset: 0; background-image: url("https://cdn.shopify.com/s/files/1/0632/2172/7335/files/btg-img-about-hero.jpg?v=1790710191"); background-size: cover; background-position: center 30%; }
-.btg-about-hero__scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,42,31,0.25) 0%, rgba(15,42,31,0.5) 55%, rgba(15,42,31,0.94) 100%); }
-.btg-about-hero__content { position: relative; z-index: 2; padding: 0 40px 56px; max-width: 760px; }
-.btg-about-hero__heading { color: var(--btg-cream); font-size: 64px; margin: 0; }
+.btg-about-hero__scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,20,15,0.12) 0%, rgba(15,20,15,0.25) 50%, rgba(15,20,15,0.82) 100%); }
+.btg-about-hero__content { position: relative; z-index: 2; width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 var(--btg-gutter) 80px; }
+.btg-about-hero__heading { color: var(--btg-cream); font-size: clamp(56px, 9vw, 136px); margin: 0; max-width: 11ch; }
 
-.btg-about-origin { padding: 100px 0; display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 64px; }
-.btg-about-origin__pull { font-size: 24px; line-height: 1.55; color: var(--btg-forest); margin: 0 0 28px; }
-.btg-about-origin__body p { font-size: 16px; line-height: 1.75; color: #3A392F; margin: 0 0 20px; }
+.btg-about-origin { padding: var(--btg-section) 0; display: grid; grid-template-columns: 0.7fr 1.3fr; gap: 64px; }
+.btg-about-origin__pull { font-size: clamp(24px, 2.6vw, 34px); line-height: 1.35; color: var(--btg-forest); margin: 0 0 40px; }
+.btg-about-origin__body p { font-size: 18px; line-height: 1.75; color: var(--btg-body); margin: 0 0 22px; max-width: 620px; }
 .btg-about-origin__body p:last-child { margin-bottom: 0; }
 
-.btg-about-values-wrap { background: var(--btg-cream-soft); padding: 100px 0; }
-.btg-about-values { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
-.btg-about-values__item { border-top: 1px solid rgba(20,20,15,0.16); padding: 28px 24px 0 0; }
+.btg-about-values-wrap { background: var(--btg-paper); padding: var(--btg-section) 0; }
+.btg-about-values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+.btg-about-values__item { border-top: 1px solid var(--btg-ink); padding-top: 28px; }
 
-.btg-about-crest { padding: 110px 0; display: flex; align-items: center; gap: 64px; }
-.btg-about-crest__image { width: 200px; height: 200px; object-fit: contain; flex-shrink: 0; }
+.btg-about-crest { padding: var(--btg-section) 0; display: flex; align-items: center; gap: 64px; }
+.btg-about-crest__image { width: 180px; height: 180px; object-fit: contain; flex-shrink: 0; }
 
-.btg-about-cta { background: var(--btg-forest-deep); padding: 110px 40px; }
-.btg-about-cta__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(243,238,223,0.14); }
+.btg-about-cta { background: var(--btg-ink); padding: var(--btg-section) var(--btg-gutter); }
+.btg-about-cta__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
 @media (max-width: 860px) {
-  .btg-about-hero__heading { font-size: 52px; }
-  .btg-about-origin { grid-template-columns: 1fr; gap: 32px; padding: 64px 0; }
-  .btg-about-values { grid-template-columns: 1fr; }
-  .btg-about-crest { flex-direction: column; text-align: center; gap: 32px; padding: 72px 0; }
+  .btg-about-hero { min-height: 64svh; }
+  .btg-about-hero__content { padding-bottom: 48px; }
+  .btg-about-origin { grid-template-columns: 1fr; gap: 24px; }
+  .btg-about-origin__body p { font-size: 17px; }
+  .btg-about-values { grid-template-columns: 1fr; gap: 32px; }
+  .btg-about-crest { flex-direction: column; text-align: center; gap: 28px; }
+  .btg-about-crest__image { width: 140px; height: 140px; }
   .btg-about-cta__grid { grid-template-columns: 1fr; }
 }

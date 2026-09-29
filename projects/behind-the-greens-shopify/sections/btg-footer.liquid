@@ -1,94 +1,91 @@
 {%- comment -%}
-  Behind The Greens footer. Rendered directly by layout/theme.liquid
-  (see README), not through the theme editor's "Add section" picker —
-  same reasoning as btg-header.liquid. Newsletter signup uses Shopify's
-  native customer form (tags the contact "newsletter" — no app required).
-  Explore/Support columns point at fixed real destinations (same
-  reasoning as the header nav) — policy links only render if that
-  policy is actually configured in Shopify (Settings → Policies), so
-  there's never a dead link. Social links are optional and only show
-  once a real URL is filled in.
+  Behind The Greens footer. Rendered directly by layout/theme.liquid.
+  Newsletter uses Shopify's native customer form (tagged "newsletter").
+  Policy links only render when that policy exists in Settings → Policies,
+  so there's never a dead link. Social URLs default to the official
+  Behind The Greens profiles and can be overridden in section settings.
 {%- endcomment -%}
+
+{%- liquid
+  assign ig = section.settings.instagram_url | default: 'https://www.instagram.com/behind_thegreens/'
+  assign tt = section.settings.tiktok_url | default: 'https://www.tiktok.com/@behind_thegreens'
+  assign yt = section.settings.youtube_url | default: 'https://www.youtube.com/@behind_thegreens'
+  assign fb = section.settings.facebook_url | default: 'https://www.facebook.com/MrGreenskeeper'
+  assign crest = section.settings.logo | default: settings.favicon
+-%}
 
 <div class="btg-scope">
   {% render 'btg-styles' %}
 
   <footer class="btg-footer">
-    <div class="btg-container" style="padding-left:0; padding-right:0; max-width:1240px;">
+    <div class="btg-container">
 
-      <div class="btg-footer__newsletter">
-        <div>
+      <div class="btg-footer__top">
+        <div class="btg-footer__newsletter">
           <h3 class="btg-display">{{ section.settings.newsletter_heading | default: 'Join The Crew' }}</h3>
-          <p>{{ section.settings.newsletter_text | default: "Stories from behind the greens, new drops, and the occasional dispatch from the crew — straight to your inbox." }}</p>
-        </div>
-        {% form 'customer', class: 'btg-footer__form' %}
-          <input type="hidden" name="contact[tags]" value="newsletter">
-          {%- if form.posted_successfully? -%}
-            <p style="color:#F3EEDF; font-size:14px;">Thanks — you're on the list.</p>
-          {%- else -%}
-            <input type="email" name="contact[email]" placeholder="Your email address" required>
-            <button type="submit">Sign Up</button>
-          {%- endif -%}
-        {% endform %}
-      </div>
-
-      <div class="btg-footer__cols">
-        <div class="btg-footer__brand">
-          {%- if section.settings.logo != blank -%}
-            {{ section.settings.logo | image_url: width: 68 | image_tag: width: 34, height: 34, style: 'object-fit:contain;', alt: shop.name }}
-          {%- endif -%}
-          <span class="btg-display">{{ shop.name }}</span>
+          <p>{{ section.settings.newsletter_text | default: 'New stories, new drops, and the occasional dispatch from the crew. No spam.' }}</p>
+          {% form 'customer', class: 'btg-footer__form', id: 'btg-footer-newsletter' %}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            {%- if form.posted_successfully? -%}
+              <p class="btg-footer__success">You're on the list. Welcome to the crew.</p>
+            {%- else -%}
+              <label for="btg-footer-email" class="visually-hidden" style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0);">Email address</label>
+              <input id="btg-footer-email" type="email" name="contact[email]" placeholder="Email address" autocomplete="email" required>
+              <button type="submit">Sign Up</button>
+            {%- endif -%}
+          {% endform %}
         </div>
 
-        <div>
-          <div class="btg-eyebrow btg-footer__col-title">Explore</div>
-          <div class="btg-footer__col">
-            <a href="{{ routes.all_products_collection_url }}">Shop</a>
-            <a href="{{ routes.root_url }}blogs/stories">Stories</a>
-            <a href="{{ routes.root_url }}pages/media-kit#for-courses">Course Features</a>
-            <a href="{{ routes.root_url }}pages/media-kit#for-brands">Brand Partnerships</a>
-          </div>
-        </div>
-
-        {%- assign has_support_link = false -%}
-        {%- if pages.contact or shop.policies.shipping_policy.url or shop.policies.refund_policy.url or shop.policies.privacy_policy.url or shop.policies.terms_of_service.url -%}
-          {%- assign has_support_link = true -%}
-        {%- endif -%}
-        {%- if has_support_link -%}
+        <div class="btg-footer__cols">
           <div>
-            <div class="btg-eyebrow btg-footer__col-title">Support</div>
+            <div class="btg-eyebrow btg-footer__col-title">Shop</div>
             <div class="btg-footer__col">
-              {%- if pages.contact -%}<a href="{{ pages.contact.url }}">Contact</a>{%- endif -%}
-              {%- if shop.policies.shipping_policy.url -%}<a href="{{ shop.policies.shipping_policy.url }}">Shipping</a>{%- endif -%}
-              {%- if shop.policies.refund_policy.url -%}<a href="{{ shop.policies.refund_policy.url }}">Returns</a>{%- endif -%}
-              {%- if shop.policies.privacy_policy.url -%}<a href="{{ shop.policies.privacy_policy.url }}">Privacy</a>{%- endif -%}
-              {%- if shop.policies.terms_of_service.url -%}<a href="{{ shop.policies.terms_of_service.url }}">Terms</a>{%- endif -%}
+              <a href="{{ routes.all_products_collection_url }}">All Products</a>
+              {%- for c in collections limit: 6 -%}
+                {%- if c.handle != 'all' and c.handle != 'frontpage' and c.all_products_count > 0 and c.handle != 'home-page-1' -%}
+                  <a href="{{ c.url }}">{{ c.title }}</a>
+                {%- endif -%}
+              {%- endfor -%}
             </div>
           </div>
-        {%- endif -%}
 
-        {%- assign has_social = false -%}
-        {%- if section.settings.instagram_url != blank or section.settings.tiktok_url != blank or section.settings.youtube_url != blank or section.settings.facebook_url != blank -%}
-          {%- assign has_social = true -%}
-        {%- endif -%}
-        {%- if has_social -%}
+          <div>
+            <div class="btg-eyebrow btg-footer__col-title">Company</div>
+            <div class="btg-footer__col">
+              <a href="{{ routes.root_url }}pages/our-story">Our Story</a>
+              <a href="{{ routes.root_url }}blogs/stories">Stories</a>
+              <a href="{{ routes.root_url }}pages/media-kit">Work With Us</a>
+              {%- if pages.contact -%}<a href="{{ pages.contact.url }}">Contact</a>{%- endif -%}
+            </div>
+          </div>
+
           <div>
             <div class="btg-eyebrow btg-footer__col-title">Follow</div>
             <div class="btg-footer__col">
-              {%- if section.settings.instagram_url != blank -%}<a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener">Instagram</a>{%- endif -%}
-              {%- if section.settings.tiktok_url != blank -%}<a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener">TikTok</a>{%- endif -%}
-              {%- if section.settings.youtube_url != blank -%}<a href="{{ section.settings.youtube_url }}" target="_blank" rel="noopener">YouTube</a>{%- endif -%}
-              {%- if section.settings.facebook_url != blank -%}<a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener">Facebook</a>{%- endif -%}
+              <a href="{{ ig }}" target="_blank" rel="noopener">Instagram</a>
+              <a href="{{ tt }}" target="_blank" rel="noopener">TikTok</a>
+              <a href="{{ yt }}" target="_blank" rel="noopener">YouTube</a>
+              <a href="{{ fb }}" target="_blank" rel="noopener">Facebook</a>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="btg-footer__brand">
+        {%- if crest != blank -%}
+          {{ crest | image_url: width: 120 | image_tag: alt: '', width: 48, height: 48, loading: 'lazy' }}
         {%- endif -%}
+        <span class="btg-display">{{ shop.name }}</span>
       </div>
 
       <div class="btg-footer__bottom">
-        <span>&copy; {{ shop.name }}</span>
+        <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</span>
         <div class="btg-footer__bottom-links">
+          {%- if shop.policies.shipping_policy.url -%}<a href="{{ shop.policies.shipping_policy.url }}">Shipping</a>{%- endif -%}
+          {%- if shop.policies.refund_policy.url -%}<a href="{{ shop.policies.refund_policy.url }}">Returns</a>{%- endif -%}
           {%- if shop.policies.privacy_policy.url -%}<a href="{{ shop.policies.privacy_policy.url }}">Privacy</a>{%- endif -%}
           {%- if shop.policies.terms_of_service.url -%}<a href="{{ shop.policies.terms_of_service.url }}">Terms</a>{%- endif -%}
+          <a href="{{ routes.root_url }}pages/data-sharing-opt-out">Your Privacy Choices</a>
         </div>
       </div>
 
@@ -103,7 +100,8 @@
     {
       "type": "image_picker",
       "id": "logo",
-      "label": "Logo / crest"
+      "label": "Logo / crest",
+      "info": "Falls back to the store favicon (the crest) if left empty."
     },
     {
       "type": "text",
@@ -115,7 +113,7 @@
       "type": "textarea",
       "id": "newsletter_text",
       "label": "Newsletter text",
-      "default": "Stories from behind the greens, new drops, and the occasional dispatch from the crew — straight to your inbox."
+      "default": "New stories, new drops, and the occasional dispatch from the crew. No spam."
     },
     { "type": "url", "id": "instagram_url", "label": "Instagram URL" },
     { "type": "url", "id": "tiktok_url", "label": "TikTok URL" },

@@ -1,37 +1,79 @@
-{%- comment -%} Homepage About teaser, links out to the full Our Story page. {%- endcomment -%}
+{%- if section.settings.only_on_page == blank or section.settings.only_on_page == page.handle -%}
+{%- comment -%} Homepage story teaser: split photo / copy, links to the full Our Story page. {%- endcomment -%}
 
 <div class="btg-scope">
   {% render 'btg-styles' %}
   {{ 'btg-home.css' | asset_url | stylesheet_tag }}
 
-  <div class="btg-container">
-    <div class="btg-about-teaser">
+  <section class="btg-split">
+    <div class="btg-split__media">
       {%- if section.settings.image != blank -%}
-        {{ section.settings.image | image_url: width: 300 | image_tag: loading: 'lazy', class: 'btg-about-teaser__image', alt: shop.name }}
+        {{ section.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', sizes: '(min-width: 860px) 50vw, 100vw', widths: '600, 900, 1200, 1600', alt: section.settings.image.alt | default: '' }}
+      {%- else -%}
+        <div class="btg-split__fallback"></div>
       {%- endif -%}
-      <div>
-        <div class="btg-eyebrow" style="color:#4C7A4A; margin-bottom:14px;">{{ section.settings.eyebrow | default: 'Our Story' }}</div>
-        <h2 class="btg-display" style="font-size:36px; color:#14140F; margin:0 0 16px;">{{ section.settings.heading }}</h2>
-        <p style="font-size:16px; line-height:1.65; color:#3A392F; max-width:480px; margin:0 0 20px;">{{ section.settings.text }}</p>
-        {%- if section.settings.link_label != blank -%}
-          <a href="{{ section.settings.link }}" class="btg-link-underline" style="border-color:#163A2B; color:#163A2B;">{{ section.settings.link_label }} &rarr;</a>
-        {%- endif -%}
-      </div>
     </div>
-  </div>
+    <div class="btg-split__copy">
+      <div class="btg-eyebrow" style="color:var(--btg-muted); margin-bottom:20px;">{{ section.settings.eyebrow | default: 'Our Story' }}</div>
+      <h2 class="btg-display btg-heading-lg" style="margin:0 0 24px;">{{ section.settings.heading }}</h2>
+      <p class="btg-lede" style="margin-bottom:36px;">{{ section.settings.text }}</p>
+      {%- if section.settings.link_label != blank -%}
+        <a href="{{ section.settings.link | default: '/pages/our-story' }}" class="btg-btn-outline">{{ section.settings.link_label }}</a>
+      {%- endif -%}
+    </div>
+  </section>
 </div>
+{%- endif -%}
 
 {% schema %}
 {
   "name": "BTG About Teaser",
   "settings": [
-    { "type": "image_picker", "id": "image", "label": "Crest / image" },
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Our Story" },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "More Than Merch" },
-    { "type": "textarea", "id": "text", "label": "Text", "default": "A window into the world most golfers never see — now a community, and a uniform." },
-    { "type": "text", "id": "link_label", "label": "Link label", "default": "Read Our Full Story" },
-    { "type": "url", "id": "link", "label": "Link" }
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Our Story"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Golf Has A Back Of House"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Before the first tee time, a crew has already mowed, rolled and set every hole. We started Behind The Greens to show that work, and to make gear worthy of the people who do it."
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Link label",
+      "default": "Read Our Story"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "text",
+      "id": "only_on_page",
+      "label": "Only show on page (handle)",
+      "info": "Leave empty to always show. Used when several pages share one template."
+    }
   ],
-  "presets": [{ "name": "BTG About Teaser" }]
+  "presets": [
+    {
+      "name": "BTG About Teaser"
+    }
+  ]
 }
 {% endschema %}

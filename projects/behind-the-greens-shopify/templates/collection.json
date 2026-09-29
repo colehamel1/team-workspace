@@ -4,9 +4,12 @@
       "type": "btg-collection-grid",
       "settings": {
         "eyebrow": "The Collection",
+        "all_title": "Shop All",
         "tagline": "Built for the people who show up before the flag does."
       }
     }
   },
-  "order": ["btg_collection_grid"]
+  "order": [
+    "btg_collection_grid"
+  ]
 }

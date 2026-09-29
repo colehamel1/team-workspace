@@ -1,3 +1,4 @@
+{%- if section.settings.only_on_page == blank or section.settings.only_on_page == page.handle -%}
 <div class="btg-scope">
   {% render 'btg-styles' %}
   {{ 'btg-about.css' | asset_url | stylesheet_tag }}
@@ -14,15 +15,40 @@
     </div>
   </div>
 </div>
+{%- endif -%}
 
 {% schema %}
 {
   "name": "BTG About Crest",
   "settings": [
-    { "type": "image_picker", "id": "image", "label": "Crest image" },
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Crest" },
-    { "type": "textarea", "id": "text", "label": "Text", "default": "A crest, not a logo — the kind of mark a crew earns, not one a marketing team invents. Every piece we make carries it." }
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Crest image"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The Crest"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "A crest, not a logo — the kind of mark a crew earns, not one a marketing team invents. Every piece we make carries it."
+    },
+    {
+      "type": "text",
+      "id": "only_on_page",
+      "label": "Only show on page (handle)",
+      "info": "Leave empty to always show. Used when several pages share one template."
+    }
   ],
-  "presets": [{ "name": "BTG About Crest" }]
+  "presets": [
+    {
+      "name": "BTG About Crest"
+    }
+  ]
 }
 {% endschema %}

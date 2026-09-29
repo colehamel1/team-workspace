@@ -20,7 +20,7 @@
   display: flex; align-items: center; justify-content: space-between;
   padding: 26px 28px; border-bottom: 1px solid var(--btg-hairline);
 }
-.btg-cart-drawer__title { font-size: 20px; color: var(--btg-ink); }
+.btg-cart-drawer__title { font-size: 24px; color: var(--btg-ink); }
 .btg-close-btn { background: none; border: none; font-size: 22px; line-height: 1; color: var(--btg-ink); cursor: pointer; }
 
 .btg-cart-drawer__items { flex: 1; overflow-y: auto; padding: 8px 28px; }
@@ -31,15 +31,15 @@
 .btg-cart-item__media { width: 84px; height: 84px; background: var(--btg-cream-soft); flex-shrink: 0; overflow: hidden; }
 .btg-cart-item__media img { width: 100%; height: 100%; object-fit: cover; }
 .btg-cart-item__body { flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; }
-.btg-cart-item__title { font-family: var(--btg-font-display); font-weight: 700; font-size: 15px; text-transform: uppercase; color: var(--btg-ink); }
+.btg-cart-item__title { display: block; font-family: var(--btg-font-body); font-weight: 600; font-size: 15px; line-height: 1.35; color: var(--btg-ink); }
 .btg-cart-item__variant { font-size: 12px; color: var(--btg-muted); margin-top: 4px; }
 .btg-cart-item__row { display: flex; align-items: center; justify-content: space-between; }
 .btg-cart-item__price { font-size: 14px; color: var(--btg-ink); }
 .btg-remove-link { background: none; border: none; padding: 0; color: var(--btg-muted); font-size: 10px; text-decoration: underline; cursor: pointer; align-self: flex-start; transition: opacity 0.15s ease; }
 .btg-remove-link:hover { opacity: 0.55; }
 
-.btg-qty-stepper { display: flex; align-items: center; gap: 12px; border: 1px solid rgba(20,20,15,0.25); padding: 4px 12px; }
-.btg-qty-btn { background: none; border: none; font-size: 13px; cursor: pointer; transition: opacity 0.15s ease; padding: 0; min-width: 10px; }
+.btg-qty-stepper { display: flex; align-items: center; gap: 4px; border: 1px solid rgba(20,20,15,0.25); padding: 0 4px; }
+.btg-qty-btn { background: none; border: none; font-size: 15px; cursor: pointer; transition: opacity 0.15s ease; padding: 0; min-width: 32px; min-height: 32px; }
 .btg-qty-btn:hover { opacity: 0.55; }
 
 .btg-cart-drawer__footer { padding: 24px 28px 28px; border-top: 1px solid var(--btg-hairline); }
