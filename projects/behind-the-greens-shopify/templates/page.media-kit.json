@@ -4,9 +4,9 @@
       "type": "btg-mk-hero",
       "name": "BTG MK Hero",
       "settings": {
-        "eyebrow": "Partnerships & Media Kit",
-        "heading": "An Audience That Shows Up Before Sunrise.",
-        "subheading": "We film the side of golf nobody else does. Here's how to be part of it."
+        "eyebrow": "Work With Us",
+        "heading": "Be Part Of The Story",
+        "subheading": "We film the side of golf nobody else does. Here's how courses and brands work with us."
       }
     },
     "btg_mk_proof_im9FW4": {
@@ -32,7 +32,7 @@
           "type": "stat",
           "settings": {
             "value": "1M+",
-            "label": "Facebook engagements, same month",
+            "label": "Facebook engagements, same period",
             "color": "#f3eedf"
           }
         }
@@ -131,7 +131,7 @@
       ],
       "name": "BTG MK Pathways",
       "settings": {
-        "eyebrow": "Work With Us",
+        "eyebrow": "Courses & Brands",
         "title": "Two Ways In"
       }
     },
@@ -163,14 +163,14 @@
           "type": "format",
           "settings": {
             "title": "Multi-Platform Campaigns",
-            "text": "Coordinated placement across video, social, and newsletter."
+            "text": "Coordinated placement across video and social."
           }
         },
         "tier_pYykzb": {
           "type": "tier",
           "settings": {
             "title": "1 Video",
-            "text": "One sponsored integration — a focused way to test the audience.",
+            "text": "One integration. A simple way to test the audience.",
             "rate": "$1,000"
           }
         },
@@ -178,7 +178,7 @@
           "type": "tier",
           "settings": {
             "title": "3 Videos",
-            "text": "Three integrations for repeated exposure across our channels.",
+            "text": "Three integrations for repeat exposure across our channels.",
             "rate": "$2,500"
           }
         },
@@ -186,7 +186,7 @@
           "type": "tier",
           "settings": {
             "title": "5 Videos",
-            "text": "Five integrations — our strongest package for reach and recall.",
+            "text": "Five integrations. Our strongest package for reach.",
             "rate": "$3,500"
           }
         },

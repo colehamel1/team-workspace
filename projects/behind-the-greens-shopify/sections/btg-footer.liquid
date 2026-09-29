@@ -23,7 +23,7 @@
       <div class="btg-footer__top">
         <div class="btg-footer__newsletter">
           <h3 class="btg-display">{{ section.settings.newsletter_heading | default: 'Join The Crew' }}</h3>
-          <p>{{ section.settings.newsletter_text | default: 'New stories, new drops, and the occasional dispatch from the crew. No spam.' }}</p>
+          <p>{{ section.settings.newsletter_text | default: 'New films, new drops and the occasional note from the crew.' }}</p>
           {% form 'customer', class: 'btg-footer__form', id: 'btg-footer-newsletter' %}
             <input type="hidden" name="contact[tags]" value="newsletter">
             {%- if form.posted_successfully? -%}
@@ -114,7 +114,7 @@
       "type": "textarea",
       "id": "newsletter_text",
       "label": "Newsletter text",
-      "default": "New stories, new drops, and the occasional dispatch from the crew. No spam."
+      "default": "New films, new drops and the occasional note from the crew."
     },
     { "type": "url", "id": "instagram_url", "label": "Instagram URL" },
     { "type": "url", "id": "tiktok_url", "label": "TikTok URL" },

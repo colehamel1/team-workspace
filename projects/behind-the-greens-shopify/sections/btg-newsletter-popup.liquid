@@ -43,21 +43,26 @@
           {%- comment -%} Code only ever reaches the page after a real, successful submission. {%- endcomment -%}
           <span data-btg-popup-success hidden></span>
           <div class="btg-eyebrow" style="color:#C1922F; margin-bottom:10px;">{{ section.settings.success_eyebrow | default: "You're In" }}</div>
-          <h2 class="btg-display btg-popup__offer">{{ section.settings.success_heading | default: "Here's Your Code" }}</h2>
+          <h2 class="btg-display btg-popup__offer">{%- if section.settings.discount_code != blank -%}{{ section.settings.success_heading | default: "Here's Your Code" }}{%- else -%}Welcome To The Crew{%- endif -%}</h2>
 
           {%- if section.settings.discount_code != blank -%}
             <div class="btg-popup__code">
               <span class="btg-popup__code-value">{{ section.settings.discount_code }}</span>
-              <span class="btg-eyebrow btg-popup__code-caption">{{ section.settings.discount_percent | default: '10' }}% Off — Use At Checkout</span>
+              <span class="btg-eyebrow btg-popup__code-caption">{{ section.settings.discount_percent | default: '10' }}% Off · Use At Checkout</span>
             </div>
           {%- endif -%}
 
           <p style="font-size:14px; line-height:1.6; color:#A79E86; margin:20px 0 0;">{{ section.settings.success_text | default: 'Watch your inbox for stories, video drops, and new gear.' }}</p>
         {%- else -%}
           <div class="btg-eyebrow" style="color:#C1922F; margin-bottom:10px;">{{ section.settings.eyebrow | default: 'Join The Crew' }}</div>
-          <h2 class="btg-display btg-popup__offer">{{ section.settings.discount_percent | default: '10' }}% Off<br>Your First Order</h2>
+          {%- comment -%} The offer only shows when a real discount code is set, so the popup never promises a code it can't deliver. {%- endcomment -%}
+          {%- if section.settings.discount_code != blank -%}
+            <h2 class="btg-display btg-popup__offer">{{ section.settings.discount_percent | default: '10' }}% Off<br>Your First Order</h2>
+          {%- else -%}
+            <h2 class="btg-display btg-popup__offer">{{ section.settings.heading | default: 'New Films. New Gear.' }}</h2>
+          {%- endif -%}
 
-          <p style="font-size:14px; line-height:1.6; color:#A79E86; margin:0 0 24px;">{{ section.settings.text | default: "Enter your email and we'll send stories from behind the greens, a heads up whenever we drop a new video, and new gear alerts — plus your code to unlock the discount above." }}</p>
+          <p style="font-size:14px; line-height:1.6; color:#A79E86; margin:0 0 24px;">{{ section.settings.text | default: "A heads up when a new film or new gear drops. No spam." }}</p>
 
           <input type="email" name="contact[email]" placeholder="Your email address" required>
           <button type="submit">{{ section.settings.button_label | default: 'Unlock My Code' }}</button>
@@ -77,6 +82,7 @@
     { "type": "checkbox", "id": "enabled", "label": "Enable popup", "default": true },
     { "type": "image_picker", "id": "logo", "label": "Crest / logo (falls back to wordmark)" },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow (before signup)", "default": "Join The Crew" },
+    { "type": "text", "id": "heading", "label": "Heading (when no discount code is set)", "default": "New Films. New Gear." },
     { "type": "text", "id": "discount_percent", "label": "Discount percent (number only)", "default": "10" },
     {
       "type": "text",
@@ -85,7 +91,7 @@
       "default": "CREW10",
       "info": "Must be a real, active discount code under Discounts. Only ever shown after a successful email submission — never rendered in the page before that."
     },
-    { "type": "textarea", "id": "text", "label": "Text (before signup)", "default": "Enter your email and we'll send stories from behind the greens, a heads up whenever we drop a new video, and new gear alerts — plus your code to unlock the discount above." },
+    { "type": "textarea", "id": "text", "label": "Text (before signup)", "default": "A heads up when a new film or new gear drops. No spam." },
     { "type": "text", "id": "button_label", "label": "Button label", "default": "Unlock My Code" },
     { "type": "text", "id": "success_eyebrow", "label": "Eyebrow (after signup)", "default": "You're In" },
     { "type": "text", "id": "success_heading", "label": "Heading (after signup)", "default": "Here's Your Code" },
