@@ -209,3 +209,6 @@ that order; nothing that only makes the site "fancier".
   Back Of House -> compact dated proof -> Work With Us.
 - Homepage follower figure is Cole's own edit (450K+); per-platform media
   kit follower counts still sum to ~389K — reconcile with Cole.
+
+## Theme settings file
+`config/settings_data.json` is a snapshot of the draft's global settings (header, footer, popup, colors) as of Sep 29, 2026. The Shopify editor changes this file, so re-download it from the draft before editing and uploading it again. The popup shows the real CREW10 code (10% off, one use per customer); the offer text only appears when a code is set.
