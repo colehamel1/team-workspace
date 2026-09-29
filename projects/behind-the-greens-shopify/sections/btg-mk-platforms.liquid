@@ -1,4 +1,4 @@
-{%- comment -%} Platform-by-platform stats — all placeholder values, editable per block. {%- endcomment -%}
+{%- comment -%} Platform-by-platform stats, editable per block. {%- endcomment -%}
 
 <div class="btg-scope">
   {% render 'btg-styles' %}
@@ -30,7 +30,9 @@
           </div>
         {%- endfor -%}
       </div>
-      <p class="btg-mk-proof__note" style="text-align:left; color:#8A7F5C;">{{ section.settings.note | default: 'Figures shown are placeholders — replace with current platform statistics before this kit goes out.' }}</p>
+      {%- if section.settings.note != blank -%}
+        <p class="btg-mk-proof__note" style="text-align:left; color:#8A7F5C;">{{ section.settings.note }}</p>
+      {%- endif -%}
     </div>
   </div>
 </div>
@@ -41,7 +43,7 @@
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "By Platform" },
     { "type": "text", "id": "title", "label": "Heading", "default": "Where We Show Up" },
-    { "type": "textarea", "id": "note", "label": "Disclaimer note", "default": "Figures shown are placeholders — replace with current platform statistics before this kit goes out." }
+    { "type": "textarea", "id": "note", "label": "Disclaimer note" }
   ],
   "blocks": [
     {

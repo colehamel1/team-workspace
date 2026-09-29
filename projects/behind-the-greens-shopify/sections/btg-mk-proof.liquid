@@ -1,7 +1,6 @@
 {%- comment -%}
-  Proof of Scale. All three figures are merchant-entered placeholders —
-  update them in section settings once verified numbers exist. Nothing
-  here is invented by the template.
+  Proof of Scale. All figures are merchant-entered in section settings —
+  nothing here is invented by the template.
 {%- endcomment -%}
 
 <div class="btg-scope">
@@ -19,7 +18,9 @@
           </div>
         {%- endfor -%}
       </div>
-      <p class="btg-mk-proof__note">{{ section.settings.note | default: 'Figures shown are placeholders — to be replaced with verified, current statistics.' }}</p>
+      {%- if section.settings.note != blank -%}
+        <p class="btg-mk-proof__note">{{ section.settings.note }}</p>
+      {%- endif -%}
     </div>
   </div>
 </div>
@@ -29,7 +30,7 @@
   "name": "BTG MK Proof Of Scale",
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Proof Of Scale" },
-    { "type": "textarea", "id": "note", "label": "Disclaimer note", "default": "Figures shown are placeholders — to be replaced with verified, current statistics." }
+    { "type": "textarea", "id": "note", "label": "Disclaimer note" }
   ],
   "blocks": [
     {
