@@ -52,7 +52,8 @@
         "heading": "Watch The Work",
         "text": "Documentary-style features from courses and crews across the country.",
         "coming_soon_label": "New Episodes Coming Soon"
-      }
+      },
+      "disabled": true
     },
     "btg_quote": {
       "type": "btg-quote",
@@ -107,7 +108,8 @@
         "eyebrow": "Drop 02",
         "heading": "For The Crew",
         "label": "Coming Soon"
-      }
+      },
+      "disabled": true
     }
   },
   "order": ["btg_hero", "btg_fork", "btg_merch_teaser", "btg_video", "btg_quote", "btg_partnerships_teaser", "btg_about_teaser", "btg_drop_teaser"]
