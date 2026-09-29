@@ -5,7 +5,7 @@
     1. Product metafield custom.lifestyle_image (the pinned "Lifestyle image"
        field on each product in Shopify admin)
     2. Any product image whose alt text starts with "Lifestyle"
-    3. The product's second image
+  With neither, the card simply shows the normal product photo (no hover swap).
   Desktop (hover devices): crossfades to it on hover.
   Touch devices: the card becomes a two-frame swipe with dot indicators.
   Tapping still opens the product.
@@ -36,9 +36,6 @@
         break
       endif
     endfor
-  endif
-  if alt_image == null and images.size > 1
-    assign alt_image = images[1]
   endif
 -%}
 
