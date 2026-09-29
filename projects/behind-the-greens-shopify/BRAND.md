@@ -162,3 +162,31 @@ draft/illustrative ones that could be mistaken for real.**
   (checkout shows it) and no size chart unless real measurements are
   entered in the product section's Size & Fit setting. "30-day returns"
   comes from the store's own refund policy.
+
+## Second creative pass (Sep 29, 2026)
+
+Priority order from Cole: 1) "I want that gear" 2) "This content is sick"
+3) "I've never seen a golf website like this." Every addition must serve
+that order; nothing that only makes the site "fancier".
+
+- **Lifestyle images:** product metafields `custom.lifestyle_image` (file)
+  and `custom.lifestyle_caption` (text), pinned on each product in admin.
+  Card hover crossfades to it (desktop), two-frame swipe on touch, and it
+  joins the PDP gallery with an "On The Job" tag. Fallback: a product image
+  whose alt text starts with "Lifestyle". Images must be believable
+  documentary shots of the exact product; no invented branding.
+- **Films:** `sections/btg-films.liquid` (homepage `#watch-the-work`, and on
+  Work With Us as "What A Feature Looks Like"). One block per film:
+  course, location (only when confirmed), YouTube link. YouTube loads only
+  on play. Films without a link open the channel. As of this pass the five
+  YouTube links were NOT yet provided (Cole's message lost them).
+  Locations entered from general knowledge and flagged for Cole to confirm:
+  Prairie Vista (Bloomington, IL), Oahu CC (Honolulu, HI), Forty Niner CC
+  (Tucson, AZ), TPC Scottsdale (Scottsdale, AZ); Eagle Mountain left blank.
+- **Stories = "Field Notes" journal:** entry numbers derived from blog
+  order (No. 01 = first ever), "Filed" times are real publish times.
+- **Homepage order:** hero (Shop + gold Watch The Work) -> Made For The
+  Course -> Films (+ "The Uniform" gear row) -> manifesto -> Golf Has A
+  Back Of House -> compact dated proof -> Work With Us.
+- Homepage follower figure is Cole's own edit (450K+); per-platform media
+  kit follower counts still sum to ~389K — reconcile with Cole.
