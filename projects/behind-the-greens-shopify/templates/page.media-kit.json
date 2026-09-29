@@ -6,7 +6,7 @@
       "settings": {
         "eyebrow": "Partnerships & Media Kit",
         "heading": "An Audience That Shows Up Before Sunrise.",
-        "subheading": "Behind The Greens reaches golfers, course professionals, and industry insiders who care about the game's real culture. Here's how to reach them with us."
+        "subheading": "We film the side of golf nobody else does, for golfers, course professionals and the people who run the industry. Here's how to work with us."
       }
     },
     "btg_mk_proof_im9FW4": {
@@ -213,7 +213,7 @@
       "settings": {
         "eyebrow": "For Brands",
         "heading": "Brand Partnerships",
-        "text": "Brand partnerships are about access — to an audience that trusts Behind The Greens' position inside golf course culture, and shows up for it. We build integrations around that trust, not around a media buy.",
+        "text": "Our audience trusts what we show them because it's real work, filmed honestly. Partnerships are built around that trust.",
         "formats_label": "Partnership Formats",
         "tiers_label": "Packages & Rates",
         "tiers_note": "Every partnership is scoped to your brief. Reach out and we'll put together a proposal."
@@ -271,9 +271,64 @@
       "settings": {
         "eyebrow": "For Golf Courses",
         "heading": "Behind The Greens: Course Features",
-        "text": "Behind The Greens travels to your property to produce a documentary-style long-form episode telling the story of your course and the people who maintain it. We film alongside your crew, show what actually goes into keeping the course playable, and sit down with your superintendent to talk operation, philosophy, and history. This is a premium editorial feature — not videography for hire.",
+        "text": "We come to your course and make a film about it: the crew, the superintendent and the work that keeps it playable. It's an editorial feature, told in our voice to our audience. Not videography for hire.",
         "pricing_label": "Custom & By Inquiry Only",
         "pricing_note": "Every Course Feature is scoped to the property. Reach out and we'll walk through what's possible."
+      }
+    },
+    "mk_course_films": {
+      "type": "btg-films",
+      "blocks": {
+        "film_prairie_vista": {
+          "type": "film",
+          "settings": {
+            "course": "Prairie Vista Golf Course",
+            "location": "Bloomington, IL"
+          }
+        },
+        "film_oahu": {
+          "type": "film",
+          "settings": {
+            "course": "Oahu Country Club",
+            "location": "Honolulu, HI"
+          }
+        },
+        "film_forty_niner": {
+          "type": "film",
+          "settings": {
+            "course": "Forty Niner Country Club",
+            "location": "Tucson, AZ"
+          }
+        },
+        "film_tpc_scottsdale": {
+          "type": "film",
+          "settings": {
+            "course": "TPC Scottsdale",
+            "location": "Scottsdale, AZ"
+          }
+        },
+        "film_eagle_mountain": {
+          "type": "film",
+          "settings": {
+            "course": "Eagle Mountain Golf Course",
+            "location": ""
+          }
+        }
+      },
+      "block_order": [
+        "film_prairie_vista",
+        "film_oahu",
+        "film_forty_niner",
+        "film_tpc_scottsdale",
+        "film_eagle_mountain"
+      ],
+      "settings": {
+        "tone": "light",
+        "anchor": "course-films",
+        "eyebrow": "Course Features",
+        "heading": "What A Feature Looks Like",
+        "text": "Every film is made on site, with the crew, in their words.",
+        "channel_url": "https://www.youtube.com/@behind_thegreens"
       }
     },
     "btg_mk_selected_work_ybwREh": {
@@ -342,6 +397,7 @@
     "btg_mk_pathways_WP6JRy",
     "btg_mk_brands_9icgpw",
     "btg_mk_courses_QLLyWK",
+    "mk_course_films",
     "btg_mk_selected_work_ybwREh",
     "btg_mk_closing_4pMVW8"
   ]

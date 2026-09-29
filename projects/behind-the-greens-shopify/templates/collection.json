@@ -5,7 +5,13 @@
       "settings": {
         "eyebrow": "The Collection",
         "all_title": "Shop All",
-        "tagline": "Built for the people who show up before the flag does."
+        "tagline": "Built for the people who show up before the flag does.",
+        "band_after": 3,
+        "band_image": "shopify://shop_images/10a3135f-fairway-mowers.jpg",
+        "band_eyebrow": "Behind The Greens",
+        "band_heading": "Golf Has A Back Of House",
+        "band_link_label": "Read Our Story",
+        "band_link": "shopify://pages/our-story"
       }
     }
   },

@@ -9,7 +9,7 @@
   {% render 'btg-styles' %}
   {{ 'btg-home.css' | asset_url | stylesheet_tag }}
 
-  <section class="btg-proof{% if section.settings.style == 'dark' %} btg-proof--dark{% endif %}">
+  <section class="btg-proof{% if section.settings.style == 'dark' %} btg-proof--dark{% endif %}{% if section.settings.compact %} btg-proof--compact{% endif %}">
     <div class="btg-container">
       <div class="btg-proof__grid">
         <div class="btg-proof__intro">
@@ -56,6 +56,12 @@
         }
       ],
       "default": "dark"
+    },
+    {
+      "type": "checkbox",
+      "id": "compact",
+      "label": "Compact",
+      "default": false
     },
     {
       "type": "text",

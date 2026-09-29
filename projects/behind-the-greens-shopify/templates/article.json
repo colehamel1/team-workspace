@@ -1,8 +1,13 @@
 {
   "sections": {
     "btg_article_main": {
-      "type": "btg-article-main"
+      "type": "btg-article-main",
+      "settings": {
+        "gear_collection_handle": "home-page-1"
+      }
     }
   },
-  "order": ["btg_article_main"]
+  "order": [
+    "btg_article_main"
+  ]
 }

@@ -18,3 +18,15 @@
   .btg-shop-head { padding-bottom: 36px; }
   .btg-shop-bar { margin-bottom: 28px; }
 }
+
+/* Editorial band inside the grid: full-width photograph between product rows.
+   dense packing lets the next product fill any gap left before the band. */
+.btg-shop-grid { grid-auto-flow: row dense; }
+.btg-shop-band { grid-column: 1 / -1; position: relative; display: flex; align-items: flex-end; min-height: clamp(320px, 42vw, 560px); overflow: hidden; background: var(--btg-forest-deep) url("https://cdn.shopify.com/s/files/1/0632/2172/7335/files/btg-img-fork-stories.jpg?v=1790710192") center / cover; color: var(--btg-cream); margin: 8px 0; }
+.btg-shop-band__img { position: absolute; inset: 0; }
+.btg-shop-band__img img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.6s var(--btg-ease); }
+.btg-shop-band:hover .btg-shop-band__img img { transform: scale(1.02); }
+.btg-shop-band::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,14,10,0.78) 0%, rgba(10,14,10,0.1) 60%); }
+.btg-shop-band__copy { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding: clamp(28px, 4vw, 56px); }
+.btg-shop-band__copy .btg-mono { color: var(--btg-ochre); }
+.btg-shop-band__copy .btg-display { font-size: clamp(36px, 5vw, 72px); line-height: 0.9; max-width: 12ch; }

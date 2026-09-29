@@ -1,7 +1,14 @@
 {%- comment -%}
   Behind The Greens product card — collection grid, homepage, PDP related.
-  Everything is live product data. Shows the second product image on hover
-  when one exists. Color dots use the product's own swatch settings.
+
+  Second image ("on the job"), in priority order:
+    1. Product metafield custom.lifestyle_image (the pinned "Lifestyle image"
+       field on each product in Shopify admin)
+    2. Any product image whose alt text starts with "Lifestyle"
+    3. The product's second image
+  Desktop (hover devices): crossfades to it on hover.
+  Touch devices: the card becomes a two-frame swipe with dot indicators.
+  Tapping still opens the product.
 
   Usage: {% render 'btg-product-card', product: product %}
 {%- endcomment -%}
@@ -13,18 +20,47 @@
       assign color_option = option
     endif
   endfor
+
   assign images = product.media | where: 'media_type', 'image'
+  assign alt_image = null
+  assign is_lifestyle = false
+  if product.metafields.custom.lifestyle_image.value != blank
+    assign alt_image = product.metafields.custom.lifestyle_image.value
+    assign is_lifestyle = true
+  else
+    for img in images
+      assign alt_text = img.alt | default: '' | downcase
+      if alt_text contains 'lifestyle' and img.id != product.featured_media.id
+        assign alt_image = img
+        assign is_lifestyle = true
+        break
+      endif
+    endfor
+  endif
+  if alt_image == null and images.size > 1
+    assign alt_image = images[1]
+  endif
 -%}
 
-<a href="{{ product.url }}" class="btg-card{% unless product.available %} btg-card--sold-out{% endunless %}">
+<a href="{{ product.url }}" class="btg-card{% unless product.available %} btg-card--sold-out{% endunless %}{% if alt_image %} btg-card--has-alt{% endif %}{% if is_lifestyle %} btg-card--lifestyle{% endif %}">
   <div class="btg-card__media">
-    {%- if product.featured_media -%}
-      {{ product.featured_media | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 1000px) 30vw, 50vw', widths: '360, 540, 720, 900', alt: product.featured_media.alt | default: product.title }}
-      {%- if images.size > 1 -%}
-        {{ images[1] | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 1000px) 30vw, 50vw', widths: '360, 540, 720, 900', alt: '', class: 'btg-card__img-alt' }}
+    <div class="btg-card__track" data-btg-card-track>
+      <div class="btg-card__frame">
+        {%- if product.featured_media -%}
+          {{ product.featured_media | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 1000px) 30vw, 50vw', widths: '360, 540, 720, 900', alt: product.featured_media.alt | default: product.title }}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag }}
+        {%- endif -%}
+      </div>
+      {%- if alt_image -%}
+        <div class="btg-card__frame btg-card__frame--alt">
+          {{ alt_image | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 1000px) 30vw, 70vw', widths: '360, 540, 720, 900', alt: '' }}
+          {%- if is_lifestyle -%}<span class="btg-card__tag">On The Job</span>{%- endif -%}
+        </div>
       {%- endif -%}
-    {%- else -%}
-      {{ 'product-1' | placeholder_svg_tag }}
+    </div>
+    {%- if alt_image -%}
+      <span class="btg-card__dots" aria-hidden="true"><i class="is-active"></i><i></i></span>
     {%- endif -%}
     {%- unless product.available -%}
       <span class="btg-card__badge">Sold Out</span>

@@ -42,9 +42,23 @@
           <a href="{{ routes.all_products_collection_url }}" class="btg-btn-outline">Shop All</a>
         </div>
       {%- else -%}
-        <div class="btg-grid-3">
+        <div class="btg-grid-3 btg-shop-grid">
           {%- for product in collection.products -%}
             {% render 'btg-product-card', product: product %}
+            {%- if section.settings.band_after > 0 and forloop.index == section.settings.band_after and forloop.length > forloop.index and paginate.current_page == 1 -%}
+              <a href="{{ section.settings.band_link | default: '/pages/our-story' }}" class="btg-shop-band">
+                <span class="btg-shop-band__img">
+                  {%- if section.settings.band_image != blank -%}
+                    {{ section.settings.band_image | image_url: width: 2000 | image_tag: loading: 'lazy', sizes: '100vw', widths: '800, 1200, 1600, 2000', alt: '' }}
+                  {%- endif -%}
+                </span>
+                <span class="btg-shop-band__copy">
+                  <span class="btg-mono">{{ section.settings.band_eyebrow }}</span>
+                  <span class="btg-display">{{ section.settings.band_heading }}</span>
+                  {%- if section.settings.band_link_label != blank -%}<span class="btg-link-underline-lt">{{ section.settings.band_link_label }}</span>{%- endif -%}
+                </span>
+              </a>
+            {%- endif -%}
           {%- endfor -%}
         </div>
       {%- endif -%}
@@ -66,9 +80,66 @@
 {
   "name": "BTG Collection Grid",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Collection" },
-    { "type": "text", "id": "all_title", "label": "Heading on the all-products page", "default": "Shop All" },
-    { "type": "text", "id": "tagline", "label": "Tagline", "default": "Built for the people who show up before the flag does." }
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The Collection"
+    },
+    {
+      "type": "text",
+      "id": "all_title",
+      "label": "Heading on the all-products page",
+      "default": "Shop All"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Built for the people who show up before the flag does."
+    },
+    {
+      "type": "header",
+      "content": "Story band"
+    },
+    {
+      "type": "range",
+      "id": "band_after",
+      "label": "Show after product #",
+      "min": 0,
+      "max": 12,
+      "step": 1,
+      "default": 3,
+      "info": "0 hides it."
+    },
+    {
+      "type": "image_picker",
+      "id": "band_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "band_eyebrow",
+      "label": "Label",
+      "default": "Behind The Greens"
+    },
+    {
+      "type": "text",
+      "id": "band_heading",
+      "label": "Heading",
+      "default": "Golf Has A Back Of House"
+    },
+    {
+      "type": "text",
+      "id": "band_link_label",
+      "label": "Link label",
+      "default": "Read Our Story"
+    },
+    {
+      "type": "url",
+      "id": "band_link",
+      "label": "Link"
+    }
   ]
 }
 {% endschema %}

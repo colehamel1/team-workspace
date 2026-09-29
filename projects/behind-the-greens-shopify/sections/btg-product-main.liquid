@@ -16,6 +16,12 @@
   endif
   assign gallery_media = product.media | where: 'media_type', 'image'
   assign initial_media = current_variant.featured_media | default: product.featured_media
+  assign lifestyle = product.metafields.custom.lifestyle_image.value
+  assign lifestyle_caption = product.metafields.custom.lifestyle_caption.value
+  assign slide_count = gallery_media.size
+  if lifestyle != blank
+    assign slide_count = slide_count | plus: 1
+  endif
   assign has_specs = false
   if product.metafields.shopify.fabric != blank or product.metafields.shopify.material != blank or product.metafields.shopify['headwear-features'] != blank
     assign has_specs = true
@@ -47,17 +53,28 @@
           {%- else -%}
             <div class="btg-pdp__slide">{{ 'product-1' | placeholder_svg_tag }}</div>
           {%- endif -%}
+          {%- if lifestyle != blank -%}
+            <figure class="btg-pdp__slide btg-pdp__slide--lifestyle" data-btg-slide>
+              {{ lifestyle | image_url: width: 1600 | image_tag: loading: 'lazy', sizes: '(min-width: 1000px) 58vw, 100vw', widths: '600, 900, 1200, 1600', alt: lifestyle.alt | default: '', class: 'btg-pdp__slide-img' }}
+              <figcaption class="btg-pdp__slide-caption btg-mono">On The Job{% if lifestyle_caption != blank %} &middot; {{ lifestyle_caption }}{% endif %}</figcaption>
+            </figure>
+          {%- endif -%}
         </div>
-        {%- if gallery_media.size > 1 -%}
+        {%- if slide_count > 1 -%}
           <div class="btg-pdp__thumbs" data-btg-thumbs>
             {%- for media in gallery_media -%}
-              <button type="button" class="btg-thumb{% if forloop.first %} active{% endif %}" data-btg-thumb data-index="{{ forloop.index0 }}" aria-label="Show image {{ forloop.index }} of {{ gallery_media.size }}">
+              <button type="button" class="btg-thumb{% if forloop.first %} active{% endif %}" data-btg-thumb data-index="{{ forloop.index0 }}" aria-label="Show image {{ forloop.index }} of {{ slide_count }}">
                 {{ media | image_url: width: 240 | image_tag: loading: 'lazy', alt: '' }}
               </button>
             {%- endfor -%}
+            {%- if lifestyle != blank -%}
+              <button type="button" class="btg-thumb" data-btg-thumb data-index="{{ gallery_media.size }}" aria-label="Show on-the-job photo">
+                {{ lifestyle | image_url: width: 240 | image_tag: loading: 'lazy', alt: '' }}
+              </button>
+            {%- endif -%}
           </div>
           <div class="btg-pdp__dots" data-btg-dots aria-hidden="true">
-            {%- for media in gallery_media -%}
+            {%- for i in (1..slide_count) -%}
               <span class="btg-dot{% if forloop.first %} active{% endif %}" data-btg-dot></span>
             {%- endfor -%}
           </div>
@@ -212,6 +229,16 @@
     </button>
   </div>
 
+  {%- if section.settings.show_film_band -%}
+    <a href="{{ routes.root_url }}#watch-the-work" class="btg-pdp-film">
+      <span class="btg-pdp-film__copy btg-container">
+        <span class="btg-mono">{{ section.settings.film_eyebrow | default: 'Watch The Work' }}</span>
+        <span class="btg-display">{{ section.settings.film_heading | default: 'See The Course It Was Made For' }}</span>
+        <span class="btg-pdp-film__cta"><svg width="10" height="11" viewBox="0 0 11 12" aria-hidden="true"><path d="M0 0l11 6-11 6z" fill="currentColor"/></svg> Films From Behind The Greens</span>
+      </span>
+    </a>
+  {%- endif -%}
+
   {%- if related_collection and related_collection.products.size > 1 -%}
     {%- assign cross_sell_eyebrow = section.settings.cross_sell_eyebrow | default: 'Complete The Kit' -%}
     {%- assign cross_sell_title = section.settings.cross_sell_title | default: 'You May Also Like' -%}
@@ -247,10 +274,52 @@
       "label": "Related products collection",
       "info": "Defaults to the product's own collection if left blank."
     },
-    { "type": "text", "id": "cross_sell_eyebrow", "label": "Related products eyebrow", "default": "Complete The Kit" },
-    { "type": "text", "id": "cross_sell_title", "label": "Related products heading", "default": "You May Also Like" },
-    { "type": "richtext", "id": "sizing_text", "label": "Size & Fit panel", "info": "Leave empty to hide the panel. Only add real measurements." },
-    { "type": "richtext", "id": "shipping_text", "label": "Shipping & Returns panel", "info": "Leave empty to show the default: shipping at checkout + link to your returns policy." }
+    {
+      "type": "text",
+      "id": "cross_sell_eyebrow",
+      "label": "Related products eyebrow",
+      "default": "Complete The Kit"
+    },
+    {
+      "type": "text",
+      "id": "cross_sell_title",
+      "label": "Related products heading",
+      "default": "You May Also Like"
+    },
+    {
+      "type": "richtext",
+      "id": "sizing_text",
+      "label": "Size & Fit panel",
+      "info": "Leave empty to hide the panel. Only add real measurements."
+    },
+    {
+      "type": "richtext",
+      "id": "shipping_text",
+      "label": "Shipping & Returns panel",
+      "info": "Leave empty to show the default: shipping at checkout + link to your returns policy."
+    },
+    {
+      "type": "header",
+      "content": "Film band"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_film_band",
+      "label": "Show film band",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "film_eyebrow",
+      "label": "Label",
+      "default": "Watch The Work"
+    },
+    {
+      "type": "text",
+      "id": "film_heading",
+      "label": "Heading",
+      "default": "See The Course It Was Made For"
+    }
   ]
 }
 {% endschema %}

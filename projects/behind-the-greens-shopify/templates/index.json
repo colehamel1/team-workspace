@@ -4,13 +4,17 @@
       "type": "btg-hero",
       "settings": {
         "hero_video": "shopify://files/videos/btgheromontagev2.mp4",
+        "focus_desktop": "center 40%",
+        "focus_mobile": "center center",
+        "content_side": "left",
+        "scrim": 55,
         "eyebrow": "Golf Course Culture",
         "heading": "Behind The Greens",
-        "subheading": "The crews, the culture and the craft behind every fairway. Stories from the course, and gear made for the people who keep it.",
+        "subheading": "The crews and the craft behind every fairway. Films from the course, and gear made for the people who keep it.",
         "primary_label": "Shop The Collection",
         "primary_link": "shopify://collections/all",
-        "secondary_label": "Read The Stories",
-        "secondary_link": "shopify://blogs/stories"
+        "secondary_label": "Watch The Work",
+        "secondary_link": "#watch-the-work"
       }
     },
     "btg_merch_teaser": {
@@ -18,20 +22,11 @@
       "settings": {
         "eyebrow": "The Collection",
         "title": "Made For The Course",
+        "text": "",
         "view_all_label": "Shop All",
         "collection": "home-page-1",
         "product_count": 6,
         "columns": "3"
-      }
-    },
-    "btg_video": {
-      "type": "btg-video",
-      "settings": {
-        "eyebrow": "Behind The Camera",
-        "heading": "Watch The Work",
-        "text": "Documentary-style features from courses and crews across the country.",
-        "video": "https://youtu.be/Kn-Qtw8J0gA?si=SymEEhnq79Js7Hze",
-        "coming_soon_label": "New Episodes Coming Soon"
       }
     },
     "btg_quote": {
@@ -91,7 +86,7 @@
         "followers": {
           "type": "stat",
           "settings": {
-            "value": "380K+",
+            "value": "450K+",
             "label": "Followers across four platforms"
           }
         },
@@ -99,14 +94,14 @@
           "type": "stat",
           "settings": {
             "value": "213M",
-            "label": "Views in a single month"
+            "label": "Views, Jul 23 – Aug 21, 2026"
           }
         },
         "engagement": {
           "type": "stat",
           "settings": {
             "value": "1M+",
-            "label": "Facebook engagements in that month"
+            "label": "Facebook engagements, same period"
           }
         }
       },
@@ -116,20 +111,80 @@
         "engagement"
       ],
       "settings": {
-        "style": "dark",
+        "style": "light",
+        "compact": true,
         "eyebrow": "The Crew",
         "heading": "A Community Built On The Course",
-        "note": "Views and engagements from each platform's analytics, Jul 23 – Aug 21, 2026."
+        "note": "Follower count as of Sep 2026. Views and engagements from each platform's analytics, Jul 23 – Aug 21, 2026.",
+        "only_on_page": ""
+      }
+    },
+    "btg_films": {
+      "type": "btg-films",
+      "blocks": {
+        "film_prairie_vista": {
+          "type": "film",
+          "settings": {
+            "course": "Prairie Vista Golf Course",
+            "location": "Bloomington, IL"
+          }
+        },
+        "film_oahu": {
+          "type": "film",
+          "settings": {
+            "course": "Oahu Country Club",
+            "location": "Honolulu, HI"
+          }
+        },
+        "film_forty_niner": {
+          "type": "film",
+          "settings": {
+            "course": "Forty Niner Country Club",
+            "location": "Tucson, AZ"
+          }
+        },
+        "film_tpc_scottsdale": {
+          "type": "film",
+          "settings": {
+            "course": "TPC Scottsdale",
+            "location": "Scottsdale, AZ"
+          }
+        },
+        "film_eagle_mountain": {
+          "type": "film",
+          "settings": {
+            "course": "Eagle Mountain Golf Course",
+            "location": ""
+          }
+        }
+      },
+      "block_order": [
+        "film_prairie_vista",
+        "film_oahu",
+        "film_forty_niner",
+        "film_tpc_scottsdale",
+        "film_eagle_mountain"
+      ],
+      "settings": {
+        "tone": "dark",
+        "anchor": "watch-the-work",
+        "eyebrow": "Watch The Work",
+        "heading": "Films From Behind The Greens",
+        "text": "The crews, the superintendents and the work that happens before anyone tees off.",
+        "channel_url": "https://www.youtube.com/@behind_thegreens",
+        "gear_collection": "home-page-1",
+        "gear_eyebrow": "The Uniform",
+        "gear_text": "Made for the people in these films."
       }
     }
   },
   "order": [
     "btg_hero",
     "btg_merch_teaser",
-    "btg_proof",
+    "btg_films",
     "btg_quote",
-    "btg_video",
     "btg_about_teaser",
+    "btg_proof",
     "btg_partnerships_teaser"
   ]
 }

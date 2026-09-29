@@ -21,7 +21,7 @@
         "followers": {
           "type": "stat",
           "settings": {
-            "value": "380K+",
+            "value": "450K+",
             "label": "Followers across four platforms"
           }
         },
@@ -29,14 +29,14 @@
           "type": "stat",
           "settings": {
             "value": "213M",
-            "label": "Views in a single month"
+            "label": "Views, Jul 23 – Aug 21, 2026"
           }
         },
         "engagement": {
           "type": "stat",
           "settings": {
             "value": "1M+",
-            "label": "Facebook engagements in that month"
+            "label": "Facebook engagements, same period"
           }
         }
       },
@@ -49,7 +49,8 @@
         "style": "light",
         "eyebrow": "The Community",
         "heading": "The Crew Is Bigger Than You Think",
-        "note": "Views and engagements from each platform's analytics, Jul 23 – Aug 21, 2026."
+        "note": "Follower count as of Sep 2026. Views and engagements from each platform's analytics, Jul 23 – Aug 21, 2026.",
+        "compact": true
       }
     },
     "story_values": {

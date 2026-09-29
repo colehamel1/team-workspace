@@ -21,6 +21,9 @@
 .btg-pdp__slide { flex: 0 0 100%; width: 100%; height: 100%; scroll-snap-align: start; }
 .btg-pdp__slide-img, .btg-pdp__slide img, .btg-pdp__slide svg { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+.btg-pdp__slide--lifestyle { position: relative; margin: 0; }
+.btg-pdp__slide-caption { position: absolute; left: 16px; bottom: 16px; color: var(--btg-cream); background: rgba(20,20,15,0.55); padding: 7px 10px; -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+.btg-pdp__slide--lifestyle .btg-pdp__slide-img { object-fit: cover !important; }
 .btg-pdp__thumbs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
 .btg-thumb {
   aspect-ratio: 1/1; background: var(--btg-cream-soft); overflow: hidden;
@@ -138,3 +141,12 @@
   .btg-pdp__title { font-size: 34px; }
   .btg-pdp-qty button { width: 40px; }
 }
+
+/* Film band: product page -> films. Uses a still from the films. */
+.btg-pdp-film { position: relative; display: flex; align-items: flex-end; min-height: clamp(300px, 36vw, 460px); color: var(--btg-cream); background: var(--btg-ink) url("https://cdn.shopify.com/s/files/1/0632/2172/7335/files/btg-img-video-still.jpg?v=1790710191") center / cover; overflow: hidden; }
+.btg-pdp-film::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,14,10,0.85) 0%, rgba(10,14,10,0.3) 70%); transition: opacity 0.4s ease; }
+.btg-pdp-film:hover::before { opacity: 0.8; }
+.btg-pdp-film__copy { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; width: 100%; padding-top: 48px; padding-bottom: 48px; }
+.btg-pdp-film__copy .btg-mono { color: var(--btg-ochre); }
+.btg-pdp-film__copy .btg-display { font-size: clamp(34px, 4.6vw, 64px); line-height: 0.92; max-width: 13ch; }
+.btg-pdp-film__cta { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; padding-bottom: 5px; border-bottom: 1px solid rgba(243,238,223,0.5); }

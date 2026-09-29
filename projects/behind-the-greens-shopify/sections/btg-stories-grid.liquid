@@ -1,72 +1,89 @@
 {%- comment -%}
-  Stories grid — pulls real articles from the Shopify Blog this template
-  is assigned to. Nothing is hardcoded; with zero published articles it
-  shows an honest empty state rather than fabricated placeholder posts.
+  Stories index as a field journal: a large lead entry, then an index of
+  numbered entries. Entry numbers count from the first story ever filed
+  (No. 01) — derived from the blog, never invented. "Filed" times are the
+  real publish times in the store's time zone.
 {%- endcomment -%}
 
 <div class="btg-scope">
   {% render 'btg-styles' %}
   {{ 'btg-stories.css' | asset_url | stylesheet_tag }}
 
-  {%- paginate blog.articles by 13 -%}
+  {%- paginate blog.articles by 12 -%}
     {%- if blog.articles.size == 0 -%}
-      <div class="btg-container" style="padding-bottom:120px;">
-        <p style="color:#8A7F5C; font-size:14px;">{{ section.settings.empty_state_text | default: 'Stories will appear here once published.' }}</p>
+      <div class="btg-container" style="padding-bottom:var(--btg-section);">
+        <p class="btg-small">{{ section.settings.empty_state_text | default: 'Stories will appear here once published.' }}</p>
       </div>
     {%- else -%}
-      {%- assign featured = blog.articles.first -%}
-      <div class="btg-container" style="padding-bottom:100px;">
-        <a href="{{ featured.url }}" class="btg-featured-story">
-          {%- if featured.image -%}
-            {{ featured.image | image_url: width: 1400 | image_tag: loading: 'eager', alt: featured.title }}
-          {%- endif -%}
-          <div class="btg-featured-story__body">
-            <div class="btg-eyebrow" style="color:#C1922F; margin-bottom:16px;">Featured{% if featured.tags.size > 0 %} &middot; {{ featured.tags.first }}{% endif %}</div>
-            <div class="btg-display" style="font-size:32px; color:#F3EEDF; margin-bottom:16px;">{{ featured.title }}</div>
-            {%- if featured.excerpt != blank -%}
-              <p style="font-size:14px; line-height:1.65; color:#A79E86; margin:0 0 20px;">{{ featured.excerpt | strip_html | truncate: 160 }}</p>
-            {%- endif -%}
-            <span class="btg-eyebrow" style="color:#F3EEDF; font-size:11px; border-bottom:1px solid rgba(243,238,223,0.4); padding-bottom:3px;">Read The Story &rarr;</span>
-          </div>
-        </a>
-      </div>
-
-      {%- if blog.articles.size > 1 -%}
-        <div class="btg-container" style="padding-bottom:120px;">
-          <div class="btg-grid-3">
-            {%- for article in blog.articles offset: 1 -%}
-              <a href="{{ article.url }}" class="btg-story-card">
-                <div class="btg-story-card__media">
-                  {%- if article.image -%}
-                    {{ article.image | image_url: width: 700 | image_tag: loading: 'lazy', alt: article.title }}
-                  {%- endif -%}
-                </div>
-                <div class="btg-eyebrow" style="color:#8A7F5C; margin-bottom:8px; font-size:10px;">
-                  {%- if article.tags.size > 0 -%}{{ article.tags.first }} &middot; {%- endif -%}{{ article.published_at | date: '%B %-d, %Y' }}
-                </div>
-                <div class="btg-display" style="font-size:20px; color:#14140F; margin-bottom:8px;">{{ article.title }}</div>
-                {%- if article.excerpt != blank -%}
-                  <p style="font-size:13.5px; line-height:1.6; color:#3A392F; margin:0;">{{ article.excerpt | strip_html | truncate: 110 }}</p>
+      {%- assign total = blog.articles_count -%}
+      {%- for article in blog.articles -%}
+        {%- assign entry_no = total | minus: paginate.current_offset | minus: forloop.index0 -%}
+        {%- capture no -%}{%- if entry_no < 10 -%}0{%- endif -%}{{ entry_no }}{%- endcapture -%}
+        {%- comment -%} Numbers only make sense in the full, unfiltered journal. {%- endcomment -%}
+        {%- if blog.current_tags != blank -%}{%- assign no = '—' -%}{%- endif -%}
+        {%- if forloop.first and paginate.current_page == 1 and blog.current_tags == blank -%}
+          <article class="btg-journal-lead">
+            <a href="{{ article.url }}" class="btg-journal-lead__media">
+              {%- if article.image -%}
+                {{ article.image | image_url: width: 2200 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '100vw', widths: '800, 1200, 1600, 2200', alt: article.image.alt | default: article.title }}
+              {%- endif -%}
+              <span class="btg-journal-lead__shade" aria-hidden="true"></span>
+              <span class="btg-journal-lead__body btg-container">
+                <span class="btg-mono btg-journal-lead__meta">No. {{ no }}{% if article.tags.size > 0 %} &middot; {{ article.tags.first }}{% endif %} &middot; Latest Entry</span>
+                <span class="btg-display btg-journal-lead__title">{{ article.title }}</span>
+                {%- if article.excerpt_or_content != blank -%}
+                  <span class="btg-journal-lead__excerpt">{{ article.excerpt_or_content | strip_html | truncate: 180 }}</span>
                 {%- endif -%}
-              </a>
-            {%- endfor -%}
+                <span class="btg-mono btg-journal-lead__filed">Filed {{ article.published_at | date: '%b %-d, %Y · %-I:%M %p' }}</span>
+              </span>
+            </a>
+          </article>
+          {%- if blog.articles.size > 1 -%}
+          <div class="btg-container btg-journal-index-head">
+            <span class="btg-mono">Index</span>
           </div>
-        </div>
-      {%- endif -%}
+          {%- endif -%}
+          <div class="btg-container"><ol class="btg-journal-list" role="list">
+        {%- else -%}
+          {%- if forloop.first -%}<div class="btg-container"><ol class="btg-journal-list" role="list">{%- endif -%}
+          <li>
+            <a href="{{ article.url }}" class="btg-journal-entry">
+              <span class="btg-journal-entry__no">
+                <span class="btg-display">{{ no }}</span>
+                {%- if article.tags.size > 0 -%}<span class="btg-mono">{{ article.tags.first }}</span>{%- endif -%}
+              </span>
+              <span class="btg-journal-entry__text">
+                <span class="btg-journal-entry__title">{{ article.title }}</span>
+                {%- if article.excerpt_or_content != blank -%}
+                  <span class="btg-journal-entry__excerpt">{{ article.excerpt_or_content | strip_html | truncate: 170 }}</span>
+                {%- endif -%}
+                <span class="btg-mono btg-journal-entry__filed">Filed {{ article.published_at | date: '%b %-d, %Y · %-I:%M %p' }}</span>
+              </span>
+              <span class="btg-journal-entry__media">
+                {%- if article.image -%}
+                  {{ article.image | image_url: width: 800 | image_tag: loading: 'lazy', sizes: '(min-width: 860px) 320px, 100vw', widths: '400, 600, 800', alt: article.image.alt | default: '' }}
+                {%- endif -%}
+              </span>
+            </a>
+          </li>
+        {%- endif -%}
+        {%- if forloop.last -%}</ol></div>{%- endif -%}
+      {%- endfor -%}
     {%- endif -%}
 
     {%- if paginate.pages > 1 -%}
-      <div class="btg-container" style="padding-bottom:100px;">
-        <nav class="btg-pagination">
-          {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}" class="btg-eyebrow">&larr; Previous</a>{%- endif -%}
+      <div class="btg-container">
+        <nav class="btg-pagination" aria-label="Pagination">
+          {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}" class="btg-eyebrow">&larr; Newer</a>{%- endif -%}
           {%- for part in paginate.parts -%}
             {%- if part.is_link -%}<a href="{{ part.url }}" class="btg-eyebrow">{{ part.title }}</a>{%- else -%}<span class="btg-eyebrow is-active">{{ part.title }}</span>{%- endif -%}
           {%- endfor -%}
-          {%- if paginate.next -%}<a href="{{ paginate.next.url }}" class="btg-eyebrow">Next &rarr;</a>{%- endif -%}
+          {%- if paginate.next -%}<a href="{{ paginate.next.url }}" class="btg-eyebrow">Older &rarr;</a>{%- endif -%}
         </nav>
       </div>
     {%- endif -%}
   {%- endpaginate -%}
+  <div style="height:var(--btg-section);"></div>
 </div>
 
 {% schema %}
