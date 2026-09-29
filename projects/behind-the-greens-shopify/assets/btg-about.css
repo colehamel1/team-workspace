@@ -1,6 +1,6 @@
 .btg-about-hero { position: relative; min-height: 52vh; display: flex; align-items: flex-end; background: var(--btg-forest-deep); overflow: hidden; }
 .btg-about-hero__image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
-.btg-about-hero__default-image { position: absolute; inset: 0; background-image: url("btg-img-about-hero.jpg"); background-size: cover; background-position: center 30%; }
+.btg-about-hero__default-image { position: absolute; inset: 0; background-image: url("https://cdn.shopify.com/s/files/1/0632/2172/7335/files/btg-img-about-hero.jpg?v=1790710191"); background-size: cover; background-position: center 30%; }
 .btg-about-hero__scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,42,31,0.25) 0%, rgba(15,42,31,0.5) 55%, rgba(15,42,31,0.94) 100%); }
 .btg-about-hero__content { position: relative; z-index: 2; padding: 0 40px 56px; max-width: 760px; }
 .btg-about-hero__heading { color: var(--btg-cream); font-size: 64px; margin: 0; }

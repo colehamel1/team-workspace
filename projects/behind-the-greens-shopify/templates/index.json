@@ -4,9 +4,9 @@
       "type": "btg-hero",
       "settings": {
         "hero_video": "shopify://files/videos/btgheromontagev2.mp4",
-        "eyebrow": "Behind The Greens · Golf Course Culture",
+        "eyebrow": "Behind The Greens",
         "heading": "Golf Starts Before Dawn.",
-        "subheading": "Behind The Greens tells the story of the crews, culture, and craft that make the game possible — and builds the apparel that carries it.",
+        "subheading": "Behind The Greens tells the story of the crews, culture, and craft that make the game possible",
         "primary_label": "Shop The Collection",
         "primary_link": "shopify://collections/all",
         "secondary_label": "Explore Stories",
@@ -27,13 +27,18 @@
         "stories_panel": {
           "type": "panel",
           "settings": {
+            "image": "shopify://shop_images/10a3135f-fairway-mowers.jpg",
             "eyebrow": "Media",
             "heading": "Read The Stories",
-            "link": "shopify://blogs/stories"
+            "link": "https://behindthegreens.com/blogs/stories"
           }
         }
       },
-      "block_order": ["shop_panel", "stories_panel"]
+      "block_order": [
+        "shop_panel",
+        "stories_panel"
+      ],
+      "settings": {}
     },
     "btg_merch_teaser": {
       "type": "btg-shop-teaser",
@@ -42,7 +47,8 @@
         "title": "Made For The Course",
         "view_all_label": "Shop All",
         "collection": "home-page-1",
-        "product_count": 6
+        "product_count": 6,
+        "empty_state_text": "Choose a collection in section settings to feature products here."
       }
     },
     "btg_video": {
@@ -51,9 +57,9 @@
         "eyebrow": "Behind The Camera",
         "heading": "Watch The Work",
         "text": "Documentary-style features from courses and crews across the country.",
+        "video": "https://youtu.be/Kn-Qtw8J0gA?si=SymEEhnq79Js7Hze",
         "coming_soon_label": "New Episodes Coming Soon"
-      },
-      "disabled": true
+      }
     },
     "btg_quote": {
       "type": "btg-quote",
@@ -86,7 +92,10 @@
           }
         }
       },
-      "block_order": ["courses", "brands"],
+      "block_order": [
+        "courses",
+        "brands"
+      ],
       "settings": {
         "eyebrow": "Work With Us",
         "heading": "For Brands & Golf Courses"
@@ -112,5 +121,14 @@
       "disabled": true
     }
   },
-  "order": ["btg_hero", "btg_fork", "btg_merch_teaser", "btg_video", "btg_quote", "btg_partnerships_teaser", "btg_about_teaser", "btg_drop_teaser"]
+  "order": [
+    "btg_hero",
+    "btg_fork",
+    "btg_merch_teaser",
+    "btg_video",
+    "btg_quote",
+    "btg_partnerships_teaser",
+    "btg_about_teaser",
+    "btg_drop_teaser"
+  ]
 }

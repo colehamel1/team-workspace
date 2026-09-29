@@ -4,7 +4,7 @@
    never renders as an empty flat rectangle. */
 .btg-hero {
   position: relative; min-height: 88vh; display: flex; align-items: flex-end; overflow: hidden;
-  background-image: url("btg-img-hero.jpg");
+  background-image: url("https://cdn.shopify.com/s/files/1/0632/2172/7335/files/btg-img-hero.jpg?v=1790710192");
   background-size: cover; background-position: center 40%;
 }
 .btg-hero__image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
@@ -39,8 +39,8 @@
 .btg-fork__panel img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
 .btg-fork__panel:hover img { transform: scale(1.04); }
 /* Fallback treatment when no panel image has been uploaded yet */
-.btg-fork__panel--fallback-a { background-image: url("btg-img-fork-shop.jpg"); background-size: cover; background-position: center; }
-.btg-fork__panel--fallback-b { background-image: url("btg-img-fork-stories.jpg"); background-size: cover; background-position: center; }
+.btg-fork__panel--fallback-a { background-image: url("https://cdn.shopify.com/s/files/1/0632/2172/7335/files/btg-img-fork-shop.jpg?v=1790710191"); background-size: cover; background-position: center; }
+.btg-fork__panel--fallback-b { background-image: url("https://cdn.shopify.com/s/files/1/0632/2172/7335/files/btg-img-fork-stories.jpg?v=1790710192"); background-size: cover; background-position: center; }
 .btg-fork__scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,20,15,0) 40%, rgba(20,20,15,0.75) 100%); }
 .btg-fork__content { position: absolute; left: 0; right: 0; bottom: 0; padding: 32px; }
 
@@ -54,7 +54,7 @@
 .btg-video__frame { position: relative; aspect-ratio: 16/9; background: var(--btg-forest-deep); overflow: hidden; }
 .btg-video__frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
 .btg-video__still { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.btg-video__default-still { position: absolute; inset: 0; background-image: url("btg-img-video-still.jpg"); background-size: cover; background-position: center; }
+.btg-video__default-still { position: absolute; inset: 0; background-image: url("https://cdn.shopify.com/s/files/1/0632/2172/7335/files/btg-img-video-still.jpg?v=1790710191"); background-size: cover; background-position: center; }
 .btg-video__coming-soon {
   position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
   background: rgba(15,20,15,0.38);

@@ -121,3 +121,18 @@ draft/illustrative ones that could be mistaken for real.**
   two collections above, and real photography/video uploads (everything
   degrades gracefully to an intentional dark-gradient placeholder until
   then, never an empty-looking block).
+
+## Themes & install (as of Sep 29, 2026)
+
+- **Live theme:** "Copy of BTG FINAL". Never write to it directly.
+- **Working draft:** "Copy of BTG DRAFT" (theme ID 166536642663), a copy of
+  live. Claude writes changes here via the Shopify connector; Cole previews
+  and publishes. The repo's `templates/*.json` can drift from the theme
+  (the theme editor changes them), so fetch the theme's copy before
+  overwriting any template.
+- Theme fallback photos live in Shopify Files (`btg-img-*.jpg`) and are
+  referenced by full CDN URL from `btg-home.css` / `btg-about.css`. Five
+  same-named `assets/btg-img-*.jpg` in the draft theme are unused leftovers.
+- **Media Kit stats** are real, from Cole's platform screenshots dated
+  Jul 23 – Aug 21, 2026, and labeled with that range. Refresh them
+  periodically. Rates and case studies are still placeholders.
