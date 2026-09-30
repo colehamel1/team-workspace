@@ -1,0 +1,38 @@
+{%- comment -%}
+  Behind The Greens intro — a logo-only brand signature, about 1.25s.
+  Crest fades and scales in, a soft dawn light sweeps across it, then the
+  overlay dissolves into the homepage. No text, no loader, no buttons.
+
+  - Once per browser session, homepage only (see layout/theme.liquid).
+  - Pure CSS timeline: it ends itself even if JavaScript fails.
+  - pointer-events: none, so it never blocks the page underneath.
+  - Not shown at all for visitors who prefer reduced motion.
+  - The light sweep is masked to the crest's own shape, so only the logo
+    catches the light.
+{%- endcomment -%}
+{%- if settings.logo != blank -%}
+{%- assign intro_src = settings.logo | image_url: width: 480 -%}
+<script>try{if(sessionStorage.getItem('btg_intro')){document.documentElement.classList.add('btg-intro-seen')}else{sessionStorage.setItem('btg_intro','1')}}catch(e){}</script>
+<style>
+  .btg-intro{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;background:#0B0F0B;pointer-events:none;animation:btgIntroOut .35s cubic-bezier(.4,0,.2,1) .9s forwards}
+  .btg-intro-seen .btg-intro{display:none}
+  .btg-intro__glow{position:absolute;left:50%;top:50%;width:min(70vw,560px);aspect-ratio:1;transform:translate(-50%,-38%);background:radial-gradient(closest-side,rgba(193,146,47,.18),rgba(193,146,47,.06) 55%,rgba(193,146,47,0) 100%);opacity:0;animation:btgIntroGlow .55s ease-out .2s forwards}
+  .btg-intro__mark{position:relative;width:clamp(96px,11vw,136px);aspect-ratio:1;opacity:0;transform:scale(.94);filter:blur(6px);animation:btgIntroIn .55s cubic-bezier(.2,.7,.2,1) forwards,btgIntroLift .35s cubic-bezier(.4,0,.2,1) .9s forwards}
+  .btg-intro__mark img{display:block;width:100%;height:100%;object-fit:contain}
+  .btg-intro__sweep{position:absolute;inset:0;-webkit-mask:var(--btg-intro-logo) center/contain no-repeat;mask:var(--btg-intro-logo) center/contain no-repeat;background:linear-gradient(110deg,rgba(243,238,223,0) 35%,rgba(243,238,223,.38) 47%,rgba(193,146,47,.32) 53%,rgba(243,238,223,0) 65%) no-repeat;background-size:250% 100%;background-position:130% 0;mix-blend-mode:screen;animation:btgIntroSweep .6s cubic-bezier(.45,.05,.3,1) .25s forwards}
+  @keyframes btgIntroIn{to{opacity:1;transform:scale(1);filter:blur(0)}}
+  @keyframes btgIntroGlow{to{opacity:1}}
+  @keyframes btgIntroSweep{to{background-position:-30% 0}}
+  @keyframes btgIntroLift{from{transform:scale(1)}to{transform:scale(1.02)}}
+  @keyframes btgIntroOut{to{opacity:0;visibility:hidden}}
+  @media (prefers-reduced-motion:reduce){.btg-intro{display:none}}
+</style>
+<div class="btg-intro" aria-hidden="true" data-btg-intro>
+  <span class="btg-intro__glow"></span>
+  <span class="btg-intro__mark" style="--btg-intro-logo:url('{{ intro_src }}')">
+    {{ settings.logo | image_url: width: 480 | image_tag: alt: '', loading: 'eager', fetchpriority: 'high', width: 136, height: 136 }}
+    <span class="btg-intro__sweep"></span>
+  </span>
+</div>
+<script>(function(){var el=document.querySelector('[data-btg-intro]');if(!el)return;el.addEventListener('animationend',function(e){if(e.animationName==='btgIntroOut'&&el.parentNode)el.parentNode.removeChild(el)});})();</script>
+{%- endif -%}
