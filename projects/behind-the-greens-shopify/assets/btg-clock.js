@@ -46,7 +46,7 @@
   }
 
   // Live clock while not clocked in.
-  function tick() { if (!root.classList.contains('is-in')) { timeEl.textContent = now(); } }
+  function tick() { if (!root.classList.contains('is-in')) { timeEl.textContent = now(); btn.setAttribute('aria-label', 'Clock in, ' + now()); } }
   if (!fixed) {
     var d = new Date();
     setTimeout(function () { tick(); setInterval(tick, 60000); }, (60 - d.getSeconds()) * 1000);
@@ -84,7 +84,7 @@
       store(clockingIn ? at : null);
       render(clockingIn ? at : null);
       statusEl.textContent = clockingIn ? 'Clocked in, ' + at + '. On the job.' : 'Clocked out, ' + at + '.';
-      if (!clockingIn) { labelEl.textContent = 'Clocked Out'; setTimeout(function () { if (!root.classList.contains('is-in')) labelEl.textContent = 'Clock In'; }, 2400); }
+      if (!clockingIn) { labelEl.textContent = 'Clocked Out'; btn.setAttribute('aria-label', 'Clocked out at ' + at + '. Tap to clock in.'); setTimeout(function () { if (!root.classList.contains('is-in')) labelEl.textContent = 'Clock In'; }, 2400); }
       root.classList.remove('is-punching');
       busy = false;
     }
