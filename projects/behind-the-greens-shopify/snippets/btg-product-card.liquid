@@ -51,8 +51,9 @@
       </div>
       {%- if alt_image -%}
         <div class="btg-card__frame btg-card__frame--alt">
-          {{ alt_image | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 1000px) 30vw, 70vw', widths: '360, 540, 720, 900', alt: '' }}
-          {%- if is_lifestyle -%}<span class="btg-card__tag">On The Job</span>{%- endif -%}
+          {%- assign alt_focus = product.metafields.custom.lifestyle_focus.value | default: 'center center' -%}
+          {%- assign alt_style = 'object-position: ' | append: alt_focus -%}
+          {{ alt_image | image_url: width: 900 | image_tag: loading: 'lazy', decoding: 'async', sizes: '(min-width: 1000px) 30vw, 50vw', widths: '360, 540, 720, 900', alt: '', style: alt_style }}
         </div>
       {%- endif -%}
     </div>

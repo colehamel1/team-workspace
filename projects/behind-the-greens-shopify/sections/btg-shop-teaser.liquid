@@ -23,16 +23,18 @@
       {%- if section.settings.collection != blank and section.settings.collection.products.size > 0 -%}
         {%- if section.settings.layout == 'editorial' -%}
           {%- comment -%}
-            Editorial rhythm: a large "on the job" tile, product cards, then a
-            wide tile. Tiles use each product's real Lifestyle image metafield
-            (falling back to its product photo); nothing is invented.
+            Two on-the-job moments (one wider, one closer), then a clean,
+            even product grid. Tiles use each product's real Lifestyle image
+            and its Lifestyle focus metafield for the crop.
           {%- endcomment -%}
-          <div class="btg-edit-grid">
+          <div class="btg-edit-moments">
             {%- render 'btg-edit-tile', product: section.settings.tile_a, size: 'a' -%}
+            {%- render 'btg-edit-tile', product: section.settings.tile_b, size: 'b' -%}
+          </div>
+          <div class="btg-grid-3 btg-edit-products">
             {%- for product in section.settings.collection.products limit: section.settings.product_count -%}
               {% render 'btg-product-card', product: product %}
             {%- endfor -%}
-            {%- render 'btg-edit-tile', product: section.settings.tile_b, size: 'b' -%}
           </div>
         {%- else -%}
           <div class="{% if section.settings.columns == '4' %}btg-grid-4{% else %}btg-grid-3{% endif %}">

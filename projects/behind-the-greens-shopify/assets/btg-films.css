@@ -10,7 +10,7 @@
 
 .btg-films__head { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: end; margin-bottom: 48px; }
 .btg-films__kicker { color: rgba(243,238,223,0.7); margin-bottom: 18px; }
-.btg-films__title { font-size: clamp(40px, 5.6vw, 84px); margin: 0; max-width: 10ch; }
+.btg-films__title { font-size: clamp(40px, 5.2vw, 76px); margin: 0; max-width: 14ch; }
 .btg-films__meta { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; justify-self: end; max-width: 420px; }
 .btg-films__meta p { font-size: 16px; line-height: 1.6; color: var(--btg-muted-lt); }
 .btg-films--light .btg-films__meta p { color: var(--btg-body); }

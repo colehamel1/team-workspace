@@ -8,7 +8,7 @@
   background-image: url("https://cdn.shopify.com/s/files/1/0632/2172/7335/files/btg-img-hero.jpg?v=1790710192");
   background-size: cover; background-position: center 40%;
 }
-.btg-overlay-header .btg-hero { min-height: 100svh; }
+.btg-overlay-header .btg-hero { min-height: 88svh; }
 .btg-hero__image, .btg-hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--hero-focus-d, center 40%); }
 .btg-hero__video { opacity: 0; animation: btgHeroVideoIn 1.4s ease 0.1s forwards; }
 .btg-hero__scrim {
@@ -28,7 +28,7 @@
 .btg-hero--right .btg-hero__content { display: flex; flex-direction: column; align-items: flex-end; text-align: right; }
 .btg-hero__eyebrow { color: var(--btg-cream); opacity: 0.8; margin-bottom: 20px; }
 .btg-hero__heading {
-  color: var(--btg-cream); font-size: clamp(60px, 10.5vw, 164px); line-height: 0.86; margin: 0 0 26px; max-width: 9ch;
+  color: var(--btg-cream); font-size: clamp(60px, 9.5vw, 148px); line-height: 0.86; margin: 0 0 22px; max-width: 9ch;
   text-shadow: 0 2px 30px rgba(0,0,0,0.18); text-wrap: balance;
 }
 .btg-hero__sub { color: rgba(243,238,223,0.82); font-size: 17px; line-height: 1.5; max-width: 400px; margin: 0 0 32px; text-wrap: pretty; }
@@ -43,8 +43,8 @@
   .btg-hero__video { display: none; }
 }
 @media (max-width: 860px) {
-  .btg-hero { min-height: calc(100svh - 60px); }
-  .btg-overlay-header .btg-hero { min-height: 100svh; }
+  .btg-hero { min-height: 78svh; }
+  .btg-overlay-header .btg-hero { min-height: 80svh; }
   .btg-hero__image, .btg-hero__video { object-position: var(--hero-focus-m, center center); }
   .btg-hero__scrim, .btg-hero--right .btg-hero__scrim {
     background:
@@ -158,64 +158,61 @@
 .btg-drop-teaser__label { color: #4C7A4A; }
 @media (max-width: 860px) { .btg-drop-teaser { padding: 80px 24px; } .btg-drop-teaser__heading { font-size: 36px; } }
 
-/* ---------- Editorial shop grid ----------
-   4 columns: a 2x2 "on the job" tile, product cards, then a wide tile.
-   DOM order: tile A, products, tile B; dense flow packs them cleanly. */
-.btg-edit-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-flow: row dense; gap: 44px 20px; }
-.btg-edit-tile { position: relative; display: flex; align-items: flex-end; overflow: hidden; background: var(--btg-forest-deep); color: var(--btg-cream); min-height: 320px; }
-.btg-edit-tile--a { grid-column: span 2; grid-row: span 2; }
-.btg-edit-tile--b { grid-column: span 2; }
-.btg-edit-tile__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--btg-ease); }
-.btg-edit-tile:hover .btg-edit-tile__img { transform: scale(1.03); }
-.btg-edit-tile__shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,14,10,0.72) 0%, rgba(10,14,10,0.1) 45%, rgba(10,14,10,0) 70%); }
-.btg-edit-tile__body { position: relative; display: flex; flex-direction: column; gap: 8px; padding: 28px; }
-.btg-edit-tile__label { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(243,238,223,0.8); }
-.btg-edit-tile__name { font-size: clamp(30px, 3.2vw, 48px); line-height: 0.95; }
-.btg-edit-tile__cta { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 6px; }
+/* ---------- Made For The Course ----------
+   Two on-the-job moments share a row (7:5, one wider, one closer), then a
+   clean product grid on white. */
+.btg-edit-moments { display: grid; grid-template-columns: 7fr 5fr; gap: 20px; margin-bottom: clamp(48px, 6vw, 80px); }
+.btg-edit-tile { position: relative; display: flex; align-items: flex-end; overflow: hidden; background: var(--btg-forest-deep); color: var(--btg-cream); }
+.btg-edit-tile--b { aspect-ratio: 4 / 5; }
+.btg-edit-tile__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--btg-ease); }
+.btg-edit-tile:hover .btg-edit-tile__img { transform: scale(1.02); }
+.btg-edit-tile__shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,14,10,0.55) 0%, rgba(10,14,10,0) 34%); }
+.btg-edit-tile__body { position: relative; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; width: 100%; padding: 22px 24px; }
+.btg-edit-tile__label { display: none; }
+.btg-edit-tile__name { font-size: clamp(22px, 2.2vw, 32px); line-height: 1; }
+.btg-edit-tile__cta { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; }
 .btg-edit-tile__cta span { display: inline-block; transition: transform 0.25s var(--btg-ease); }
-.btg-edit-tile:hover .btg-edit-tile__cta span { transform: translateX(4px); }
-@media (max-width: 1000px) {
-  .btg-edit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 12px; }
-  .btg-edit-tile--a, .btg-edit-tile--b { grid-column: 1 / -1; grid-row: auto; aspect-ratio: 4 / 3; min-height: 0; }
-  .btg-edit-tile--a { aspect-ratio: 4 / 5; max-height: 78svh; }
-  .btg-edit-tile__body { padding: 22px 20px; }
-}
+.btg-edit-tile:hover .btg-edit-tile__cta span { transform: translateX(3px); }
+.btg-edit-products { gap: 48px 24px; }
 @media (max-width: 860px) {
-  .btg-edit-grid .btg-card__body { flex-direction: column; gap: 2px; }
+  .btg-edit-moments { grid-template-columns: 1fr; gap: 12px; margin-bottom: 44px; }
+  .btg-edit-tile--a { aspect-ratio: 4 / 5; }
+  .btg-edit-tile--b { aspect-ratio: 1 / 1; }
+  .btg-edit-tile__body { padding: 18px 18px; }
+  .btg-edit-products { gap: 32px 12px; }
 }
 
-/* Proof, "scale" style: a moment of scale. Oversized numerals on dark,
-   explicit labels, hairline dividers. Not dashboard cards. */
-.btg-proof--scale { padding: clamp(80px, 10vw, 140px) 0; }
-.btg-proof--scale .btg-proof__grid { grid-template-columns: 1fr; gap: 56px; }
-.btg-proof--scale .btg-proof__eyebrow { color: rgba(243,238,223,0.7); }
-.btg-proof--scale .btg-proof__heading { font-size: clamp(28px, 3vw, 40px); max-width: 22ch; margin-bottom: 0; }
+/* Proof, "scale" style: legitimacy in one quick beat. Light band between
+   the dark films and the dark mission photo; big numerals, explicit labels,
+   source line kept secondary. */
+.btg-proof--scale { background: var(--btg-paper); color: var(--btg-ink); padding: clamp(64px, 7vw, 96px) 0; }
+.btg-proof--scale .btg-proof__grid { grid-template-columns: 1fr 2.2fr; gap: 48px; align-items: end; }
+.btg-proof--scale .btg-proof__eyebrow { color: var(--btg-muted); margin-bottom: 12px; }
+.btg-proof--scale .btg-proof__heading { font-family: var(--btg-font-body); font-weight: 600; text-transform: none; letter-spacing: 0; font-size: clamp(20px, 1.8vw, 24px); line-height: 1.3; max-width: 18ch; margin: 0; }
 .btg-proof--scale .btg-proof__social { display: none; }
-.btg-proof--scale .btg-proof__stats { border-left: 0; border-top: 1px solid var(--btg-hairline-lt); }
-.btg-proof--scale .btg-proof__stat { padding: 28px 28px 0 0; border-right: 1px solid var(--btg-hairline-lt); }
-.btg-proof--scale .btg-proof__stat + .btg-proof__stat { padding-left: 28px; }
-.btg-proof--scale .btg-proof__stat:last-child { border-right: 0; }
-.btg-proof--scale .btg-proof__value { font-size: clamp(64px, 9vw, 148px); line-height: 0.85; margin-bottom: 18px; }
-.btg-proof--scale .btg-proof__label { font-size: 15px; max-width: 24ch; color: rgba(243,238,223,0.72); }
-.btg-proof--scale .btg-proof__note { color: #8F8770; }
+.btg-proof--scale .btg-proof__stats { border-left: 0; }
+.btg-proof--scale .btg-proof__stat { padding: 0 24px; border-left: 1px solid var(--btg-hairline); }
+.btg-proof--scale .btg-proof__value { font-size: clamp(52px, 6.5vw, 104px); line-height: 0.85; margin-bottom: 12px; color: var(--btg-ink); }
+.btg-proof--scale .btg-proof__label { font-size: 14px; line-height: 1.45; max-width: 22ch; color: var(--btg-body); }
+.btg-proof--scale .btg-proof__note { margin-top: 36px; font-size: 12px; color: var(--btg-muted); }
 @media (max-width: 960px) {
-  .btg-proof--scale .btg-proof__stats { border-top: 0; }
-  .btg-proof--scale .btg-proof__stat, .btg-proof--scale .btg-proof__stat + .btg-proof__stat { display: block; padding: 24px 0; border-right: 0; border-top: 1px solid var(--btg-hairline-lt); }
-  .btg-proof--scale .btg-proof__value { margin-bottom: 10px; }
+  .btg-proof--scale .btg-proof__grid { grid-template-columns: 1fr; gap: 28px; }
+  .btg-proof--scale .btg-proof__stat { display: flex; align-items: baseline; gap: 18px; padding: 16px 0; border-left: 0; border-top: 1px solid var(--btg-hairline); }
+  .btg-proof--scale .btg-proof__value { font-size: clamp(44px, 13vw, 60px); margin: 0; min-width: 3.6ch; }
 }
 
 /* ---------- Mission band ---------- */
-.btg-mission { position: relative; display: flex; align-items: flex-end; min-height: min(82svh, 860px); overflow: hidden; background: var(--btg-forest-deep); color: var(--btg-cream); }
+.btg-mission { position: relative; display: flex; align-items: flex-end; min-height: min(72svh, 760px); overflow: hidden; background: var(--btg-forest-deep); color: var(--btg-cream); }
 .btg-mission__media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .btg-mission__shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8,11,8,0.82) 0%, rgba(8,11,8,0.35) 45%, rgba(8,11,8,0.15) 100%); }
 .btg-mission__body { position: relative; width: 100%; padding-bottom: clamp(56px, 9vw, 120px); }
 .btg-mission__heading { font-size: clamp(48px, 7.4vw, 120px); line-height: 0.9; margin: 0 0 22px; max-width: 13ch; text-wrap: balance; }
 .btg-mission__text { font-size: clamp(17px, 1.5vw, 20px); line-height: 1.5; color: rgba(243,238,223,0.85); max-width: 46ch; margin: 0; }
-@media (max-width: 860px) { .btg-mission { min-height: 78svh; } .btg-mission__heading { font-size: clamp(42px, 12vw, 64px); } }
+@media (max-width: 860px) { .btg-mission { min-height: 64svh; } .btg-mission__heading { font-size: clamp(42px, 12vw, 64px); } }
 
 /* ---------- Work panels (Brand Partnerships / Course Features) ---------- */
 .btg-work { padding: clamp(80px, 9vw, 128px) 0; scroll-margin-top: 72px; }
-.btg-work--brands { background: var(--btg-paper); color: var(--btg-ink); }
+.btg-work--brands { background: var(--btg-cream); color: var(--btg-ink); padding: clamp(64px, 7vw, 96px) 0; }
 .btg-work--courses { background: var(--btg-forest-deep); color: var(--btg-cream); }
 .btg-work__grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(40px, 6vw, 96px); align-items: center; }
 .btg-work--text .btg-work__grid { grid-template-columns: minmax(0, 760px); }

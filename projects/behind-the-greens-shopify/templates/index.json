@@ -27,8 +27,8 @@
         "product_count": 6,
         "columns": "3",
         "layout": "editorial",
-        "tile_a": "unisex-oversized-drop-shoulder-hoodie",
-        "tile_b": "soft-hooded-sports-jacket"
+        "tile_a": "soft-hooded-sports-jacket",
+        "tile_b": "behind-the-greens-performance-hat"
       }
     },
     "btg_about_teaser": {
@@ -37,7 +37,7 @@
         "image": "shopify://shop_images/btg-img-video-still.jpg",
         "eyebrow": "Our Story",
         "heading": "A Camera Pointed The Other Way",
-        "text": "It started with the crews out on the course before the first tee time: mowing lines, rolling greens, cutting cups, fixing what yesterday left behind. People watched. Then more people. The films got bigger, the audience grew and the brand followed. The focus never changed: the people and the work behind the game.",
+        "text": "Golf content usually points at the golfer. We pointed the camera the other way: at the crews, the equipment and the work that happens before anyone tees off. That's where Behind The Greens started, and it's still the point.",
         "link_label": "Read Our Story",
         "link": "shopify://pages/our-story"
       }
@@ -201,7 +201,7 @@
         "anchor": "partnerships",
         "eyebrow": "Brand Partnerships",
         "heading": "A Golf Media Partner",
-        "text": "We plan, film and distribute integrations inside the content golf fans already watch, made by people who work the course. Creative, production and distribution in one place.",
+        "text": "Integrations inside the films and clips golf fans already watch. We handle the creative, the production and the distribution.",
         "cta_label": "Work With BTG",
         "cta_link": "/pages/media-kit#for-brands",
         "link_label": "See Rates",
