@@ -247,3 +247,5 @@
   .btg-work__text { font-size: 16px; }
   .btg-work__actions { gap: 20px; }
 }
+.btg-work--brands .btg-work__price { color: var(--btg-forest); }
+@media (prefers-reduced-motion: reduce) { video.btg-mission__media { display: none; } }

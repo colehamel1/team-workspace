@@ -56,14 +56,14 @@
           "type": "stat",
           "settings": {
             "value": "213M",
-            "label": "Video views in 30 days, Jul 23 – Aug 21, 2026"
+            "label": "Video views, Jul 23 – Aug 21, 2026"
           }
         },
         "engagement": {
           "type": "stat",
           "settings": {
             "value": "1M+",
-            "label": "Facebook engagements in the same 30 days"
+            "label": "Facebook engagements, same period"
           }
         }
       },
@@ -182,7 +182,7 @@
       "settings": {
         "eyebrow": "Short Form",
         "heading": "From The Field",
-        "text": "The clips that travel furthest. Tap to watch the originals.",
+        "text": "Short-form clips from the course. Tap to watch the originals.",
         "anchor": "from-the-field"
       }
     },

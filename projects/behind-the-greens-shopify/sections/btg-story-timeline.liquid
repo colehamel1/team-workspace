@@ -17,7 +17,7 @@
         {%- for block in section.blocks -%}
           {%- assign vid = block.settings.youtube_id | strip -%}
           <li class="btg-timeline__stop" {{ block.shopify_attributes }}>
-            <a class="btg-timeline__media" href="{% if vid != blank %}{{ routes.root_url }}?film={{ vid | escape }}#watch-the-work{% else %}{{ routes.root_url }}#watch-the-work{% endif %}" aria-label="Watch the {{ block.settings.course | escape }} film">
+            <a class="btg-timeline__media" href="{% if vid != blank %}{{ routes.root_url }}?film={{ vid | escape }}#watch-the-work{% else %}{{ routes.root_url }}#watch-the-work{% endif %}" tabindex="-1" aria-hidden="true">
               {%- if block.settings.image != blank -%}
                 {{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', sizes: '(min-width: 1000px) 56vw, 100vw', widths: '600, 900, 1200', alt: '' }}
               {%- elsif vid != blank -%}

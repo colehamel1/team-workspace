@@ -44,7 +44,7 @@
   </section>
 </div>
 <script>
-  (function(){var v=document.querySelector('.btg-hero__video');if(!v||!('IntersectionObserver' in window))return;
+  (function(){var v=document.querySelector('.btg-hero__video');if(!v||!('IntersectionObserver' in window))return;if(matchMedia('(prefers-reduced-motion: reduce)').matches){v.pause();return;}
   new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){})}else{v.pause()}})},{threshold:0.05}).observe(v);})();
 </script>
 

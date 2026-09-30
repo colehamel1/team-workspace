@@ -18,6 +18,9 @@
   endfor
 -%}
 
+{%- if field_count == 0 and request.design_mode -%}
+  <div style="padding:32px 20px; text-align:center; background:#14140F; color:#A79E86; font:14px/1.5 sans-serif;">From The Field is hidden until a clip has a poster image. Add clips in this section's blocks.</div>
+{%- endif -%}
 {%- if field_count > 0 -%}
 <div class="btg-scope">
   {{ 'btg-field.css' | asset_url | stylesheet_tag }}
@@ -58,8 +61,8 @@
             endif
           -%}
           <li class="btg-field__item" {{ block.shopify_attributes }}>
-            <a class="btg-field__card"{% if block.settings.link != blank %} href="{{ block.settings.link }}" target="_blank" rel="noopener"{% endif %}
-               aria-label="{% if block.settings.title != blank %}{{ block.settings.title | escape }}, {% endif %}watch on {{ platform_name }}"
+            {%- if block.settings.link != blank -%}{%- assign tag = 'a' -%}{%- else -%}{%- assign tag = 'div' -%}{%- endif -%}
+            <{{ tag }} class="btg-field__card"{% if tag == 'a' %} href="{{ block.settings.link }}" target="_blank" rel="noopener" aria-label="{% if block.settings.title != blank %}{{ block.settings.title | escape }}, {% endif %}watch on {{ platform_name }}"{% endif %}
                {% if clip != blank %}data-preview="{{ clip.url }}"{% endif %}>
               {{ block.settings.poster | image_url: width: 720 | image_tag: loading: 'lazy', sizes: '(min-width: 1000px) 22vw, 72vw', widths: '360, 540, 720', alt: '', class: 'btg-field__poster' }}
               <span class="btg-field__shade" aria-hidden="true"></span>
@@ -69,7 +72,7 @@
                   {%- if block.settings.views != blank -%}<strong>{{ block.settings.views }}</strong> Views &middot; {% endif -%}{{ platform_name }}
                 </span>
               </span>
-            </a>
+            </{{ tag }}>
           </li>
         {%- endif -%}
       {%- endfor -%}

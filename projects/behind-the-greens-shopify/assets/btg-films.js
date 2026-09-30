@@ -120,7 +120,7 @@
         img.src = thumb || fallbackSrc;
       }
       updateSeen(card);
-      if (e.detail === 0) poster.focus({ preventScroll: true }); // keyboard: follow the film
+      if (e.isTrusted && e.detail === 0) poster.focus({ preventScroll: true }); // keyboard: follow the film
       stage.classList.remove('is-swapping');
       void stage.offsetWidth; // restart the crossfade
       stage.classList.add('is-swapping');

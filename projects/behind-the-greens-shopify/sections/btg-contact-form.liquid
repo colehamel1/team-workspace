@@ -20,9 +20,9 @@
           <div class="btg-contact__field btg-contact__field--full">
             <label for="btg-contact-topic">What's this about?</label>
             <select id="btg-contact-topic" name="contact[Topic]" data-btg-contact-topic>
-              <option value="Course Features">Course Features</option>
-              <option value="Brand Partnerships">Brand Partnerships</option>
-              <option value="General" selected>General / Orders</option>
+              <option value="Course Features"{% if form['Topic'] == 'Course Features' %} selected{% endif %}>Course Features</option>
+              <option value="Brand Partnerships"{% if form['Topic'] == 'Brand Partnerships' %} selected{% endif %}>Brand Partnerships</option>
+              <option value="General"{% if form['Topic'] == blank or form['Topic'] == 'General' %} selected{% endif %}>General / Orders</option>
             </select>
           </div>
           <div class="btg-contact__field">
@@ -33,9 +33,9 @@
             <label for="btg-contact-email">Email</label>
             <input id="btg-contact-email" type="email" name="contact[email]" autocomplete="email" value="{{ form.email }}" required>
           </div>
-          <div class="btg-contact__field btg-contact__field--full" data-btg-contact-org>
+          <div class="btg-contact__field btg-contact__field--full">
             <label for="btg-contact-org">Course or company <span>(optional)</span></label>
-            <input id="btg-contact-org" type="text" name="contact[Course or company]" autocomplete="organization">
+            <input id="btg-contact-org" type="text" name="contact[Course or company]" autocomplete="organization" value="{{ form['Course or company'] }}">
           </div>
           <div class="btg-contact__field btg-contact__field--full">
             <label for="btg-contact-body">Message</label>
@@ -53,7 +53,7 @@
   (function(){var s=document.querySelector('[data-btg-contact-topic]');if(!s)return;
   var t=(new URLSearchParams(location.search).get('topic')||'').toLowerCase();
   var map={'course-features':'Course Features','brand-partnerships':'Brand Partnerships','general':'General'};
-  if(map[t])s.value=map[t];})();
+  if(map[t]&&!s.closest('form').querySelector('[role=alert]'))s.value=map[t];})();
 </script>
 <style>
   .btg-contact { padding: 8px 0 var(--btg-section); }
