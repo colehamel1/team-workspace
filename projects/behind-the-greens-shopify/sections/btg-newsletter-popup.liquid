@@ -16,7 +16,8 @@
     {% section 'btg-newsletter-popup' %}
 {%- endcomment -%}
 
-{%- if section.settings.enabled -%}
+{%- comment -%} Product pages only. {%- endcomment -%}
+{%- if section.settings.enabled and template.name == 'product' -%}
 <div class="btg-scope" data-btg-popup-delay="{{ section.settings.delay_seconds | default: 4 }}">
   {% render 'btg-styles' %}
   {{ 'btg-cart.css' | asset_url | stylesheet_tag }}

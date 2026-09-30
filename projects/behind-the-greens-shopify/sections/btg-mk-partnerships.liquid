@@ -98,6 +98,20 @@
                     {%- if item != blank -%}<li>{{ item }}</li>{%- endif -%}
                   {%- endfor -%}
                 </ul>
+
+                {%- if block.settings.product != blank -%}
+                  {%- assign bp_variant = block.settings.product.selected_or_first_available_variant -%}
+                  <form class="btg-bp-card__buy" action="{{ routes.cart_add_url }}" method="post" data-btg-bp-form>
+                    <input type="hidden" name="id" value="{{ bp_variant.id }}">
+                    <input type="hidden" name="quantity" value="1">
+                    <button type="submit" class="btg-bp-card__btn" data-btg-bp-btn{% unless bp_variant.available %} disabled{% endunless %}>
+                      <span data-btg-bp-label>{% if bp_variant.available %}{{ block.settings.button_label | default: 'Add To Cart' }}{% else %}Unavailable{% endif %}</span>
+                    </button>
+                    <p class="btg-bp-card__error" data-btg-bp-error role="status" aria-live="polite"></p>
+                  </form>
+                {%- elsif block.settings.button_link != blank -%}
+                  <a class="btg-bp-card__btn" href="{{ block.settings.button_link }}">{{ block.settings.button_label | default: 'Get In Touch' }}</a>
+                {%- endif -%}
               </article>
             {%- endfor -%}
           </div>
@@ -111,6 +125,7 @@
     </div>
   </div>
 </div>
+<script src="{{ 'btg-partnerships.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
 {% schema %}
@@ -154,7 +169,11 @@
         },
         { "type": "textarea", "id": "summary", "label": "Headline line", "info": "e.g. 3 original short-form brand integrations" },
         { "type": "textarea", "id": "includes", "label": "What's included", "info": "One item per line." },
-        { "type": "checkbox", "id": "featured", "label": "Highlight this option", "default": false }
+        { "type": "checkbox", "id": "featured", "label": "Highlight this option", "default": false },
+        { "type": "header", "content": "Button" },
+        { "type": "product", "id": "product", "label": "Product to add to cart", "info": "Leave empty to show a link button instead." },
+        { "type": "text", "id": "button_label", "label": "Button label", "default": "Add To Cart" },
+        { "type": "url", "id": "button_link", "label": "Button link (when no product)" }
       ]
     }
   ],

@@ -257,7 +257,9 @@
             "channels": "short",
             "summary": "1 original short-form brand integration",
             "includes": "Posted to Instagram, TikTok, Facebook and YouTube Shorts\nBrand tagged and linked where supported\nProduct integrated naturally into BTG content\nConcept, filming and editing handled by BTG",
-            "featured": false
+            "featured": false,
+            "product": "btg-short-form-feature",
+            "button_label": "Add To Cart"
           }
         },
         "campaign_3_video": {
@@ -268,7 +270,9 @@
             "channels": "short",
             "summary": "3 original short-form brand integrations",
             "includes": "Posted to Instagram, TikTok, Facebook and YouTube Shorts\nBrand tagged and linked where supported\nProduct integrated naturally into BTG content\nConcept, filming and editing handled by BTG",
-            "featured": false
+            "featured": false,
+            "product": "btg-3-video-campaign",
+            "button_label": "Add To Cart"
           }
         },
         "campaign_5_video": {
@@ -279,7 +283,9 @@
             "channels": "short",
             "summary": "5 original short-form brand integrations",
             "includes": "Posted to Instagram, TikTok, Facebook and YouTube Shorts\nBrand tagged and linked where supported\nProduct integrated naturally into BTG content\nConcept, filming and editing handled by BTG",
-            "featured": true
+            "featured": true,
+            "product": "btg-5-video-campaign",
+            "button_label": "Add To Cart"
           }
         },
         "campaign_custom": {
@@ -290,7 +296,9 @@
             "channels": "none",
             "summary": "Dedicated long-form YouTube films, travel productions, product launches, recurring partnerships, or anything requiring custom deliverables.",
             "includes": "Dedicated YouTube productions\nLarger custom concepts and multi-video campaigns\nContact BTG to scope deliverables",
-            "featured": false
+            "featured": false,
+            "button_label": "Get In Touch",
+            "button_link": "/pages/contact?topic=brand-partnerships"
           }
         }
       },
