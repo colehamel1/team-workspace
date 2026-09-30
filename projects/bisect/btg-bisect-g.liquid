@@ -1,0 +1,70 @@
+<div></div>
+{% schema %}
+{
+ "name": "BTG Bisect G",
+ "settings": [],
+ "blocks": [
+  {
+   "type": "campaign",
+   "name": "Campaign option",
+   "settings": [
+    {
+     "type": "text",
+     "id": "title",
+     "label": "Name",
+     "default": "Short-Form Feature"
+    },
+    {
+     "type": "text",
+     "id": "price_prefix",
+     "label": "Price prefix (optional)",
+     "info": "e.g. Starting at"
+    },
+    {
+     "type": "text",
+     "id": "price",
+     "label": "Price",
+     "default": "$1,000"
+    },
+    {
+     "type": "select",
+     "id": "channels",
+     "label": "Where it's posted",
+     "options": [
+      {
+       "value": "short",
+       "label": "Short-form: Instagra"
+      },
+      {
+       "value": "film",
+       "label": "YouTube long-form + "
+      },
+      {
+       "value": "none",
+       "label": "Don't show"
+      }
+     ],
+     "default": "short"
+    },
+    {
+     "type": "textarea",
+     "id": "includes",
+     "label": "What's included",
+     "info": "One item per line."
+    },
+    {
+     "type": "checkbox",
+     "id": "featured",
+     "label": "Highlight this option",
+     "default": false
+    }
+   ]
+  }
+ ],
+ "presets": [
+  {
+   "name": "BTG Bisect G"
+  }
+ ]
+}
+{% endschema %}
