@@ -239,7 +239,7 @@
       }
     },
     "btg_mk_brands_9icgpw": {
-      "type": "btg-mk-brands",
+      "type": "btg-mk-partnerships",
       "blocks": {
         "campaign_short_form": {
           "type": "campaign",
@@ -289,7 +289,6 @@
         "campaign_film_partnership",
         "campaign_custom"
       ],
-      "name": "BTG MK Brand Partnerships",
       "settings": {
         "eyebrow": "Brand Partnerships",
         "heading": "Put your brand inside the golf content people already watch.",
