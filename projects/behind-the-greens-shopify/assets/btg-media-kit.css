@@ -100,3 +100,72 @@
 @media (max-width: 860px) { .btg-mk-price { padding: 24px 20px; } }
 .btg-mk-reel { margin: 0 0 56px; }
 .btg-mk-reel video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--btg-ink); }
+
+/* Brand Partnerships — intro, compact reach strip, campaign cards. */
+.btg-bp__intro { max-width: 760px; margin-bottom: 40px; }
+.btg-bp__eyebrow { color: var(--btg-muted); margin-bottom: 16px; }
+.btg-bp__title { font-size: clamp(34px, 4.4vw, 60px); line-height: 0.98; color: var(--btg-ink); margin: 0 0 20px; }
+.btg-bp__text { font-size: 17px; line-height: 1.6; color: #3A392F; margin: 0; max-width: 620px; }
+
+.btg-bp-reach { display: flex; align-items: center; gap: 20px 40px; flex-wrap: wrap; padding: 20px 0; border-top: 1px solid var(--btg-ink); border-bottom: 1px solid var(--btg-hairline); margin-bottom: 56px; }
+.btg-bp-reach__total { display: flex; align-items: baseline; gap: 12px; }
+.btg-bp-reach__num { font-size: 40px; line-height: 1; color: var(--btg-ink); }
+.btg-bp-reach__label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--btg-ink); }
+.btg-bp-reach__list { list-style: none; margin: 0 0 0 auto; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 28px; }
+.btg-bp-reach__item { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #3A392F; }
+.btg-bp-reach__icon { display: inline-flex; color: var(--btg-ink); }
+.btg-bp-reach__count { color: var(--btg-ink); font-weight: 700; }
+
+.btg-bp__options-label { color: var(--btg-muted); font-size: 11px; margin: 0 0 20px; }
+.btg-bp-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.btg-bp-card { display: flex; flex-direction: column; gap: 18px; padding: 28px 24px 30px; background: var(--btg-cream); border: 1px solid var(--btg-hairline); transition: border-color 0.25s ease; }
+.btg-bp-card:hover { border-color: var(--btg-ink); }
+.btg-bp-card__head { display: flex; flex-direction: column; gap: 14px; padding-bottom: 18px; border-bottom: 1px solid var(--btg-hairline); }
+.btg-bp-card__name { font-size: 20px; line-height: 1.05; color: var(--btg-ink); margin: 0; }
+.btg-bp-card__price { display: flex; flex-direction: column; gap: 4px; }
+.btg-bp-card__from { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--btg-muted); }
+.btg-bp-card__amount { font-size: 38px; line-height: 1; color: var(--btg-ink); }
+.btg-bp-card__runs { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--btg-muted); }
+.btg-bp-card__icons { display: inline-flex; gap: 8px; color: var(--btg-ink); }
+.btg-bp-card__chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px 4px 6px; border: 1px solid currentColor; color: var(--btg-ink); }
+.btg-bp-card__plus { color: var(--btg-muted); }
+.btg-bp-card__amount--word { font-size: 26px; line-height: 1.05; }
+.btg-bp-card__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.btg-bp-card__list li { position: relative; padding-left: 18px; font-size: 14px; line-height: 1.45; color: #3A392F; }
+.btg-bp-card__list li::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 8px; height: 1.5px; background: var(--btg-ochre); }
+
+.btg-bp-card--featured { background: var(--btg-ink); border-color: var(--btg-ink); }
+.btg-bp-card--featured:hover { border-color: var(--btg-ochre); }
+.btg-bp-card--featured .btg-bp-card__head { border-bottom-color: rgba(243,238,223,0.16); }
+.btg-bp-card--featured .btg-bp-card__name, .btg-bp-card--featured .btg-bp-card__amount,
+.btg-bp-card--featured .btg-bp-card__icons, .btg-bp-card--featured .btg-bp-card__chip { color: var(--btg-cream); }
+.btg-bp-card--featured .btg-bp-card__from, .btg-bp-card--featured .btg-bp-card__runs, .btg-bp-card--featured .btg-bp-card__plus { color: #A79E86; }
+.btg-bp-card--featured .btg-bp-card__list li { color: rgba(243,238,223,0.86); }
+
+.btg-bp__cta { display: flex; align-items: center; gap: 20px 40px; flex-wrap: wrap; margin-top: 36px; }
+.btg-bp__cta-btn { flex: 0 0 auto; }
+.btg-bp__note { flex: 1 1 360px; max-width: 640px; margin: 0; font-size: 13px; line-height: 1.6; color: var(--btg-muted); }
+
+@media (max-width: 1180px) {
+  .btg-bp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 860px) {
+  .btg-bp__intro { margin-bottom: 28px; }
+  .btg-bp__text { font-size: 16px; }
+  .btg-bp-reach { flex-direction: column; align-items: flex-start; gap: 14px; margin-bottom: 40px; padding: 18px 0; }
+  .btg-bp-reach__num { font-size: 34px; }
+  .btg-bp-reach__list { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; width: 100%; }
+}
+@media (max-width: 640px) {
+  .btg-bp-grid { grid-template-columns: 1fr; gap: 12px; }
+  .btg-bp-card { padding: 22px 20px 24px; gap: 14px; }
+  .btg-bp-card__head { flex-direction: row; justify-content: space-between; align-items: flex-end; gap: 12px; padding-bottom: 14px; }
+  .btg-bp-card__name { font-size: 18px; max-width: 62%; }
+  .btg-bp-card__amount--word { font-size: 20px; }
+  .btg-bp-card__price { align-items: flex-end; text-align: right; }
+  .btg-bp-card__amount { font-size: 30px; }
+  .btg-bp-card__list { gap: 8px; }
+  .btg-bp__cta { flex-direction: column; align-items: stretch; margin-top: 28px; }
+  .btg-bp__cta-btn { justify-content: center; text-align: center; }
+  .btg-bp__note { flex-basis: auto; }
+}

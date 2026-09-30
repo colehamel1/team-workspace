@@ -104,7 +104,7 @@
               <div class="btg-field__card"{% if clip != blank %} data-preview="{{ clip.url }}"{% endif %}>
             {%- endif -%}
               {%- if block.settings.poster != blank -%}
-                {{ block.settings.poster | image_url: width: 720 | image_tag: loading: 'lazy', sizes: '(min-width: 1000px) 22vw, 72vw', widths: '360, 540, 720', alt: '', class: 'btg-field__poster' }}
+                <span class="btg-field__poster btg-field__poster--bg" style="background-image:url('{{ block.settings.poster | image_url: width: 720 }}')" aria-hidden="true"></span>
               {%- else -%}
                 <img class="btg-field__poster" src="https://i.ytimg.com/vi/{{ yt | escape }}/oar2.jpg" alt="" loading="lazy" width="720" height="1280" onerror="var s=this.src;if(s.indexOf('/oar2.')>-1){this.src=s.replace('/oar2.','/sddefault.')}else if(s.indexOf('/sddefault.')>-1){this.src=s.replace('/sddefault.','/hqdefault.')}else{this.onerror=null;this.style.visibility='hidden'}">
               {%- endif -%}

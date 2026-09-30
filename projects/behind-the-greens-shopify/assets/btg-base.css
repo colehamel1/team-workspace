@@ -404,3 +404,9 @@ main#MainContent .shopify-policy__body { font-family: var(--btg-font-body); colo
 .btg-textlink { display: inline-block; padding: 12px 0; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; }
 .btg-textlink span { display: inline-block; transition: transform 0.25s var(--btg-ease); }
 .btg-textlink:hover span { transform: translateX(3px); }
+
+/* Films nav link: small YouTube mark, one link with the label. */
+.btg-header__nav a.btg-nav-films, .btg-mobile-nav__links a.btg-nav-films { display: inline-flex; align-items: center; gap: 7px; }
+.btg-mobile-nav__links a.btg-nav-films { display: flex; gap: 12px; }
+.btg-yt-mark { flex: 0 0 auto; display: block; }
+.btg-header__nav a.btg-nav-films .btg-yt-mark { margin-top: -1px; }

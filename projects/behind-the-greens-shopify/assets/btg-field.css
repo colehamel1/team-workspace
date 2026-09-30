@@ -70,3 +70,4 @@
 @media (prefers-reduced-motion: reduce) {
   .btg-field-viewer__scrim, .btg-field-viewer__dialog { transition: none; transform: none; }
 }
+.btg-field__poster--bg { display: block; background-color: #151a14; background-size: cover; background-position: center; background-repeat: no-repeat; }

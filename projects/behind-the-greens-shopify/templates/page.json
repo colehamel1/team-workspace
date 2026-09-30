@@ -241,85 +241,69 @@
     "btg_mk_brands_9icgpw": {
       "type": "btg-mk-brands",
       "blocks": {
-        "format_jE6NT6": {
-          "type": "format",
+        "campaign_short_form": {
+          "type": "campaign",
           "settings": {
-            "title": "Short-Form Integration",
-            "text": "Sponsored placement inside our short-form video content."
+            "title": "Short-Form Feature",
+            "price": "$1,000",
+            "channels": "short",
+            "includes": "1 original short-form brand integration\nDistributed across Instagram, TikTok, Facebook and YouTube Shorts\nBrand tagged and linked where supported\nProduct/service integrated naturally into BTG content\nConcept, filming and editing handled by BTG",
+            "featured": false
           }
         },
-        "format_6mtQdt": {
-          "type": "format",
+        "campaign_cross_platform": {
+          "type": "campaign",
           "settings": {
-            "title": "Long-Form Integration",
-            "text": "Your brand woven into a full-length feature or story."
+            "title": "Cross-Platform Campaign",
+            "price": "$2,500",
+            "channels": "short",
+            "includes": "3 original short-form brand integrations\nDistributed across Instagram, TikTok, Facebook and YouTube Shorts\nProduct incorporated naturally into on-course content\nBrand tags and links where supported\nCoordinated campaign rollout\nConcept, filming and editing handled by BTG",
+            "featured": false
           }
         },
-        "format_FEdqFE": {
-          "type": "format",
+        "campaign_film_partnership": {
+          "type": "campaign",
           "settings": {
-            "title": "Product Features",
-            "text": "Your product, shown in the field, in our voice."
+            "title": "BTG Film Partnership",
+            "price": "$3,500",
+            "channels": "film",
+            "includes": "Long-form YouTube integration\n2 supporting short-form videos\nShort-form distribution across Instagram, TikTok, Facebook and YouTube Shorts\nProduct/service naturally incorporated into the episode or story\nBrand mention and applicable links in the YouTube description\nConcept, production, filming and editing handled by BTG",
+            "featured": true,
+            "price_prefix": "Starting at"
           }
         },
-        "format_CjGgK6": {
-          "type": "format",
+        "campaign_custom": {
+          "type": "campaign",
           "settings": {
-            "title": "Multi-Platform Campaigns",
-            "text": "Coordinated placement across video and social."
-          }
-        },
-        "tier_pYykzb": {
-          "type": "tier",
-          "settings": {
-            "title": "1 Video",
-            "text": "One integration. A simple way to test the audience.",
-            "rate": "$1,000"
-          }
-        },
-        "tier_4LiziG": {
-          "type": "tier",
-          "settings": {
-            "title": "3 Videos",
-            "text": "Three integrations for repeat exposure across our channels.",
-            "rate": "$2,500"
-          }
-        },
-        "tier_VWBC6t": {
-          "type": "tier",
-          "settings": {
-            "title": "5 Videos",
-            "text": "Five integrations. Our strongest package for reach.",
-            "rate": "$3,500"
-          }
-        },
-        "tier_long_term": {
-          "type": "tier",
-          "settings": {
-            "title": "Long-Term Partnership",
-            "text": "Month-to-month or long-term. Priced around the deliverables you need.",
-            "rate": "Custom Pricing"
+            "title": "Custom Campaign",
+            "price": "Custom Pricing",
+            "channels": "none",
+            "includes": "Long-form + short-form packages\nMulti-video campaigns\nProduct launches\nRecurring integrations\nCustom deliverables and distribution",
+            "featured": false
           }
         }
       },
       "block_order": [
-        "format_jE6NT6",
-        "format_6mtQdt",
-        "format_FEdqFE",
-        "format_CjGgK6",
-        "tier_pYykzb",
-        "tier_4LiziG",
-        "tier_VWBC6t",
-        "tier_long_term"
+        "campaign_short_form",
+        "campaign_cross_platform",
+        "campaign_film_partnership",
+        "campaign_custom"
       ],
       "name": "BTG MK Brand Partnerships",
       "settings": {
-        "eyebrow": "For Brands",
-        "heading": "Brand Partnerships",
-        "text": "We plan, film and distribute integrations inside the content golf fans already watch, made on real courses by people who do the work. Your product shows up where it's used, not in an ad break.",
-        "formats_label": "Partnership Formats",
-        "tiers_label": "Packages & Rates",
-        "tiers_note": "Every partnership is scoped to your brief. Reach out and we'll put together a proposal.",
+        "eyebrow": "Brand Partnerships",
+        "heading": "Put your brand inside the golf content people already watch.",
+        "text": "Behind The Greens handles the concept, production, editing and distribution, with integrations built naturally into our films and short-form content.",
+        "reach_total": "410K+",
+        "reach_label": "Combined Followers",
+        "reach_instagram": "110K",
+        "reach_facebook": "164K",
+        "reach_youtube": "81K",
+        "reach_tiktok": "55K",
+        "options_label": "Campaign Options",
+        "cta_label": "Start A Partnership",
+        "cta_link": "/pages/contact?topic=brand-partnerships",
+        "tiers_note": "Every campaign includes concept development, filming, editing and organic distribution through Behind The Greens. Paid usage, exclusivity, travel and additional deliverables can be scoped separately.",
         "only_on_page": "media-kit"
       }
     },
