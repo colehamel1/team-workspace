@@ -213,8 +213,25 @@ that order; nothing that only makes the site "fancier".
 ## Theme settings file
 `config/settings_data.json` is a snapshot of the draft's global settings (header, footer, popup, colors) as of Sep 29, 2026. The Shopify editor changes this file, so re-download it from the draft before editing and uploading it again. The popup shows the real CREW10 code (10% off, one use per customer); the offer text only appears when a code is set.
 
-## Course Features pricing (decided Sep 29, 2026)
-- Founding rate: $3,500 + travel, for the first 5 paying courses. Standard rate: $5,000 + travel.
-- Founding rate includes 1 day on site with the crew, 1 long-form film, 3 short-form cuts. Extras quoted separately: second day, extra cuts, usage rights for the course's own marketing, raw footage.
-- No course has paid yet. Update "Founding spots" (Theme editor → Work With Us page → Course Features) as courses book.
-- Eagle Mountain is the lead example on the page and in pitches. Paid features must be disclosed as paid partnerships.
+## Course Features pricing (updated Sep 30, 2026)
+- Shown on the site as: "Course Features start at $3,500 + travel". No founding-rate tag, no standard-rate line, no spots counter (no urgency elements on the site).
+- $3,500 includes 1 day on site with the crew, 1 long-form film, 3 short-form cuts. Extras quoted separately: second day, extra cuts, usage rights for the course's own marketing, raw footage. Bigger properties can be quoted higher in conversation.
+- No course has paid yet. Eagle Mountain is the lead example. Paid features must be disclosed as paid partnerships.
+
+## Product names (theme only)
+Shown by the theme from metafields custom.btg_name / custom.btg_subtitle; Shopify product titles, checkout and order emails keep the original titles.
+- Ground Crew Hat / Performance Hat
+- Before Dawn Hoodie / Heavyweight Oversized Hoodie
+- First Cut Polo / Performance Golf Polo
+- Frost Delay Jacket / Lightweight Hooded Jacket
+- 5AM Long Sleeve / Heavyweight Long Sleeve
+- Double Cut Tee / Essential Cotton Tee
+
+## Homepage order (Sep 30, 2026)
+Hero (Watch The Films primary) > Made For The Course (editorial grid) > Films (Prairie Vista featured; strongest long-form film) > From The Field (short-form, hidden until clips have posters) > Audience (410K+ / 213M / 1M+) > Mission band > Our Story teaser > Brand Partnerships > Course Features > Footer.
+Long-form context (not displayed): ~135K long-form views in the latest 28 days; Prairie Vista ~110K.
+
+## Waiting on real assets (build is ready, nothing fake is shown)
+- From The Field: vertical poster image + post link per clip (views only if verified). Theme editor > Home > From The Field.
+- Brand reel (15-25s): Home > Brand Partnerships panel, and Work With Us > Brand Partnerships.
+- Story timeline: optional year and one line of context per course.
