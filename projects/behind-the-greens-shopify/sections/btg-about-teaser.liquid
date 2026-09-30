@@ -5,7 +5,8 @@
   {% render 'btg-styles' %}
   {{ 'btg-home.css' | asset_url | stylesheet_tag }}
 
-  <section class="btg-split">
+  {%- assign split_style = '--img-focus-d: ' | append: section.settings.image_focus_desktop | append: '; --img-focus-m: ' | append: section.settings.image_focus_mobile | append: ';' -%}
+  <section class="btg-split" style="{{ split_style }}">
     <div class="btg-split__media">
       {%- if section.settings.image != blank -%}
         {{ section.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', sizes: '(min-width: 860px) 50vw, 100vw', widths: '600, 900, 1200, 1600', alt: section.settings.image.alt | default: '' }}
@@ -33,6 +34,19 @@
       "type": "image_picker",
       "id": "image",
       "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "image_focus_desktop",
+      "label": "Photo focus (desktop)",
+      "default": "55% 30%",
+      "info": "CSS position, e.g. 55% 40%."
+    },
+    {
+      "type": "text",
+      "id": "image_focus_mobile",
+      "label": "Photo focus (phone)",
+      "default": "45% 45%"
     },
     {
       "type": "text",

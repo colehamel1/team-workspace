@@ -100,12 +100,13 @@
 /* ---------- Split (story teaser) ---------- */
 .btg-split { display: grid; grid-template-columns: 1fr 1fr; min-height: 480px; background: var(--btg-cream); }
 .btg-split__media { position: relative; overflow: hidden; background: var(--btg-forest-deep); }
-.btg-split__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.btg-split__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--img-focus-d, center); }
 .btg-split__fallback { position: absolute; inset: 0; background: url("https://cdn.shopify.com/s/files/1/0632/2172/7335/files/btg-img-fork-stories.jpg?v=1790710192") center / cover; }
 .btg-split__copy { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 72px clamp(24px, 7vw, 112px); }
 @media (max-width: 860px) {
   .btg-split { grid-template-columns: 1fr; min-height: 0; }
-  .btg-split__media { aspect-ratio: 16/10; }
+  .btg-split__media { aspect-ratio: 1 / 1; }
+  .btg-split__media img { object-position: var(--img-focus-m, center); }
   .btg-split__copy { padding: 32px var(--btg-gutter) 48px; }
 }
 
@@ -207,14 +208,23 @@
   .btg-proof--scale .btg-proof__note { margin-top: 12px; }
 }
 
-/* ---------- Mission band ---------- */
-.btg-mission { position: relative; display: flex; align-items: flex-end; min-height: min(64svh, 680px); overflow: hidden; background: var(--btg-forest-deep); color: var(--btg-cream); }
+/* ---------- Mission band ----------
+   Photograph first, statement second. The photo is the section's own
+   background (cover), with a gradient only behind the text at the bottom. */
+.btg-mission { position: relative; display: flex; align-items: flex-end; min-height: clamp(420px, 58vh, 600px); overflow: hidden; background-color: var(--btg-forest-deep); color: var(--btg-cream); }
+.btg-mission--photo { background-image: var(--mission-bg); background-size: cover; background-position: var(--focus-d, center 60%); background-repeat: no-repeat; }
 .btg-mission__media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.btg-mission__shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8,11,8,0.82) 0%, rgba(8,11,8,0.35) 45%, rgba(8,11,8,0.15) 100%); }
-.btg-mission__body { position: relative; width: 100%; padding-bottom: clamp(56px, 9vw, 120px); }
-.btg-mission__heading { font-size: clamp(48px, 7.4vw, 120px); line-height: 0.9; margin: 0 0 22px; max-width: 13ch; text-wrap: balance; }
-.btg-mission__text { font-size: clamp(17px, 1.5vw, 20px); line-height: 1.5; color: rgba(243,238,223,0.85); max-width: 46ch; margin: 0; }
-@media (max-width: 860px) { .btg-mission { min-height: 52svh; } .btg-mission__heading { font-size: clamp(36px, 10.5vw, 46px); } .btg-mission__text { font-size: 16px; } }
+.btg-mission__shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8,11,8,0.72) 0%, rgba(8,11,8,0.3) 38%, rgba(8,11,8,0) 65%); }
+.btg-mission__body { position: relative; width: 100%; padding-bottom: clamp(40px, 6vw, 72px); }
+.btg-mission__heading { font-size: clamp(44px, 6.2vw, 96px); line-height: 0.9; margin: 0 0 16px; max-width: 13ch; text-wrap: balance; }
+.btg-mission__text { font-size: clamp(16px, 1.4vw, 19px); line-height: 1.5; color: rgba(243,238,223,0.9); max-width: 46ch; margin: 0; }
+@media (max-width: 860px) {
+  .btg-mission { min-height: 0; aspect-ratio: 4 / 5; max-height: min(72svh, 560px); }
+  .btg-mission--photo { background-image: var(--mission-bg-m, var(--mission-bg)); background-position: var(--focus-m, center 55%); }
+  .btg-mission__body { padding-bottom: 28px; }
+  .btg-mission__heading { font-size: clamp(32px, 9.5vw, 42px); margin-bottom: 10px; }
+  .btg-mission__text { font-size: 15px; }
+}
 
 /* ---------- Work panels (Brand Partnerships / Course Features) ---------- */
 .btg-work { padding: clamp(80px, 9vw, 128px) 0; scroll-margin-top: 72px; }

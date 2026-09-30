@@ -27,20 +27,20 @@
         "collection": "home-page-1",
         "product_count": 6,
         "columns": "3",
-        "layout": "editorial",
-        "tile_a": "soft-hooded-sports-jacket",
-        "tile_b": "behind-the-greens-performance-hat"
+        "layout": "editorial"
       }
     },
     "btg_about_teaser": {
       "type": "btg-about-teaser",
       "settings": {
-        "image": "shopify://shop_images/IMG_1893.jpg",
+        "image": "shopify://shop_images/btg-story-behind-the-camera.jpg",
         "eyebrow": "Our Story",
         "heading": "A Camera Pointed The Other Way",
         "text": "Golf content points at the golfer. We pointed the camera at the crews, the equipment and the work that happens before anyone tees off.",
         "link_label": "Read Our Story",
-        "link": "shopify://pages/our-story"
+        "link": "shopify://pages/our-story",
+        "image_focus_desktop": "55% 30%",
+        "image_focus_mobile": "45% 45%"
       }
     },
     "btg_proof": {
@@ -192,7 +192,9 @@
       "settings": {
         "image": "shopify://shop_images/10a3135f-fairway-mowers.jpg",
         "heading": "For The People Who Make The Game Possible.",
-        "text": "Every course has a crew that makes the game possible. We're here to give them the recognition they deserve."
+        "text": "Every course has a crew that makes the game possible. We're here to give them the recognition they deserve.",
+        "focus_desktop": "center 60%",
+        "focus_mobile": "center 55%"
       }
     },
     "btg_work": {

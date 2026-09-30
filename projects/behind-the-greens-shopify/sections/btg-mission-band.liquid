@@ -5,11 +5,18 @@
 
 <div class="btg-scope">
   {{ 'btg-home.css' | asset_url | stylesheet_tag }}
-  <section class="btg-mission">
+  {%- liquid
+    assign mission_style = '--focus-d: ' | append: section.settings.focus_desktop | append: '; --focus-m: ' | append: section.settings.focus_mobile | append: ';'
+    if section.settings.image != blank
+      assign bg_d = section.settings.image | image_url: width: 2000
+      assign bg_m = section.settings.image | image_url: width: 1000
+      assign mission_style = mission_style | append: " --mission-bg: url('" | append: bg_d | append: "'); --mission-bg-m: url('" | append: bg_m | append: "');"
+    endif
+  -%}
+  {%- comment -%} The photo is the band's own background, so it always fills the whole band. {%- endcomment -%}
+  <section class="btg-mission{% if section.settings.image != blank %} btg-mission--photo{% endif %}" style="{{ mission_style }}"{% if section.settings.image != blank and section.settings.video == blank %} role="img" aria-label="{{ section.settings.image.alt | default: 'Grounds crew mowing the course' | escape }}"{% endif %}>
     {%- if section.settings.video != blank -%}
       {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false, preload: 'none', image_size: '1600x', class: 'btg-mission__media' }}
-    {%- elsif section.settings.image != blank -%}
-      {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'lazy', sizes: '100vw', widths: '800, 1200, 1600, 2000', alt: section.settings.image.alt | default: '', class: 'btg-mission__media' }}
     {%- endif -%}
     <span class="btg-mission__shade" aria-hidden="true"></span>
     <div class="btg-container btg-mission__body">
@@ -23,11 +30,47 @@
 {
   "name": "BTG Mission Band",
   "settings": [
-    { "type": "image_picker", "id": "image", "label": "Image", "info": "Use a real maintenance photo: crew, mowers, dew, first light." },
-    { "type": "video", "id": "video", "label": "Muted loop (optional)", "info": "Overrides the image. Keep it short and quiet." },
-    { "type": "text", "id": "heading", "label": "Statement", "default": "For The People Who Make The Game Possible." },
-    { "type": "textarea", "id": "text", "label": "One sentence" }
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Use a real maintenance photo: crew, mowers, dew, first light."
+    },
+    {
+      "type": "text",
+      "id": "focus_desktop",
+      "label": "Photo focus (desktop)",
+      "default": "center 60%",
+      "info": "CSS position, e.g. center 60%."
+    },
+    {
+      "type": "text",
+      "id": "focus_mobile",
+      "label": "Photo focus (phone)",
+      "default": "center 55%"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Muted loop (optional)",
+      "info": "Overrides the image. Keep it short and quiet."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Statement",
+      "default": "For The People Who Make The Game Possible."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "One sentence"
+    }
   ],
-  "presets": [{ "name": "BTG Mission Band" }]
+  "presets": [
+    {
+      "name": "BTG Mission Band"
+    }
+  ]
 }
 {% endschema %}

@@ -27,10 +27,12 @@
             even product grid. Tiles use each product's real Lifestyle image
             and its Lifestyle focus metafield for the crop.
           {%- endcomment -%}
-          <div class="btg-edit-moments">
-            {%- render 'btg-edit-tile', product: section.settings.tile_a, size: 'a' -%}
-            {%- render 'btg-edit-tile', product: section.settings.tile_b, size: 'b' -%}
-          </div>
+          {%- if section.settings.tile_a != blank or section.settings.tile_b != blank -%}
+            <div class="btg-edit-moments">
+              {%- render 'btg-edit-tile', product: section.settings.tile_a, size: 'a' -%}
+              {%- render 'btg-edit-tile', product: section.settings.tile_b, size: 'b' -%}
+            </div>
+          {%- endif -%}
           <div class="btg-grid-3 btg-edit-products">
             {%- for product in section.settings.collection.products limit: section.settings.product_count -%}
               {% render 'btg-product-card', product: product %}
