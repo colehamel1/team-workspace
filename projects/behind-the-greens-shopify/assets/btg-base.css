@@ -352,7 +352,7 @@
 @media (hover: none) {
   .btg-card--has-alt .btg-card__track {
     display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
-    -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; touch-action: pan-x pan-y;
+    -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;
   }
   .btg-card--has-alt .btg-card__track::-webkit-scrollbar { display: none; }
   .btg-card--has-alt .btg-card__frame { position: relative; flex: 0 0 100%; height: 100%; scroll-snap-align: start; }

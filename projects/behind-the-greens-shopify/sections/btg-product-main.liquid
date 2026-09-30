@@ -55,7 +55,8 @@
           {%- endif -%}
           {%- if lifestyle != blank -%}
             <figure class="btg-pdp__slide btg-pdp__slide--lifestyle" data-btg-slide>
-              {%- assign life_style = 'object-position: ' | append: product.metafields.custom.lifestyle_focus.value | default: 'object-position: center center' -%}
+              {%- assign life_focus = product.metafields.custom.lifestyle_focus.value | default: 'center center' -%}
+              {%- assign life_style = 'object-position: ' | append: life_focus -%}
               {{ lifestyle | image_url: width: 1600 | image_tag: loading: 'lazy', sizes: '(min-width: 1000px) 58vw, 100vw', widths: '600, 900, 1200, 1600', alt: lifestyle.alt | default: '', class: 'btg-pdp__slide-img', style: life_style }}
               <figcaption class="btg-pdp__slide-caption btg-mono">On The Job{% if lifestyle_caption != blank %} &middot; {{ lifestyle_caption }}{% endif %}</figcaption>
             </figure>
