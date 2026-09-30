@@ -38,7 +38,7 @@
   --btg-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 @media (max-width: 1100px) { :root { --btg-section: 96px; --btg-gutter: 32px; } }
-@media (max-width: 860px) { :root { --btg-section: 64px; --btg-gutter: 20px; } }
+@media (max-width: 860px) { :root { --btg-section: 56px; --btg-gutter: 20px; } }
 
 .btg-scope {
   background: var(--btg-cream);
@@ -349,19 +349,11 @@
   .btg-card--has-alt:hover .btg-card__frame--alt { opacity: 1; }
   .btg-card--has-alt:hover .btg-card__frame--alt img { transform: scale(1); }
 }
+/* Touch devices: no hover, and no hidden swipe to discover. Cards show the
+   clean product photo; the on-the-job photo is the 2nd image on the product
+   page. The lifestyle image isn't requested at all here. */
 @media (hover: none) {
-  .btg-card--has-alt .btg-card__track {
-    display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
-    -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;
-  }
-  .btg-card--has-alt .btg-card__track::-webkit-scrollbar { display: none; }
-  .btg-card--has-alt .btg-card__frame { position: relative; flex: 0 0 100%; height: 100%; scroll-snap-align: start; }
-  .btg-card--has-alt .btg-card__frame--alt { opacity: 1; }
-  .btg-card__frame--alt img { transform: none; }
-  .btg-card--has-alt .btg-card__dots { display: flex; gap: 5px; position: absolute; right: 12px; bottom: 12px; z-index: 2; pointer-events: none; }
-  .btg-card__dots i { width: 5px; height: 5px; border-radius: 50%; background: rgba(20,20,15,0.22); transition: background 0.2s ease; }
-  .btg-card__dots i.is-active { background: var(--btg-ink); }
-  .btg-card__tag { left: 10px; bottom: 10px; }
+  .btg-card__frame--alt { display: none; }
 }
 .btg-card--sold-out .btg-card__frame img { opacity: 0.55; }
 .btg-card__badge {
@@ -384,8 +376,9 @@
 @media (max-width: 860px) {
   .btg-grid-4, .btg-grid-3 { grid-template-columns: 1fr 1fr; gap: 36px 12px; }
   .btg-card__media { margin-bottom: 12px; }
-  .btg-card__title { font-size: 14px; }
-  .btg-card__film { display: none; }
+  .btg-card__title { font-size: 15px; }
+  .btg-card__sub, .btg-card__film { display: none; }
+  .btg-card__price { font-size: 15px; padding-top: 2px; }
 }
 
 /* ---------- Native Shopify pages (contact form, policies, search, cart page,
@@ -400,3 +393,14 @@ main#MainContent .shopify-policy__body { font-family: var(--btg-font-body); colo
 
 /* Screen-reader-only text (icon labels). */
 .btg-visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* Clock In status (set for the session after clocking in on the homepage). */
+.btg-header__onjob { display: none; align-items: center; gap: 8px; margin-right: 6px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(243,238,223,0.78); }
+.btg-header__onjob i { width: 6px; height: 6px; border-radius: 50%; background: #6FBF73; box-shadow: 0 0 0 3px rgba(111,191,115,0.18); }
+.btg-on-the-job .btg-header__onjob { display: inline-flex; }
+@media (max-width: 960px) { .btg-on-the-job .btg-header__onjob { display: none; } }
+
+/* Shared text-link CTA: one style for every secondary link. */
+.btg-textlink { display: inline-block; padding: 12px 0; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; }
+.btg-textlink span { display: inline-block; transition: transform 0.25s var(--btg-ease); }
+.btg-textlink:hover span { transform: translateX(3px); }

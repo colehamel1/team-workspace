@@ -13,7 +13,8 @@
         "film_label": "Watch The Films",
         "film_link": "#watch-the-work",
         "shop_label": "Shop The Collection",
-        "shop_link": "shopify://collections/all"
+        "shop_link": "shopify://collections/all",
+        "show_clock": true
       }
     },
     "btg_merch_teaser": {
@@ -37,7 +38,7 @@
         "image": "shopify://shop_images/btg-img-video-still.jpg",
         "eyebrow": "Our Story",
         "heading": "A Camera Pointed The Other Way",
-        "text": "Golf content usually points at the golfer. We pointed the camera the other way: at the crews, the equipment and the work that happens before anyone tees off. That's where Behind The Greens started, and it's still the point.",
+        "text": "Golf content points at the golfer. We pointed the camera at the crews, the equipment and the work that happens before anyone tees off.",
         "link_label": "Read Our Story",
         "link": "shopify://pages/our-story"
       }
@@ -76,8 +77,8 @@
         "style": "scale",
         "compact": false,
         "eyebrow": "The Audience",
-        "heading": "Millions watch the work every month.",
-        "note": "Followers as of Sep 2026: Instagram 110K, Facebook 164K, YouTube 81K, TikTok 55K. Views and engagements from each platform's analytics, Jul 23 – Aug 21, 2026.",
+        "heading": "",
+        "note": "Followers as of Sep 2026 (Instagram 110K, Facebook 164K, YouTube 81K, TikTok 55K). Views and engagements: platform analytics, Jul 23 – Aug 21, 2026.",
         "only_on_page": ""
       }
     },
@@ -194,36 +195,39 @@
         "text": "Every course has a crew that makes the game possible. We're here to give them the recognition they deserve."
       }
     },
-    "btg_work_brands": {
+    "btg_work": {
       "type": "btg-work-panel",
+      "blocks": {
+        "brands": {
+          "type": "card",
+          "settings": {
+            "eyebrow": "For Brands",
+            "heading": "A Golf Media Partner",
+            "text": "Integrations inside the films and clips golf fans already watch. Creative, production and distribution handled.",
+            "cta_label": "Work With BTG",
+            "cta_link": "/pages/media-kit#for-brands"
+          }
+        },
+        "courses": {
+          "type": "card",
+          "settings": {
+            "eyebrow": "For Golf Courses",
+            "heading": "Bring Behind The Greens To Your Course",
+            "text": "A day alongside your grounds crew, turned into films about your course and its people.",
+            "price": "From $3,500 + travel",
+            "cta_label": "Feature Your Course",
+            "cta_link": "/pages/contact?topic=course-features"
+          }
+        }
+      },
+      "block_order": [
+        "brands",
+        "courses"
+      ],
       "settings": {
-        "variant": "brands",
-        "anchor": "partnerships",
-        "eyebrow": "Brand Partnerships",
-        "heading": "A Golf Media Partner",
-        "text": "Integrations inside the films and clips golf fans already watch. We handle the creative, the production and the distribution.",
-        "cta_label": "Work With BTG",
-        "cta_link": "/pages/media-kit#for-brands",
-        "link_label": "See Rates",
-        "link_url": "/pages/media-kit#for-brands"
-      }
-    },
-    "btg_work_courses": {
-      "type": "btg-work-panel",
-      "settings": {
-        "variant": "courses",
-        "anchor": "course-features",
-        "eyebrow": "Course Features",
-        "heading": "Bring Behind The Greens To Your Course",
-        "text": "We spend a day working alongside your grounds crew, then turn it into long-form and short-form films that showcase your course, your crew and your operation.",
-        "price": "Course Features start at $3,500 + travel",
-        "cta_label": "Feature Your Course",
-        "cta_link": "/pages/contact?topic=course-features",
-        "link_label": "How It Works",
-        "link_url": "/pages/media-kit#for-courses",
-        "example_id": "Kn-Qtw8J0gA",
-        "example_label": "A Course Feature",
-        "example_title": "Eagle Mountain Golf Club · Fountain Hills, AZ"
+        "variant": "pair",
+        "anchor": "work-with-btg",
+        "eyebrow": "Work With BTG"
       }
     }
   },
@@ -235,7 +239,6 @@
     "btg_proof",
     "btg_mission",
     "btg_about_teaser",
-    "btg_work_brands",
-    "btg_work_courses"
+    "btg_work"
   ]
 }

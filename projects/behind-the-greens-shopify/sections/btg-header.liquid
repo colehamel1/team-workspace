@@ -29,6 +29,8 @@
     </a>
 
     <div class="btg-header__icons">
+      <span class="btg-header__onjob" aria-hidden="true"><i></i>On The Job</span>
+      <script>try{if(sessionStorage.getItem('btg_clocked_in'))document.documentElement.classList.add('btg-on-the-job')}catch(e){}</script>
       <a href="{{ routes.search_url }}" aria-label="Search">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.5"/><line x1="20.5" y1="20.5" x2="16.2" y2="16.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </a>

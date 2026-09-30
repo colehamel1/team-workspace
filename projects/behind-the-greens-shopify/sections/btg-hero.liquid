@@ -40,6 +40,7 @@
           <a href="{{ section.settings.shop_link | default: routes.all_products_collection_url }}" class="btg-hero__cta-secondary">{{ section.settings.shop_label }} <span aria-hidden="true">&rarr;</span></a>
         {%- endif -%}
       </div>
+      {%- if section.settings.show_clock -%}{% render 'btg-clock', fixed: section.settings.clock_time %}{%- endif -%}
     </div>
   </section>
 </div>
@@ -89,7 +90,10 @@
     { "type": "text", "id": "film_label", "label": "Primary button label", "default": "Watch The Films" },
     { "type": "text", "id": "film_link", "label": "Primary button link", "default": "#watch-the-work", "info": "#watch-the-work jumps to the films on this page." },
     { "type": "text", "id": "shop_label", "label": "Secondary link label", "default": "Shop The Collection" },
-    { "type": "url", "id": "shop_link", "label": "Secondary link" }
+    { "type": "url", "id": "shop_link", "label": "Secondary link" },
+    { "type": "header", "content": "Clock In" },
+    { "type": "checkbox", "id": "show_clock", "label": "Show Clock In", "default": true },
+    { "type": "text", "id": "clock_time", "label": "Pinned time (optional)", "info": "Leave empty to show the visitor's real local time. Or pin it, e.g. 04:53 AM." }
   ],
   "presets": [{ "name": "BTG Hero" }]
 }

@@ -1,5 +1,7 @@
 {%- comment -%}
-  Work With BTG panel. Two variants share one layout:
+  Work With BTG panel.
+  - pair: one compact block with two cards (blocks), for the homepage.
+  Two single-panel variants share one layout:
   - brands: media-partner pitch + optional brand reel (renders only once a
     reel video is uploaded; nothing placeholder is shown before that).
   - courses: Course Features offer + starting price + a real example film
@@ -18,6 +20,26 @@
 -%}
 <div class="btg-scope">
   {{ 'btg-home.css' | asset_url | stylesheet_tag }}
+  {%- if variant == 'pair' -%}
+  <section class="btg-work-pair" id="{{ section.settings.anchor | default: 'work-with-btg' }}">
+    <div class="btg-container">
+      {%- if section.settings.eyebrow != blank -%}<div class="btg-eyebrow btg-work-pair__eyebrow">{{ section.settings.eyebrow }}</div>{%- endif -%}
+      <div class="btg-work-pair__grid">
+        {%- for block in section.blocks -%}
+          <div class="btg-work-card{% if forloop.last %} btg-work-card--dark{% endif %}" {{ block.shopify_attributes }}>
+            {%- if block.settings.eyebrow != blank -%}<div class="btg-work-card__eyebrow">{{ block.settings.eyebrow }}</div>{%- endif -%}
+            <h2 class="btg-display btg-work-card__heading">{{ block.settings.heading }}</h2>
+            {%- if block.settings.text != blank -%}<p class="btg-work-card__text">{{ block.settings.text }}</p>{%- endif -%}
+            <div class="btg-work-card__foot">
+              {%- if block.settings.price != blank -%}<span class="btg-work-card__price">{{ block.settings.price }}</span>{%- endif -%}
+              {%- if block.settings.cta_label != blank -%}<a href="{{ block.settings.cta_link | default: routes.root_url }}" class="{% if forloop.last %}btg-btn-light{% else %}btg-btn-primary{% endif %} btg-work-card__cta">{{ block.settings.cta_label }}</a>{%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+  {%- else -%}
   <section class="btg-work btg-work--{{ variant }}{% unless has_media %} btg-work--text{% endunless %}" id="{{ section.settings.anchor | default: variant }}">
     <div class="btg-container btg-work__grid">
       <div class="btg-work__copy">
@@ -57,6 +79,7 @@
       {%- endif -%}
     </div>
   </section>
+  {%- endif -%}
 </div>
 {%- endif -%}
 
@@ -65,27 +88,152 @@
   "name": "BTG Work Panel",
   "settings": [
     {
-      "type": "select", "id": "variant", "label": "Type",
-      "options": [{ "value": "brands", "label": "Brand Partnerships" }, { "value": "courses", "label": "Course Features" }],
+      "type": "select",
+      "id": "variant",
+      "label": "Type",
+      "options": [
+        {
+          "value": "pair",
+          "label": "Pair (two compact cards)"
+        },
+        {
+          "value": "brands",
+          "label": "Brand Partnerships"
+        },
+        {
+          "value": "courses",
+          "label": "Course Features"
+        }
+      ],
       "default": "brands"
     },
-    { "type": "text", "id": "anchor", "label": "Anchor id" },
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Work With Behind The Greens" },
-    { "type": "textarea", "id": "text", "label": "Text" },
-    { "type": "text", "id": "price", "label": "Price line (optional)" },
-    { "type": "text", "id": "cta_label", "label": "Button label" },
-    { "type": "url", "id": "cta_link", "label": "Button link" },
-    { "type": "text", "id": "link_label", "label": "Secondary link label" },
-    { "type": "url", "id": "link_url", "label": "Secondary link" },
-    { "type": "header", "content": "Brand reel (Brand Partnerships)" },
-    { "type": "video", "id": "reel", "label": "Brand reel", "info": "15–25 seconds. The panel shows it only once uploaded." },
-    { "type": "header", "content": "Example film (Course Features)" },
-    { "type": "text", "id": "example_id", "label": "Example film YouTube id", "info": "e.g. Kn-Qtw8J0gA (Eagle Mountain)." },
-    { "type": "text", "id": "example_label", "label": "Example label", "default": "A Course Feature" },
-    { "type": "text", "id": "example_title", "label": "Example title" },
-    { "type": "text", "id": "only_on_page", "label": "Only show on page (handle)" }
+    {
+      "type": "text",
+      "id": "anchor",
+      "label": "Anchor id"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Work With Behind The Greens"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "price",
+      "label": "Price line (optional)"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Secondary link label"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Secondary link"
+    },
+    {
+      "type": "header",
+      "content": "Brand reel (Brand Partnerships)"
+    },
+    {
+      "type": "video",
+      "id": "reel",
+      "label": "Brand reel",
+      "info": "15–25 seconds. The panel shows it only once uploaded."
+    },
+    {
+      "type": "header",
+      "content": "Example film (Course Features)"
+    },
+    {
+      "type": "text",
+      "id": "example_id",
+      "label": "Example film YouTube id",
+      "info": "e.g. Kn-Qtw8J0gA (Eagle Mountain)."
+    },
+    {
+      "type": "text",
+      "id": "example_label",
+      "label": "Example label",
+      "default": "A Course Feature"
+    },
+    {
+      "type": "text",
+      "id": "example_title",
+      "label": "Example title"
+    },
+    {
+      "type": "text",
+      "id": "only_on_page",
+      "label": "Only show on page (handle)"
+    }
   ],
-  "presets": [{ "name": "BTG Work Panel" }]
+  "presets": [
+    {
+      "name": "BTG Work Panel"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Work With Behind The Greens"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "One line"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price line (optional)"
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "cta_link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 2
 }
 {% endschema %}

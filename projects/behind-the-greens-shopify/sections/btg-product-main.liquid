@@ -37,6 +37,16 @@
 
       <!-- GALLERY -->
       <div class="btg-pdp__gallery">
+{%- capture lifestyle_slide -%}
+          {%- if lifestyle != blank -%}
+            <figure class="btg-pdp__slide btg-pdp__slide--lifestyle" data-btg-slide>
+              {%- assign life_focus = product.metafields.custom.lifestyle_focus.value | default: 'center center' -%}
+              {%- assign life_style = 'object-position: ' | append: life_focus -%}
+              {{ lifestyle | image_url: width: 1600 | image_tag: loading: 'lazy', sizes: '(min-width: 1000px) 58vw, 100vw', widths: '600, 900, 1200, 1600', alt: lifestyle.alt | default: '', class: 'btg-pdp__slide-img', style: life_style }}
+              <figcaption class="btg-pdp__slide-caption btg-mono">On The Job{% if lifestyle_caption != blank %} &middot; {{ lifestyle_caption }}{% endif %}</figcaption>
+            </figure>
+          {%- endif -%}
+          {%- endcapture -%}
         <div class="btg-pdp__main-media" data-btg-gallery>
           {%- if gallery_media.size > 0 -%}
             {%- for media in gallery_media -%}
@@ -49,31 +59,31 @@
               <div class="btg-pdp__slide" data-btg-slide data-media-id="{{ media.id }}">
                 {{ media | image_url: width: 1600 | image_tag: loading: loading_attr, sizes: '(min-width: 1000px) 58vw, 100vw', widths: '600, 900, 1200, 1600', alt: media.alt | default: product.title, class: 'btg-pdp__slide-img' }}
               </div>
+              {%- comment -%} On-the-job photo sits second, so phones meet it with a natural swipe. {%- endcomment -%}
+              {%- if forloop.first -%}{{ lifestyle_slide }}{%- endif -%}
             {%- endfor -%}
           {%- else -%}
             <div class="btg-pdp__slide">{{ 'product-1' | placeholder_svg_tag }}</div>
-          {%- endif -%}
-          {%- if lifestyle != blank -%}
-            <figure class="btg-pdp__slide btg-pdp__slide--lifestyle" data-btg-slide>
-              {%- assign life_focus = product.metafields.custom.lifestyle_focus.value | default: 'center center' -%}
-              {%- assign life_style = 'object-position: ' | append: life_focus -%}
-              {{ lifestyle | image_url: width: 1600 | image_tag: loading: 'lazy', sizes: '(min-width: 1000px) 58vw, 100vw', widths: '600, 900, 1200, 1600', alt: lifestyle.alt | default: '', class: 'btg-pdp__slide-img', style: life_style }}
-              <figcaption class="btg-pdp__slide-caption btg-mono">On The Job{% if lifestyle_caption != blank %} &middot; {{ lifestyle_caption }}{% endif %}</figcaption>
-            </figure>
           {%- endif -%}
         </div>
         {%- if slide_count > 1 -%}
           <div class="btg-pdp__thumbs" data-btg-thumbs>
             {%- for media in gallery_media -%}
-              <button type="button" class="btg-thumb{% if forloop.first %} active{% endif %}" data-btg-thumb data-index="{{ forloop.index0 }}" aria-label="Show image {{ forloop.index }} of {{ slide_count }}">
+              {%- liquid
+                assign thumb_index = forloop.index0
+                if lifestyle != blank and forloop.first == false
+                  assign thumb_index = forloop.index0 | plus: 1
+                endif
+              -%}
+              <button type="button" class="btg-thumb{% if forloop.first %} active{% endif %}" data-btg-thumb data-index="{{ thumb_index }}" aria-label="Show image {{ thumb_index | plus: 1 }} of {{ slide_count }}">
                 {{ media | image_url: width: 240 | image_tag: loading: 'lazy', alt: '' }}
               </button>
+              {%- if forloop.first and lifestyle != blank -%}
+                <button type="button" class="btg-thumb" data-btg-thumb data-index="1" aria-label="Show on-the-job photo">
+                  {{ lifestyle | image_url: width: 240 | image_tag: loading: 'lazy', alt: '' }}
+                </button>
+              {%- endif -%}
             {%- endfor -%}
-            {%- if lifestyle != blank -%}
-              <button type="button" class="btg-thumb" data-btg-thumb data-index="{{ gallery_media.size }}" aria-label="Show on-the-job photo">
-                {{ lifestyle | image_url: width: 240 | image_tag: loading: 'lazy', alt: '' }}
-              </button>
-            {%- endif -%}
           </div>
           <div class="btg-pdp__dots" data-btg-dots aria-hidden="true">
             {%- for i in (1..slide_count) -%}

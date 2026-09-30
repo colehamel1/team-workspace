@@ -98,15 +98,15 @@
 @media (max-width: 960px) { .btg-proof--compact { padding: 56px 0; } }
 
 /* ---------- Split (story teaser) ---------- */
-.btg-split { display: grid; grid-template-columns: 1fr 1fr; min-height: 640px; background: var(--btg-cream); }
+.btg-split { display: grid; grid-template-columns: 1fr 1fr; min-height: 480px; background: var(--btg-cream); }
 .btg-split__media { position: relative; overflow: hidden; background: var(--btg-forest-deep); }
 .btg-split__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .btg-split__fallback { position: absolute; inset: 0; background: url("https://cdn.shopify.com/s/files/1/0632/2172/7335/files/btg-img-fork-stories.jpg?v=1790710192") center / cover; }
-.btg-split__copy { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 96px clamp(24px, 7vw, 120px); }
+.btg-split__copy { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 72px clamp(24px, 7vw, 112px); }
 @media (max-width: 860px) {
   .btg-split { grid-template-columns: 1fr; min-height: 0; }
-  .btg-split__media { aspect-ratio: 4/3; }
-  .btg-split__copy { padding: 56px var(--btg-gutter) 72px; }
+  .btg-split__media { aspect-ratio: 16/10; }
+  .btg-split__copy { padding: 32px var(--btg-gutter) 48px; }
 }
 
 /* ---------- Video / media moment ---------- */
@@ -175,40 +175,46 @@
 .btg-edit-tile:hover .btg-edit-tile__cta span { transform: translateX(3px); }
 .btg-edit-products { gap: 48px 24px; }
 @media (max-width: 860px) {
-  .btg-edit-moments { grid-template-columns: 1fr; gap: 12px; margin-bottom: 44px; }
-  .btg-edit-tile--a { aspect-ratio: 4 / 5; }
-  .btg-edit-tile--b { aspect-ratio: 1 / 1; }
-  .btg-edit-tile__body { padding: 18px 18px; }
+  /* Phones: the two moments sit side by side as a pair, not two full screens. */
+  .btg-edit-moments { grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px; }
+  .btg-edit-tile--a, .btg-edit-tile--b { aspect-ratio: 4 / 5; }
+  .btg-edit-tile__body { padding: 12px; }
+  .btg-edit-tile__name { font-size: 17px; }
+  .btg-edit-tile__cta { display: none; }
   .btg-edit-products { gap: 32px 12px; }
 }
 
-/* Proof, "scale" style: legitimacy in one quick beat. Light band between
-   the dark films and the dark mission photo; big numerals, explicit labels,
-   source line kept secondary. */
-.btg-proof--scale { background: var(--btg-paper); color: var(--btg-ink); padding: clamp(64px, 7vw, 96px) 0; }
-.btg-proof--scale .btg-proof__grid { grid-template-columns: 1fr 2.2fr; gap: 48px; align-items: end; }
-.btg-proof--scale .btg-proof__eyebrow { color: var(--btg-muted); margin-bottom: 12px; }
-.btg-proof--scale .btg-proof__heading { font-family: var(--btg-font-body); font-weight: 600; text-transform: none; letter-spacing: 0; font-size: clamp(20px, 1.8vw, 24px); line-height: 1.3; max-width: 18ch; margin: 0; }
+/* Proof, "scale" style: one quick credibility beat. A single compact row
+   on a light band: label, three numerals, source line. */
+.btg-proof--scale { background: var(--btg-paper); color: var(--btg-ink); padding: clamp(44px, 5vw, 64px) 0; }
+.btg-proof--scale .btg-proof__grid { grid-template-columns: auto 1fr; gap: clamp(28px, 4vw, 64px); align-items: center; }
+.btg-proof--scale .btg-proof__eyebrow { color: var(--btg-muted); margin: 0; }
+.btg-proof--scale .btg-proof__heading { font-family: var(--btg-font-body); font-weight: 600; text-transform: none; letter-spacing: 0; font-size: 18px; line-height: 1.3; max-width: 16ch; margin: 8px 0 0; }
 .btg-proof--scale .btg-proof__social { display: none; }
-.btg-proof--scale .btg-proof__stats { border-left: 0; }
-.btg-proof--scale .btg-proof__stat { padding: 0 24px; border-left: 1px solid var(--btg-hairline); }
-.btg-proof--scale .btg-proof__value { font-size: clamp(52px, 6.5vw, 104px); line-height: 0.85; margin-bottom: 12px; color: var(--btg-ink); }
-.btg-proof--scale .btg-proof__label { font-size: 14px; line-height: 1.45; max-width: 22ch; color: var(--btg-body); }
-.btg-proof--scale .btg-proof__note { margin-top: 36px; font-size: 12px; color: var(--btg-muted); }
-@media (max-width: 960px) {
-  .btg-proof--scale .btg-proof__grid { grid-template-columns: 1fr; gap: 28px; }
-  .btg-proof--scale .btg-proof__stat { display: flex; align-items: baseline; gap: 18px; padding: 16px 0; border-left: 0; border-top: 1px solid var(--btg-hairline); }
-  .btg-proof--scale .btg-proof__value { font-size: clamp(44px, 13vw, 60px); margin: 0; min-width: 3.6ch; }
+.btg-proof--scale .btg-proof__stats { grid-template-columns: repeat(3, minmax(0, 1fr)); border-left: 0; }
+.btg-proof--scale .btg-proof__stat { display: flex; align-items: baseline; gap: 14px; padding: 0 20px; border-left: 1px solid var(--btg-hairline); }
+.btg-proof--scale .btg-proof__value { font-size: clamp(40px, 4.6vw, 68px); line-height: 0.85; margin: 0; color: var(--btg-ink); flex-shrink: 0; }
+.btg-proof--scale .btg-proof__label { font-size: 13px; line-height: 1.4; max-width: 18ch; color: var(--btg-body); }
+.btg-proof--scale .btg-proof__note { margin-top: 20px; font-size: 11px; line-height: 1.5; color: var(--btg-muted); }
+@media (max-width: 1100px) {
+  .btg-proof--scale .btg-proof__stat { flex-direction: column; gap: 8px; }
+}
+@media (max-width: 860px) {
+  .btg-proof--scale .btg-proof__grid { grid-template-columns: 1fr; gap: 16px; }
+  .btg-proof--scale .btg-proof__stats { grid-template-columns: 1fr; }
+  .btg-proof--scale .btg-proof__stat { flex-direction: row; align-items: baseline; gap: 14px; padding: 12px 0; border-left: 0; border-top: 1px solid var(--btg-hairline); }
+  .btg-proof--scale .btg-proof__value { font-size: 40px; min-width: 3.3ch; }
+  .btg-proof--scale .btg-proof__note { margin-top: 12px; }
 }
 
 /* ---------- Mission band ---------- */
-.btg-mission { position: relative; display: flex; align-items: flex-end; min-height: min(72svh, 760px); overflow: hidden; background: var(--btg-forest-deep); color: var(--btg-cream); }
+.btg-mission { position: relative; display: flex; align-items: flex-end; min-height: min(64svh, 680px); overflow: hidden; background: var(--btg-forest-deep); color: var(--btg-cream); }
 .btg-mission__media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .btg-mission__shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8,11,8,0.82) 0%, rgba(8,11,8,0.35) 45%, rgba(8,11,8,0.15) 100%); }
 .btg-mission__body { position: relative; width: 100%; padding-bottom: clamp(56px, 9vw, 120px); }
 .btg-mission__heading { font-size: clamp(48px, 7.4vw, 120px); line-height: 0.9; margin: 0 0 22px; max-width: 13ch; text-wrap: balance; }
 .btg-mission__text { font-size: clamp(17px, 1.5vw, 20px); line-height: 1.5; color: rgba(243,238,223,0.85); max-width: 46ch; margin: 0; }
-@media (max-width: 860px) { .btg-mission { min-height: 64svh; } .btg-mission__heading { font-size: clamp(42px, 12vw, 64px); } }
+@media (max-width: 860px) { .btg-mission { min-height: 52svh; } .btg-mission__heading { font-size: clamp(36px, 10.5vw, 46px); } .btg-mission__text { font-size: 16px; } }
 
 /* ---------- Work panels (Brand Partnerships / Course Features) ---------- */
 .btg-work { padding: clamp(80px, 9vw, 128px) 0; scroll-margin-top: 72px; }
@@ -246,3 +252,58 @@
 }
 .btg-work--brands .btg-work__price { color: var(--btg-forest); }
 @media (prefers-reduced-motion: reduce) { video.btg-mission__media { display: none; } }
+
+/* ---------- Clock In ----------
+   A crew time-clock readout in the hero. Punch: lever press, digits tick,
+   ink stamp. About 650ms. Reduced motion: text swap only (see JS). */
+.btg-hero__content { position: relative; }
+.btg-clock { position: absolute; right: var(--btg-gutter); bottom: clamp(56px, 9vh, 104px); z-index: 3; }
+.btg-clock__btn {
+  position: relative; display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 14px;
+  font-family: var(--btg-font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(243,238,223,0.82); background: rgba(10,14,10,0.35); border: 1px solid rgba(243,238,223,0.28);
+  cursor: pointer; overflow: hidden; -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+  transition: border-color 0.25s ease, color 0.25s ease, transform 0.12s ease;
+}
+.btg-clock__btn:hover { border-color: rgba(243,238,223,0.6); color: var(--btg-cream); }
+.btg-clock__time { display: inline-block; font-variant-numeric: tabular-nums; }
+.btg-clock__sep { opacity: 0.5; }
+.btg-clock__stamp { position: absolute; inset: 0; pointer-events: none; opacity: 0; background: radial-gradient(closest-side, rgba(111,191,115,0.22), rgba(111,191,115,0) 70%); }
+.btg-clock.is-in .btg-clock__btn { color: var(--btg-cream); border-color: rgba(111,191,115,0.55); }
+.btg-clock.is-in .btg-clock__label::before { content: ''; display: inline-block; width: 6px; height: 6px; margin: 0 8px 1px 0; border-radius: 50%; background: #6FBF73; vertical-align: middle; }
+.btg-clock.is-punching .btg-clock__btn { transform: translateY(1px); }
+.btg-clock.is-punching .btg-clock__time { animation: btgClockTick 0.45s steps(3, end); }
+.btg-clock.is-punching .btg-clock__stamp { animation: btgClockStamp 0.65s ease-out; }
+@keyframes btgClockTick { 0% { transform: translateY(0); opacity: 1; } 40% { transform: translateY(-40%); opacity: 0.2; } 60% { transform: translateY(40%); opacity: 0.2; } 100% { transform: translateY(0); opacity: 1; } }
+@keyframes btgClockStamp { 0% { opacity: 0; transform: scale(1.4); } 35% { opacity: 1; transform: scale(1); } 100% { opacity: 0; } }
+@media (max-width: 860px) {
+  .btg-clock { position: static; margin: 18px 0 0; }
+  .btg-clock__btn { font-size: 11px; padding: 0 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btg-clock.is-punching .btg-clock__time, .btg-clock.is-punching .btg-clock__stamp { animation: none; }
+}
+
+/* ---------- Work With BTG (pair) ----------
+   One compact block: two cards, one line each, one clear action each. */
+.btg-work-pair { padding: clamp(56px, 6vw, 88px) 0; background: var(--btg-cream); scroll-margin-top: 72px; }
+.btg-work-pair__eyebrow { color: var(--btg-muted); margin-bottom: 20px; }
+.btg-work-pair__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.btg-work-card { display: flex; flex-direction: column; gap: 14px; padding: clamp(28px, 3.4vw, 44px); background: var(--btg-paper); border: 1px solid var(--btg-hairline); }
+.btg-work-card--dark { background: var(--btg-forest-deep); color: var(--btg-cream); border-color: transparent; }
+.btg-work-card__eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--btg-muted); }
+.btg-work-card--dark .btg-work-card__eyebrow { color: rgba(243,238,223,0.7); }
+.btg-work-card__heading { font-size: clamp(30px, 3vw, 44px); line-height: 0.95; margin: 0; max-width: 16ch; }
+.btg-work-card__text { font-size: 16px; line-height: 1.55; color: var(--btg-body); max-width: 44ch; margin: 0; }
+.btg-work-card--dark .btg-work-card__text { color: rgba(243,238,223,0.82); }
+.btg-work-card__foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: auto; padding-top: 10px; }
+.btg-work-card__price { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--btg-ochre); }
+@media (max-width: 860px) {
+  .btg-work-pair { padding: 48px 0; }
+  .btg-work-pair__grid { grid-template-columns: 1fr; gap: 12px; }
+  .btg-work-card { padding: 24px 20px; gap: 10px; }
+  .btg-work-card__heading { font-size: 28px; }
+  .btg-work-card__text { font-size: 15px; }
+  .btg-work-card__foot { flex-direction: column; align-items: stretch; gap: 12px; }
+  .btg-work-card__cta { width: 100%; }
+}

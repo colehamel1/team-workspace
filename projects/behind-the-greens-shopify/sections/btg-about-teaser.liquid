@@ -16,9 +16,9 @@
     <div class="btg-split__copy">
       <div class="btg-eyebrow" style="color:var(--btg-muted); margin-bottom:20px;">{{ section.settings.eyebrow | default: 'Our Story' }}</div>
       <h2 class="btg-display btg-heading-lg" style="margin:0 0 24px;">{{ section.settings.heading }}</h2>
-      <p class="btg-lede" style="margin-bottom:36px;">{{ section.settings.text }}</p>
+      <p class="btg-lede" style="margin-bottom:28px;">{{ section.settings.text }}</p>
       {%- if section.settings.link_label != blank -%}
-        <a href="{{ section.settings.link | default: '/pages/our-story' }}" class="btg-btn-outline">{{ section.settings.link_label }}</a>
+        <a href="{{ section.settings.link | default: '/pages/our-story' }}" class="btg-textlink">{{ section.settings.link_label }} <span aria-hidden="true">&rarr;</span></a>
       {%- endif -%}
     </div>
   </section>

@@ -1,0 +1,18 @@
+{%- comment -%}
+  Clock In — a small grounds-crew time clock in the hero. Shows the
+  visitor's local time (or a pinned time, e.g. "04:53 AM"). Tapping it
+  punches in: a short mechanical punch, then "CLOCKED IN — time", plus a
+  quiet "On The Job" status in the header for the session. Tap again to
+  clock out. Never blocks the page; no motion or sound with reduced motion.
+  Usage: {% render 'btg-clock', fixed: section.settings.clock_time %}
+{%- endcomment -%}
+<div class="btg-clock" data-btg-clock{% if fixed != blank %} data-fixed="{{ fixed | escape }}"{% endif %}>
+  <button type="button" class="btg-clock__btn" data-btg-clock-btn aria-describedby="btg-clock-status">
+    <span class="btg-clock__time" data-btg-clock-time>{% if fixed != blank %}{{ fixed }}{% else %}04:53 AM{% endif %}</span>
+    <span class="btg-clock__sep" aria-hidden="true">&mdash;</span>
+    <span class="btg-clock__label" data-btg-clock-label>Clock In</span>
+    <span class="btg-clock__stamp" aria-hidden="true"></span>
+  </button>
+  <span id="btg-clock-status" class="btg-visually-hidden" aria-live="polite" data-btg-clock-status></span>
+</div>
+<script src="{{ 'btg-clock.js' | asset_url }}" defer="defer"></script>
