@@ -64,12 +64,12 @@
           <span class="btg-mono">Seen in this film</span>
           <a href="{% if fp != blank %}{{ fp.url }}{% endif %}" class="btg-films__seen-link" data-btg-seen-link>
             <span class="btg-films__seen-img" data-btg-seen-img>{%- if fp != blank and fp.featured_media -%}{{ fp.featured_media | image_url: width: 120 | image_tag: loading: 'lazy', alt: '', width: 44, height: 44 }}{%- endif -%}</span>
-            <span data-btg-seen-title>{% if fp != blank %}{{ fp.title }}{% endif %}</span>
+            <span data-btg-seen-title>{% if fp != blank %}{{ fp.metafields.custom.btg_name.value | default: fp.title }}{% endif %}</span>
             <span class="btg-films__seen-price" data-btg-seen-price>{% if fp != blank %}{{ fp.price_min | money }}{% endif %}</span>
           </a>
         </div>
 
-        <ol class="btg-films__strip" role="list" aria-label="All films">
+        <ol class="btg-films__strip" role="list" aria-label="More films">
           {%- for block in section.blocks -%}
             {%- liquid
               assign vid = block.settings.youtube.id
@@ -88,7 +88,7 @@
                 assign thumb_sm = ''
               endif
             -%}
-            <li {{ block.shopify_attributes }}>
+            <li {{ block.shopify_attributes }}{% if forloop.first %} hidden{% endif %} data-btg-film-item>
               <a class="btg-films__card{% if forloop.first %} is-active{% endif %}"
                  href="{% if vid != blank %}https://www.youtube.com/watch?v={{ vid }}{% else %}{{ channel }}{% endif %}" target="_blank" rel="noopener"
                  data-btg-film-select
@@ -98,7 +98,7 @@
                  data-course="{{ block.settings.course | escape }}"
                  data-place="{{ block.settings.location | escape }}"
                  {%- assign bp = block.settings.product -%}
-                 {%- if bp != blank %} data-product-url="{{ bp.url }}" data-product-title="{{ bp.title | escape }}" data-product-price="{{ bp.price_min | money | escape }}" data-product-img="{% if bp.featured_media %}{{ bp.featured_media | image_url: width: 120 }}{% endif %}"{% endif %}
+                 {%- if bp != blank %} data-product-url="{{ bp.url }}" data-product-title="{{ bp.metafields.custom.btg_name.value | default: bp.title | escape }}" data-product-price="{{ bp.price_min | money | escape }}" data-product-img="{% if bp.featured_media %}{{ bp.featured_media | image_url: width: 120 }}{% endif %}"{% endif %}
                  {% if forloop.first %}aria-current="true"{% endif %}>
                 <span class="btg-films__thumb">
                   {%- if thumb_sm != blank -%}
@@ -106,8 +106,9 @@
                   {%- else -%}
                     <span class="btg-films__slate btg-display">{{ block.settings.course }}</span>
                   {%- endif -%}
+                  <span class="btg-films__watch" aria-hidden="true">Watch Film <span>&rarr;</span></span>
                 </span>
-                <span class="btg-mono btg-films__no">No. {{ no }}</span>
+                <span class="btg-films__no">Film {{ no }}</span>
                 <span class="btg-films__card-course">{{ block.settings.course }}</span>
                 {%- if block.settings.location != blank -%}<span class="btg-films__card-place">{{ block.settings.location }}</span>{%- endif -%}
               </a>

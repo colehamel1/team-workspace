@@ -17,7 +17,7 @@
 .btg-journal-lead__media:hover img { transform: scale(1.02); }
 .btg-journal-lead__shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,14,10,0.85) 0%, rgba(10,14,10,0.35) 42%, rgba(10,14,10,0) 70%); }
 .btg-journal-lead__body { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 16px; width: 100%; padding-bottom: 56px; }
-.btg-journal-lead__meta { color: var(--btg-ochre); }
+.btg-journal-lead__meta { color: rgba(243,238,223,0.78); }
 .btg-journal-lead__title { font-size: clamp(40px, 6vw, 92px); line-height: 0.92; max-width: 16ch; }
 .btg-journal-lead__excerpt { font-size: 17px; line-height: 1.6; color: rgba(243,238,223,0.85); max-width: 560px; }
 .btg-journal-lead__filed { color: rgba(243,238,223,0.6); }
@@ -99,7 +99,7 @@
 .btg-entry-links__card--film { background: var(--btg-ink) url("https://cdn.shopify.com/s/files/1/0632/2172/7335/files/btg-img-video-still.jpg?v=1790710191") center / cover; color: var(--btg-cream); position: relative; overflow: hidden; }
 .btg-entry-links__card--film::before { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,14,10,0.85), rgba(10,14,10,0.2)); transition: opacity 0.3s ease; }
 .btg-entry-links__card--film > * { position: relative; }
-.btg-entry-links__card--film .btg-mono { color: var(--btg-ochre); }
+.btg-entry-links__card--film .btg-mono { color: rgba(243,238,223,0.78); }
 .btg-entry-links__card--film:hover { background-color: var(--btg-ink); }
 .btg-entry-links__card--film:hover::before { opacity: 0.75; }
 .btg-entry-links__thumbs { display: flex; gap: 8px; margin-top: 6px; }

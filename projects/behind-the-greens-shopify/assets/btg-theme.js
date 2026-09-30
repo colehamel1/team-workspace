@@ -40,18 +40,19 @@
     for (var i = 0; i < dots.length; i++) dots[i].classList.toggle('is-active', i === index);
   }, { capture: true, passive: true });
 
-  // ---------- Header over the hero (homepage only) ----------
+  // ---------- Header: compact on scroll; transparent over the hero ----------
   var overlay = document.querySelector('[data-btg-header-overlay]');
-  if (overlay && document.querySelector('.btg-hero')) {
-    root.classList.add('btg-overlay-header');
-    var ticking = false;
-    var update = function () {
-      root.classList.toggle('btg-header-solid', window.scrollY > 40);
-      ticking = false;
-    };
-    window.addEventListener('scroll', function () {
-      if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
-    }, { passive: true });
-    update();
-  }
+  var hasOverlay = overlay && document.querySelector('.btg-hero');
+  if (hasOverlay) root.classList.add('btg-overlay-header');
+  var ticking = false;
+  var update = function () {
+    var scrolled = window.scrollY > 40;
+    root.classList.toggle('btg-scrolled', scrolled);
+    if (hasOverlay) root.classList.toggle('btg-header-solid', scrolled);
+    ticking = false;
+  };
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+  }, { passive: true });
+  update();
 })();

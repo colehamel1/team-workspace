@@ -1,0 +1,84 @@
+{%- comment -%}
+  Short contact form with a topic picker, so every message arrives labelled
+  (Course Features / Brand Partnerships / General). Uses Shopify's native
+  contact form: messages go to the store's contact email.
+  ?topic=course-features or ?topic=brand-partnerships preselects the topic.
+{%- endcomment -%}
+<div class="btg-scope">
+  <section class="btg-contact">
+    <div class="btg-container-narrow">
+      {% form 'contact', class: 'btg-contact__form', id: 'btg-contact-form' %}
+        {%- if form.posted_successfully? -%}
+          <div class="btg-contact__done" role="status">
+            <h2 class="btg-display">Message Sent</h2>
+            <p>Thanks. We'll get back to you soon.</p>
+          </div>
+        {%- else -%}
+          {%- if form.errors -%}
+            <div class="btg-contact__error" role="alert">{{ form.errors | default_errors }}</div>
+          {%- endif -%}
+          <div class="btg-contact__field btg-contact__field--full">
+            <label for="btg-contact-topic">What's this about?</label>
+            <select id="btg-contact-topic" name="contact[Topic]" data-btg-contact-topic>
+              <option value="Course Features">Course Features</option>
+              <option value="Brand Partnerships">Brand Partnerships</option>
+              <option value="General" selected>General / Orders</option>
+            </select>
+          </div>
+          <div class="btg-contact__field">
+            <label for="btg-contact-name">Name</label>
+            <input id="btg-contact-name" type="text" name="contact[name]" autocomplete="name" value="{{ form.name }}" required>
+          </div>
+          <div class="btg-contact__field">
+            <label for="btg-contact-email">Email</label>
+            <input id="btg-contact-email" type="email" name="contact[email]" autocomplete="email" value="{{ form.email }}" required>
+          </div>
+          <div class="btg-contact__field btg-contact__field--full" data-btg-contact-org>
+            <label for="btg-contact-org">Course or company <span>(optional)</span></label>
+            <input id="btg-contact-org" type="text" name="contact[Course or company]" autocomplete="organization">
+          </div>
+          <div class="btg-contact__field btg-contact__field--full">
+            <label for="btg-contact-body">Message</label>
+            <textarea id="btg-contact-body" name="contact[body]" rows="6" required>{{ form.body }}</textarea>
+          </div>
+          <div class="btg-contact__field--full">
+            <button type="submit" class="btg-btn-primary">Send Message</button>
+          </div>
+        {%- endif -%}
+      {% endform %}
+    </div>
+  </section>
+</div>
+<script>
+  (function(){var s=document.querySelector('[data-btg-contact-topic]');if(!s)return;
+  var t=(new URLSearchParams(location.search).get('topic')||'').toLowerCase();
+  var map={'course-features':'Course Features','brand-partnerships':'Brand Partnerships','general':'General'};
+  if(map[t])s.value=map[t];})();
+</script>
+<style>
+  .btg-contact { padding: 8px 0 var(--btg-section); }
+  .btg-contact__form { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 20px; max-width: 720px; margin: 0 auto; }
+  .btg-contact__field { display: flex; flex-direction: column; gap: 8px; }
+  .btg-contact__field--full { grid-column: 1 / -1; }
+  .btg-contact__field label { font-size: 13px; font-weight: 600; color: var(--btg-ink); }
+  .btg-contact__field label span { font-weight: 400; color: var(--btg-muted); }
+  .btg-contact__field input, .btg-contact__field select, .btg-contact__field textarea {
+    width: 100%; font: 16px/1.5 var(--btg-font-body); color: var(--btg-ink); background: #fff;
+    border: 1px solid var(--btg-hairline-strong); border-radius: 0; padding: 13px 14px; appearance: none; -webkit-appearance: none;
+  }
+  .btg-contact__field select { background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%2314140F' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 14px center; padding-right: 40px; }
+  .btg-contact__field input:focus, .btg-contact__field select:focus, .btg-contact__field textarea:focus { outline: 2px solid var(--btg-forest); outline-offset: 0; border-color: var(--btg-forest); }
+  .btg-contact__form .btg-btn-primary { min-width: 220px; }
+  .btg-contact__done { grid-column: 1 / -1; text-align: center; padding: 40px 0; }
+  .btg-contact__done h2 { font-size: clamp(36px, 5vw, 56px); margin: 0 0 12px; }
+  .btg-contact__error { grid-column: 1 / -1; padding: 14px 16px; border: 1px solid #A5402C; color: #A5402C; font-size: 14px; }
+  @media (max-width: 640px) { .btg-contact__form { grid-template-columns: 1fr; } .btg-contact__form .btg-btn-primary { width: 100%; } }
+</style>
+
+{% schema %}
+{
+  "name": "BTG Contact Form",
+  "settings": [],
+  "presets": [{ "name": "BTG Contact Form" }]
+}
+{% endschema %}

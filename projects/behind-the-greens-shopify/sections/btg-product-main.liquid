@@ -105,7 +105,9 @@
             {%- endif -%}
           </nav>
 
-          <h1 class="btg-display btg-pdp__title">{{ product.title }}</h1>
+          {%- assign btg_name = product.metafields.custom.btg_name.value | default: product.title -%}
+          <h1 class="btg-display btg-pdp__title">{{ btg_name }}</h1>
+          {%- if product.metafields.custom.btg_subtitle.value != blank -%}<p class="btg-pdp__subtitle">{{ product.metafields.custom.btg_subtitle.value }}</p>{%- endif -%}
 
           <div class="btg-pdp__price" data-btg-price>
             <span class="btg-pdp__price-now">{{ current_variant.price | money }}</span>
@@ -251,7 +253,7 @@
   <!-- Mobile sticky add-to-cart: appears once the main button scrolls out of view -->
   <div class="btg-pdp-sticky" data-btg-sticky aria-hidden="true">
     <div class="btg-pdp-sticky__meta">
-      <span class="btg-pdp-sticky__title">{{ product.title }}</span>
+      <span class="btg-pdp-sticky__title">{{ product.metafields.custom.btg_name.value | default: product.title }}</span>
       <span class="btg-pdp-sticky__price" data-btg-sticky-price>{{ current_variant.price | money }}</span>
     </div>
     <button type="submit" form="btg-product-form" class="btg-btn-primary" data-btg-sticky-btn tabindex="-1" {% unless current_variant.available %}disabled{% endunless %}>

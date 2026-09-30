@@ -66,11 +66,14 @@
 
   <div class="btg-card__body">
     <div>
-      <h3 class="btg-card__title">{{ product.title }}</h3>
-      {%- if product.metafields.custom.film_title.value != blank -%}
-        <div class="btg-card__film btg-mono">Seen in film &middot; {{ product.metafields.custom.film_title.value }}</div>
+      <h3 class="btg-card__title">{{ product.metafields.custom.btg_name.value | default: product.title }}</h3>
+      {%- if product.metafields.custom.btg_subtitle.value != blank -%}
+        <div class="btg-card__sub">{{ product.metafields.custom.btg_subtitle.value }}</div>
       {%- elsif color_option and color_option.values.size > 1 -%}
         <div class="btg-card__sub">{{ color_option.values.size }} colors</div>
+      {%- endif -%}
+      {%- if product.metafields.custom.film_title.value != blank -%}
+        <div class="btg-card__film">Seen in film &middot; {{ product.metafields.custom.film_title.value }}</div>
       {%- endif -%}
     </div>
     <span class="btg-card__price">

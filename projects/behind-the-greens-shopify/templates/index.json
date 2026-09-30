@@ -7,14 +7,13 @@
         "focus_desktop": "center 40%",
         "focus_mobile": "center center",
         "content_side": "left",
-        "scrim": 55,
-        "eyebrow": "Golf Course Culture",
+        "scrim": 60,
         "heading": "Behind The Greens",
-        "subheading": "The crews and the craft behind every fairway. Films from the course, and gear made for the people who keep it.",
-        "primary_label": "Shop The Collection",
-        "primary_link": "shopify://collections/all",
-        "secondary_label": "Watch The Work",
-        "secondary_link": "#watch-the-work"
+        "subheading": "Films from the crews behind the game, and the gear they work in.",
+        "film_label": "Watch The Films",
+        "film_link": "#watch-the-work",
+        "shop_label": "Shop The Collection",
+        "shop_link": "shopify://collections/all"
       }
     },
     "btg_merch_teaser": {
@@ -26,56 +25,19 @@
         "view_all_label": "Shop All",
         "collection": "home-page-1",
         "product_count": 6,
-        "columns": "3"
-      }
-    },
-    "btg_quote": {
-      "type": "btg-quote",
-      "settings": {
-        "quote": "You can walk a hundred golf courses and never see the people who made them playable. We started Behind The Greens to change that.",
-        "attribution": "The Behind The Greens Crew"
-      }
-    },
-    "btg_partnerships_teaser": {
-      "type": "btg-partnerships-teaser",
-      "blocks": {
-        "courses": {
-          "type": "card",
-          "settings": {
-            "eyebrow": "For Golf Courses",
-            "heading": "Course Features",
-            "text": "We spend time with your crew and make a film about your course.",
-            "link_label": "How It Works",
-            "link": "shopify://pages/media-kit#for-courses"
-          }
-        },
-        "brands": {
-          "type": "card",
-          "settings": {
-            "eyebrow": "For Brands",
-            "heading": "Brand Partnerships",
-            "text": "Integrations with an audience that trusts what we show them.",
-            "link_label": "Partnerships & Rates",
-            "link": "shopify://pages/media-kit#for-brands"
-          }
-        }
-      },
-      "block_order": [
-        "courses",
-        "brands"
-      ],
-      "settings": {
-        "eyebrow": "Work With Us",
-        "heading": "For Brands & Golf Courses"
+        "columns": "3",
+        "layout": "editorial",
+        "tile_a": "unisex-oversized-drop-shoulder-hoodie",
+        "tile_b": "soft-hooded-sports-jacket"
       }
     },
     "btg_about_teaser": {
       "type": "btg-about-teaser",
       "settings": {
-        "image": "shopify://shop_images/10a3135f-fairway-mowers.jpg",
+        "image": "shopify://shop_images/btg-img-video-still.jpg",
         "eyebrow": "Our Story",
-        "heading": "Golf Has A Back Of House",
-        "text": "Before the first tee time, a crew has already mowed, rolled and set every hole. That's the work we film, and the people we make gear for.",
+        "heading": "A Camera Pointed The Other Way",
+        "text": "It started with the crews out on the course before the first tee time: mowing lines, rolling greens, cutting cups, fixing what yesterday left behind. People watched. Then more people. The films got bigger, the audience grew and the brand followed. The focus never changed: the people and the work behind the game.",
         "link_label": "Read Our Story",
         "link": "shopify://pages/our-story"
       }
@@ -87,21 +49,21 @@
           "type": "stat",
           "settings": {
             "value": "410K+",
-            "label": "Combined followers"
+            "label": "Followers across Instagram, Facebook, YouTube and TikTok"
           }
         },
         "views": {
           "type": "stat",
           "settings": {
             "value": "213M",
-            "label": "Views, Jul 23 – Aug 21, 2026"
+            "label": "Video views in 30 days, Jul 23 – Aug 21, 2026"
           }
         },
         "engagement": {
           "type": "stat",
           "settings": {
             "value": "1M+",
-            "label": "Facebook engagements, same period"
+            "label": "Facebook engagements in the same 30 days"
           }
         }
       },
@@ -111,10 +73,10 @@
         "engagement"
       ],
       "settings": {
-        "style": "light",
-        "compact": true,
-        "eyebrow": "The Crew",
-        "heading": "People Who Follow The Work",
+        "style": "scale",
+        "compact": false,
+        "eyebrow": "The Audience",
+        "heading": "Millions watch the work every month.",
         "note": "Followers as of Sep 2026: Instagram 110K, Facebook 164K, YouTube 81K, TikTok 55K. Views and engagements from each platform's analytics, Jul 23 – Aug 21, 2026.",
         "only_on_page": ""
       }
@@ -176,11 +138,92 @@
         "anchor": "watch-the-work",
         "eyebrow": "Watch The Work",
         "heading": "Films From Behind The Greens",
-        "text": "The crews, the superintendents and the work that happens before anyone tees off.",
+        "text": "Real crews, real courses, filmed on site before the first tee time.",
         "channel_url": "https://www.youtube.com/@behind_thegreens",
         "gear_collection": "",
         "gear_eyebrow": "The Uniform",
         "gear_text": "Made for the people in these films."
+      }
+    },
+    "btg_field": {
+      "type": "btg-field",
+      "blocks": {
+        "clip_1": {
+          "type": "clip",
+          "settings": {
+            "platform": "instagram"
+          }
+        },
+        "clip_2": {
+          "type": "clip",
+          "settings": {
+            "platform": "facebook"
+          }
+        },
+        "clip_3": {
+          "type": "clip",
+          "settings": {
+            "platform": "tiktok"
+          }
+        },
+        "clip_4": {
+          "type": "clip",
+          "settings": {
+            "platform": "instagram"
+          }
+        }
+      },
+      "block_order": [
+        "clip_1",
+        "clip_2",
+        "clip_3",
+        "clip_4"
+      ],
+      "settings": {
+        "eyebrow": "Short Form",
+        "heading": "From The Field",
+        "text": "The clips that travel furthest. Tap to watch the originals.",
+        "anchor": "from-the-field"
+      }
+    },
+    "btg_mission": {
+      "type": "btg-mission-band",
+      "settings": {
+        "image": "shopify://shop_images/10a3135f-fairway-mowers.jpg",
+        "heading": "For The People Who Make The Game Possible.",
+        "text": "Every course has a crew that makes the game possible. We're here to give them the recognition they deserve."
+      }
+    },
+    "btg_work_brands": {
+      "type": "btg-work-panel",
+      "settings": {
+        "variant": "brands",
+        "anchor": "partnerships",
+        "eyebrow": "Brand Partnerships",
+        "heading": "A Golf Media Partner",
+        "text": "We plan, film and distribute integrations inside the content golf fans already watch, made by people who work the course. Creative, production and distribution in one place.",
+        "cta_label": "Work With BTG",
+        "cta_link": "/pages/media-kit#for-brands",
+        "link_label": "See Rates",
+        "link_url": "/pages/media-kit#for-brands"
+      }
+    },
+    "btg_work_courses": {
+      "type": "btg-work-panel",
+      "settings": {
+        "variant": "courses",
+        "anchor": "course-features",
+        "eyebrow": "Course Features",
+        "heading": "Bring Behind The Greens To Your Course",
+        "text": "We spend a day working alongside your grounds crew, then turn it into long-form and short-form films that showcase your course, your crew and your operation.",
+        "price": "Course Features start at $3,500 + travel",
+        "cta_label": "Feature Your Course",
+        "cta_link": "/pages/contact?topic=course-features",
+        "link_label": "How It Works",
+        "link_url": "/pages/media-kit#for-courses",
+        "example_id": "Kn-Qtw8J0gA",
+        "example_label": "A Course Feature",
+        "example_title": "Eagle Mountain Golf Club · Fountain Hills, AZ"
       }
     }
   },
@@ -188,9 +231,11 @@
     "btg_hero",
     "btg_merch_teaser",
     "btg_films",
-    "btg_quote",
-    "btg_about_teaser",
+    "btg_field",
     "btg_proof",
-    "btg_partnerships_teaser"
+    "btg_mission",
+    "btg_about_teaser",
+    "btg_work_brands",
+    "btg_work_courses"
   ]
 }

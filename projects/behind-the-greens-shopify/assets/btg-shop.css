@@ -28,5 +28,5 @@
 .btg-shop-band:hover .btg-shop-band__img img { transform: scale(1.02); }
 .btg-shop-band::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,14,10,0.78) 0%, rgba(10,14,10,0.1) 60%); }
 .btg-shop-band__copy { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding: clamp(28px, 4vw, 56px); }
-.btg-shop-band__copy .btg-mono { color: var(--btg-ochre); }
+.btg-shop-band__copy .btg-mono { color: rgba(243,238,223,0.78); }
 .btg-shop-band__copy .btg-display { font-size: clamp(36px, 5vw, 72px); line-height: 0.9; max-width: 12ch; }

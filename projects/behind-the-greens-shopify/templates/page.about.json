@@ -11,8 +11,8 @@
       "type": "btg-about-origin",
       "settings": {
         "label": "Where It Started",
-        "pull_quote": "Golf has a front of house and a back of house. We film the back.",
-        "body": "<p>Every round starts hours before the first tee time. Crews are out mowing lines, rolling greens, cutting cups and fixing what yesterday left behind. Most golfers never see any of it.</p><p>Behind The Greens started by pointing the camera the other way: at the superintendents, the crews and the craft that make a course playable. We go to courses, spend time with the people who maintain them, and make films about that work. Those films found an audience of golfers, course professionals and people across the industry who recognized it.</p><p>The apparel comes from the same place. Gear made for the people in those films, and for anyone who respects the work.</p>"
+        "pull_quote": "You can walk a hundred golf courses and never see the people who made them playable.",
+        "body": "<p>Every round starts hours before the first tee time. Crews are out mowing lines, rolling greens and cutting cups. Most golfers never see any of it.</p><p>Behind The Greens started by pointing the camera at that work: the superintendents, the crews and the craft that make a course playable. The films found an audience. The audience became a community. The apparel came from the same place: gear made for the people in those films, and anyone who respects the work.</p>"
       }
     },
     "story_values": {
@@ -22,21 +22,21 @@
           "type": "value",
           "settings": {
             "title": "The Crew Comes First",
-            "text": "Every story starts with the people doing the work, not the people playing the round."
+            "text": "Every story starts with the people doing the work."
           }
         },
         "value_2": {
           "type": "value",
           "settings": {
             "title": "Culture Over Clichés",
-            "text": "No stereotypes, no gimmicks. Just the real work behind the game."
+            "text": "No stereotypes, no gimmicks. The real work behind the game."
           }
         },
         "value_3": {
           "type": "value",
           "settings": {
             "title": "Made To Be Worn",
-            "text": "Designed for early mornings and long days on the course, and everywhere after."
+            "text": "Built for early mornings, long days and everywhere after."
           }
         }
       },
@@ -87,11 +87,69 @@
         "eyebrow": "Keep Going",
         "heading": "Watch The Films. Wear The Gear."
       }
+    },
+    "story_timeline": {
+      "type": "btg-story-timeline",
+      "blocks": {
+        "stop_1": {
+          "type": "stop",
+          "settings": {
+            "course": "Prairie Vista Golf Course",
+            "location": "Bloomington-Normal, IL",
+            "youtube_id": "ZQQuq7-Mpvc"
+          }
+        },
+        "stop_2": {
+          "type": "stop",
+          "settings": {
+            "course": "Oahu Country Club",
+            "location": "Honolulu, HI",
+            "youtube_id": "gUN9-ttaNw4"
+          }
+        },
+        "stop_3": {
+          "type": "stop",
+          "settings": {
+            "course": "Forty Niner Country Club",
+            "location": "Tucson, AZ",
+            "youtube_id": "chlC023n_ck"
+          }
+        },
+        "stop_4": {
+          "type": "stop",
+          "settings": {
+            "course": "TPC Scottsdale",
+            "location": "Scottsdale, AZ",
+            "youtube_id": "MpKfn5FJRow"
+          }
+        },
+        "stop_5": {
+          "type": "stop",
+          "settings": {
+            "course": "Eagle Mountain Golf Club",
+            "location": "Fountain Hills, AZ",
+            "youtube_id": "Kn-Qtw8J0gA"
+          }
+        }
+      },
+      "block_order": [
+        "stop_1",
+        "stop_2",
+        "stop_3",
+        "stop_4",
+        "stop_5"
+      ],
+      "settings": {
+        "eyebrow": "The Road So Far",
+        "heading": "Course By Course",
+        "only_on_page": "our-story"
+      }
     }
   },
   "order": [
     "story_hero",
     "story_origin",
+    "story_timeline",
     "story_values",
     "story_crest",
     "story_cta"

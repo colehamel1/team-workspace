@@ -21,11 +21,26 @@
       </div>
 
       {%- if section.settings.collection != blank and section.settings.collection.products.size > 0 -%}
-        <div class="{% if section.settings.columns == '4' %}btg-grid-4{% else %}btg-grid-3{% endif %}">
-          {%- for product in section.settings.collection.products limit: section.settings.product_count -%}
-            {% render 'btg-product-card', product: product %}
-          {%- endfor -%}
-        </div>
+        {%- if section.settings.layout == 'editorial' -%}
+          {%- comment -%}
+            Editorial rhythm: a large "on the job" tile, product cards, then a
+            wide tile. Tiles use each product's real Lifestyle image metafield
+            (falling back to its product photo); nothing is invented.
+          {%- endcomment -%}
+          <div class="btg-edit-grid">
+            {%- render 'btg-edit-tile', product: section.settings.tile_a, size: 'a' -%}
+            {%- for product in section.settings.collection.products limit: section.settings.product_count -%}
+              {% render 'btg-product-card', product: product %}
+            {%- endfor -%}
+            {%- render 'btg-edit-tile', product: section.settings.tile_b, size: 'b' -%}
+          </div>
+        {%- else -%}
+          <div class="{% if section.settings.columns == '4' %}btg-grid-4{% else %}btg-grid-3{% endif %}">
+            {%- for product in section.settings.collection.products limit: section.settings.product_count -%}
+              {% render 'btg-product-card', product: product %}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
       {%- elsif request.design_mode -%}
         <p class="btg-small">{{ section.settings.empty_state_text | default: 'Choose a collection in section settings to feature products here.' }}</p>
       {%- endif -%}
@@ -37,15 +52,98 @@
 {
   "name": "BTG Shop Teaser",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Collection" },
-    { "type": "text", "id": "title", "label": "Heading", "default": "Made For The Course" },
-    { "type": "textarea", "id": "text", "label": "Intro text" },
-    { "type": "text", "id": "view_all_label", "label": "View all label", "default": "Shop All" },
-    { "type": "collection", "id": "collection", "label": "Collection to feature" },
-    { "type": "range", "id": "product_count", "label": "Number of products", "min": 2, "max": 9, "step": 1, "default": 6 },
-    { "type": "select", "id": "columns", "label": "Columns (desktop)", "options": [{ "value": "3", "label": "3" }, { "value": "4", "label": "4" }], "default": "3" },
-    { "type": "text", "id": "empty_state_text", "label": "Empty state text (editor only)", "default": "Choose a collection in section settings to feature products here." }
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The Collection"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Made For The Course"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Intro text"
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "View all label",
+      "default": "Shop All"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection to feature"
+    },
+    {
+      "type": "range",
+      "id": "product_count",
+      "label": "Number of products",
+      "min": 2,
+      "max": 9,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "editorial",
+          "label": "Editorial (tiles + products)"
+        },
+        {
+          "value": "grid",
+          "label": "Simple grid"
+        }
+      ],
+      "default": "editorial"
+    },
+    {
+      "type": "product",
+      "id": "tile_a",
+      "label": "Large tile product",
+      "info": "Shows this product's Lifestyle image."
+    },
+    {
+      "type": "product",
+      "id": "tile_b",
+      "label": "Wide tile product",
+      "info": "Shows this product's Lifestyle image."
+    },
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "Columns (desktop)",
+      "options": [
+        {
+          "value": "3",
+          "label": "3"
+        },
+        {
+          "value": "4",
+          "label": "4"
+        }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "text",
+      "id": "empty_state_text",
+      "label": "Empty state text (editor only)",
+      "default": "Choose a collection in section settings to feature products here."
+    }
   ],
-  "presets": [{ "name": "BTG Shop Teaser" }]
+  "presets": [
+    {
+      "name": "BTG Shop Teaser"
+    }
+  ]
 }
 {% endschema %}

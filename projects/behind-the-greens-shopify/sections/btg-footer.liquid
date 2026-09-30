@@ -20,65 +20,45 @@
   <footer class="btg-footer">
     <div class="btg-container">
 
-      <div class="btg-footer__top">
-        <div class="btg-footer__newsletter">
-          <h3 class="btg-display">{{ section.settings.newsletter_heading | default: 'Join The Crew' }}</h3>
-          <p>{{ section.settings.newsletter_text | default: 'New films, new drops and the occasional note from the crew.' }}</p>
-          {% form 'customer', class: 'btg-footer__form', id: 'btg-footer-newsletter' %}
-            <input type="hidden" name="contact[tags]" value="newsletter">
-            {%- if form.posted_successfully? -%}
-              <p class="btg-footer__success">You're on the list. Welcome to the crew.</p>
-            {%- else -%}
-              <label for="btg-footer-email" class="visually-hidden" style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0);">Email address</label>
-              <input id="btg-footer-email" type="email" name="contact[email]" placeholder="Email address" autocomplete="email" required>
-              <button type="submit">Sign Up</button>
-            {%- endif -%}
-          {% endform %}
-        </div>
+      <div class="btg-footer__main">
+        <a href="{{ routes.root_url }}" class="btg-footer__brand" aria-label="{{ shop.name }} home">
+          {%- if crest != blank -%}
+            {{ crest | image_url: width: 160 | image_tag: alt: '', width: 64, height: 64, loading: 'lazy' }}
+          {%- endif -%}
+          <span class="btg-footer__brand-text">
+            <span class="btg-display btg-footer__name">{{ shop.name }}</span>
+            <span class="btg-footer__tagline">{{ section.settings.tagline | default: 'Golf Starts Before Dawn.' }}</span>
+          </span>
+        </a>
 
-        <div class="btg-footer__cols">
-          <div>
-            <div class="btg-eyebrow btg-footer__col-title">Shop</div>
-            <div class="btg-footer__col">
-              <a href="{{ routes.all_products_collection_url }}">All Products</a>
-              {%- for c in collections limit: 6 -%}
-                {%- if c.handle != 'all' and c.handle != 'frontpage' and c.all_products_count > 0 and c.handle != 'home-page-1' -%}
-                  <a href="{{ c.url }}">{{ c.title }}</a>
-                {%- endif -%}
-              {%- endfor -%}
-            </div>
-          </div>
+        <nav class="btg-footer__nav" aria-label="Footer">
+          <a href="{{ routes.all_products_collection_url }}">Shop</a>
+          <a href="{{ routes.root_url }}#watch-the-work">Films</a>
+          <a href="{{ routes.root_url }}pages/our-story">Story</a>
+          <a href="{{ routes.root_url }}pages/media-kit">Partnerships</a>
+          {%- if pages.contact -%}<a href="{{ pages.contact.url }}">Contact</a>{%- endif -%}
+        </nav>
 
-          <div>
-            <div class="btg-eyebrow btg-footer__col-title">Company</div>
-            <div class="btg-footer__col">
-              <a href="{{ routes.root_url }}pages/our-story">Our Story</a>
-              <a href="{{ routes.root_url }}#watch-the-work">Films</a>
-              <a href="{{ routes.root_url }}blogs/stories">Stories</a>
-              <a href="{{ routes.root_url }}pages/media-kit">Work With Us</a>
-              {%- if pages.contact -%}<a href="{{ pages.contact.url }}">Contact</a>{%- endif -%}
-            </div>
-          </div>
-
-          <div>
-            <div class="btg-eyebrow btg-footer__col-title">Follow</div>
-            <div class="btg-footer__col">
-              <div class="btg-footer__social">
-                <a href="{{ ig }}" target="_blank" rel="noopener" aria-label="Behind The Greens on Instagram">{% render 'btg-social-icon', name: 'instagram', size: 22 %}</a>
-                <a href="{{ tt }}" target="_blank" rel="noopener" aria-label="Behind The Greens on TikTok">{% render 'btg-social-icon', name: 'tiktok', size: 22 %}</a>
-                <a href="{{ yt }}" target="_blank" rel="noopener" aria-label="Behind The Greens on YouTube">{% render 'btg-social-icon', name: 'youtube', size: 22 %}</a>
-                <a href="{{ fb }}" target="_blank" rel="noopener" aria-label="Behind The Greens on Facebook">{% render 'btg-social-icon', name: 'facebook', size: 22 %}</a>
-              </div>
-            </div>
-          </div>
+        <div class="btg-footer__social">
+          <a href="{{ ig }}" target="_blank" rel="noopener" aria-label="Behind The Greens on Instagram">{% render 'btg-social-icon', name: 'instagram', size: 22 %}</a>
+          <a href="{{ tt }}" target="_blank" rel="noopener" aria-label="Behind The Greens on TikTok">{% render 'btg-social-icon', name: 'tiktok', size: 22 %}</a>
+          <a href="{{ yt }}" target="_blank" rel="noopener" aria-label="Behind The Greens on YouTube">{% render 'btg-social-icon', name: 'youtube', size: 22 %}</a>
+          <a href="{{ fb }}" target="_blank" rel="noopener" aria-label="Behind The Greens on Facebook">{% render 'btg-social-icon', name: 'facebook', size: 22 %}</a>
         </div>
       </div>
 
-      <div class="btg-footer__brand">
-        {%- if crest != blank -%}
-          {{ crest | image_url: width: 120 | image_tag: alt: '', width: 48, height: 48, loading: 'lazy' }}
-        {%- endif -%}
-        <span class="btg-display">{{ shop.name }}</span>
+      <div class="btg-footer__signup">
+        <p class="btg-footer__signup-text">{{ section.settings.newsletter_text | default: 'New films and new drops, straight to your inbox.' }}</p>
+        {% form 'customer', class: 'btg-footer__form', id: 'btg-footer-newsletter' %}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          {%- if form.posted_successfully? -%}
+            <p class="btg-footer__success">You're on the list. Welcome to the crew.</p>
+          {%- else -%}
+            <label for="btg-footer-email" class="btg-visually-hidden">Email address</label>
+            <input id="btg-footer-email" type="email" name="contact[email]" placeholder="Email address" autocomplete="email" required>
+            <button type="submit">Join The Crew</button>
+          {%- endif -%}
+        {% endform %}
       </div>
 
       <div class="btg-footer__bottom">
@@ -108,15 +88,15 @@
     },
     {
       "type": "text",
-      "id": "newsletter_heading",
-      "label": "Newsletter heading",
-      "default": "Join The Crew"
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Golf Starts Before Dawn."
     },
     {
       "type": "textarea",
       "id": "newsletter_text",
-      "label": "Newsletter text",
-      "default": "New films, new drops and the occasional note from the crew."
+      "label": "Newsletter line",
+      "default": "New films and new drops, straight to your inbox."
     },
     { "type": "url", "id": "instagram_url", "label": "Instagram URL" },
     { "type": "url", "id": "tiktok_url", "label": "TikTok URL" },

@@ -13,7 +13,7 @@
   <div id="for-courses" class="btg-mk-courses">
     <div class="btg-container">
       <div class="btg-mk-courses__intro">
-        <div class="btg-eyebrow" style="color:#C1922F; margin-bottom:16px;">{{ section.settings.eyebrow | default: 'For Golf Courses' }}</div>
+        <div class="btg-eyebrow" style="color:rgba(243,238,223,0.72); margin-bottom:16px;">{{ section.settings.eyebrow | default: 'For Golf Courses' }}</div>
         <h2 class="btg-display btg-heading-lg" style="color:#F3EEDF; margin:0 0 20px;">{{ section.settings.heading | default: 'Behind The Greens: Course Features' }}</h2>
         <p style="font-size:16px; line-height:1.65; color:#EDE6D2; margin:0;">{{ section.settings.text }}</p>
       </div>
@@ -22,7 +22,7 @@
         <div class="btg-mk-included">
           {%- for block in section.blocks -%}
             <div class="btg-mk-included__item" {{ block.shopify_attributes }}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12.5 10 17l9-10" stroke="#C1922F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12.5 10 17l9-10" stroke="rgba(243,238,223,0.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               <span>{{ block.settings.text }}</span>
             </div>
           {%- endfor -%}
@@ -72,7 +72,7 @@
       "type": "text",
       "id": "pricing_eyebrow",
       "label": "Price label",
-      "default": "Founding Rate"
+      "default": "Pricing"
     },
     {
       "type": "text",

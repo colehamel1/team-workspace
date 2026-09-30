@@ -98,3 +98,5 @@
 .btg-mk-price__note { font-size: 14px; line-height: 1.6; color: #A79E86; margin: 16px 0 0; }
 .btg-mk-price__cta { margin-top: 24px; }
 @media (max-width: 860px) { .btg-mk-price { padding: 24px 20px; } }
+.btg-mk-reel { margin: 0 0 56px; }
+.btg-mk-reel video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--btg-ink); }

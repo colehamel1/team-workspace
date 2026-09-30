@@ -1,7 +1,7 @@
 {%- comment -%}
   Behind The Greens homepage hero: full-bleed film (or image), headline,
-  Shop as the dominant CTA and a gold Watch The Work CTA that jumps to the
-  films. Focal points for desktop and phone crops are merchant-set so the
+  Watch The Films as the primary entrance and Shop as a quiet secondary
+  link. The video pauses while scrolled out of view. Focal points for desktop and phone crops are merchant-set so the
   copy never sits on top of the subject of the footage.
 {%- endcomment -%}
 
@@ -30,19 +30,23 @@
       <h1 class="btg-display btg-hero__heading">{{ section.settings.heading }}</h1>
       {%- if section.settings.subheading != blank -%}<p class="btg-hero__sub">{{ section.settings.subheading }}</p>{%- endif -%}
       <div class="btg-hero__ctas">
-        {%- if section.settings.primary_label != blank -%}
-          <a href="{{ section.settings.primary_link | default: routes.all_products_collection_url }}" class="btg-btn-light btg-hero__cta-primary">{{ section.settings.primary_label }}</a>
-        {%- endif -%}
-        {%- if section.settings.secondary_label != blank -%}
-          <a href="{{ section.settings.secondary_link | default: '#watch-the-work' }}" class="btg-btn-gold btg-hero__cta-film">
-            <svg width="11" height="12" viewBox="0 0 11 12" aria-hidden="true"><path d="M0 0l11 6-11 6z" fill="currentColor"/></svg>
-            {{ section.settings.secondary_label }}
+        {%- if section.settings.film_label != blank -%}
+          <a href="{{ section.settings.film_link | default: '#watch-the-work' }}" class="btg-btn-light btg-hero__cta-primary">
+            <svg width="10" height="11" viewBox="0 0 11 12" aria-hidden="true"><path d="M0 0l11 6-11 6z" fill="currentColor"/></svg>
+            {{ section.settings.film_label }}
           </a>
+        {%- endif -%}
+        {%- if section.settings.shop_label != blank -%}
+          <a href="{{ section.settings.shop_link | default: routes.all_products_collection_url }}" class="btg-hero__cta-secondary">{{ section.settings.shop_label }} <span aria-hidden="true">&rarr;</span></a>
         {%- endif -%}
       </div>
     </div>
   </section>
 </div>
+<script>
+  (function(){var v=document.querySelector('.btg-hero__video');if(!v||!('IntersectionObserver' in window))return;
+  new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){})}else{v.pause()}})},{threshold:0.05}).observe(v);})();
+</script>
 
 {% schema %}
 {
@@ -79,13 +83,13 @@
       "default": "left"
     },
     { "type": "range", "id": "scrim", "label": "Shade behind the copy", "min": 20, "max": 90, "step": 5, "unit": "%", "default": 55 },
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Golf Course Culture" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow (optional)" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Behind The Greens" },
     { "type": "textarea", "id": "subheading", "label": "Subheading" },
-    { "type": "text", "id": "primary_label", "label": "Shop button label", "default": "Shop The Collection" },
-    { "type": "url", "id": "primary_link", "label": "Shop button link" },
-    { "type": "text", "id": "secondary_label", "label": "Film button label", "default": "Watch The Work" },
-    { "type": "text", "id": "secondary_link", "label": "Film button link", "default": "#watch-the-work", "info": "#watch-the-work jumps to the films section on this page." }
+    { "type": "text", "id": "film_label", "label": "Primary button label", "default": "Watch The Films" },
+    { "type": "text", "id": "film_link", "label": "Primary button link", "default": "#watch-the-work", "info": "#watch-the-work jumps to the films on this page." },
+    { "type": "text", "id": "shop_label", "label": "Secondary link label", "default": "Shop The Collection" },
+    { "type": "url", "id": "shop_link", "label": "Secondary link" }
   ],
   "presets": [{ "name": "BTG Hero" }]
 }

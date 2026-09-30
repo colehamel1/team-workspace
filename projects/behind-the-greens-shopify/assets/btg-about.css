@@ -30,3 +30,28 @@
   .btg-about-crest__image { width: 140px; height: 140px; }
   .btg-about-cta__grid { grid-template-columns: 1fr; }
 }
+
+/* ---------- Story timeline ----------
+   Alternating image / copy stops on desktop, stacked on phones. */
+.btg-timeline { background: var(--btg-paper); padding: var(--btg-section) 0; }
+.btg-timeline__head { margin-bottom: clamp(40px, 6vw, 80px); }
+.btg-timeline__eyebrow { color: var(--btg-muted); margin-bottom: 14px; }
+.btg-timeline__title { font-size: clamp(44px, 6vw, 92px); margin: 0; }
+.btg-timeline__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: clamp(48px, 7vw, 104px); }
+.btg-timeline__stop { display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
+.btg-timeline__stop:nth-child(even) .btg-timeline__media { order: 2; }
+.btg-timeline__media { display: block; aspect-ratio: 16 / 9; overflow: hidden; background: var(--btg-forest-deep); }
+.btg-timeline__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s var(--btg-ease); }
+.btg-timeline__media:hover img { transform: scale(1.03); }
+.btg-timeline__copy { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.btg-timeline__no { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--btg-muted); }
+.btg-timeline__course { font-size: clamp(32px, 3.6vw, 56px); line-height: 0.92; margin: 0; }
+.btg-timeline__place { font-size: 16px; color: var(--btg-body); margin: 0; }
+.btg-timeline__context { font-size: 16px; line-height: 1.55; color: var(--btg-body); margin: 4px 0 0; max-width: 40ch; }
+.btg-timeline__link { margin-top: 10px; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 0; border-bottom: 1px solid currentColor; color: var(--btg-ink); }
+.btg-timeline__link span { display: inline-block; transition: transform 0.25s var(--btg-ease); }
+.btg-timeline__link:hover span { transform: translateX(3px); }
+@media (max-width: 860px) {
+  .btg-timeline__stop { grid-template-columns: 1fr; gap: 18px; }
+  .btg-timeline__stop:nth-child(even) .btg-timeline__media { order: 0; }
+}

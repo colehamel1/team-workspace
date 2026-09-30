@@ -40,7 +40,7 @@
             </div>
             <div class="btg-cart-item__body">
               <div>
-                <a href="{{ item.url }}" class="btg-cart-item__title">{{ item.product.title }}</a>
+                <a href="{{ item.url }}" class="btg-cart-item__title">{{ item.product.metafields.custom.btg_name.value | default: item.product.title }}</a>
                 {%- if item.variant.title != 'Default Title' -%}
                   <div class="btg-cart-item__variant">{{ item.variant.title | replace: ' / ', ' · ' }}</div>
                 {%- endif -%}

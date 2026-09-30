@@ -1,8 +1,9 @@
 {%- comment -%}
   Behind The Greens header. Rendered directly by layout/theme.liquid
   (Horizon's header group only accepts its own sections). Sticky, with the
-  crest + wordmark centered, primary nav left, search/cart right. Nav links
-  are fixed to the real site destinations so they always resolve.
+  crest + wordmark centered, four nav links left, search/cart right. Links
+  are fixed to real destinations (the shared Shopify menu is not used, so
+  editing it never changes this theme). Compacts on scroll.
 {%- endcomment -%}
 
 <div class="btg-scope btg-header-wrap"{% if template.name == 'index' %} data-btg-header-overlay{% endif %}>
@@ -14,11 +15,10 @@
     </button>
 
     <nav class="btg-header__nav" aria-label="Primary">
-      <a href="{{ routes.all_products_collection_url }}" class="btg-eyebrow{% if template.name == 'collection' or template.name == 'product' %} active{% endif %}">Shop</a>
-      <a href="{{ routes.root_url }}#watch-the-work" class="btg-eyebrow">Films</a>
-      <a href="{{ routes.root_url }}blogs/stories" class="btg-eyebrow{% if template.name == 'blog' or template.name == 'article' %} active{% endif %}">Stories</a>
-      <a href="{{ routes.root_url }}pages/our-story" class="btg-eyebrow{% if page.handle == 'our-story' %} active{% endif %}">Our Story</a>
-      <a href="{{ routes.root_url }}pages/media-kit" class="btg-eyebrow{% if page.handle == 'media-kit' %} active{% endif %}">Work With Us</a>
+      <a href="{{ routes.all_products_collection_url }}"{% if template.name == 'collection' or template.name == 'product' %} class="active" aria-current="page"{% endif %}>Shop</a>
+      <a href="{{ routes.root_url }}#watch-the-work">Films</a>
+      <a href="{{ routes.root_url }}pages/our-story"{% if page.handle == 'our-story' %} class="active" aria-current="page"{% endif %}>Story</a>
+      <a href="{{ routes.root_url }}pages/media-kit"{% if page.handle == 'media-kit' %} class="active" aria-current="page"{% endif %}>Partnerships</a>
     </nav>
 
     <a href="{{ routes.root_url }}" class="btg-header__brand" aria-label="{{ shop.name }} home">
@@ -51,16 +51,17 @@
     <nav class="btg-mobile-nav__links" aria-label="Mobile">
       <a href="{{ routes.all_products_collection_url }}">Shop</a>
       <a href="{{ routes.root_url }}#watch-the-work">Films</a>
-      <a href="{{ routes.root_url }}blogs/stories">Stories</a>
-      <a href="{{ routes.root_url }}pages/our-story">Our Story</a>
-      <a href="{{ routes.root_url }}pages/media-kit">Work With Us</a>
+      <a href="{{ routes.root_url }}pages/our-story">Story</a>
+      <a href="{{ routes.root_url }}pages/media-kit">Partnerships</a>
     </nav>
     <div class="btg-mobile-nav__meta">
-      {%- if pages.contact -%}<a href="{{ pages.contact.url }}" class="btg-eyebrow">Contact</a>{%- endif -%}
-      <a href="https://www.instagram.com/behind_thegreens/" target="_blank" rel="noopener" class="btg-eyebrow">Instagram</a>
-      <a href="https://www.tiktok.com/@behind_thegreens" target="_blank" rel="noopener" class="btg-eyebrow">TikTok</a>
-      <a href="https://www.youtube.com/@behind_thegreens" target="_blank" rel="noopener" class="btg-eyebrow">YouTube</a>
-      <a href="https://www.facebook.com/MrGreenskeeper" target="_blank" rel="noopener" class="btg-eyebrow">Facebook</a>
+      {%- if pages.contact -%}<a href="{{ pages.contact.url }}" class="btg-mobile-nav__contact">Contact</a>{%- endif -%}
+      <div class="btg-mobile-nav__social">
+        <a href="https://www.instagram.com/behind_thegreens/" target="_blank" rel="noopener" aria-label="Instagram">{% render 'btg-social-icon', name: 'instagram', size: 22 %}</a>
+        <a href="https://www.tiktok.com/@behind_thegreens" target="_blank" rel="noopener" aria-label="TikTok">{% render 'btg-social-icon', name: 'tiktok', size: 22 %}</a>
+        <a href="https://www.youtube.com/@behind_thegreens" target="_blank" rel="noopener" aria-label="YouTube">{% render 'btg-social-icon', name: 'youtube', size: 22 %}</a>
+        <a href="https://www.facebook.com/MrGreenskeeper" target="_blank" rel="noopener" aria-label="Facebook">{% render 'btg-social-icon', name: 'facebook', size: 22 %}</a>
+      </div>
     </div>
   </div>
 </div>

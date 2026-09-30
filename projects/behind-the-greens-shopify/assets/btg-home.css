@@ -31,10 +31,13 @@
   color: var(--btg-cream); font-size: clamp(60px, 10.5vw, 164px); line-height: 0.86; margin: 0 0 26px; max-width: 9ch;
   text-shadow: 0 2px 30px rgba(0,0,0,0.18); text-wrap: balance;
 }
-.btg-hero__sub { color: rgba(243,238,223,0.9); font-size: 18px; line-height: 1.55; max-width: 460px; margin: 0 0 36px; text-wrap: pretty; }
-.btg-hero__ctas { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.btg-hero__cta-primary { min-width: 240px; }
-.btg-hero__cta-film svg { margin-right: 2px; }
+.btg-hero__sub { color: rgba(243,238,223,0.82); font-size: 17px; line-height: 1.5; max-width: 400px; margin: 0 0 32px; text-wrap: pretty; }
+.btg-hero__ctas { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+.btg-hero__cta-primary { min-width: 220px; gap: 10px; }
+.btg-hero__cta-secondary { color: var(--btg-cream); font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 0; border-bottom: 1px solid rgba(243,238,223,0.45); transition: border-color 0.25s ease, color 0.25s ease; }
+.btg-hero__cta-secondary span { display: inline-block; transition: transform 0.25s var(--btg-ease); }
+.btg-hero__cta-secondary:hover { border-color: var(--btg-ochre); }
+.btg-hero__cta-secondary:hover span { transform: translateX(3px); }
 @keyframes btgHeroVideoIn { to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
   .btg-hero__video { display: none; }
@@ -52,8 +55,9 @@
   .btg-hero__content { padding-bottom: calc(28px + env(safe-area-inset-bottom)); }
   .btg-hero__heading { font-size: clamp(56px, 17vw, 88px); margin-bottom: 18px; }
   .btg-hero__sub { font-size: 16px; margin-bottom: 26px; }
-  .btg-hero__ctas { flex-direction: column; align-items: stretch; gap: 10px; }
-  .btg-hero__ctas a { width: 100%; min-width: 0; }
+  .btg-hero__ctas { gap: 20px; }
+  .btg-hero__cta-primary { min-width: 0; flex: 1 1 auto; }
+  .btg-hero__heading { max-width: 8ch; }
 }
 
 /* ---------- Proof strip ---------- */
@@ -61,7 +65,7 @@
 .btg-proof--dark { background: var(--btg-ink); color: var(--btg-cream); }
 .btg-proof__grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; align-items: end; }
 .btg-proof__eyebrow { color: var(--btg-muted); margin-bottom: 18px; }
-.btg-proof--dark .btg-proof__eyebrow { color: var(--btg-ochre); }
+.btg-proof--dark .btg-proof__eyebrow { color: rgba(243,238,223,0.7); }
 .btg-proof__heading { font-size: clamp(32px, 3.6vw, 48px); margin: 0 0 28px; max-width: 14ch; }
 .btg-proof__social { display: flex; flex-wrap: wrap; gap: 10px 22px; }
 .btg-proof__social a { opacity: 0.7; transition: opacity 0.2s ease; }
@@ -153,3 +157,93 @@
 .btg-drop-teaser__heading { font-size: 56px; color: rgba(243,238,223,0.82); margin-bottom: 20px; }
 .btg-drop-teaser__label { color: #4C7A4A; }
 @media (max-width: 860px) { .btg-drop-teaser { padding: 80px 24px; } .btg-drop-teaser__heading { font-size: 36px; } }
+
+/* ---------- Editorial shop grid ----------
+   4 columns: a 2x2 "on the job" tile, product cards, then a wide tile.
+   DOM order: tile A, products, tile B; dense flow packs them cleanly. */
+.btg-edit-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-flow: row dense; gap: 44px 20px; }
+.btg-edit-tile { position: relative; display: flex; align-items: flex-end; overflow: hidden; background: var(--btg-forest-deep); color: var(--btg-cream); min-height: 320px; }
+.btg-edit-tile--a { grid-column: span 2; grid-row: span 2; }
+.btg-edit-tile--b { grid-column: span 2; }
+.btg-edit-tile__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--btg-ease); }
+.btg-edit-tile:hover .btg-edit-tile__img { transform: scale(1.03); }
+.btg-edit-tile__shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,14,10,0.72) 0%, rgba(10,14,10,0.1) 45%, rgba(10,14,10,0) 70%); }
+.btg-edit-tile__body { position: relative; display: flex; flex-direction: column; gap: 8px; padding: 28px; }
+.btg-edit-tile__label { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(243,238,223,0.8); }
+.btg-edit-tile__name { font-size: clamp(30px, 3.2vw, 48px); line-height: 0.95; }
+.btg-edit-tile__cta { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 6px; }
+.btg-edit-tile__cta span { display: inline-block; transition: transform 0.25s var(--btg-ease); }
+.btg-edit-tile:hover .btg-edit-tile__cta span { transform: translateX(4px); }
+@media (max-width: 1000px) {
+  .btg-edit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 12px; }
+  .btg-edit-tile--a, .btg-edit-tile--b { grid-column: 1 / -1; grid-row: auto; aspect-ratio: 4 / 3; min-height: 0; }
+  .btg-edit-tile--a { aspect-ratio: 4 / 5; max-height: 78svh; }
+  .btg-edit-tile__body { padding: 22px 20px; }
+}
+@media (max-width: 860px) {
+  .btg-edit-grid .btg-card__body { flex-direction: column; gap: 2px; }
+}
+
+/* Proof, "scale" style: a moment of scale. Oversized numerals on dark,
+   explicit labels, hairline dividers. Not dashboard cards. */
+.btg-proof--scale { padding: clamp(80px, 10vw, 140px) 0; }
+.btg-proof--scale .btg-proof__grid { grid-template-columns: 1fr; gap: 56px; }
+.btg-proof--scale .btg-proof__eyebrow { color: rgba(243,238,223,0.7); }
+.btg-proof--scale .btg-proof__heading { font-size: clamp(28px, 3vw, 40px); max-width: 22ch; margin-bottom: 0; }
+.btg-proof--scale .btg-proof__social { display: none; }
+.btg-proof--scale .btg-proof__stats { border-left: 0; border-top: 1px solid var(--btg-hairline-lt); }
+.btg-proof--scale .btg-proof__stat { padding: 28px 28px 0 0; border-right: 1px solid var(--btg-hairline-lt); }
+.btg-proof--scale .btg-proof__stat + .btg-proof__stat { padding-left: 28px; }
+.btg-proof--scale .btg-proof__stat:last-child { border-right: 0; }
+.btg-proof--scale .btg-proof__value { font-size: clamp(64px, 9vw, 148px); line-height: 0.85; margin-bottom: 18px; }
+.btg-proof--scale .btg-proof__label { font-size: 15px; max-width: 24ch; color: rgba(243,238,223,0.72); }
+.btg-proof--scale .btg-proof__note { color: #8F8770; }
+@media (max-width: 960px) {
+  .btg-proof--scale .btg-proof__stats { border-top: 0; }
+  .btg-proof--scale .btg-proof__stat, .btg-proof--scale .btg-proof__stat + .btg-proof__stat { display: block; padding: 24px 0; border-right: 0; border-top: 1px solid var(--btg-hairline-lt); }
+  .btg-proof--scale .btg-proof__value { margin-bottom: 10px; }
+}
+
+/* ---------- Mission band ---------- */
+.btg-mission { position: relative; display: flex; align-items: flex-end; min-height: min(82svh, 860px); overflow: hidden; background: var(--btg-forest-deep); color: var(--btg-cream); }
+.btg-mission__media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.btg-mission__shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8,11,8,0.82) 0%, rgba(8,11,8,0.35) 45%, rgba(8,11,8,0.15) 100%); }
+.btg-mission__body { position: relative; width: 100%; padding-bottom: clamp(56px, 9vw, 120px); }
+.btg-mission__heading { font-size: clamp(48px, 7.4vw, 120px); line-height: 0.9; margin: 0 0 22px; max-width: 13ch; text-wrap: balance; }
+.btg-mission__text { font-size: clamp(17px, 1.5vw, 20px); line-height: 1.5; color: rgba(243,238,223,0.85); max-width: 46ch; margin: 0; }
+@media (max-width: 860px) { .btg-mission { min-height: 78svh; } .btg-mission__heading { font-size: clamp(42px, 12vw, 64px); } }
+
+/* ---------- Work panels (Brand Partnerships / Course Features) ---------- */
+.btg-work { padding: clamp(80px, 9vw, 128px) 0; scroll-margin-top: 72px; }
+.btg-work--brands { background: var(--btg-paper); color: var(--btg-ink); }
+.btg-work--courses { background: var(--btg-forest-deep); color: var(--btg-cream); }
+.btg-work__grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(40px, 6vw, 96px); align-items: center; }
+.btg-work--text .btg-work__grid { grid-template-columns: minmax(0, 760px); }
+.btg-work__eyebrow { color: var(--btg-muted); margin-bottom: 16px; }
+.btg-work--courses .btg-work__eyebrow { color: rgba(243,238,223,0.7); }
+.btg-work__heading { font-size: clamp(40px, 5vw, 76px); line-height: 0.92; margin: 0 0 22px; max-width: 14ch; }
+.btg-work__text { font-size: 17px; line-height: 1.6; max-width: 52ch; margin: 0 0 22px; color: var(--btg-body); }
+.btg-work--courses .btg-work__text { color: rgba(243,238,223,0.82); }
+.btg-work__price { font-size: 15px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--btg-ochre); margin: 0 0 30px; }
+.btg-work__actions { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+.btg-work__link { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 0; border-bottom: 1px solid currentColor; }
+.btg-work__link span { display: inline-block; transition: transform 0.25s var(--btg-ease); }
+.btg-work__link:hover span { transform: translateX(3px); }
+.btg-work__reel video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--btg-ink); }
+.btg-work__example { display: block; color: inherit; }
+.btg-work__example-img { position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden; background: #0B0F0B; }
+.btg-work__example-img img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.82); transition: transform 0.35s var(--btg-ease), filter 0.3s ease; }
+.btg-work__example:hover .btg-work__example-img img { transform: scale(1.03); filter: brightness(0.7); }
+.btg-work__play { position: absolute; left: 50%; top: 50%; width: 72px; height: 72px; margin: -36px 0 0 -36px; display: flex; align-items: center; justify-content: center; padding-left: 4px; border-radius: 50%; border: 1px solid rgba(243,238,223,0.6); background: rgba(243,238,223,0.12); color: var(--btg-cream); transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease; }
+.btg-work__example:hover .btg-work__play { background: var(--btg-ochre); border-color: var(--btg-ochre); color: var(--btg-ink); }
+.btg-work__example-meta { display: flex; flex-direction: column; gap: 4px; margin-top: 14px; }
+.btg-work__example-label { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(243,238,223,0.65); }
+.btg-work__example-title { font-size: 17px; font-weight: 600; }
+@media (max-width: 960px) {
+  .btg-work__grid { grid-template-columns: 1fr; gap: 40px; }
+  .btg-work--courses .btg-work__media { order: -1; }
+}
+@media (max-width: 860px) {
+  .btg-work__text { font-size: 16px; }
+  .btg-work__actions { gap: 20px; }
+}

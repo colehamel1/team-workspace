@@ -4,9 +4,9 @@
       "type": "btg-mk-hero",
       "name": "BTG MK Hero",
       "settings": {
-        "eyebrow": "Work With Us",
-        "heading": "Be Part Of The Story",
-        "subheading": "We film the side of golf nobody else does. Here's how courses and brands work with us."
+        "eyebrow": "Partnerships",
+        "heading": "Work With Behind The Greens",
+        "subheading": "A golf media partner for brands, and a feature for your course."
       }
     },
     "btg_mk_proof_im9FW4": {
@@ -17,7 +17,7 @@
           "settings": {
             "value": "213M",
             "label": "Views, Jul 23 – Aug 21, 2026",
-            "color": "#c1922f"
+            "color": "#f3eedf"
           }
         },
         "stat_PbQfgJ": {
@@ -108,8 +108,8 @@
           "type": "pathway",
           "settings": {
             "eyebrow": "For Brands",
-            "heading": "Reach Our Audience",
-            "text": "Integrations built into the films and posts our audience already watches.",
+            "heading": "Brand Partnerships",
+            "text": "Creative, production and distribution to a golf audience that trusts what it sees.",
             "link_label": "Partnerships & Rates",
             "anchor": "#for-brands"
           }
@@ -118,8 +118,8 @@
           "type": "pathway",
           "settings": {
             "eyebrow": "For Golf Courses",
-            "heading": "Tell Your Course's Story",
-            "text": "We spend time with your grounds crew and tell your course's story.",
+            "heading": "Course Features",
+            "text": "A day with your crew, turned into films about your course.",
             "link_label": "Course Features",
             "anchor": "#for-courses"
           }
@@ -213,7 +213,7 @@
       "settings": {
         "eyebrow": "For Brands",
         "heading": "Brand Partnerships",
-        "text": "Our audience trusts what we show them because it's real work, filmed honestly. Partnerships are built around that trust.",
+        "text": "We plan, film and distribute integrations inside the content golf fans already watch, made on real courses by people who do the work. Your product shows up where it's used, not in an ad break.",
         "formats_label": "Partnership Formats",
         "tiers_label": "Packages & Rates",
         "tiers_note": "Every partnership is scoped to your brief. Reach out and we'll put together a proposal."
@@ -270,15 +270,13 @@
       "name": "BTG MK Course Features",
       "settings": {
         "eyebrow": "For Golf Courses",
-        "heading": "Behind The Greens: Course Features",
-        "text": "We come to your course and spend time with your grounds crew, working alongside them before the first tee time. Then we make editorial long-form and short-form films about the course and the people who maintain it, told in our voice to our audience. It's a feature, not videography for hire.",
-        "pricing_note": "Open to our first five courses. Includes a day on site with your crew, one long-form film and three short-form cuts. Extra days, extra cuts and usage rights for your own marketing are quoted separately.",
-        "pricing_eyebrow": "Founding Rate",
-        "pricing_spots": "5 of 5 spots open",
-        "pricing_label": "$3,500 + Travel",
-        "pricing_standard": "Standard rate: $5,000 + travel",
-        "cta_label": "Apply For A Founding Spot",
-        "cta_link": "shopify://pages/contact"
+        "heading": "Bring Behind The Greens To Your Course",
+        "text": "We spend a day working alongside your grounds crew, then turn it into long-form and short-form films that showcase your course, your crew and your operation, shared with the Behind The Greens audience.",
+        "pricing_note": "Includes a day on site with your crew, one long-form film and three short-form cuts. Extra days, extra cuts and usage rights for your own marketing are quoted separately.",
+        "pricing_eyebrow": "Pricing",
+        "pricing_label": "Starts at $3,500 + Travel",
+        "cta_label": "Feature Your Course",
+        "cta_link": "/pages/contact?topic=course-features"
       }
     },
     "mk_course_films": {
@@ -348,9 +346,9 @@
         "eyebrow": "Get In Touch",
         "heading": "Start The Conversation",
         "brands_label": "Start A Brand Partnership",
-        "brands_link": "shopify://pages/contact",
+        "brands_link": "/pages/contact?topic=brand-partnerships",
         "courses_label": "Feature Your Golf Course",
-        "courses_link": "shopify://pages/contact",
+        "courses_link": "/pages/contact?topic=course-features",
         "pdf_label": "Download Media Kit (PDF)",
         "pdf_link": ""
       }

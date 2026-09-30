@@ -1,0 +1,117 @@
+{%- comment -%}
+  From The Field — short-form catalog. Vertical 9:16 poster cards that open
+  the original post (Instagram / TikTok / Facebook / YouTube) in a new tab.
+
+  - A card renders only when it has a poster image; the whole section stays
+    hidden until at least one does. No placeholder content is ever shown.
+  - View counts are optional and should only be filled with verified numbers.
+  - Optional Shopify-hosted clip: previews silently on desktop hover. Nothing
+    is loaded until the first hover, and nothing plays on touch devices.
+{%- endcomment -%}
+
+{%- liquid
+  assign field_count = 0
+  for block in section.blocks
+    if block.settings.poster != blank
+      assign field_count = field_count | plus: 1
+    endif
+  endfor
+-%}
+
+{%- if field_count > 0 -%}
+<div class="btg-scope">
+  {{ 'btg-field.css' | asset_url | stylesheet_tag }}
+
+  <section class="btg-field" id="{{ section.settings.anchor | default: 'from-the-field' }}" data-btg-field>
+    <div class="btg-container btg-field__head">
+      <div>
+        <div class="btg-eyebrow btg-field__eyebrow">{{ section.settings.eyebrow | default: 'Short Form' }}</div>
+        <h2 class="btg-display btg-field__title">{{ section.settings.heading | default: 'From The Field' }}</h2>
+      </div>
+      <div class="btg-field__nav">
+        {%- if section.settings.text != blank -%}<p class="btg-field__text">{{ section.settings.text }}</p>{%- endif -%}
+        <div class="btg-field__arrows">
+          <button type="button" class="btg-field__arrow" data-btg-field-prev aria-label="Previous clips"><span aria-hidden="true">&larr;</span></button>
+          <button type="button" class="btg-field__arrow" data-btg-field-next aria-label="More clips"><span aria-hidden="true">&rarr;</span></button>
+        </div>
+      </div>
+    </div>
+
+    <ul class="btg-field__track" role="list" data-btg-field-track>
+      {%- for block in section.blocks -%}
+        {%- if block.settings.poster != blank -%}
+          {%- liquid
+            assign platform = block.settings.platform | default: 'instagram'
+            case platform
+              when 'instagram'
+                assign platform_name = 'Instagram'
+              when 'tiktok'
+                assign platform_name = 'TikTok'
+              when 'facebook'
+                assign platform_name = 'Facebook'
+              else
+                assign platform_name = 'YouTube'
+            endcase
+            assign clip = ''
+            if block.settings.video != blank
+              assign clip = block.settings.video.sources | where: 'format', 'mp4' | first
+            endif
+          -%}
+          <li class="btg-field__item" {{ block.shopify_attributes }}>
+            <a class="btg-field__card"{% if block.settings.link != blank %} href="{{ block.settings.link }}" target="_blank" rel="noopener"{% endif %}
+               aria-label="{% if block.settings.title != blank %}{{ block.settings.title | escape }}, {% endif %}watch on {{ platform_name }}"
+               {% if clip != blank %}data-preview="{{ clip.url }}"{% endif %}>
+              {{ block.settings.poster | image_url: width: 720 | image_tag: loading: 'lazy', sizes: '(min-width: 1000px) 22vw, 72vw', widths: '360, 540, 720', alt: '', class: 'btg-field__poster' }}
+              <span class="btg-field__shade" aria-hidden="true"></span>
+              <span class="btg-field__meta">
+                {%- if block.settings.title != blank -%}<span class="btg-field__clip-title">{{ block.settings.title }}</span>{%- endif -%}
+                <span class="btg-field__stat">
+                  {%- if block.settings.views != blank -%}<strong>{{ block.settings.views }}</strong> Views &middot; {% endif -%}{{ platform_name }}
+                </span>
+              </span>
+            </a>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </section>
+</div>
+<script src="{{ 'btg-field.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "BTG From The Field",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Short Form" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "From The Field" },
+    { "type": "textarea", "id": "text", "label": "Intro line" },
+    { "type": "text", "id": "anchor", "label": "Anchor id", "default": "from-the-field" }
+  ],
+  "blocks": [
+    {
+      "type": "clip",
+      "name": "Clip",
+      "settings": [
+        { "type": "image_picker", "id": "poster", "label": "Poster image (vertical)", "info": "Required. A 9:16 frame from the clip. Cards without a poster are hidden." },
+        { "type": "url", "id": "link", "label": "Post link", "info": "The Instagram, TikTok, Facebook or YouTube post." },
+        {
+          "type": "select", "id": "platform", "label": "Platform",
+          "options": [
+            { "value": "instagram", "label": "Instagram" },
+            { "value": "tiktok", "label": "TikTok" },
+            { "value": "facebook", "label": "Facebook" },
+            { "value": "youtube", "label": "YouTube" }
+          ],
+          "default": "instagram"
+        },
+        { "type": "text", "id": "title", "label": "Short title (optional)" },
+        { "type": "text", "id": "views", "label": "Views (optional, verified only)", "info": "e.g. 18.2M. Leave empty unless the number comes from your analytics." },
+        { "type": "video", "id": "video", "label": "Preview clip (optional)", "info": "Upload the clip to preview silently on desktop hover." }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [{ "name": "BTG From The Field" }]
+}
+{% endschema %}

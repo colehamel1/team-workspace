@@ -18,8 +18,8 @@
       "type": "btg-about-origin",
       "settings": {
         "label": "Where It Started",
-        "pull_quote": "Golf has a front of house and a back of house. We film the back.",
-        "body": "<p>Every round starts hours before the first tee time. Crews are out mowing lines, rolling greens, cutting cups and fixing what yesterday left behind. Most golfers never see any of it.</p><p>Behind The Greens started by pointing the camera the other way: at the superintendents, the crews and the craft that make a course playable. We go to courses, spend time with the people who maintain them, and make films about that work. Those films found an audience of golfers, course professionals and people across the industry who recognized it.</p><p>The apparel comes from the same place. Gear made for the people in those films, and for anyone who respects the work.</p>",
+        "pull_quote": "You can walk a hundred golf courses and never see the people who made them playable.",
+        "body": "<p>Every round starts hours before the first tee time. Crews are out mowing lines, rolling greens and cutting cups. Most golfers never see any of it.</p><p>Behind The Greens started by pointing the camera at that work: the superintendents, the crews and the craft that make a course playable. The films found an audience. The audience became a community. The apparel came from the same place: gear made for the people in those films, and anyone who respects the work.</p>",
         "only_on_page": "our-story"
       }
     },
@@ -30,21 +30,21 @@
           "type": "value",
           "settings": {
             "title": "The Crew Comes First",
-            "text": "Every story starts with the people doing the work, not the people playing the round."
+            "text": "Every story starts with the people doing the work."
           }
         },
         "value_2": {
           "type": "value",
           "settings": {
             "title": "Culture Over Clichés",
-            "text": "No stereotypes, no gimmicks. Just the real work behind the game."
+            "text": "No stereotypes, no gimmicks. The real work behind the game."
           }
         },
         "value_3": {
           "type": "value",
           "settings": {
             "title": "Made To Be Worn",
-            "text": "Designed for early mornings and long days on the course, and everywhere after."
+            "text": "Built for early mornings, long days and everywhere after."
           }
         }
       },
@@ -103,9 +103,9 @@
       "type": "btg-mk-hero",
       "name": "BTG MK Hero",
       "settings": {
-        "eyebrow": "Work With Us",
-        "heading": "Be Part Of The Story",
-        "subheading": "We film the side of golf nobody else does. Here's how courses and brands work with us.",
+        "eyebrow": "Partnerships",
+        "heading": "Work With Behind The Greens",
+        "subheading": "A golf media partner for brands, and a feature for your course.",
         "only_on_page": "media-kit"
       }
     },
@@ -117,7 +117,7 @@
           "settings": {
             "value": "213M",
             "label": "Views, Jul 23 – Aug 21, 2026",
-            "color": "#c1922f"
+            "color": "#f3eedf"
           }
         },
         "stat_PbQfgJ": {
@@ -210,8 +210,8 @@
           "type": "pathway",
           "settings": {
             "eyebrow": "For Brands",
-            "heading": "Reach Our Audience",
-            "text": "Integrations built into the films and posts our audience already watches.",
+            "heading": "Brand Partnerships",
+            "text": "Creative, production and distribution to a golf audience that trusts what it sees.",
             "link_label": "Partnerships & Rates",
             "anchor": "#for-brands"
           }
@@ -220,8 +220,8 @@
           "type": "pathway",
           "settings": {
             "eyebrow": "For Golf Courses",
-            "heading": "Tell Your Course's Story",
-            "text": "We spend time with your grounds crew and tell your course's story.",
+            "heading": "Course Features",
+            "text": "A day with your crew, turned into films about your course.",
             "link_label": "Course Features",
             "anchor": "#for-courses"
           }
@@ -316,7 +316,7 @@
       "settings": {
         "eyebrow": "For Brands",
         "heading": "Brand Partnerships",
-        "text": "Our audience trusts what we show them because it's real work, filmed honestly. Partnerships are built around that trust.",
+        "text": "We plan, film and distribute integrations inside the content golf fans already watch, made on real courses by people who do the work. Your product shows up where it's used, not in an ad break.",
         "formats_label": "Partnership Formats",
         "tiers_label": "Packages & Rates",
         "tiers_note": "Every partnership is scoped to your brief. Reach out and we'll put together a proposal.",
@@ -374,16 +374,14 @@
       "name": "BTG MK Course Features",
       "settings": {
         "eyebrow": "For Golf Courses",
-        "heading": "Behind The Greens: Course Features",
-        "text": "We come to your course and spend time with your grounds crew, working alongside them before the first tee time. Then we make editorial long-form and short-form films about the course and the people who maintain it, told in our voice to our audience. It's a feature, not videography for hire.",
-        "pricing_note": "Open to our first five courses. Includes a day on site with your crew, one long-form film and three short-form cuts. Extra days, extra cuts and usage rights for your own marketing are quoted separately.",
+        "heading": "Bring Behind The Greens To Your Course",
+        "text": "We spend a day working alongside your grounds crew, then turn it into long-form and short-form films that showcase your course, your crew and your operation, shared with the Behind The Greens audience.",
+        "pricing_note": "Includes a day on site with your crew, one long-form film and three short-form cuts. Extra days, extra cuts and usage rights for your own marketing are quoted separately.",
         "only_on_page": "media-kit",
-        "pricing_eyebrow": "Founding Rate",
-        "pricing_spots": "5 of 5 spots open",
-        "pricing_label": "$3,500 + Travel",
-        "pricing_standard": "Standard rate: $5,000 + travel",
-        "cta_label": "Apply For A Founding Spot",
-        "cta_link": "shopify://pages/contact"
+        "pricing_eyebrow": "Pricing",
+        "pricing_label": "Starts at $3,500 + Travel",
+        "cta_label": "Feature Your Course",
+        "cta_link": "/pages/contact?topic=course-features"
       }
     },
     "btg_mk_closing_4pMVW8": {
@@ -393,9 +391,9 @@
         "eyebrow": "Get In Touch",
         "heading": "Start The Conversation",
         "brands_label": "Start A Brand Partnership",
-        "brands_link": "shopify://pages/contact",
+        "brands_link": "/pages/contact?topic=brand-partnerships",
         "courses_label": "Feature Your Golf Course",
-        "courses_link": "shopify://pages/contact",
+        "courses_link": "/pages/contact?topic=course-features",
         "pdf_label": "Download Media Kit (PDF)",
         "pdf_link": "",
         "only_on_page": "media-kit"
@@ -461,12 +459,70 @@
         "channel_url": "https://www.youtube.com/@behind_thegreens",
         "only_on_page": "media-kit"
       }
+    },
+    "story_timeline": {
+      "type": "btg-story-timeline",
+      "blocks": {
+        "stop_1": {
+          "type": "stop",
+          "settings": {
+            "course": "Prairie Vista Golf Course",
+            "location": "Bloomington-Normal, IL",
+            "youtube_id": "ZQQuq7-Mpvc"
+          }
+        },
+        "stop_2": {
+          "type": "stop",
+          "settings": {
+            "course": "Oahu Country Club",
+            "location": "Honolulu, HI",
+            "youtube_id": "gUN9-ttaNw4"
+          }
+        },
+        "stop_3": {
+          "type": "stop",
+          "settings": {
+            "course": "Forty Niner Country Club",
+            "location": "Tucson, AZ",
+            "youtube_id": "chlC023n_ck"
+          }
+        },
+        "stop_4": {
+          "type": "stop",
+          "settings": {
+            "course": "TPC Scottsdale",
+            "location": "Scottsdale, AZ",
+            "youtube_id": "MpKfn5FJRow"
+          }
+        },
+        "stop_5": {
+          "type": "stop",
+          "settings": {
+            "course": "Eagle Mountain Golf Club",
+            "location": "Fountain Hills, AZ",
+            "youtube_id": "Kn-Qtw8J0gA"
+          }
+        }
+      },
+      "block_order": [
+        "stop_1",
+        "stop_2",
+        "stop_3",
+        "stop_4",
+        "stop_5"
+      ],
+      "settings": {
+        "eyebrow": "The Road So Far",
+        "heading": "Course By Course",
+        "only_on_page": "our-story"
+      }
     }
   },
   "order": [
     "btg_page",
     "story_hero",
     "story_origin",
+    "story_timeline",
     "story_values",
     "story_crest",
     "story_cta",

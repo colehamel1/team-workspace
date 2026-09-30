@@ -1,0 +1,22 @@
+{%- comment -%}
+  Editorial "on the job" tile for the homepage shop grid.
+  Usage: {% render 'btg-edit-tile', product: product, size: 'a' %}  (a = large, b = wide)
+{%- endcomment -%}
+{%- if product != blank -%}
+  {%- liquid
+    assign tile_img = product.metafields.custom.lifestyle_image.value | default: product.featured_media
+    assign tile_name = product.metafields.custom.btg_name.value | default: product.title
+    assign tile_label = product.metafields.custom.lifestyle_caption.value | default: 'On The Job'
+  -%}
+  <a href="{{ product.url }}" class="btg-edit-tile btg-edit-tile--{{ size }}">
+    {%- if tile_img != blank -%}
+      {{ tile_img | image_url: width: 1400 | image_tag: loading: 'lazy', sizes: '(min-width: 1000px) 50vw, 100vw', widths: '600, 900, 1200, 1400', alt: tile_name, class: 'btg-edit-tile__img' }}
+    {%- endif -%}
+    <span class="btg-edit-tile__shade" aria-hidden="true"></span>
+    <span class="btg-edit-tile__body">
+      <span class="btg-edit-tile__label">{{ tile_label }}</span>
+      <span class="btg-display btg-edit-tile__name">{{ tile_name }}</span>
+      <span class="btg-edit-tile__cta">Shop <span aria-hidden="true">&rarr;</span></span>
+    </span>
+  </a>
+{%- endif -%}

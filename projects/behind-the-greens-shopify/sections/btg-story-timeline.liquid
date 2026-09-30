@@ -1,0 +1,66 @@
+{%- comment -%}
+  Story timeline — the road so far, one stop per film. Each stop: course,
+  location, optional year, optional one-line context, image (defaults to the
+  film's YouTube thumbnail) and a link that opens the film on the homepage.
+  Year and context render only when filled in; nothing is guessed.
+{%- endcomment -%}
+{%- if section.settings.only_on_page == blank or section.settings.only_on_page == page.handle -%}
+<div class="btg-scope">
+  {{ 'btg-about.css' | asset_url | stylesheet_tag }}
+  <section class="btg-timeline">
+    <div class="btg-container">
+      <header class="btg-timeline__head">
+        {%- if section.settings.eyebrow != blank -%}<div class="btg-eyebrow btg-timeline__eyebrow">{{ section.settings.eyebrow }}</div>{%- endif -%}
+        <h2 class="btg-display btg-timeline__title">{{ section.settings.heading }}</h2>
+      </header>
+      <ol class="btg-timeline__list" role="list">
+        {%- for block in section.blocks -%}
+          {%- assign vid = block.settings.youtube_id | strip -%}
+          <li class="btg-timeline__stop" {{ block.shopify_attributes }}>
+            <a class="btg-timeline__media" href="{% if vid != blank %}{{ routes.root_url }}?film={{ vid | escape }}#watch-the-work{% else %}{{ routes.root_url }}#watch-the-work{% endif %}" aria-label="Watch the {{ block.settings.course | escape }} film">
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', sizes: '(min-width: 1000px) 56vw, 100vw', widths: '600, 900, 1200', alt: '' }}
+              {%- elsif vid != blank -%}
+                <img src="https://i.ytimg.com/vi/{{ vid | escape }}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+              {%- endif -%}
+            </a>
+            <div class="btg-timeline__copy">
+              <span class="btg-timeline__no">{{ forloop.index | prepend: '0' | slice: -2, 2 }}{% if block.settings.year != blank %} &middot; {{ block.settings.year }}{% endif %}</span>
+              <h3 class="btg-display btg-timeline__course">{{ block.settings.course }}</h3>
+              {%- if block.settings.location != blank -%}<p class="btg-timeline__place">{{ block.settings.location }}</p>{%- endif -%}
+              {%- if block.settings.context != blank -%}<p class="btg-timeline__context">{{ block.settings.context }}</p>{%- endif -%}
+              <a class="btg-timeline__link" href="{% if vid != blank %}{{ routes.root_url }}?film={{ vid | escape }}#watch-the-work{% else %}{{ routes.root_url }}#watch-the-work{% endif %}">Watch the film <span aria-hidden="true">&rarr;</span></a>
+            </div>
+          </li>
+        {%- endfor -%}
+      </ol>
+    </div>
+  </section>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "BTG Story Timeline",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Road So Far" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Course By Course" },
+    { "type": "text", "id": "only_on_page", "label": "Only show on page (handle)" }
+  ],
+  "blocks": [
+    {
+      "type": "stop",
+      "name": "Stop",
+      "settings": [
+        { "type": "text", "id": "course", "label": "Course" },
+        { "type": "text", "id": "location", "label": "Location" },
+        { "type": "text", "id": "year", "label": "Year (optional)" },
+        { "type": "text", "id": "context", "label": "One line of context (optional)" },
+        { "type": "text", "id": "youtube_id", "label": "Film YouTube id" },
+        { "type": "image_picker", "id": "image", "label": "Image (optional)", "info": "Defaults to the film thumbnail." }
+      ]
+    }
+  ],
+  "presets": [{ "name": "BTG Story Timeline" }]
+}
+{% endschema %}

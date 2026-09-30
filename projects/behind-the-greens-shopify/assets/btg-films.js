@@ -97,9 +97,13 @@
       e.preventDefault();
       closePlayer();
 
+      // The featured film leaves the row; the one it replaces returns to it.
       section.querySelectorAll('[data-btg-film-select]').forEach(function (c) {
-        c.classList.toggle('is-active', c === card);
-        if (c === card) c.setAttribute('aria-current', 'true'); else c.removeAttribute('aria-current');
+        var item = c.closest('[data-btg-film-item]');
+        var on = c === card;
+        c.classList.toggle('is-active', on);
+        if (on) c.setAttribute('aria-current', 'true'); else c.removeAttribute('aria-current');
+        if (item) item.hidden = on;
       });
 
       var id = card.getAttribute('data-video-id') || '';
@@ -116,6 +120,7 @@
         img.src = thumb || fallbackSrc;
       }
       updateSeen(card);
+      if (e.detail === 0) poster.focus({ preventScroll: true }); // keyboard: follow the film
       stage.classList.remove('is-swapping');
       void stage.offsetWidth; // restart the crossfade
       stage.classList.add('is-swapping');

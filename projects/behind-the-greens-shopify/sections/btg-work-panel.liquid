@@ -1,0 +1,91 @@
+{%- comment -%}
+  Work With BTG panel. Two variants share one layout:
+  - brands: media-partner pitch + optional brand reel (renders only once a
+    reel video is uploaded; nothing placeholder is shown before that).
+  - courses: Course Features offer + starting price + a real example film
+    (deep-links into the homepage film player).
+{%- endcomment -%}
+{%- if section.settings.only_on_page == blank or section.settings.only_on_page == page.handle -%}
+{%- liquid
+  assign variant = section.settings.variant | default: 'brands'
+  assign has_media = false
+  if variant == 'brands' and section.settings.reel != blank
+    assign has_media = true
+  endif
+  if variant == 'courses' and section.settings.example_id != blank
+    assign has_media = true
+  endif
+-%}
+<div class="btg-scope">
+  {{ 'btg-home.css' | asset_url | stylesheet_tag }}
+  <section class="btg-work btg-work--{{ variant }}{% unless has_media %} btg-work--text{% endunless %}" id="{{ section.settings.anchor | default: variant }}">
+    <div class="btg-container btg-work__grid">
+      <div class="btg-work__copy">
+        {%- if section.settings.eyebrow != blank -%}<div class="btg-eyebrow btg-work__eyebrow">{{ section.settings.eyebrow }}</div>{%- endif -%}
+        <h2 class="btg-display btg-work__heading">{{ section.settings.heading }}</h2>
+        {%- if section.settings.text != blank -%}<p class="btg-work__text">{{ section.settings.text }}</p>{%- endif -%}
+        {%- if section.settings.price != blank -%}<p class="btg-work__price">{{ section.settings.price }}</p>{%- endif -%}
+        <div class="btg-work__actions">
+          {%- if section.settings.cta_label != blank -%}
+            <a href="{{ section.settings.cta_link | default: routes.root_url }}" class="{% if variant == 'courses' %}btg-btn-light{% else %}btg-btn-primary{% endif %}">{{ section.settings.cta_label }}</a>
+          {%- endif -%}
+          {%- if section.settings.link_label != blank -%}
+            <a href="{{ section.settings.link_url | default: routes.root_url }}" class="btg-work__link">{{ section.settings.link_label }} <span aria-hidden="true">&rarr;</span></a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      {%- if has_media -%}
+        <div class="btg-work__media">
+          {%- if variant == 'brands' -%}
+            <div class="btg-work__reel">
+              {{ section.settings.reel | video_tag: controls: true, muted: true, playsinline: true, preload: 'metadata', image_size: '1280x' }}
+            </div>
+          {%- else -%}
+            <a class="btg-work__example" href="{{ routes.root_url }}?film={{ section.settings.example_id | escape }}#watch-the-work">
+              <span class="btg-work__example-img">
+                <img src="https://i.ytimg.com/vi/{{ section.settings.example_id | escape }}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+                <span class="btg-work__play" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 11 12"><path d="M0 0l11 6-11 6z" fill="currentColor"/></svg></span>
+              </span>
+              <span class="btg-work__example-meta">
+                <span class="btg-work__example-label">{{ section.settings.example_label | default: 'A Course Feature' }}</span>
+                {%- if section.settings.example_title != blank -%}<span class="btg-work__example-title">{{ section.settings.example_title }}</span>{%- endif -%}
+              </span>
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </section>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "BTG Work Panel",
+  "settings": [
+    {
+      "type": "select", "id": "variant", "label": "Type",
+      "options": [{ "value": "brands", "label": "Brand Partnerships" }, { "value": "courses", "label": "Course Features" }],
+      "default": "brands"
+    },
+    { "type": "text", "id": "anchor", "label": "Anchor id" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Work With Behind The Greens" },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "text", "id": "price", "label": "Price line (optional)" },
+    { "type": "text", "id": "cta_label", "label": "Button label" },
+    { "type": "url", "id": "cta_link", "label": "Button link" },
+    { "type": "text", "id": "link_label", "label": "Secondary link label" },
+    { "type": "url", "id": "link_url", "label": "Secondary link" },
+    { "type": "header", "content": "Brand reel (Brand Partnerships)" },
+    { "type": "video", "id": "reel", "label": "Brand reel", "info": "15–25 seconds. The panel shows it only once uploaded." },
+    { "type": "header", "content": "Example film (Course Features)" },
+    { "type": "text", "id": "example_id", "label": "Example film YouTube id", "info": "e.g. Kn-Qtw8J0gA (Eagle Mountain)." },
+    { "type": "text", "id": "example_label", "label": "Example label", "default": "A Course Feature" },
+    { "type": "text", "id": "example_title", "label": "Example title" },
+    { "type": "text", "id": "only_on_page", "label": "Only show on page (handle)" }
+  ],
+  "presets": [{ "name": "BTG Work Panel" }]
+}
+{% endschema %}
