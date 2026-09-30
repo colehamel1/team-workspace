@@ -106,7 +106,15 @@
         "eyebrow": "Partnerships",
         "heading": "Work With Behind The Greens",
         "subheading": "A golf media partner for brands, and a feature for your course.",
-        "only_on_page": "media-kit"
+        "only_on_page": "media-kit",
+        "image": "shopify://shop_images/btg-partnerships-hero-cole.webp",
+        "overlay": "left",
+        "focus_desktop": "0% 30%",
+        "zoom_desktop": 145,
+        "focus_tablet": "0% 30%",
+        "zoom_tablet": 100,
+        "focus_mobile": "48% 66%",
+        "zoom_mobile": 135
       }
     },
     "btg_mk_proof_im9FW4": {

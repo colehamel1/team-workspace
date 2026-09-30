@@ -3,9 +3,21 @@
   {% render 'btg-styles' %}
   {{ 'btg-media-kit.css' | asset_url | stylesheet_tag }}
 
-  <div class="btg-mk-hero">
+  {%- liquid
+    assign hero_style = ''
+    if section.settings.image != blank
+      assign fd = section.settings.focus_desktop | default: 'center center'
+      assign ft = section.settings.focus_tablet | default: fd
+      assign fm = section.settings.focus_mobile | default: ft
+      assign zd = section.settings.zoom_desktop | default: 100 | divided_by: 100.0
+      assign zt = section.settings.zoom_tablet | default: 100 | divided_by: 100.0
+      assign zm = section.settings.zoom_mobile | default: 100 | divided_by: 100.0
+      assign hero_style = '--hero-focus-d:' | append: fd | append: ';--hero-focus-t:' | append: ft | append: ';--hero-focus-m:' | append: fm | append: ';--hero-zoom-d:' | append: zd | append: ';--hero-zoom-t:' | append: zt | append: ';--hero-zoom-m:' | append: zm
+    endif
+  -%}
+  <div class="btg-mk-hero{% if section.settings.image != blank %} btg-mk-hero--photo{% endif %}{% if section.settings.overlay == 'left' %} btg-mk-hero--left{% endif %}"{% if hero_style != blank %} style="{{ hero_style | escape }}"{% endif %}>
     {%- if section.settings.image != blank -%}
-      {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'eager', class: 'btg-mk-hero__image', alt: section.settings.heading }}
+      {{ section.settings.image | image_url: width: 2400 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '800, 1200, 1642, 2400', sizes: '100vw', class: 'btg-mk-hero__image', alt: section.settings.heading }}
     {%- endif -%}
     <div class="btg-mk-hero__scrim"></div>
     <div class="btg-mk-hero__content">
@@ -26,6 +38,21 @@
       "id": "image",
       "label": "Background image"
     },
+    {
+      "type": "select", "id": "overlay", "label": "Text overlay",
+      "options": [
+        { "value": "bottom", "label": "Bottom fade" },
+        { "value": "left", "label": "Left side (subject on right)" }
+      ],
+      "default": "bottom"
+    },
+    { "type": "header", "content": "Image crop" },
+    { "type": "text", "id": "focus_desktop", "label": "Focus point, desktop", "info": "CSS position, e.g. 0% 30%. Zoom anchors here." },
+    { "type": "range", "id": "zoom_desktop", "label": "Zoom, desktop", "min": 100, "max": 170, "step": 5, "unit": "%", "default": 100 },
+    { "type": "text", "id": "focus_tablet", "label": "Focus point, tablet" },
+    { "type": "range", "id": "zoom_tablet", "label": "Zoom, tablet", "min": 100, "max": 170, "step": 5, "unit": "%", "default": 100 },
+    { "type": "text", "id": "focus_mobile", "label": "Focus point, mobile" },
+    { "type": "range", "id": "zoom_mobile", "label": "Zoom, mobile", "min": 100, "max": 170, "step": 5, "unit": "%", "default": 100 },
     {
       "type": "text",
       "id": "eyebrow",
