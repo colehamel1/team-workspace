@@ -153,42 +153,48 @@
           "type": "clip",
           "settings": {
             "youtube": "https://www.youtube.com/shorts/F1wq8Yf6Nb8",
-            "platform": "youtube"
+            "platform": "youtube",
+            "poster": "shopify://shop_images/btg-short-1.jpg"
           }
         },
         "short_2": {
           "type": "clip",
           "settings": {
             "youtube": "https://www.youtube.com/shorts/LOGL4mdKjYw",
-            "platform": "youtube"
+            "platform": "youtube",
+            "poster": "shopify://shop_images/btg-short-2.jpg"
           }
         },
         "short_3": {
           "type": "clip",
           "settings": {
             "youtube": "https://www.youtube.com/shorts/tX6oEAvKYH4",
-            "platform": "youtube"
+            "platform": "youtube",
+            "poster": "shopify://shop_images/btg-short-3.jpg"
           }
         },
         "short_4": {
           "type": "clip",
           "settings": {
             "youtube": "https://www.youtube.com/shorts/iBsIb2tPQxI",
-            "platform": "youtube"
+            "platform": "youtube",
+            "poster": "shopify://shop_images/btg-short-4.jpg"
           }
         },
         "short_5": {
           "type": "clip",
           "settings": {
             "youtube": "https://www.youtube.com/shorts/eWvmi9Q25EI",
-            "platform": "youtube"
+            "platform": "youtube",
+            "poster": "shopify://shop_images/btg-short-5.jpg"
           }
         },
         "short_6": {
           "type": "clip",
           "settings": {
             "youtube": "https://www.youtube.com/shorts/UoQxOBmnsn0",
-            "platform": "youtube"
+            "platform": "youtube",
+            "poster": "shopify://shop_images/btg-short-6.jpg"
           }
         }
       },

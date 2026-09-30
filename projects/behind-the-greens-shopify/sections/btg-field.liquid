@@ -113,7 +113,7 @@
                 {%- if block.settings.title != blank -%}<span class="btg-field__clip-title">{{ block.settings.title }}</span>{%- endif -%}
                 <span class="btg-field__stat">
                   {%- if yt != blank -%}<span class="btg-field__play" aria-hidden="true"></span>{%- endif -%}
-                  <span>{%- if block.settings.views != blank -%}<strong>{{ block.settings.views }}</strong> Views &middot; {% endif -%}{{ platform_name }}</span>
+                  <span>{%- if block.settings.views != blank -%}<strong>{{ block.settings.views }}</strong> Views &middot; {% endif -%}{%- if block.settings.likes != blank -%}<strong>{{ block.settings.likes }}</strong> Likes &middot; {% endif -%}{{ platform_name }}</span>
                 </span>
               </span>
             {%- if yt != blank or block.settings.link != blank -%}</a>{%- else -%}</div>{%- endif -%}
@@ -166,6 +166,7 @@
         },
         { "type": "text", "id": "title", "label": "Short title (optional)" },
         { "type": "text", "id": "views", "label": "Views (optional, verified only)", "info": "e.g. 18.2M. Leave empty unless the number comes from your analytics." },
+        { "type": "text", "id": "likes", "label": "Likes (optional, verified only)", "info": "e.g. 412K. Leave empty unless the number comes from your analytics." },
         { "type": "video", "id": "video", "label": "Preview clip (optional)", "info": "Upload the clip to preview silently on desktop hover." }
       ]
     }
