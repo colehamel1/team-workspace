@@ -152,11 +152,11 @@
             "title": "Short-Form Feature",
             "price": "$1,000",
             "channels": "short",
-            "summary": "1 original short-form brand integration",
-            "includes": "Posted to Instagram, TikTok, Facebook and YouTube Shorts\nBrand tagged and linked where supported\nProduct integrated naturally into BTG content\nConcept, filming and editing handled by BTG",
+            "summary": "1 dedicated short-form brand feature",
+            "includes": "Published across Instagram, TikTok, Facebook & YouTube Shorts\nBrand tagged and linked where supported\nProduct naturally integrated into BTG content\nConcept, filming and editing handled by Behind The Greens",
             "featured": false,
             "product": "btg-short-form-feature",
-            "button_label": "Add To Cart"
+            "button_label": "Book Campaign"
           }
         },
         "campaign_3_video": {
@@ -165,11 +165,12 @@
             "title": "3-Video Campaign",
             "price": "$2,500",
             "channels": "short",
-            "summary": "3 original short-form brand integrations",
-            "includes": "Posted to Instagram, TikTok, Facebook and YouTube Shorts\nBrand tagged and linked where supported\nProduct integrated naturally into BTG content\nConcept, filming and editing handled by BTG",
-            "featured": false,
+            "summary": "3 dedicated short-form brand features",
+            "includes": "Published across Instagram, TikTok, Facebook & YouTube Shorts\nBrand tagged and linked where supported\nProduct naturally integrated into BTG content\nConcept, filming and editing handled by Behind The Greens",
+            "featured": true,
             "product": "btg-3-video-campaign",
-            "button_label": "Add To Cart"
+            "button_label": "Book Campaign",
+            "badge": "Most Popular"
           }
         },
         "campaign_5_video": {
@@ -178,11 +179,11 @@
             "title": "5-Video Campaign",
             "price": "$3,500",
             "channels": "short",
-            "summary": "5 original short-form brand integrations",
-            "includes": "Posted to Instagram, TikTok, Facebook and YouTube Shorts\nBrand tagged and linked where supported\nProduct integrated naturally into BTG content\nConcept, filming and editing handled by BTG",
-            "featured": true,
+            "summary": "5 dedicated short-form brand features",
+            "includes": "Published across Instagram, TikTok, Facebook & YouTube Shorts\nBrand tagged and linked where supported\nProduct naturally integrated into BTG content\nConcept, filming and editing handled by Behind The Greens",
+            "featured": false,
             "product": "btg-5-video-campaign",
-            "button_label": "Add To Cart"
+            "button_label": "Book Campaign"
           }
         },
         "campaign_custom": {
@@ -216,9 +217,13 @@
         "reach_youtube": "81K",
         "reach_tiktok": "55K",
         "options_label": "Campaign Options",
-        "cta_label": "Start A Partnership",
+        "cta_label": "",
         "cta_link": "/pages/contact?topic=brand-partnerships",
-        "tiers_note": "Every campaign includes concept development, filming, editing and organic distribution through Behind The Greens. Paid usage, exclusivity, travel and additional deliverables can be scoped separately."
+        "tiers_note": "Every campaign includes concept development, filming, editing and organic distribution through Behind The Greens. Paid usage, exclusivity, travel and additional deliverables can be scoped separately.",
+        "views_total": "200M+",
+        "views_label": "Views",
+        "views_note": "In a 28-day period",
+        "reach_list_label": "Where Your Campaign Publishes"
       }
     },
     "btg_mk_courses_QLLyWK": {
@@ -227,28 +232,22 @@
         "included_HdyUdU": {
           "type": "included",
           "settings": {
-            "text": "Time on site with your grounds crew"
+            "text": "A day on site, working alongside your grounds crew"
           }
         },
         "included_3n6rJ4": {
           "type": "included",
           "settings": {
-            "text": "Working alongside the crew, not just filming them"
+            "text": "One dedicated long-form YouTube film about your course"
           }
         },
         "included_yPpCft": {
           "type": "included",
           "settings": {
-            "text": "Long-form documentary episode on YouTube"
+            "text": "Three short-form features across Instagram, TikTok, Facebook and YouTube Shorts"
           }
         },
         "included_zxFBzm": {
-          "type": "included",
-          "settings": {
-            "text": "Short-form cuts for Instagram, TikTok and Facebook"
-          }
-        },
-        "included_3cEHnJ": {
           "type": "included",
           "settings": {
             "text": "An on-camera conversation with your superintendent"
@@ -257,7 +256,7 @@
         "included_LFxtFi": {
           "type": "included",
           "settings": {
-            "text": "Scope built around your course and its people"
+            "text": "A production built around your course and its people"
           }
         }
       },
@@ -266,17 +265,16 @@
         "included_3n6rJ4",
         "included_yPpCft",
         "included_zxFBzm",
-        "included_3cEHnJ",
         "included_LFxtFi"
       ],
       "name": "BTG MK Course Features",
       "settings": {
         "eyebrow": "For Golf Courses",
         "heading": "Bring Behind The Greens To Your Course",
-        "text": "We spend a day working alongside your grounds crew, then turn it into long-form and short-form films that showcase your course, your crew and your operation, shared with the Behind The Greens audience.",
-        "pricing_note": "Includes a day on site with your crew, one long-form film and three short-form cuts. Extra days, extra cuts and usage rights for your own marketing are quoted separately.",
-        "pricing_eyebrow": "Pricing",
-        "pricing_label": "Starts at $3,500 + Travel",
+        "text": "Behind The Greens doesn't just show up and film your crew. We work alongside them for the day and document it from inside the operation.",
+        "pricing_note": "One day with your grounds crew. One dedicated YouTube film. Three short-form features across BTG social channels. Extra days, extra cuts and usage rights for your own marketing are quoted separately.",
+        "pricing_eyebrow": "Course Features",
+        "pricing_label": "From $3,500 + Travel",
         "cta_label": "Feature Your Course",
         "cta_link": "/pages/contact?topic=course-features"
       }
@@ -326,18 +324,18 @@
         }
       },
       "block_order": [
+        "film_eagle_mountain",
         "film_prairie_vista",
         "film_oahu",
         "film_forty_niner",
-        "film_tpc_scottsdale",
-        "film_eagle_mountain"
+        "film_tpc_scottsdale"
       ],
       "settings": {
         "tone": "light",
         "anchor": "course-films",
         "eyebrow": "Course Features",
-        "heading": "What A Feature Looks Like",
-        "text": "Every film is made on site, alongside the crew.",
+        "heading": "See It In Action",
+        "text": "We don't film from the cart. We work alongside the crew. Eagle Mountain is the example: a day inside the operation, and the film that came out of it.",
         "channel_url": "https://www.youtube.com/@behind_thegreens"
       }
     },

@@ -27,10 +27,19 @@
 
       {%- if section.settings.reach_total != blank -%}
         <div class="btg-bp-reach">
-          <div class="btg-bp-reach__total">
-            <span class="btg-display btg-bp-reach__num">{{ section.settings.reach_total }}</span>
-            <span class="btg-bp-reach__label">{{ section.settings.reach_label | default: 'Combined Followers' }}</span>
+          <div class="btg-bp-reach__stats">
+            <div class="btg-bp-reach__stat">
+              <span class="btg-display btg-bp-reach__num">{{ section.settings.reach_total }}</span>
+              <span class="btg-bp-reach__label">{{ section.settings.reach_label | default: 'Combined Followers' }}</span>
+            </div>
+            {%- assign bp_views = section.settings.views_total | strip -%}{%- if bp_views.size > 0 -%}
+              <div class="btg-bp-reach__stat">
+                <span class="btg-display btg-bp-reach__num">{{ section.settings.views_total }}</span>
+                <span class="btg-bp-reach__label">{{ section.settings.views_label | default: 'Views' }}{% if section.settings.views_note != blank %}<span class="btg-bp-reach__note">{{ section.settings.views_note }}</span>{% endif %}</span>
+              </div>
+            {%- endif -%}
           </div>
+          {%- assign bp_list_label = section.settings.reach_list_label | strip -%}{%- if bp_list_label.size > 0 -%}<div class="btg-bp-reach__list-label">{{ section.settings.reach_list_label }}</div>{%- endif -%}
           <ul class="btg-bp-reach__list" role="list">
             {%- liquid
               assign reach_ids = 'instagram,facebook,youtube,tiktok' | split: ','
@@ -65,6 +74,7 @@
             {%- for block in campaigns -%}
               <article class="btg-bp-card{% if block.settings.featured %} btg-bp-card--featured{% endif %}" {{ block.shopify_attributes }}>
                 <header class="btg-bp-card__head">
+                  {%- assign bp_badge = block.settings.badge | strip -%}{%- if bp_badge.size > 0 -%}<span class="btg-bp-card__badge">{{ bp_badge }}</span>{%- endif -%}
                   <h4 class="btg-display btg-bp-card__name">{{ block.settings.title }}</h4>
                   <div class="btg-bp-card__price">
                     {%- if block.settings.price_prefix != blank -%}<span class="btg-bp-card__from">{{ block.settings.price_prefix }}</span>{%- endif -%}
@@ -99,25 +109,25 @@
                   {%- endfor -%}
                 </ul>
 
-                {%- if block.settings.product != blank -%}
-                  {%- assign bp_variant = block.settings.product.selected_or_first_available_variant -%}
+                {%- assign bp_variant = block.settings.product.selected_or_first_available_variant -%}
+                {%- if bp_variant.id -%}
                   <form class="btg-bp-card__buy" action="{{ routes.cart_add_url }}" method="post" data-btg-bp-form>
                     <input type="hidden" name="id" value="{{ bp_variant.id }}">
                     <input type="hidden" name="quantity" value="1">
                     <button type="submit" class="btg-bp-card__btn" data-btg-bp-btn{% unless bp_variant.available %} disabled{% endunless %}>
-                      <span data-btg-bp-label>{% if bp_variant.available %}{{ block.settings.button_label | default: 'Add To Cart' }}{% else %}Unavailable{% endif %}</span>
+                      <span data-btg-bp-label>{% if bp_variant.available %}{{ block.settings.button_label | default: 'Book Campaign' }}{% else %}Unavailable{% endif %}</span>{% if bp_variant.available %}<span class="btg-bp-card__arrow" aria-hidden="true">&rarr;</span>{% endif %}
                     </button>
                     <p class="btg-bp-card__error" data-btg-bp-error role="status" aria-live="polite"></p>
                   </form>
                 {%- elsif block.settings.button_link != blank -%}
-                  <a class="btg-bp-card__btn" href="{{ block.settings.button_link }}">{{ block.settings.button_label | default: 'Get In Touch' }}</a>
+                  <a class="btg-bp-card__btn" href="{{ block.settings.button_link }}"><span>{{ block.settings.button_label | default: 'Get In Touch' }}</span><span class="btg-bp-card__arrow" aria-hidden="true">&rarr;</span></a>
                 {%- endif -%}
               </article>
             {%- endfor -%}
           </div>
 
           <div class="btg-bp__cta">
-            <a class="btg-btn-primary btg-bp__cta-btn" href="{{ cta_link }}">{{ section.settings.cta_label | default: 'Start A Partnership' }} <span aria-hidden="true">&rarr;</span></a>
+            {%- assign bp_cta = section.settings.cta_label | strip -%}{%- if bp_cta.size > 0 -%}<a class="btg-btn-primary btg-bp__cta-btn" href="{{ cta_link }}">{{ section.settings.cta_label }} <span aria-hidden="true">&rarr;</span></a>{%- endif -%}
             {%- if section.settings.tiers_note != blank -%}<p class="btg-bp__note">{{ section.settings.tiers_note }}</p>{%- endif -%}
           </div>
         </div>
@@ -142,9 +152,13 @@
     { "type": "text", "id": "reach_facebook", "label": "Facebook followers", "default": "164K" },
     { "type": "text", "id": "reach_youtube", "label": "YouTube subscribers", "default": "81K" },
     { "type": "text", "id": "reach_tiktok", "label": "TikTok followers", "default": "55K" },
+    { "type": "text", "id": "reach_list_label", "label": "Platform row label", "default": "Where Your Campaign Publishes" },
+    { "type": "text", "id": "views_total", "label": "Views figure", "info": "Verified only, e.g. 200M+" },
+    { "type": "text", "id": "views_label", "label": "Views label", "default": "Views" },
+    { "type": "text", "id": "views_note", "label": "Views period", "info": "e.g. In a 28-day period" },
     { "type": "header", "content": "Campaign options" },
     { "type": "text", "id": "options_label", "label": "Options label", "default": "Campaign Options" },
-    { "type": "text", "id": "cta_label", "label": "Button label", "default": "Start A Partnership" },
+    { "type": "text", "id": "cta_label", "label": "Button label (optional)", "info": "Leave empty when every card has its own button." },
     { "type": "url", "id": "cta_link", "label": "Button link", "info": "Defaults to the contact form with Brand Partnerships selected." },
     { "type": "textarea", "id": "tiers_note", "label": "Scope note", "default": "Every campaign includes concept development, filming, editing and organic distribution through Behind The Greens. Paid usage, exclusivity, travel and additional deliverables can be scoped separately." },
     { "type": "text", "id": "only_on_page", "label": "Only show on page (handle)", "info": "Leave empty to always show. Used when several pages share one template." },
@@ -167,12 +181,13 @@
           ],
           "default": "short"
         },
-        { "type": "textarea", "id": "summary", "label": "Headline line", "info": "e.g. 3 original short-form brand integrations" },
+        { "type": "textarea", "id": "summary", "label": "Headline line", "info": "e.g. 3 dedicated short-form brand features" },
         { "type": "textarea", "id": "includes", "label": "What's included", "info": "One item per line." },
         { "type": "checkbox", "id": "featured", "label": "Highlight this option", "default": false },
+        { "type": "text", "id": "badge", "label": "Small label (optional)", "info": "e.g. Most Popular" },
         { "type": "header", "content": "Button" },
         { "type": "product", "id": "product", "label": "Product to add to cart", "info": "Leave empty to show a link button instead." },
-        { "type": "text", "id": "button_label", "label": "Button label", "default": "Add To Cart" },
+        { "type": "text", "id": "button_label", "label": "Button label", "default": "Book Campaign" },
         { "type": "url", "id": "button_link", "label": "Button link (when no product)" }
       ]
     }
