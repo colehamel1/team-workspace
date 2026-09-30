@@ -247,29 +247,31 @@
             "title": "Short-Form Feature",
             "price": "$1,000",
             "channels": "short",
-            "includes": "1 original short-form brand integration\nDistributed across Instagram, TikTok, Facebook and YouTube Shorts\nBrand tagged and linked where supported\nProduct/service integrated naturally into BTG content\nConcept, filming and editing handled by BTG",
+            "summary": "1 original short-form brand integration",
+            "includes": "Posted to Instagram, TikTok, Facebook and YouTube Shorts\nBrand tagged and linked where supported\nProduct integrated naturally into BTG content\nConcept, filming and editing handled by BTG",
             "featured": false
           }
         },
-        "campaign_cross_platform": {
+        "campaign_3_video": {
           "type": "campaign",
           "settings": {
-            "title": "Cross-Platform Campaign",
+            "title": "3-Video Campaign",
             "price": "$2,500",
             "channels": "short",
-            "includes": "3 original short-form brand integrations\nDistributed across Instagram, TikTok, Facebook and YouTube Shorts\nProduct incorporated naturally into on-course content\nBrand tags and links where supported\nCoordinated campaign rollout\nConcept, filming and editing handled by BTG",
+            "summary": "3 original short-form brand integrations",
+            "includes": "Posted to Instagram, TikTok, Facebook and YouTube Shorts\nBrand tagged and linked where supported\nProduct integrated naturally into BTG content\nConcept, filming and editing handled by BTG",
             "featured": false
           }
         },
-        "campaign_film_partnership": {
+        "campaign_5_video": {
           "type": "campaign",
           "settings": {
-            "title": "BTG Film Partnership",
+            "title": "5-Video Campaign",
             "price": "$3,500",
-            "channels": "film",
-            "includes": "Long-form YouTube integration\n2 supporting short-form videos\nShort-form distribution across Instagram, TikTok, Facebook and YouTube Shorts\nProduct/service naturally incorporated into the episode or story\nBrand mention and applicable links in the YouTube description\nConcept, production, filming and editing handled by BTG",
-            "featured": true,
-            "price_prefix": "Starting at"
+            "channels": "short",
+            "summary": "5 original short-form brand integrations",
+            "includes": "Posted to Instagram, TikTok, Facebook and YouTube Shorts\nBrand tagged and linked where supported\nProduct integrated naturally into BTG content\nConcept, filming and editing handled by BTG",
+            "featured": true
           }
         },
         "campaign_custom": {
@@ -278,15 +280,16 @@
             "title": "Custom Campaign",
             "price": "Custom Pricing",
             "channels": "none",
-            "includes": "Long-form + short-form packages\nMulti-video campaigns\nProduct launches\nRecurring integrations\nCustom deliverables and distribution",
+            "summary": "Dedicated long-form YouTube films, travel productions, product launches, recurring partnerships, or anything requiring custom deliverables.",
+            "includes": "Dedicated YouTube productions\nLarger custom concepts and multi-video campaigns\nContact BTG to scope deliverables",
             "featured": false
           }
         }
       },
       "block_order": [
         "campaign_short_form",
-        "campaign_cross_platform",
-        "campaign_film_partnership",
+        "campaign_3_video",
+        "campaign_5_video",
         "campaign_custom"
       ],
       "settings": {

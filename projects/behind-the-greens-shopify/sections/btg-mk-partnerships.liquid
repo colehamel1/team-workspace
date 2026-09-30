@@ -89,6 +89,8 @@
                     </div>
                 {%- endcase -%}
 
+                {%- if block.settings.summary != blank -%}<p class="btg-bp-card__summary">{{ block.settings.summary }}</p>{%- endif -%}
+
                 {%- assign lines = block.settings.includes | newline_to_br | split: '<br />' -%}
                 <ul class="btg-bp-card__list" role="list">
                   {%- for line in lines -%}
@@ -150,6 +152,7 @@
           ],
           "default": "short"
         },
+        { "type": "textarea", "id": "summary", "label": "Headline line", "info": "e.g. 3 original short-form brand integrations" },
         { "type": "textarea", "id": "includes", "label": "What's included", "info": "One item per line." },
         { "type": "checkbox", "id": "featured", "label": "Highlight this option", "default": false }
       ]
