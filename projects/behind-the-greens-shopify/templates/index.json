@@ -149,41 +149,61 @@
     "btg_field": {
       "type": "btg-field",
       "blocks": {
-        "clip_1": {
+        "short_1": {
           "type": "clip",
           "settings": {
-            "platform": "instagram"
+            "youtube": "https://www.youtube.com/shorts/F1wq8Yf6Nb8",
+            "platform": "youtube"
           }
         },
-        "clip_2": {
+        "short_2": {
           "type": "clip",
           "settings": {
-            "platform": "facebook"
+            "youtube": "https://www.youtube.com/shorts/LOGL4mdKjYw",
+            "platform": "youtube"
           }
         },
-        "clip_3": {
+        "short_3": {
           "type": "clip",
           "settings": {
-            "platform": "tiktok"
+            "youtube": "https://www.youtube.com/shorts/tX6oEAvKYH4",
+            "platform": "youtube"
           }
         },
-        "clip_4": {
+        "short_4": {
           "type": "clip",
           "settings": {
-            "platform": "instagram"
+            "youtube": "https://www.youtube.com/shorts/iBsIb2tPQxI",
+            "platform": "youtube"
+          }
+        },
+        "short_5": {
+          "type": "clip",
+          "settings": {
+            "youtube": "https://www.youtube.com/shorts/eWvmi9Q25EI",
+            "platform": "youtube"
+          }
+        },
+        "short_6": {
+          "type": "clip",
+          "settings": {
+            "youtube": "https://www.youtube.com/shorts/UoQxOBmnsn0",
+            "platform": "youtube"
           }
         }
       },
       "block_order": [
-        "clip_1",
-        "clip_2",
-        "clip_3",
-        "clip_4"
+        "short_1",
+        "short_2",
+        "short_3",
+        "short_4",
+        "short_5",
+        "short_6"
       ],
       "settings": {
         "eyebrow": "Short Form",
         "heading": "From The Field",
-        "text": "Short-form clips from the course. Tap to watch the originals.",
+        "text": "Short clips from the course. Tap to watch.",
         "anchor": "from-the-field"
       }
     },

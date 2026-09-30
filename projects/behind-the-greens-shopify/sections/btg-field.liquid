@@ -1,27 +1,33 @@
 {%- comment -%}
-  From The Field — short-form catalog. Vertical 9:16 poster cards that open
-  the original post (Instagram / TikTok / Facebook / YouTube) in a new tab.
+  From The Field — short-form catalog. Vertical 9:16 poster cards.
 
-  - A card renders only when it has a poster image; the whole section stays
-    hidden until at least one does. No placeholder content is ever shown.
+  - YouTube Shorts: paste the link and the card uses YouTube's own
+    thumbnail (unless a poster is uploaded). Tapping plays it on-site in a
+    vertical viewer; the player is only loaded after the tap. Cmd/Ctrl-click
+    or no JavaScript opens it on YouTube instead.
+  - Other platforms: a card needs a poster image and opens the post in a
+    new tab.
+  - A card renders only with a poster or a YouTube link; the whole section
+    stays hidden until at least one does. No placeholder content.
   - View counts are optional and should only be filled with verified numbers.
-  - Optional Shopify-hosted clip: previews silently on desktop hover. Nothing
-    is loaded until the first hover, and nothing plays on touch devices.
+  - Optional Shopify-hosted clip: previews silently on desktop hover.
 {%- endcomment -%}
 
 {%- liquid
   assign field_count = 0
   for block in section.blocks
-    if block.settings.poster != blank
+    assign yt_raw = block.settings.youtube | strip
+    if block.settings.poster != blank or yt_raw != blank
       assign field_count = field_count | plus: 1
     endif
   endfor
 -%}
 
 {%- if field_count == 0 and request.design_mode -%}
-  <div style="padding:32px 20px; text-align:center; background:#14140F; color:#A79E86; font:14px/1.5 sans-serif;">From The Field is hidden until a clip has a poster image. Add clips in this section's blocks.</div>
+  <div style="padding:32px 20px; text-align:center; background:#14140F; color:#A79E86; font:14px/1.5 sans-serif;">From The Field is hidden until a clip has a YouTube Shorts link or a poster image. Add clips in this section's blocks.</div>
 {%- endif -%}
 {%- if field_count > 0 -%}
+{%- assign has_shorts = false -%}
 <div class="btg-scope">
   {{ 'btg-field.css' | asset_url | stylesheet_tag }}
 
@@ -42,9 +48,32 @@
 
     <ul class="btg-field__track" role="list" data-btg-field-track>
       {%- for block in section.blocks -%}
-        {%- if block.settings.poster != blank -%}
+        {%- liquid
+          assign yt_raw = block.settings.youtube | strip
+          assign yt = ''
+          if yt_raw != blank
+            if yt_raw contains 'v='
+              assign yt = yt_raw | split: 'v=' | last | split: '&' | first
+            elsif yt_raw contains '/shorts/'
+              assign yt = yt_raw | split: '/shorts/' | last
+            elsif yt_raw contains 'youtu.be/'
+              assign yt = yt_raw | split: 'youtu.be/' | last
+            elsif yt_raw contains '/embed/'
+              assign yt = yt_raw | split: '/embed/' | last
+            elsif yt_raw contains '/'
+              assign yt = ''
+            else
+              assign yt = yt_raw
+            endif
+            assign yt = yt | split: '?' | first | split: '/' | first | split: '#' | first | strip
+          endif
+        -%}
+        {%- if block.settings.poster != blank or yt != blank -%}
           {%- liquid
             assign platform = block.settings.platform | default: 'instagram'
+            if yt != blank
+              assign platform = 'youtube'
+            endif
             case platform
               when 'instagram'
                 assign platform_name = 'Instagram'
@@ -55,28 +84,54 @@
               else
                 assign platform_name = 'YouTube'
             endcase
+            if yt != blank
+              assign platform_name = 'YouTube Shorts'
+              assign has_shorts = true
+            endif
             assign clip = ''
             if block.settings.video != blank
               assign clip = block.settings.video.sources | where: 'format', 'mp4' | first
             endif
           -%}
           <li class="btg-field__item" {{ block.shopify_attributes }}>
-            {%- if block.settings.link != blank -%}{%- assign tag = 'a' -%}{%- else -%}{%- assign tag = 'div' -%}{%- endif -%}
-            <{{ tag }} class="btg-field__card"{% if tag == 'a' %} href="{{ block.settings.link }}" target="_blank" rel="noopener" aria-label="{% if block.settings.title != blank %}{{ block.settings.title | escape }}, {% endif %}watch on {{ platform_name }}"{% endif %}
-               {% if clip != blank %}data-preview="{{ clip.url }}"{% endif %}>
-              {{ block.settings.poster | image_url: width: 720 | image_tag: loading: 'lazy', sizes: '(min-width: 1000px) 22vw, 72vw', widths: '360, 540, 720', alt: '', class: 'btg-field__poster' }}
+            {%- if yt != blank -%}
+              <a class="btg-field__card btg-field__card--short" href="https://www.youtube.com/shorts/{{ yt | escape }}" target="_blank" rel="noopener" data-btg-short="{{ yt | escape }}" aria-label="Play {% if block.settings.title != blank %}{{ block.settings.title | escape }}{% else %}clip {{ forloop.index }}{% endif %}, YouTube Shorts"
+                 {% if clip != blank %}data-preview="{{ clip.url }}"{% endif %}>
+            {%- elsif block.settings.link != blank -%}
+              <a class="btg-field__card" href="{{ block.settings.link }}" target="_blank" rel="noopener" aria-label="{% if block.settings.title != blank %}{{ block.settings.title | escape }}, {% endif %}watch on {{ platform_name }}"
+                 {% if clip != blank %}data-preview="{{ clip.url }}"{% endif %}>
+            {%- else -%}
+              <div class="btg-field__card"{% if clip != blank %} data-preview="{{ clip.url }}"{% endif %}>
+            {%- endif -%}
+              {%- if block.settings.poster != blank -%}
+                {{ block.settings.poster | image_url: width: 720 | image_tag: loading: 'lazy', sizes: '(min-width: 1000px) 22vw, 72vw', widths: '360, 540, 720', alt: '', class: 'btg-field__poster' }}
+              {%- else -%}
+                <img class="btg-field__poster" src="https://i.ytimg.com/vi/{{ yt | escape }}/oar2.jpg" alt="" loading="lazy" width="720" height="1280" onerror="var s=this.src;if(s.indexOf('/oar2.')>-1){this.src=s.replace('/oar2.','/sddefault.')}else if(s.indexOf('/sddefault.')>-1){this.src=s.replace('/sddefault.','/hqdefault.')}else{this.onerror=null;this.style.visibility='hidden'}">
+              {%- endif -%}
               <span class="btg-field__shade" aria-hidden="true"></span>
               <span class="btg-field__meta">
                 {%- if block.settings.title != blank -%}<span class="btg-field__clip-title">{{ block.settings.title }}</span>{%- endif -%}
                 <span class="btg-field__stat">
-                  {%- if block.settings.views != blank -%}<strong>{{ block.settings.views }}</strong> Views &middot; {% endif -%}{{ platform_name }}
+                  {%- if yt != blank -%}<span class="btg-field__play" aria-hidden="true"></span>{%- endif -%}
+                  <span>{%- if block.settings.views != blank -%}<strong>{{ block.settings.views }}</strong> Views &middot; {% endif -%}{{ platform_name }}</span>
                 </span>
               </span>
-            </{{ tag }}>
+            {%- if yt != blank or block.settings.link != blank -%}</a>{%- else -%}</div>{%- endif -%}
           </li>
         {%- endif -%}
       {%- endfor -%}
     </ul>
+
+    {%- if has_shorts -%}
+      <div class="btg-field-viewer" data-btg-field-viewer hidden>
+        <div class="btg-field-viewer__scrim" data-btg-field-close></div>
+        <div class="btg-field-viewer__dialog" role="dialog" aria-modal="true" aria-label="{{ section.settings.heading | default: 'From The Field' | escape }} clip">
+          <button type="button" class="btg-field-viewer__close" data-btg-field-close aria-label="Close video"><span aria-hidden="true">&times;</span></button>
+          <div class="btg-field-viewer__frame" data-btg-field-frame></div>
+          <a class="btg-field-viewer__out" data-btg-field-out href="https://www.youtube.com/" target="_blank" rel="noopener">Watch on YouTube <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+    {%- endif -%}
   </section>
 </div>
 <script src="{{ 'btg-field.js' | asset_url }}" defer="defer"></script>
@@ -96,8 +151,9 @@
       "type": "clip",
       "name": "Clip",
       "settings": [
-        { "type": "image_picker", "id": "poster", "label": "Poster image (vertical)", "info": "Required. A 9:16 frame from the clip. Cards without a poster are hidden." },
-        { "type": "url", "id": "link", "label": "Post link", "info": "The Instagram, TikTok, Facebook or YouTube post." },
+        { "type": "text", "id": "youtube", "label": "YouTube Shorts link", "info": "Paste the Shorts link. It plays on-site and uses YouTube's thumbnail unless you upload a poster." },
+        { "type": "image_picker", "id": "poster", "label": "Poster image (vertical)", "info": "Required for non-YouTube clips. A 9:16 frame from the clip." },
+        { "type": "url", "id": "link", "label": "Post link", "info": "The Instagram, TikTok or Facebook post. Not needed for YouTube Shorts." },
         {
           "type": "select", "id": "platform", "label": "Platform",
           "options": [
