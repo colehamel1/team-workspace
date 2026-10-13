@@ -93,7 +93,8 @@ Colors come from this table, never from in-the-moment judgment:
 Stopping at red is SUCCESS, not failure. Never work around a red light.
 
 Their personal red list (fill in with the user over time):
-- (add items here as they come up)
+- Shopify: only write to the theme named **Copy of BTG**. Never edit any other
+  theme (including the live theme "BTG"). Never publish — that's the user's call.
 
 ## Secrets
 
