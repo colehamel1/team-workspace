@@ -29,7 +29,7 @@
               <h3 class="btg-display btg-timeline__course">{{ block.settings.course }}</h3>
               {%- if block.settings.location != blank -%}<p class="btg-timeline__place">{{ block.settings.location }}</p>{%- endif -%}
               {%- if block.settings.context != blank -%}<p class="btg-timeline__context">{{ block.settings.context }}</p>{%- endif -%}
-              <a class="btg-timeline__link" href="{% if vid != blank %}{{ routes.root_url }}?film={{ vid | escape }}#watch-the-work{% else %}{{ routes.root_url }}#watch-the-work{% endif %}">Watch the film <span aria-hidden="true">&rarr;</span></a>
+              <a class="btg-timeline__link" href="{% if vid != blank %}{{ routes.root_url }}?film={{ vid | escape }}#watch-the-work{% else %}{{ routes.root_url }}#watch-the-work{% endif %}">Watch video <span aria-hidden="true">&rarr;</span></a>
             </div>
           </li>
         {%- endfor -%}

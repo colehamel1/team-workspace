@@ -14,7 +14,8 @@
         "film_link": "#watch-the-work",
         "shop_label": "Shop The Collection",
         "shop_link": "shopify://collections/all",
-        "show_clock": true
+        "show_clock": true,
+        "clock_time": "05:00 AM"
       }
     },
     "btg_merch_teaser": {
