@@ -90,7 +90,8 @@
           "settings": {
             "course": "Prairie Vista Golf Course",
             "location": "Bloomington-Normal, IL",
-            "youtube": "https://www.youtube.com/watch?v=ZQQuq7-Mpvc"
+            "youtube": "https://www.youtube.com/watch?v=ZQQuq7-Mpvc",
+            "thumbnail": "shopify://shop_images/btg-thumb-prairie-vista.jpg"
           }
         },
         "film_oahu": {
