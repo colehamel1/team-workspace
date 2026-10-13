@@ -1,38 +1,77 @@
 {%- comment -%}
-  Behind The Greens intro — a logo-only brand signature, about 1.25s.
-  Crest fades and scales in, a soft dawn light sweeps across it, then the
-  overlay dissolves into the homepage. No text, no loader, no buttons.
+  Behind The Greens intro — "The First Cut" (~2.6s).
+  1. Dark screen. Fairway stripes are mown in, alternating direction like a
+     mower working back and forth, each with a thin line of dawn light on
+     its leading edge. A low sunrise haze builds behind them.
+  2. A cutting line passes across the crest and reveals it left to right,
+     then a soft sunrise gleam crosses the logo (masked to its own shape).
+  3. The stripes peel away in alternating directions, revealing the
+     homepage with the hero film already playing.
 
   - Once per browser session, homepage only (see layout/theme.liquid).
-  - Pure CSS timeline: it ends itself even if JavaScript fails.
+  - Pure CSS: transforms + opacity (plus clip-path on the small crest), so
+    it stays smooth on phones and ends itself even if JavaScript fails.
   - pointer-events: none, so it never blocks the page underneath.
   - Not shown at all for visitors who prefer reduced motion.
-  - The light sweep is masked to the crest's own shape, so only the logo
-    catches the light.
+  - The logo is the theme logo setting, untouched.
 {%- endcomment -%}
 {%- if settings.logo != blank -%}
 {%- assign intro_src = settings.logo | image_url: width: 480 -%}
 <script>try{if(sessionStorage.getItem('btg_intro')){document.documentElement.classList.add('btg-intro-seen')}else{sessionStorage.setItem('btg_intro','1')}}catch(e){}</script>
 <style>
-  .btg-intro{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;background:#0B0F0B;pointer-events:none;animation:btgIntroOut .35s cubic-bezier(.4,0,.2,1) .9s forwards}
+  .btg-intro{position:fixed;inset:0;z-index:2147483000;overflow:hidden;pointer-events:none;contain:strict;animation:btgIntroDone 0s linear 2.75s forwards}
   .btg-intro-seen .btg-intro{display:none}
-  .btg-intro__glow{position:absolute;left:50%;top:50%;width:min(70vw,560px);aspect-ratio:1;transform:translate(-50%,-38%);background:radial-gradient(closest-side,rgba(193,146,47,.18),rgba(193,146,47,.06) 55%,rgba(193,146,47,0) 100%);opacity:0;animation:btgIntroGlow .55s ease-out .2s forwards}
-  .btg-intro__mark{position:relative;width:clamp(96px,11vw,136px);aspect-ratio:1;opacity:0;transform:scale(.94);filter:blur(6px);animation:btgIntroIn .55s cubic-bezier(.2,.7,.2,1) forwards,btgIntroLift .35s cubic-bezier(.4,0,.2,1) .9s forwards}
-  .btg-intro__mark img{display:block;width:100%;height:100%;object-fit:contain}
-  .btg-intro__sweep{position:absolute;inset:0;-webkit-mask:var(--btg-intro-logo) center/contain no-repeat;mask:var(--btg-intro-logo) center/contain no-repeat;background:linear-gradient(110deg,rgba(243,238,223,0) 35%,rgba(243,238,223,.38) 47%,rgba(193,146,47,.32) 53%,rgba(243,238,223,0) 65%) no-repeat;background-size:250% 100%;background-position:130% 0;mix-blend-mode:screen;animation:btgIntroSweep .6s cubic-bezier(.45,.05,.3,1) .25s forwards}
-  @keyframes btgIntroIn{to{opacity:1;transform:scale(1);filter:blur(0)}}
-  @keyframes btgIntroGlow{to{opacity:1}}
-  @keyframes btgIntroSweep{to{background-position:-30% 0}}
-  @keyframes btgIntroLift{from{transform:scale(1)}to{transform:scale(1.02)}}
-  @keyframes btgIntroOut{to{opacity:0;visibility:hidden}}
+  .btg-intro__base{position:absolute;inset:0;background:#0A0E0A;animation:btgIntroBase 0s linear 1.95s forwards}
+  .btg-intro__field{position:absolute;inset:-1px;display:flex}
+  .btg-intro__stripe{position:relative;flex:1 1 0;margin-right:-1px;background:linear-gradient(180deg,#0D160F 0%,#132116 60%,#192a14 100%);transform:translate3d(0,-101%,0);
+    animation:btgStripeDown .62s cubic-bezier(.65,0,.25,1) var(--d) forwards,btgStripeOutUp .5s cubic-bezier(.6,0,.3,1) var(--o) forwards}
+  .btg-intro__stripe:nth-child(even){background:linear-gradient(0deg,#090F0A 0%,#0C140D 60%,#101A0F 100%);transform:translate3d(0,101%,0);
+    animation:btgStripeUp .62s cubic-bezier(.65,0,.25,1) var(--d) forwards,btgStripeOutDown .5s cubic-bezier(.6,0,.3,1) var(--o) forwards}
+  .btg-intro__stripe::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,rgba(243,238,223,0),rgba(243,238,223,.7) 50%,rgba(243,238,223,0));box-shadow:0 0 14px 2px rgba(193,146,47,.45);opacity:0;animation:btgEdge .62s linear var(--d) forwards}
+  .btg-intro__stripe:nth-child(even)::after{bottom:auto;top:0}
+  .btg-intro__stripe:nth-child(1){--d:.12s;--o:1.95s}.btg-intro__stripe:nth-child(2){--d:.19s;--o:1.98s}
+  .btg-intro__stripe:nth-child(3){--d:.26s;--o:2.01s}.btg-intro__stripe:nth-child(4){--d:.33s;--o:2.04s}
+  .btg-intro__stripe:nth-child(5){--d:.40s;--o:2.07s}.btg-intro__stripe:nth-child(6){--d:.47s;--o:2.10s}
+  .btg-intro__stripe:nth-child(7){--d:.54s;--o:2.13s}.btg-intro__stripe:nth-child(8){--d:.61s;--o:2.16s}
+  .btg-intro__haze{position:absolute;inset:0;background:radial-gradient(120% 60% at 50% 115%,rgba(193,146,47,.20),rgba(193,146,47,.06) 45%,rgba(193,146,47,0) 70%),linear-gradient(180deg,rgba(10,14,10,.55),rgba(10,14,10,0) 45%);opacity:0;animation:btgFade 1s ease-out .3s forwards,btgFadeOut .4s ease-in 1.95s forwards}
+  .btg-intro__stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;animation:btgStageOut .45s cubic-bezier(.4,0,.2,1) 1.95s forwards}
+  .btg-intro__glow{position:absolute;left:50%;top:50%;width:min(80vw,620px);aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(193,146,47,.22),rgba(193,146,47,.07) 55%,rgba(193,146,47,0));opacity:0;animation:btgFade .6s ease-out 1.1s forwards}
+  .btg-intro__mark{position:relative;width:clamp(124px,13vw,176px);aspect-ratio:1;transform:scale(.965);animation:btgSettle .95s cubic-bezier(.2,.7,.2,1) .78s forwards}
+  .btg-intro__logo{position:absolute;inset:0;clip-path:inset(-2% 100% -2% -2%);-webkit-clip-path:inset(-2% 100% -2% -2%);animation:btgCut .7s cubic-bezier(.7,0,.25,1) .78s forwards}
+  .btg-intro__logo img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 10px 24px rgba(0,0,0,.45))}
+  .btg-intro__cut{position:absolute;top:-22%;bottom:-22%;left:0;width:100%;transform:translate3d(0,0,0);animation:btgCutLine .7s cubic-bezier(.7,0,.25,1) .78s forwards}
+  .btg-intro__cut::before{content:"";position:absolute;top:0;bottom:0;left:-1px;width:2px;background:linear-gradient(180deg,rgba(243,238,223,0),rgba(243,238,223,.95) 30%,rgba(255,236,190,1) 50%,rgba(243,238,223,.95) 70%,rgba(243,238,223,0));box-shadow:0 0 18px 3px rgba(193,146,47,.55);opacity:0;animation:btgCutGlow .7s linear .78s forwards}
+  .btg-intro__sweep{position:absolute;inset:0;-webkit-mask:var(--btg-intro-logo) center/contain no-repeat;mask:var(--btg-intro-logo) center/contain no-repeat;background:linear-gradient(110deg,rgba(243,238,223,0) 35%,rgba(243,238,223,.42) 47%,rgba(193,146,47,.34) 53%,rgba(243,238,223,0) 65%) no-repeat;background-size:250% 100%;background-position:130% 0;mix-blend-mode:screen;animation:btgSweep .6s cubic-bezier(.45,.05,.3,1) 1.38s forwards}
+  @keyframes btgStripeDown{to{transform:translate3d(0,0,0)}}
+  @keyframes btgStripeUp{to{transform:translate3d(0,0,0)}}
+  @keyframes btgStripeOutUp{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-101%,0)}}
+  @keyframes btgStripeOutDown{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,101%,0)}}
+  @keyframes btgEdge{0%{opacity:0}12%{opacity:1}80%{opacity:.85}100%{opacity:0}}
+  @keyframes btgFade{to{opacity:1}}
+  @keyframes btgFadeOut{from{opacity:1}to{opacity:0}}
+  @keyframes btgSettle{to{transform:scale(1)}}
+  @keyframes btgCut{to{clip-path:inset(-2% -2% -2% -2%);-webkit-clip-path:inset(-2% -2% -2% -2%)}}
+  @keyframes btgCutLine{to{transform:translate3d(100%,0,0)}}
+  @keyframes btgCutGlow{0%{opacity:0}10%{opacity:1}75%{opacity:1}100%{opacity:0}}
+  @keyframes btgSweep{to{background-position:-30% 0}}
+  @keyframes btgStageOut{to{opacity:0;transform:scale(1.04)}}
+  @keyframes btgIntroBase{to{opacity:0}}
+  @keyframes btgIntroDone{to{visibility:hidden}}
+  @media (max-width:600px){.btg-intro__stripe:nth-child(n+7){display:none}}
   @media (prefers-reduced-motion:reduce){.btg-intro{display:none}}
 </style>
 <div class="btg-intro" aria-hidden="true" data-btg-intro>
-  <span class="btg-intro__glow"></span>
-  <span class="btg-intro__mark" style="--btg-intro-logo:url('{{ intro_src }}')">
-    {{ settings.logo | image_url: width: 480 | image_tag: alt: '', loading: 'eager', fetchpriority: 'high', width: 136, height: 136 }}
-    <span class="btg-intro__sweep"></span>
-  </span>
+  <div class="btg-intro__base"></div>
+  <div class="btg-intro__field"><span class="btg-intro__stripe"></span><span class="btg-intro__stripe"></span><span class="btg-intro__stripe"></span><span class="btg-intro__stripe"></span><span class="btg-intro__stripe"></span><span class="btg-intro__stripe"></span><span class="btg-intro__stripe"></span><span class="btg-intro__stripe"></span></div>
+  <div class="btg-intro__haze"></div>
+  <div class="btg-intro__stage">
+    <span class="btg-intro__glow"></span>
+    <span class="btg-intro__mark" style="--btg-intro-logo:url('{{ intro_src }}')">
+      <span class="btg-intro__logo">{{ settings.logo | image_url: width: 480 | image_tag: alt: '', loading: 'eager', fetchpriority: 'high', width: 176, height: 176 }}</span>
+      <span class="btg-intro__sweep"></span>
+      <span class="btg-intro__cut"></span>
+    </span>
+  </div>
 </div>
-<script>(function(){var el=document.querySelector('[data-btg-intro]');if(!el)return;el.addEventListener('animationend',function(e){if(e.animationName==='btgIntroOut'&&el.parentNode)el.parentNode.removeChild(el)});})();</script>
+<script>(function(){var el=document.querySelector('[data-btg-intro]');if(!el)return;function done(){if(el.parentNode)el.parentNode.removeChild(el)}el.addEventListener('animationend',function(e){if(e.animationName==='btgIntroDone')done()});setTimeout(done,4000);})();</script>
 {%- endif -%}
