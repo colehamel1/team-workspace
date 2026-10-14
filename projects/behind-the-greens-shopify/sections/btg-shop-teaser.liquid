@@ -7,7 +7,7 @@
   {% render 'btg-styles' %}
   {{ 'btg-home.css' | asset_url | stylesheet_tag }}
 
-  <section class="btg-section">
+  <section class="btg-section{% if section.settings.layout == 'carousel' %} btg-merch{% endif %}"{% if section.settings.layout == 'carousel' %} data-btg-merch{% endif %}>
     <div class="btg-container">
       <div class="btg-section-head-row">
         <div class="btg-section-heading">
@@ -15,13 +15,32 @@
           <h2 class="btg-display btg-section-heading__title">{{ section.settings.title }}</h2>
           {%- if section.settings.text != blank -%}<p class="btg-lede" style="margin-top:18px;">{{ section.settings.text }}</p>{%- endif -%}
         </div>
-        {%- if section.settings.collection != blank -%}
-          <a href="{{ routes.all_products_collection_url }}" class="btg-link-underline">{{ section.settings.view_all_label | default: 'Shop All' }}</a>
-        {%- endif -%}
+        <div class="btg-merch__head-actions">
+          {%- if section.settings.collection != blank -%}
+            <a href="{{ routes.all_products_collection_url }}" class="btg-link-underline">{{ section.settings.view_all_label | default: 'Shop All' }}</a>
+          {%- endif -%}
+          {%- if section.settings.layout == 'carousel' -%}
+            <div class="btg-merch__arrows">
+              <button type="button" class="btg-merch__arrow" data-btg-merch-prev aria-label="Previous products"><span aria-hidden="true">&larr;</span></button>
+              <button type="button" class="btg-merch__arrow" data-btg-merch-next aria-label="More products"><span aria-hidden="true">&rarr;</span></button>
+            </div>
+          {%- endif -%}
+        </div>
       </div>
 
       {%- if section.settings.collection != blank and section.settings.collection.products.size > 0 -%}
-        {%- if section.settings.layout == 'editorial' -%}
+        {%- if section.settings.layout == 'carousel' -%}
+          {%- comment -%}
+            One swipeable row: near-full-width cards on phones (next card
+            peeks), ~4 across on desktop with arrow paging. Same product
+            cards as the shop — links, prices and images unchanged.
+          {%- endcomment -%}
+          <ul class="btg-merch__track" role="list" data-btg-merch-track>
+            {%- for product in section.settings.collection.products limit: section.settings.product_count -%}
+              <li class="btg-merch__item">{% render 'btg-product-card', product: product %}</li>
+            {%- endfor -%}
+          </ul>
+        {%- elsif section.settings.layout == 'editorial' -%}
           {%- comment -%}
             Two on-the-job moments (one wider, one closer), then a clean,
             even product grid. Tiles use each product's real Lifestyle image
@@ -51,6 +70,23 @@
     </div>
   </section>
 </div>
+
+{%- if section.settings.layout == 'carousel' -%}
+<script>
+  (function(){
+    var root=document.querySelector('[data-btg-merch]');if(!root)return;
+    var track=root.querySelector('[data-btg-merch-track]'),prev=root.querySelector('[data-btg-merch-prev]'),next=root.querySelector('[data-btg-merch-next]');
+    if(!track)return;
+    var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function step(){var it=track.querySelector('.btg-merch__item');var gap=parseFloat(getComputedStyle(track).columnGap)||16;return it?it.getBoundingClientRect().width+gap:300}
+    function page(d){var s=step();var n=Math.max(1,Math.floor(track.clientWidth/s));track.scrollBy({left:d*s*n,behavior:reduce?'auto':'smooth'})}
+    function sync(){var max=track.scrollWidth-track.clientWidth;root.classList.toggle('btg-merch--fits',max<4);if(prev)prev.disabled=track.scrollLeft<4;if(next)next.disabled=track.scrollLeft>=max-4}
+    if(prev)prev.addEventListener('click',function(){page(-1)});
+    if(next)next.addEventListener('click',function(){page(1)});
+    track.addEventListener('scroll',sync,{passive:true});window.addEventListener('resize',sync);sync();
+  })();
+</script>
+{%- endif -%}
 
 {% schema %}
 {
@@ -105,6 +141,10 @@
         {
           "value": "grid",
           "label": "Simple grid"
+        },
+        {
+          "value": "carousel",
+          "label": "Swipe row (carousel)"
         }
       ],
       "default": "editorial"

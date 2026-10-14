@@ -273,8 +273,23 @@
   .btg-header__wordmark { font-size: 18px; }
   .btg-header__logo { width: 32px; height: 32px; }
 }
-@media (max-width: 420px) {
+@media (max-width: 600px) {
   .btg-header__wordmark { display: none; }
+}
+
+/* Header social row: official brand glyphs. Desktop: right, before search.
+   Mobile: left, beside the menu button. */
+.btg-header__social { display: flex; align-items: center; gap: 4px; }
+.btg-header__social a { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 44px; color: var(--btg-cream); opacity: 0.86; transition: opacity 0.2s ease, color 0.2s ease; }
+.btg-header__social a:hover { opacity: 1; color: #fff; }
+.btg-header__social a:focus-visible { outline: 2px solid var(--btg-ochre); outline-offset: 2px; }
+.btg-header__icons .btg-header__social a { padding: 0; margin: 0; }
+.btg-header__social--d { padding-right: 14px; margin-right: -6px; border-right: 1px solid rgba(243,238,223,0.2); }
+.btg-header__social--m { display: none; grid-column: 1; grid-row: 1; justify-self: start; margin-left: 38px; }
+@media (max-width: 960px) {
+  .btg-header__social--d { display: none; }
+  .btg-header__social--m { display: flex; gap: 0; }
+  .btg-header__social--m a { width: 34px; }
 }
 
 /* ---------- Footer ----------

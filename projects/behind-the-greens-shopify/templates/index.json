@@ -6,7 +6,7 @@
         "hero_video": "shopify://files/videos/btgheromontagev2.mp4",
         "focus_desktop": "center 40%",
         "focus_mobile": "center center",
-        "content_side": "left",
+        "content_side": "center",
         "scrim": 60,
         "heading": "Behind The Greens",
         "subheading": "Films from the crews behind the game, and the gear they work in.",
@@ -21,14 +21,14 @@
     "btg_merch_teaser": {
       "type": "btg-shop-teaser",
       "settings": {
-        "eyebrow": "The Collection",
-        "title": "Made For The Course",
+        "eyebrow": "",
+        "title": "BTG MERCH",
         "text": "",
         "view_all_label": "Shop All",
         "collection": "home-page-1",
         "product_count": 6,
         "columns": "3",
-        "layout": "editorial"
+        "layout": "carousel"
       }
     },
     "btg_about_teaser": {

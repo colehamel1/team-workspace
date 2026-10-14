@@ -14,6 +14,12 @@
       <span></span><span></span><span></span>
     </button>
 
+    <div class="btg-header__social btg-header__social--m">
+      <a href="https://www.instagram.com/behind_thegreens/" target="_blank" rel="noopener" aria-label="Behind The Greens on Instagram">{% render 'btg-brand-icon', name: 'instagram', size: 18 %}</a>
+      <a href="https://www.facebook.com/MrGreenskeeper" target="_blank" rel="noopener" aria-label="Behind The Greens on Facebook">{% render 'btg-brand-icon', name: 'facebook', size: 18 %}</a>
+      <a href="https://www.youtube.com/@behind_thegreens" target="_blank" rel="noopener" aria-label="Behind The Greens on YouTube">{% render 'btg-brand-icon', name: 'youtube', size: 20 %}</a>
+    </div>
+
     <nav class="btg-header__nav" aria-label="Primary">
       <a href="{{ routes.all_products_collection_url }}"{% if template.name == 'collection' or template.name == 'product' %} class="active" aria-current="page"{% endif %}>Shop</a>
       <a href="{{ routes.root_url }}#watch-the-work" class="btg-nav-films"><svg class="btg-yt-mark" viewBox="0 3.5 24 17" width="17" height="12" aria-hidden="true" focusable="false"><path fill="#FF0000" d="M23.5 6.7a3 3 0 0 0-2.1-2.1C19.5 4.1 12 4.1 12 4.1s-7.5 0-9.4.5A3 3 0 0 0 .5 6.7 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.3 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.3Z"/><path fill="#FFFFFF" d="M9.6 15.4 15.8 12 9.6 8.6v6.8Z"/></svg><span>Films</span></a>
@@ -30,6 +36,11 @@
 
     <div class="btg-header__icons">
       <span class="btg-header__onjob" aria-hidden="true"><i></i>On The Job</span>
+      <div class="btg-header__social btg-header__social--d">
+        <a href="https://www.instagram.com/behind_thegreens/" target="_blank" rel="noopener" aria-label="Behind The Greens on Instagram">{% render 'btg-brand-icon', name: 'instagram', size: 18 %}</a>
+        <a href="https://www.facebook.com/MrGreenskeeper" target="_blank" rel="noopener" aria-label="Behind The Greens on Facebook">{% render 'btg-brand-icon', name: 'facebook', size: 18 %}</a>
+        <a href="https://www.youtube.com/@behind_thegreens" target="_blank" rel="noopener" aria-label="Behind The Greens on YouTube">{% render 'btg-brand-icon', name: 'youtube', size: 20 %}</a>
+      </div>
       <script>try{if(sessionStorage.getItem('btg_clocked_in'))document.documentElement.classList.add('btg-on-the-job')}catch(e){}</script>
       <a href="{{ routes.search_url }}" aria-label="Search">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.5"/><line x1="20.5" y1="20.5" x2="16.2" y2="16.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>

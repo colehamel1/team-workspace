@@ -10,7 +10,7 @@
 }
 .btg-overlay-header .btg-hero { min-height: 88svh; }
 .btg-hero__image, .btg-hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--hero-focus-d, center 40%); }
-.btg-hero__video { opacity: 0; animation: btgHeroVideoIn 1.4s ease 0.1s forwards; }
+.btg-hero__video { background: transparent; }
 .btg-hero__scrim {
   position: absolute; inset: 0; pointer-events: none;
   background:
@@ -39,9 +39,6 @@
 .btg-hero__cta-secondary:hover { border-color: var(--btg-ochre); }
 .btg-hero__cta-secondary:hover span { transform: translateX(3px); }
 @keyframes btgHeroVideoIn { to { opacity: 1; } }
-@media (prefers-reduced-motion: reduce) {
-  .btg-hero__video { display: none; }
-}
 @media (max-width: 860px) {
   .btg-hero { min-height: 78svh; }
   .btg-overlay-header .btg-hero { min-height: 80svh; }
@@ -58,6 +55,29 @@
   .btg-hero__ctas { gap: 20px; }
   .btg-hero__cta-primary { min-width: 0; flex: 1 1 auto; }
   .btg-hero__heading { max-width: 8ch; }
+}
+
+/* Centered hero: one-line white title with a black outline. */
+.btg-hero--center { align-items: center; }
+.btg-hero--center .btg-hero__scrim {
+  background:
+    linear-gradient(180deg, rgba(10,14,10,0.30) 0%, rgba(10,14,10,0) 22%),
+    radial-gradient(90% 60% at 50% 52%, rgba(10,14,10, calc(var(--hero-scrim, 0.55) * 0.55)) 0%, rgba(10,14,10,0) 70%),
+    linear-gradient(0deg, rgba(10,14,10, calc(var(--hero-scrim, 0.55) * 0.7)) 0%, rgba(10,14,10,0) 30%);
+}
+.btg-hero--center .btg-hero__content { display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: 72px; padding-bottom: clamp(48px, 8vh, 96px); }
+.btg-hero--center .btg-hero__heading {
+  color: #fff; max-width: none; white-space: nowrap; text-transform: uppercase; text-wrap: nowrap;
+  font-size: clamp(26px, 8.4vw, 148px); line-height: 1; letter-spacing: 0.01em; margin: 0 0 22px;
+  -webkit-text-stroke: 0.04em #000; paint-order: stroke fill; text-shadow: 0 2px 18px rgba(0,0,0,0.25);
+}
+.btg-hero--center .btg-hero__sub { margin-left: auto; margin-right: auto; max-width: 460px; }
+.btg-hero--center .btg-hero__ctas { justify-content: center; }
+.btg-hero--center .btg-clock { position: static; margin: 22px auto 0; }
+@media (max-width: 860px) {
+  .btg-hero--center .btg-hero__content { padding-left: 14px; padding-right: 14px; padding-bottom: calc(32px + env(safe-area-inset-bottom)); }
+  .btg-hero--center .btg-hero__heading { font-size: clamp(24px, 8.6vw, 88px); max-width: none; margin-bottom: 16px; -webkit-text-stroke-width: 0.045em; }
+  .btg-hero--center .btg-hero__ctas { width: 100%; max-width: 420px; }
 }
 
 /* ---------- Proof strip ---------- */
@@ -316,4 +336,33 @@
   .btg-work-card__text { font-size: 15px; }
   .btg-work-card__foot { flex-direction: column; align-items: stretch; gap: 12px; }
   .btg-work-card__cta { width: 100%; }
+}
+
+/* ---------- BTG MERCH: one swipeable row ---------- */
+.btg-merch { padding-top: 40px; overflow: hidden; }
+.btg-merch .btg-section-head-row { margin-bottom: 28px; align-items: center; }
+.btg-merch__head-actions { display: flex; align-items: center; gap: 24px; }
+.btg-merch__arrows { display: flex; gap: 8px; }
+.btg-merch__arrow { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--btg-hairline); background: none; color: var(--btg-ink); font-size: 17px; cursor: pointer; transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+.btg-merch__arrow:hover { background: var(--btg-ink); color: var(--btg-cream); border-color: var(--btg-ink); }
+.btg-merch__arrow:disabled { opacity: 0.3; cursor: default; background: none; color: var(--btg-ink); border-color: var(--btg-hairline); }
+.btg-merch--fits .btg-merch__arrows { display: none; }
+.btg-merch .btg-container { overflow: visible; }
+.btg-merch__track {
+  list-style: none; margin: 0 calc(50% - 50vw); padding: 0 max(var(--btg-gutter), calc((100vw - 1320px) / 2 + var(--btg-gutter))) 6px;
+  display: flex; gap: 20px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory;
+  scroll-padding: 0 max(var(--btg-gutter), calc((100vw - 1320px) / 2 + var(--btg-gutter)));
+  -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; scrollbar-width: none;
+}
+.btg-merch__track::-webkit-scrollbar { display: none; }
+.btg-merch__item { flex: 0 0 clamp(260px, 23vw, 320px); scroll-snap-align: start; min-width: 0; }
+@media (max-width: 860px) {
+  .btg-merch { padding-top: 28px; padding-bottom: 48px; }
+  .btg-merch .btg-section-head-row { margin-bottom: 18px; flex-wrap: nowrap; }
+  .btg-merch__arrows { display: none; }
+  .btg-merch__track { gap: 12px; }
+  .btg-merch__item { flex-basis: 44vw; }
+}
+@media (max-width: 600px) {
+  .btg-merch__item { flex-basis: 84vw; }
 }

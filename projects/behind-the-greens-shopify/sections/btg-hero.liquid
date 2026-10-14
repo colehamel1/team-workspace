@@ -19,7 +19,39 @@
       {%- if section.settings.image != blank -%}
         {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '100vw', widths: '800, 1200, 1600, 2000', class: 'btg-hero__image', alt: '' }}
       {%- endif -%}
-      {{ section.settings.hero_video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false, preload: 'auto', image_size: '1920x', class: 'btg-hero__video' }}
+      {%- liquid
+        assign hv = section.settings.hero_video
+        assign mp4s = hv.sources | where: 'format', 'mp4'
+        assign src_sd = ''
+        assign src_hd = ''
+        assign hd_h = 0
+        for src in mp4s
+          if src.height <= 540
+            assign src_sd = src.url
+          endif
+          if src.height > hd_h
+            assign hd_h = src.height
+            assign src_hd = src.url
+          endif
+        endfor
+        if src_sd == blank
+          assign src_sd = src_hd
+        endif
+        if section.settings.image != blank
+          assign poster = section.settings.image | image_url: width: 1600
+        else
+          assign poster = hv.preview_image | image_url: width: 1600
+        endif
+      -%}
+      {%- comment -%}
+        Hand-built so only MP4 (H.264) is offered — plays on iPhone, Android
+        and desktop. The lighter 480p file serves phones. Poster = the film's
+        own first frame, shown instantly while the file loads.
+      {%- endcomment -%}
+      <video class="btg-hero__video" autoplay muted loop playsinline webkit-playsinline disablepictureinpicture disableremoteplayback preload="auto" poster="{{ poster }}" aria-hidden="true" data-btg-hero-video>
+        {%- if src_sd != src_hd -%}<source src="{{ src_sd }}" type="video/mp4" media="(max-width: 767px)">{%- endif -%}
+        <source src="{{ src_hd }}" type="video/mp4">
+      </video>
     {%- elsif section.settings.image != blank -%}
       {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '100vw', widths: '800, 1200, 1600, 2000', class: 'btg-hero__image', alt: '' }}
     {%- endif -%}
@@ -27,7 +59,7 @@
 
     <div class="btg-hero__content">
       {%- if section.settings.eyebrow != blank -%}<div class="btg-eyebrow btg-hero__eyebrow">{{ section.settings.eyebrow }}</div>{%- endif -%}
-      <h1 class="btg-display btg-hero__heading">{{ section.settings.heading }}</h1>
+      <h1 class="btg-display btg-hero__heading" data-btg-fit>{{ section.settings.heading }}</h1>
       {%- if section.settings.subheading != blank -%}<p class="btg-hero__sub">{{ section.settings.subheading }}</p>{%- endif -%}
       <div class="btg-hero__ctas">
         {%- if section.settings.film_label != blank -%}
@@ -45,8 +77,25 @@
   </section>
 </div>
 <script>
-  (function(){var v=document.querySelector('.btg-hero__video');if(!v||!('IntersectionObserver' in window))return;if(matchMedia('(prefers-reduced-motion: reduce)').matches){v.pause();return;}
-  new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){})}else{v.pause()}})},{threshold:0.05}).observe(v);})();
+  (function(){
+    /* Keep the one-line title inside the screen on any font / phone width. */
+    var h=document.querySelector('[data-btg-fit]');
+    function fit(){if(!h)return;h.style.fontSize='';var box=h.parentNode.clientWidth;var w=h.scrollWidth;if(w>box){var fs=parseFloat(getComputedStyle(h).fontSize);h.style.fontSize=Math.floor(fs*box/w*0.98)+'px'}}
+    fit();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);window.addEventListener('resize',fit);
+
+    /* Autoplay muted background film. Retries on first interaction if the
+       browser blocked autoplay (e.g. iPhone Low Power Mode); pauses only
+       while scrolled out of view. */
+    var v=document.querySelector('[data-btg-hero-video]');if(!v)return;
+    v.muted=true;v.defaultMuted=true;v.setAttribute('muted','');
+    var visible=true;
+    function play(){if(!visible)return;var p=v.play();if(p&&p.catch)p.catch(function(){arm()})}
+    var armed=false;function arm(){if(armed)return;armed=true;['touchstart','click','scroll','keydown'].forEach(function(t){window.addEventListener(t,function once(){window.removeEventListener(t,once,true);play()},{once:true,passive:true,capture:true})})}
+    if(v.readyState>=2)play();else v.addEventListener('loadeddata',play,{once:true});
+    v.addEventListener('canplay',function(){if(v.paused)play()},{once:true});
+    if('IntersectionObserver' in window){new IntersectionObserver(function(e){e.forEach(function(x){visible=x.isIntersecting;if(visible){if(v.paused)play()}else{v.pause()}})},{threshold:0.05}).observe(v)}
+    document.addEventListener('visibilitychange',function(){if(!document.hidden&&v.paused)play()});
+  })();
 </script>
 
 {% schema %}
@@ -80,7 +129,7 @@
     {
       "type": "select", "id": "content_side", "label": "Headline position",
       "info": "Put the copy on the side of the frame without the main subject.",
-      "options": [{ "value": "left", "label": "Bottom left" }, { "value": "right", "label": "Bottom right" }],
+      "options": [{ "value": "left", "label": "Bottom left" }, { "value": "right", "label": "Bottom right" }, { "value": "center", "label": "Centered (one-line title)" }],
       "default": "left"
     },
     { "type": "range", "id": "scrim", "label": "Shade behind the copy", "min": 20, "max": 90, "step": 5, "unit": "%", "default": 55 },
