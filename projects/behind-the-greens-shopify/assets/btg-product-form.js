@@ -332,3 +332,38 @@
       });
   });
 })();
+
+/* Product photo zoom — see btg-product.css. Independent of the form so it
+   runs even if the buy box is missing. */
+(function () {
+  var gallery = document.querySelector('[data-btg-gallery]');
+  if (!gallery) return;
+  var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var slides = Array.prototype.slice.call(gallery.querySelectorAll('.btg-pdp__slide:not(.btg-pdp__slide--lifestyle)'));
+  function aim(slide, x, y) {
+    var r = slide.getBoundingClientRect();
+    slide.style.setProperty('--zx', Math.max(0, Math.min(100, (x - r.left) / r.width * 100)) + '%');
+    slide.style.setProperty('--zy', Math.max(0, Math.min(100, (y - r.top) / r.height * 100)) + '%');
+  }
+  function sharpen(slide) {
+    var img = slide.querySelector('img');
+    if (img && img.srcset && !img.dataset.btgFull) { img.dataset.btgFull = '1'; img.sizes = '200vw'; }
+  }
+  function reset() { slides.forEach(function (s) { s.classList.remove('is-zoomed'); }); }
+  slides.forEach(function (slide) {
+    if (!slide.querySelector('img')) return;
+    if (canHover) {
+      slide.addEventListener('mouseenter', function (e) { sharpen(slide); aim(slide, e.clientX, e.clientY); slide.classList.add('is-zoomed'); });
+      slide.addEventListener('mousemove', function (e) { aim(slide, e.clientX, e.clientY); });
+      slide.addEventListener('mouseleave', function () { slide.classList.remove('is-zoomed'); });
+    } else {
+      slide.addEventListener('click', function (e) {
+        var on = !slide.classList.contains('is-zoomed');
+        reset();
+        if (on) { sharpen(slide); aim(slide, e.clientX, e.clientY); slide.classList.add('is-zoomed'); }
+      });
+    }
+  });
+  // Swiping to another photo always resets the zoom.
+  var t; gallery.addEventListener('scroll', function () { clearTimeout(t); t = setTimeout(reset, 60); }, { passive: true });
+})();

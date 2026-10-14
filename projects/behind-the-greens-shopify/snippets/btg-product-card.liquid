@@ -44,7 +44,7 @@
     <div class="btg-card__track" data-btg-card-track>
       <div class="btg-card__frame">
         {%- if product.featured_media -%}
-          {{ product.featured_media | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 1000px) 30vw, 50vw', widths: '360, 540, 720, 900', alt: product.featured_media.alt | default: product.title }}
+          {{ product.featured_media | image_url: width: 1400 | image_tag: loading: 'lazy', sizes: '(min-width: 1000px) 320px, (min-width: 601px) 44vw, 84vw', widths: '360, 540, 720, 900, 1080, 1400', alt: product.featured_media.alt | default: product.title }}
         {%- else -%}
           {{ 'product-1' | placeholder_svg_tag }}
         {%- endif -%}
@@ -53,7 +53,7 @@
         <div class="btg-card__frame btg-card__frame--alt">
           {%- assign alt_focus = product.metafields.custom.lifestyle_focus.value | default: 'center center' -%}
           {%- assign alt_style = 'object-position: ' | append: alt_focus -%}
-          {{ alt_image | image_url: width: 900 | image_tag: loading: 'lazy', decoding: 'async', sizes: '(min-width: 1000px) 30vw, 50vw', widths: '360, 540, 720, 900', alt: '', style: alt_style }}
+          {{ alt_image | image_url: width: 1400 | image_tag: loading: 'lazy', decoding: 'async', sizes: '(min-width: 1000px) 320px, (min-width: 601px) 44vw, 84vw', widths: '360, 540, 720, 900, 1080, 1400', alt: '', style: alt_style }}
         </div>
       {%- endif -%}
     </div>

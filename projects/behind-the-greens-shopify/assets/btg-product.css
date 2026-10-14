@@ -121,8 +121,7 @@
   .btg-pdp__dots { display: flex; }
   .btg-pdp__title { font-size: 40px; }
   .btg-pdp__price { margin-bottom: 28px; }
-  /* Keep the whole garment visible on small screens (some source photos are portrait). */
-  .btg-pdp__slide-img, .btg-pdp__slide img { object-fit: contain; }
+  .btg-pdp__slide--lifestyle .btg-pdp__slide-img { object-fit: cover; }
 
   .btg-pdp-sticky {
     display: flex; align-items: center; justify-content: space-between; gap: 14px;
@@ -168,3 +167,13 @@
 .btg-pdp__mission p { font-family: var(--btg-font-editorial); font-style: italic; font-size: 18px; line-height: 1.5; color: var(--btg-body); margin: 0; max-width: 46ch; }
 @media (max-width: 860px) { .btg-pdp__mission p { font-size: 17px; } }
 .btg-pdp__subtitle { font-size: 15px; color: var(--btg-muted); margin: -6px 0 16px; letter-spacing: 0.01em; }
+
+/* Product photos: come in close, and zoom to see fabric + logo.
+   Desktop: hover magnifies and follows the cursor. Touch: tap to zoom at
+   that spot, tap again (or swipe) to reset. */
+.btg-pdp__slide:not(.btg-pdp__slide--lifestyle) { overflow: hidden; cursor: zoom-in; }
+.btg-pdp__slide:not(.btg-pdp__slide--lifestyle) img { transform: scale(var(--btg-product-zoom, 1.12)); transform-origin: 50% 42%; transition: transform 0.35s var(--btg-ease, ease); will-change: transform; }
+.btg-pdp__slide.is-zoomed { cursor: zoom-out; }
+.btg-pdp__slide.is-zoomed img { transform: scale(2.2); transform-origin: var(--zx, 50%) var(--zy, 50%); transition-duration: 0.25s; }
+@media (hover: hover) { .btg-pdp__slide.is-zoomed img { transition: transform 0.25s var(--btg-ease, ease), transform-origin 0.08s linear; } }
+@media (prefers-reduced-motion: reduce) { .btg-pdp__slide:not(.btg-pdp__slide--lifestyle) img { transition: none; } }
