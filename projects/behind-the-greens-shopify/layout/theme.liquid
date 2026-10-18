@@ -54,41 +54,7 @@
       {%- render 'theme-editor' -%}
     {% endif %}
 
-    {%- if request.page_type == 'index' -%}
-      {%- comment -%} Brand identity for search + AI shopping: who we are and our official profiles. {%- endcomment -%}
-      <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "Organization",
-              "@id": {{ request.origin | append: '/#organization' | json }},
-              "name": {{ shop.name | json }},
-              "url": {{ request.origin | json }},
-              {%- if settings.logo != blank -%}"logo": {{ settings.logo | image_url: width: 600 | prepend: 'https:' | json }},{%- endif -%}
-              "sameAs": [
-                "https://www.instagram.com/behind_thegreens/",
-                "https://www.facebook.com/MrGreenskeeper",
-                "https://www.youtube.com/@behind_thegreens",
-                "https://www.tiktok.com/@behind_thegreens"
-              ]
-            },
-            {
-              "@type": "WebSite",
-              "@id": {{ request.origin | append: '/#website' | json }},
-              "name": {{ shop.name | json }},
-              "url": {{ request.origin | json }},
-              "publisher": { "@id": {{ request.origin | append: '/#organization' | json }} },
-              "potentialAction": {
-                "@type": "SearchAction",
-                "target": {{ request.origin | append: routes.search_url | append: '?q={search_term_string}' | json }},
-                "query-input": "required name=search_term_string"
-              }
-            }
-          ]
-        }
-      </script>
-    {%- endif -%}
+    {%- render 'btg-structured-data' -%}
 
     {{ content_for_header }}
   </head>
