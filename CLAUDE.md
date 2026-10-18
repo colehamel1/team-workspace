@@ -94,7 +94,7 @@ Stopping at red is SUCCESS, not failure. Never work around a red light.
 
 Their personal red list (fill in with the user over time):
 - Shopify: only write to the user's current working draft theme — right now
-  **Copy of Copy of BTG**. Never edit any other theme, and never the live (MAIN)
+  **Copy of BTG** (theme ID 167313178727). Never edit any other theme, and never the live (MAIN)
   theme. If the draft has been published, stop and ask which copy to use.
   Never publish — that's the user's call.
 

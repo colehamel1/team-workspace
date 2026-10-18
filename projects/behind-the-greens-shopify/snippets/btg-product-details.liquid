@@ -1,0 +1,129 @@
+{%- comment -%}
+  Product info panels: Details, Sizing & Fit, Materials & Performance, Care,
+  Shipping & Returns. Every panel reads real product fields and hides itself
+  when they're empty, so nothing is ever invented on the page.
+
+  Fields (Settings > Custom data > Products), one fact per line:
+  - custom.size_chart: first line = sizes, then one row per measurement,
+    cells split by "|". A cell like "27.56 / 70" shows as inches with cm under.
+  - custom.fit_details, custom.materials, custom.care
+
+  When a size chart is filled in, Details shows only the description's
+  opening paragraph so the same facts (and the old chart) aren't listed twice.
+
+  Usage: {% render 'btg-product-details', product: product, shipping_text: section.settings.shipping_text %}
+{%- endcomment -%}
+
+{%- liquid
+  assign size_chart = product.metafields.custom.size_chart.value | strip
+  assign fit_details = product.metafields.custom.fit_details.value | strip
+  assign materials = product.metafields.custom.materials.value | strip
+  assign care = product.metafields.custom.care.value | strip
+  assign description = product.description | strip
+  assign intro = ''
+  if size_chart.size > 0 and description contains '</p>'
+    assign intro = description | split: '</p>' | first | split: '<p>' | last | strip
+  endif
+-%}
+
+<div class="btg-pdp__accordions">
+  {%- if description.size > 0 -%}
+    <details class="btg-accordion" open>
+      <summary><span class="btg-eyebrow">Details</span><span class="btg-acc-icon" aria-hidden="true"></span></summary>
+      <div class="btg-accordion__body btg-pdp__description">
+        {%- if intro.size > 0 -%}<p>{{ intro }}</p>{%- else -%}{{ product.description }}{%- endif -%}
+      </div>
+    </details>
+  {%- endif -%}
+
+  {%- if size_chart.size > 0 or fit_details.size > 0 -%}
+    <details class="btg-accordion">
+      <summary><span class="btg-eyebrow">Sizing &amp; Fit</span><span class="btg-acc-icon" aria-hidden="true"></span></summary>
+      <div class="btg-accordion__body">
+        {%- if fit_details.size > 0 -%}
+          <ul class="btg-pdp-facts" role="list">
+            {%- assign lines = fit_details | newline_to_br | split: '<br />' -%}
+            {%- for line in lines -%}{%- assign item = line | strip -%}{%- if item.size > 0 -%}<li>{{ item }}</li>{%- endif -%}{%- endfor -%}
+          </ul>
+        {%- endif -%}
+        {%- if size_chart.size > 0 -%}
+          {%- assign rows = size_chart | newline_to_br | split: '<br />' -%}
+          <div class="btg-size-chart" role="region" aria-label="Size chart" tabindex="0">
+            <table>
+              <thead>
+                <tr>
+                  {%- assign head_cells = rows.first | strip | split: '|' -%}
+                  {%- for cell in head_cells -%}<th scope="col">{{ cell | strip }}</th>{%- endfor -%}
+                </tr>
+              </thead>
+              <tbody>
+                {%- for row in rows offset: 1 -%}
+                  {%- assign r = row | strip -%}
+                  {%- if r.size == 0 -%}{%- continue -%}{%- endif -%}
+                  {%- assign cells = r | split: '|' -%}
+                  <tr>
+                    {%- for cell in cells -%}
+                      {%- assign c = cell | strip -%}
+                      {%- if forloop.first -%}
+                        <th scope="row">{{ c }}</th>
+                      {%- elsif c contains ' / ' -%}
+                        {%- assign pair = c | split: ' / ' -%}
+                        <td>{{ pair[0] }}<span class="btg-size-chart__cm">{{ pair[1] }} cm</span></td>
+                      {%- else -%}
+                        <td>{{ c }}</td>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </tr>
+                {%- endfor -%}
+              </tbody>
+            </table>
+          </div>
+          <p class="btg-size-chart__note">Measurements in inches, with centimeters below each value.</p>
+        {%- endif -%}
+      </div>
+    </details>
+  {%- endif -%}
+
+  {%- if materials.size > 0 -%}
+    <details class="btg-accordion">
+      <summary><span class="btg-eyebrow">Materials &amp; Performance</span><span class="btg-acc-icon" aria-hidden="true"></span></summary>
+      <div class="btg-accordion__body">
+        <ul class="btg-pdp-facts" role="list">
+          {%- assign lines = materials | newline_to_br | split: '<br />' -%}
+          {%- for line in lines -%}{%- assign item = line | strip -%}{%- if item.size > 0 -%}<li>{{ item }}</li>{%- endif -%}{%- endfor -%}
+        </ul>
+      </div>
+    </details>
+  {%- endif -%}
+
+  {%- if care.size > 0 -%}
+    <details class="btg-accordion">
+      <summary><span class="btg-eyebrow">Care</span><span class="btg-acc-icon" aria-hidden="true"></span></summary>
+      <div class="btg-accordion__body">
+        <ul class="btg-pdp-facts" role="list">
+          {%- assign lines = care | newline_to_br | split: '<br />' -%}
+          {%- for line in lines -%}{%- assign item = line | strip -%}{%- if item.size > 0 -%}<li>{{ item }}</li>{%- endif -%}{%- endfor -%}
+        </ul>
+      </div>
+    </details>
+  {%- endif -%}
+
+  <details class="btg-accordion">
+    <summary><span class="btg-eyebrow">Shipping &amp; Returns</span><span class="btg-acc-icon" aria-hidden="true"></span></summary>
+    <div class="btg-accordion__body">
+      {%- assign ship_text = shipping_text | strip -%}
+      {%- if ship_text.size > 0 -%}
+        {{ shipping_text }}
+      {%- else -%}
+        <p>Shipping options and costs are shown at checkout before you pay.</p>
+        <p>Apparel is printed to order by our production partner and may ship separately from hats and accessories, so one order can arrive in more than one package.</p>
+        {%- if shop.policies.refund_policy.url -%}
+          <p>Unworn items can be returned within 30 days of delivery. <a href="{{ shop.policies.refund_policy.url }}">Read the full returns policy</a>.</p>
+        {%- endif -%}
+        {%- if shop.policies.shipping_policy.url -%}
+          <p><a href="{{ shop.policies.shipping_policy.url }}">Read the shipping policy</a>.</p>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  </details>
+</div>
