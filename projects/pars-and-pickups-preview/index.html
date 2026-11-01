@@ -1,0 +1,224 @@
+<title>Pars &amp; Pickups Golf</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Jost:wght@300;400;500&display=swap">
+<style>
+/* Layout: clubhouse-dark storefront. Brass accent pulled from the ball marker; every product sits on an identical 4:5 spotlit tile. */
+:root {
+  --ink: #12110f;
+  --tile: #1b1916;
+  --spot: #36312a;
+  --ivory: #ece6da;
+  --muted: #9b9386;
+  --brass: #c6a15b;
+  --line: rgba(198, 161, 91, 0.22);
+  --display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --body: "Jost", "Futura", "Avenir Next", system-ui, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--ink); color: var(--ivory); font-family: var(--body); font-weight: 300; font-size: 16px; line-height: 1.6; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--ink); }
+.wrap { max-width: 1240px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 720px) { .wrap { padding-left: max(40px, env(safe-area-inset-left, 0px)); padding-right: max(40px, env(safe-area-inset-right, 0px)); } }
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 1px solid var(--brass); outline-offset: 4px; }
+
+.preview-bar { border-bottom: 1px solid var(--line); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); text-align: center; }
+.preview-bar .wrap { padding-block: 9px; }
+
+header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--ink) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 16px; }
+.mark { display: flex; flex-direction: column; align-items: flex-start; line-height: 1; }
+.mark b { font-family: var(--display); font-style: italic; font-weight: 500; font-size: 24px; letter-spacing: -.01em; }
+.mark span { font-size: 9px; letter-spacing: .5em; color: var(--brass); margin-top: 5px; padding-left: 2px; }
+nav { display: flex; gap: 28px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; }
+nav a { color: var(--muted); transition: color .2s; }
+nav a:hover { color: var(--ivory); }
+.bag { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; background: none; border: 0; color: var(--ivory); font-family: inherit; cursor: pointer; padding: 0; }
+.bag em { font-style: normal; color: var(--brass); }
+@media (max-width: 640px) { nav { display: none; } }
+
+.hero .wrap { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 40px; padding-block: 72px 64px; }
+.hero h1 { font-family: var(--display); font-weight: 400; font-size: clamp(44px, 6.4vw, 88px); line-height: 1.02; letter-spacing: -.02em; margin: 0 0 24px; text-wrap: balance; }
+.hero h1 i { color: var(--brass); }
+.hero p { color: var(--muted); max-width: 40ch; margin: 0 0 36px; font-size: 17px; }
+.eyebrow { font-size: 11px; letter-spacing: .32em; text-transform: uppercase; color: var(--brass); margin: 0 0 20px; }
+.cta { display: inline-flex; gap: 14px; align-items: center; border: 1px solid var(--brass); color: var(--ivory); padding: 15px 28px; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; transition: background .25s, color .25s; }
+.cta:hover { background: var(--brass); color: var(--ink); }
+.hero-art { position: relative; aspect-ratio: 1; max-width: 100%; background: radial-gradient(closest-side, var(--spot), transparent); display: grid; place-items: center; }
+.hero-art img { width: 92%; filter: drop-shadow(0 40px 40px rgba(0,0,0,.55)); animation: float 7s ease-in-out infinite; }
+.hero-art figcaption { position: absolute; bottom: 4%; left: 0; right: 0; text-align: center; font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); }
+@keyframes float { 50% { transform: translateY(-12px) rotate(-1deg); } }
+@media (prefers-reduced-motion: reduce) { .hero-art img { animation: none; } }
+@media (max-width: 760px) { .hero .wrap { grid-template-columns: 1fr; padding-block: 40px 32px; gap: 8px; } .hero-art { order: -1; max-width: 420px; margin: 0 auto; width: 100%; } }
+
+.section .wrap { padding-block: 72px; }
+.section + .section .wrap { border-top: 1px solid var(--line); }
+.sec-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 36px; }
+.sec-head h2 { font-family: var(--display); font-weight: 400; font-size: clamp(34px, 4vw, 52px); margin: 0; letter-spacing: -.01em; line-height: 1.1; }
+.sec-head p { margin: 0; color: var(--muted); font-size: 13px; letter-spacing: .18em; text-transform: uppercase; }
+
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 24px; }
+@media (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .grid { grid-template-columns: 1fr; } }
+
+.card { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.tile { position: relative; aspect-ratio: 4 / 5; max-width: 100%; background: radial-gradient(ellipse 70% 60% at 50% 46%, var(--spot), var(--tile) 75%); overflow: hidden; }
+.tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 24px 26px rgba(0,0,0,.5)); transition: transform .6s cubic-bezier(.2,.7,.2,1), opacity .3s; }
+.card:hover .tile img { transform: scale(1.035); }
+.tile .tag { position: absolute; top: 14px; left: 14px; font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: var(--brass); border: 1px solid var(--line); padding: 5px 9px; background: color-mix(in srgb, var(--ink) 60%, transparent); }
+.add { position: absolute; left: 14px; right: 14px; bottom: 14px; padding: 13px; border: 0; background: var(--ivory); color: var(--ink); font-family: var(--body); font-size: 11px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; cursor: pointer; opacity: 0; transform: translateY(8px); transition: opacity .25s, transform .25s; }
+.card:hover .add, .add:focus-visible { opacity: 1; transform: none; }
+@media (hover: none) { .add { opacity: 1; transform: none; } }
+.meta { display: grid; grid-template-columns: 1fr auto; gap: 2px 16px; align-items: baseline; }
+.meta h3 { font-family: var(--display); font-weight: 400; font-size: 22px; margin: 0; line-height: 1.25; }
+.meta .price { font-size: 15px; letter-spacing: .06em; font-variant-numeric: tabular-nums; }
+.meta .note { grid-column: 1 / -1; color: var(--muted); font-size: 14px; }
+.swatches { display: flex; gap: 10px; align-items: center; min-height: 22px; }
+.swatches button { width: 20px; height: 20px; border-radius: 50%; border: 1px solid rgba(236,230,218,.35); padding: 0; cursor: pointer; box-shadow: 0 0 0 3px var(--ink); transition: box-shadow .2s; }
+.swatches button[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--ink), 0 0 0 4px var(--brass); }
+.swatches span { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-left: 4px; }
+
+.accessories .tile { aspect-ratio: 4 / 5; }
+.promise { border-top: 1px solid var(--line); }
+.promise .wrap { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding-block: 48px; }
+.promise div { display: flex; flex-direction: column; gap: 6px; }
+.promise b { font-family: var(--display); font-weight: 400; font-size: 20px; }
+.promise span { color: var(--muted); font-size: 14px; }
+@media (max-width: 720px) { .promise .wrap { grid-template-columns: 1fr; } }
+
+footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-block: 32px; }
+
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); background: var(--ivory); color: var(--ink); padding: 12px 22px; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; z-index: 20; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+</style>
+
+<div class="preview-bar"><div class="wrap">Design preview · not a live store</div></div>
+
+<header>
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="Pars and Pickups Golf"><b>Pars &amp; Pickups</b><span>GOLF</span></a>
+    <nav aria-label="Shop"><a href="#apparel">Apparel</a><a href="#accessories">Accessories</a></nav>
+    <button class="bag" id="bag" type="button">Bag (<em id="bag-count">0</em>)</button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">The Clubhouse Collection</p>
+        <h1>Dressed for the <i>first tee</i>.</h1>
+        <p>Polos, rope-front caps and gold-finish details for the course. Made for the round and for the drink after it.</p>
+        <a class="cta" href="#apparel">Shop apparel <span aria-hidden="true">→</span></a>
+      </div>
+      <figure class="hero-art" style="margin:0">
+        <img src="img/ball-marker.webp" alt="Brushed gold Pars and Pickups ball marker with engraved script logo">
+        <figcaption>The Signature Ball Marker</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="apparel">
+    <div class="wrap">
+      <div class="sec-head"><h2>Apparel</h2><p>3 pieces</p></div>
+      <div class="grid">
+        <article class="card" data-name="Tour Polo">
+          <div class="tile">
+            <span class="tag">3 colors</span>
+            <img id="polo-img" src="img/polo-black.webp" alt="Tour Polo in Black">
+            <button class="add" type="button">Add to bag</button>
+          </div>
+          <div class="meta"><h3>The Tour Polo</h3><span class="price">$68</span><span class="note">Lightweight stretch knit, script logo at the chest and sleeve</span></div>
+          <div class="swatches" role="group" aria-label="Polo color">
+            <button type="button" style="background:#141414" aria-pressed="true" data-img="img/polo-black.webp" data-color="Black" aria-label="Black"></button>
+            <button type="button" style="background:#f4f2ee" aria-pressed="false" data-img="img/polo-white.webp" data-color="White" aria-label="White"></button>
+            <button type="button" style="background:#6a8fcf" aria-pressed="false" data-img="img/polo-blue.webp" data-color="Carolina Blue" aria-label="Carolina Blue"></button>
+            <span id="polo-color">Black</span>
+          </div>
+        </article>
+        <article class="card" data-name="Rope Snapback">
+          <div class="tile">
+            <img src="img/hat.webp" alt="Black rope-front snapback with circular Pars and Pickups patch and magnetic ball marker clip">
+            <button class="add" type="button">Add to bag</button>
+          </div>
+          <div class="meta"><h3>Rope Snapback</h3><span class="price">$38</span><span class="note">Laser-perforated panels, rope front, magnetic marker clip</span></div>
+          <div class="swatches"><span>Black / White rope</span></div>
+        </article>
+        <article class="card" data-name="Crew Socks">
+          <div class="tile">
+            <img src="img/socks.webp" alt="White ribbed crew socks with black Pars and Pickups script logo">
+            <button class="add" type="button">Add to bag</button>
+          </div>
+          <div class="meta"><h3>Crew Socks</h3><span class="price">$18</span><span class="note">Ribbed cotton crew, cushioned sole</span></div>
+          <div class="swatches"><span>White</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section accessories" id="accessories">
+    <div class="wrap">
+      <div class="sec-head"><h2>Accessories</h2><p>For the bag</p></div>
+      <div class="grid">
+        <article class="card" data-name="Signature Ball Marker">
+          <div class="tile">
+            <span class="tag">New</span>
+            <img src="img/ball-marker.webp" alt="Brushed gold ball marker engraved with the Pars and Pickups logo and edge lettering">
+            <button class="add" type="button">Add to bag</button>
+          </div>
+          <div class="meta"><h3>Signature Ball Marker</h3><span class="price">$24</span><span class="note">Brushed gold finish, engraved face and edge</span></div>
+        </article>
+        <article class="card" data-name="Divot Tool, Gold">
+          <div class="tile">
+            <img src="img/divot-gold.webp" alt="Polished gold divot tool with scalloped grip edges and script logo">
+            <button class="add" type="button">Add to bag</button>
+          </div>
+          <div class="meta"><h3>Divot Tool · Gold</h3><span class="price">$32</span><span class="note">Polished gold, scalloped grip edges</span></div>
+        </article>
+        <article class="card" data-name="Divot Tool, Silver">
+          <div class="tile">
+            <img src="img/divot-silver.webp" alt="Brushed silver divot tool with scalloped grip edges and script logo">
+            <button class="add" type="button">Add to bag</button>
+          </div>
+          <div class="meta"><h3>Divot Tool · Silver</h3><span class="price">$28</span><span class="note">Brushed silver, scalloped grip edges</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer><div class="wrap"><span>© Pars &amp; Pickups Golf</span><span>Apparel · Accessories</span></div></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  var count = 0, toast = document.getElementById('toast'), timer;
+  document.querySelectorAll('.add').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var card = btn.closest('.card'), name = card.dataset.name;
+      var color = card.querySelector('#polo-color');
+      if (color) name += ' · ' + color.textContent;
+      count++;
+      document.getElementById('bag-count').textContent = count;
+      toast.textContent = 'Added: ' + name;
+      toast.classList.add('show');
+      clearTimeout(timer);
+      timer = setTimeout(function () { toast.classList.remove('show'); }, 1800);
+    });
+  });
+  var img = document.getElementById('polo-img'), label = document.getElementById('polo-color');
+  document.querySelectorAll('.swatches button[data-img]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.swatches button[data-img]').forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+      img.src = b.dataset.img;
+      img.alt = 'Tour Polo in ' + b.dataset.color;
+      label.textContent = b.dataset.color;
+    });
+  });
+})();
+</script>
