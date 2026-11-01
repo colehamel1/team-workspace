@@ -2,97 +2,178 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Jost:wght@300;400;500&display=swap">
 <style>
-/* Layout: clubhouse-dark storefront. Brass accent pulled from the ball marker; every product sits on an identical 4:5 spotlit tile. */
+/* Layout: clubhouse-dark storefront. Gold accent pulled from the ball marker; every product sits on an identical 4:5 spotlit tile. */
 :root {
   --ink: #12110f;
+  --raise: #191714;
   --tile: #1b1916;
-  --spot: #36312a;
+  --spot: #37322b;
   --ivory: #ece6da;
   --muted: #9b9386;
-  --brass: #c6a15b;
+  --gold: #c6a15b;
   --line: rgba(198, 161, 91, 0.22);
   --display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
   --body: "Jost", "Futura", "Avenir Next", system-ui, sans-serif;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body { background: var(--ink); color: var(--ivory); font-family: var(--body); font-weight: 300; font-size: 16px; line-height: 1.6; }
+body.locked { overflow: hidden; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--ink); }
-.wrap { max-width: 1240px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 1320px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
 @media (min-width: 720px) { .wrap { padding-left: max(40px, env(safe-area-inset-left, 0px)); padding-right: max(40px, env(safe-area-inset-right, 0px)); } }
 a { color: inherit; text-decoration: none; }
-:focus-visible { outline: 1px solid var(--brass); outline-offset: 4px; }
+button { font-family: inherit; color: inherit; }
+:focus-visible { outline: 1px solid var(--gold); outline-offset: 4px; }
+.eyebrow { font-size: 11px; letter-spacing: .32em; text-transform: uppercase; color: var(--gold); margin: 0; }
 
+/* Preview + header */
 .preview-bar { border-bottom: 1px solid var(--line); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); text-align: center; }
 .preview-bar .wrap { padding-block: 9px; }
-
-header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--ink) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 16px; }
-.mark { display: flex; flex-direction: column; align-items: flex-start; line-height: 1; }
-.mark b { font-family: var(--display); font-style: italic; font-weight: 500; font-size: 24px; letter-spacing: -.01em; }
-.mark span { font-size: 9px; letter-spacing: .5em; color: var(--brass); margin-top: 5px; padding-left: 2px; }
-nav { display: flex; gap: 28px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; }
+header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 6; background: color-mix(in srgb, var(--ink) 90%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+header .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; padding-block: 14px; }
+.logo img { height: 46px; width: auto; display: block; }
+nav { display: flex; gap: 30px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; }
 nav a { color: var(--muted); transition: color .2s; }
 nav a:hover { color: var(--ivory); }
-.bag { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; background: none; border: 0; color: var(--ivory); font-family: inherit; cursor: pointer; padding: 0; }
-.bag em { font-style: normal; color: var(--brass); }
-@media (max-width: 640px) { nav { display: none; } }
+.bag-btn { justify-self: end; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; background: none; border: 0; cursor: pointer; padding: 8px 0; }
+.bag-btn em { font-style: normal; color: var(--gold); }
+@media (max-width: 760px) { header .wrap { grid-template-columns: 1fr auto; } nav { display: none; } .logo img { height: 38px; } }
 
-.hero .wrap { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 40px; padding-block: 72px 64px; }
-.hero h1 { font-family: var(--display); font-weight: 400; font-size: clamp(44px, 6.4vw, 88px); line-height: 1.02; letter-spacing: -.02em; margin: 0 0 24px; text-wrap: balance; }
-.hero h1 i { color: var(--brass); }
-.hero p { color: var(--muted); max-width: 40ch; margin: 0 0 36px; font-size: 17px; }
-.eyebrow { font-size: 11px; letter-spacing: .32em; text-transform: uppercase; color: var(--brass); margin: 0 0 20px; }
-.cta { display: inline-flex; gap: 14px; align-items: center; border: 1px solid var(--brass); color: var(--ivory); padding: 15px 28px; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; transition: background .25s, color .25s; }
-.cta:hover { background: var(--brass); color: var(--ink); }
-.hero-art { position: relative; aspect-ratio: 1; max-width: 100%; background: radial-gradient(closest-side, var(--spot), transparent); display: grid; place-items: center; }
-.hero-art img { width: 92%; filter: drop-shadow(0 40px 40px rgba(0,0,0,.55)); animation: float 7s ease-in-out infinite; }
-.hero-art figcaption { position: absolute; bottom: 4%; left: 0; right: 0; text-align: center; font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); }
+/* Hero */
+.hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 40px; padding-block: 64px 56px; }
+.hero h1 { font-family: var(--display); font-weight: 400; font-size: clamp(44px, 6.2vw, 92px); line-height: 1.02; letter-spacing: -.02em; margin: 20px 0 24px; text-wrap: balance; }
+.hero h1 i { color: var(--gold); }
+.hero p.lede { color: var(--muted); max-width: 42ch; margin: 0 0 36px; font-size: 17px; }
+.ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn { display: inline-flex; justify-content: center; align-items: center; gap: 12px; border: 1px solid var(--gold); background: none; color: var(--ivory); padding: 15px 28px; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+.btn:hover { background: var(--gold); color: var(--ink); }
+.btn.solid { background: var(--ivory); border-color: var(--ivory); color: var(--ink); font-weight: 500; }
+.btn.solid:hover { background: var(--gold); border-color: var(--gold); }
+.btn.ghost { border-color: rgba(236,230,218,.25); }
+.btn[disabled] { cursor: not-allowed; opacity: .55; background: none; color: var(--muted); border-color: rgba(236,230,218,.2); }
+.hero-art { position: relative; aspect-ratio: 1; max-width: 100%; margin: 0; background: radial-gradient(closest-side, var(--spot), transparent); display: grid; place-items: center; }
+.hero-art img { width: 96%; filter: drop-shadow(0 40px 40px rgba(0,0,0,.55)); animation: float 7s ease-in-out infinite; }
+.hero-art figcaption { position: absolute; bottom: 6%; left: 0; right: 0; text-align: center; font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); }
+.hero-art figcaption a { color: var(--gold); }
 @keyframes float { 50% { transform: translateY(-12px) rotate(-1deg); } }
 @media (prefers-reduced-motion: reduce) { .hero-art img { animation: none; } }
-@media (max-width: 760px) { .hero .wrap { grid-template-columns: 1fr; padding-block: 40px 32px; gap: 8px; } .hero-art { order: -1; max-width: 420px; margin: 0 auto; width: 100%; } }
+@media (max-width: 760px) { .hero .wrap { grid-template-columns: 1fr; padding-block: 28px 24px; gap: 0; } .hero-art { order: -1; max-width: 400px; margin: 0 auto; width: 100%; } }
 
+/* Sections + grid */
 .section .wrap { padding-block: 72px; }
-.section + .section .wrap { border-top: 1px solid var(--line); }
+.rule { border-top: 1px solid var(--line); }
 .sec-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 36px; }
-.sec-head h2 { font-family: var(--display); font-weight: 400; font-size: clamp(34px, 4vw, 52px); margin: 0; letter-spacing: -.01em; line-height: 1.1; }
-.sec-head p { margin: 0; color: var(--muted); font-size: 13px; letter-spacing: .18em; text-transform: uppercase; }
+.sec-head h2 { font-family: var(--display); font-weight: 400; font-size: clamp(34px, 4vw, 54px); margin: 0; letter-spacing: -.01em; line-height: 1.1; }
+.sec-head p { margin: 0; color: var(--muted); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; }
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px 22px; }
+@media (max-width: 1000px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 14px; } }
 
-.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 24px; }
-@media (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 520px) { .grid { grid-template-columns: 1fr; } }
+.card { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.tile { position: relative; display: block; aspect-ratio: 4 / 5; max-width: 100%; background: radial-gradient(ellipse 70% 60% at 50% 46%, var(--spot), var(--tile) 75%); overflow: hidden; }
+.tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 24px 26px rgba(0,0,0,.5)); transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+.card:hover .tile img { transform: scale(1.04); }
+.tag { position: absolute; top: 12px; left: 12px; z-index: 1; font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--line); padding: 5px 9px; background: color-mix(in srgb, var(--ink) 65%, transparent); }
+.tag.soon { color: var(--ivory); border-color: rgba(236,230,218,.3); }
+.card .view { position: absolute; left: 12px; right: 12px; bottom: 12px; padding: 12px; text-align: center; background: var(--ivory); color: var(--ink); font-size: 11px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; opacity: 0; transform: translateY(8px); transition: opacity .25s, transform .25s; }
+.card:hover .view { opacity: 1; transform: none; }
+@media (hover: none) { .card .view { display: none; } }
+.meta { display: flex; flex-direction: column; gap: 2px; }
+.meta h3 { font-family: var(--display); font-weight: 400; font-size: clamp(17px, 1.6vw, 21px); margin: 0; line-height: 1.25; }
+.meta .price { font-size: 14px; letter-spacing: .06em; font-variant-numeric: tabular-nums; color: var(--ivory); }
+.meta .price.soon { color: var(--muted); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; }
+.dots { display: flex; gap: 7px; margin-top: 4px; }
+.dots i { width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgba(236,230,218,.35); }
 
-.card { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
-.tile { position: relative; aspect-ratio: 4 / 5; max-width: 100%; background: radial-gradient(ellipse 70% 60% at 50% 46%, var(--spot), var(--tile) 75%); overflow: hidden; }
-.tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 24px 26px rgba(0,0,0,.5)); transition: transform .6s cubic-bezier(.2,.7,.2,1), opacity .3s; }
-.card:hover .tile img { transform: scale(1.035); }
-.tile .tag { position: absolute; top: 14px; left: 14px; font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: var(--brass); border: 1px solid var(--line); padding: 5px 9px; background: color-mix(in srgb, var(--ink) 60%, transparent); }
-.add { position: absolute; left: 14px; right: 14px; bottom: 14px; padding: 13px; border: 0; background: var(--ivory); color: var(--ink); font-family: var(--body); font-size: 11px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; cursor: pointer; opacity: 0; transform: translateY(8px); transition: opacity .25s, transform .25s; }
-.card:hover .add, .add:focus-visible { opacity: 1; transform: none; }
-@media (hover: none) { .add { opacity: 1; transform: none; } }
-.meta { display: grid; grid-template-columns: 1fr auto; gap: 2px 16px; align-items: baseline; }
-.meta h3 { font-family: var(--display); font-weight: 400; font-size: 22px; margin: 0; line-height: 1.25; }
-.meta .price { font-size: 15px; letter-spacing: .06em; font-variant-numeric: tabular-nums; }
-.meta .note { grid-column: 1 / -1; color: var(--muted); font-size: 14px; }
-.swatches { display: flex; gap: 10px; align-items: center; min-height: 22px; }
-.swatches button { width: 20px; height: 20px; border-radius: 50%; border: 1px solid rgba(236,230,218,.35); padding: 0; cursor: pointer; box-shadow: 0 0 0 3px var(--ink); transition: box-shadow .2s; }
-.swatches button[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--ink), 0 0 0 4px var(--brass); }
-.swatches span { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-left: 4px; }
+/* Bundle band */
+.bundle-band { background: linear-gradient(180deg, var(--raise), var(--ink)); border-block: 1px solid var(--line); }
+.bundle-band .wrap { display: grid; grid-template-columns: 1.25fr 1fr; gap: 48px; align-items: center; padding-block: 64px; }
+.bundle-band .art { position: relative; aspect-ratio: 16 / 10; max-width: 100%; background: radial-gradient(ellipse 60% 60% at 50% 50%, var(--spot), transparent 75%); }
+.bundle-band .art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.bundle-band h2 { font-family: var(--display); font-weight: 400; font-size: clamp(34px, 4vw, 54px); line-height: 1.08; margin: 16px 0 20px; text-wrap: balance; }
+.includes { list-style: none; margin: 0 0 28px; padding: 0; border-top: 1px solid var(--line); }
+.includes li { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.includes li span:last-child { color: var(--muted); font-variant-numeric: tabular-nums; }
+.price-row { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 26px; }
+.price-row b { font-family: var(--display); font-weight: 400; font-size: 40px; line-height: 1; font-variant-numeric: tabular-nums; }
+.price-row s { color: var(--muted); font-size: 18px; }
+.save { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--ink); background: var(--gold); padding: 5px 10px; }
+@media (max-width: 860px) { .bundle-band .wrap { grid-template-columns: 1fr; gap: 16px; padding-block: 48px; } }
 
-.accessories .tile { aspect-ratio: 4 / 5; }
-.promise { border-top: 1px solid var(--line); }
-.promise .wrap { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding-block: 48px; }
-.promise div { display: flex; flex-direction: column; gap: 6px; }
-.promise b { font-family: var(--display); font-weight: 400; font-size: 20px; }
-.promise span { color: var(--muted); font-size: 14px; }
-@media (max-width: 720px) { .promise .wrap { grid-template-columns: 1fr; } }
+/* Product page */
+.crumbs { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); display: flex; gap: 10px; flex-wrap: wrap; padding-block: 28px 0; }
+.crumbs a:hover { color: var(--ivory); }
+.pdp { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 56px; padding-block: 24px 72px; align-items: start; }
+.pdp .tile { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 96px); }
+.pdp .tile img { filter: drop-shadow(0 34px 34px rgba(0,0,0,.55)); }
+.info { display: flex; flex-direction: column; gap: 26px; min-width: 0; padding-top: 12px; }
+.info h1 { font-family: var(--display); font-weight: 400; font-size: clamp(34px, 3.6vw, 52px); line-height: 1.08; margin: 10px 0 0; letter-spacing: -.01em; text-wrap: balance; }
+.info .p-price { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; font-size: 22px; font-variant-numeric: tabular-nums; }
+.info .p-price s { color: var(--muted); font-size: 16px; }
+.info .blurb { color: var(--muted); margin: 0; max-width: 52ch; }
+.opt-label { font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; display: flex; gap: 10px; }
+.opt-label b { color: var(--ivory); font-weight: 400; }
+.swatches { display: flex; gap: 14px; flex-wrap: wrap; }
+.swatches a, .swatches button { width: 30px; height: 30px; border-radius: 50%; border: 1px solid rgba(236,230,218,.35); padding: 0; cursor: pointer; box-shadow: 0 0 0 4px var(--ink); transition: box-shadow .2s; }
+.swatches [aria-current="true"], .swatches [aria-pressed="true"] { box-shadow: 0 0 0 4px var(--ink), 0 0 0 5px var(--gold); }
+.sizes { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; max-width: 420px; }
+.sizes button { padding: 12px 0; background: none; border: 1px solid rgba(236,230,218,.22); cursor: pointer; font-size: 13px; letter-spacing: .12em; transition: border-color .2s, background .2s, color .2s; }
+.sizes button:hover { border-color: var(--ivory); }
+.sizes button[aria-pressed="true"] { background: var(--ivory); color: var(--ink); border-color: var(--ivory); }
+.buy { display: grid; grid-template-columns: auto 1fr; gap: 12px; max-width: 520px; }
+.qty { display: flex; align-items: center; border: 1px solid rgba(236,230,218,.22); }
+.qty button { width: 42px; height: 100%; min-height: 48px; background: none; border: 0; cursor: pointer; font-size: 18px; }
+.qty output { width: 30px; text-align: center; font-variant-numeric: tabular-nums; }
+.hint { font-size: 13px; color: var(--gold); min-height: 1.4em; margin: -14px 0 0; }
+details { border-top: 1px solid var(--line); max-width: 520px; }
+details:last-of-type { border-bottom: 1px solid var(--line); }
+summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; padding: 16px 0; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; color: var(--gold); font-size: 16px; line-height: 1; }
+details[open] summary::after { content: "–"; }
+details ul { margin: 0 0 18px; padding-left: 18px; color: var(--muted); }
+details li { margin-bottom: 4px; }
+details p { margin: 0 0 18px; color: var(--muted); }
+.upsell { display: flex; gap: 16px; align-items: center; border: 1px solid var(--line); padding: 14px; max-width: 520px; }
+.upsell img { width: 84px; height: 84px; object-fit: contain; background: var(--tile); flex: none; }
+.upsell div { display: flex; flex-direction: column; gap: 2px; font-size: 14px; min-width: 0; }
+.upsell b { font-family: var(--display); font-weight: 400; font-size: 18px; }
+.upsell span { color: var(--muted); }
+.upsell a { color: var(--gold); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; margin-top: 4px; }
+@media (max-width: 860px) { .pdp { grid-template-columns: 1fr; gap: 20px; padding-top: 12px; } .pdp .tile { position: relative; top: 0; } }
 
-footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
-footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-block: 32px; }
+/* Footer */
+footer { border-top: 1px solid var(--line); color: var(--muted); }
+footer .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; padding-block: 40px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
+footer img { height: 40px; width: auto; opacity: .85; }
+footer nav { display: flex; flex-wrap: wrap; gap: 8px 24px; }
 
-.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); background: var(--ivory); color: var(--ink); padding: 12px 22px; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; z-index: 20; }
+/* Bag drawer */
+.scrim { position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 30; opacity: 0; transition: opacity .3s; }
+.scrim.open { opacity: 1; }
+.drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(420px, 100%); z-index: 31; background: var(--raise); border-left: 1px solid var(--line); display: flex; flex-direction: column; transform: translateX(100%); transition: transform .35s cubic-bezier(.2,.7,.2,1); padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); padding-right: env(safe-area-inset-right, 0px); }
+.drawer.open { transform: none; }
+.drawer-head { display: flex; justify-content: space-between; align-items: center; padding: 22px 24px; border-bottom: 1px solid var(--line); }
+.drawer-head h2 { font-family: var(--display); font-weight: 400; font-size: 26px; margin: 0; }
+.drawer-head button { background: none; border: 0; cursor: pointer; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+.lines { flex: 1; overflow-y: auto; padding: 8px 24px; }
+.line { display: grid; grid-template-columns: 76px 1fr auto; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.line img { width: 76px; height: 95px; object-fit: contain; background: var(--tile); }
+.line b { font-family: var(--display); font-weight: 400; font-size: 17px; display: block; line-height: 1.2; }
+.line small { color: var(--muted); font-size: 12px; letter-spacing: .08em; }
+.line .lq { display: flex; align-items: center; gap: 10px; margin-top: 6px; font-variant-numeric: tabular-nums; }
+.line .lq button { width: 24px; height: 24px; background: none; border: 1px solid rgba(236,230,218,.22); cursor: pointer; line-height: 1; }
+.line .amt { font-variant-numeric: tabular-nums; align-self: start; padding-top: 4px; }
+.empty { color: var(--muted); padding: 32px 0; display: flex; flex-direction: column; gap: 18px; align-items: flex-start; }
+.drawer-foot { padding: 20px 24px 24px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 12px; }
+.subtotal { display: flex; justify-content: space-between; font-size: 15px; font-variant-numeric: tabular-nums; }
+.drawer-foot small { color: var(--muted); font-size: 12px; }
+
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); background: var(--ivory); color: var(--ink); padding: 12px 22px; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; z-index: 40; max-width: calc(100% - 32px); text-align: center; }
 .toast.show { opacity: 1; transform: translate(-50%, 0); }
 </style>
 
@@ -100,125 +181,231 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 
 <header>
   <div class="wrap">
-    <a class="mark" href="#top" aria-label="Pars and Pickups Golf"><b>Pars &amp; Pickups</b><span>GOLF</span></a>
-    <nav aria-label="Shop"><a href="#apparel">Apparel</a><a href="#accessories">Accessories</a></nav>
-    <button class="bag" id="bag" type="button">Bag (<em id="bag-count">0</em>)</button>
+    <a class="logo" href="#home" aria-label="Pars and Pickups Golf, home"><img src="img/logo.png" alt="Pars &amp; Pickups Golf"></a>
+    <nav aria-label="Shop"><a href="#apparel">Apparel</a><a href="#bundle">Bundle</a><a href="#accessories">Accessories</a></nav>
+    <button class="bag-btn" id="bag-btn" type="button" aria-controls="drawer">Bag (<em id="bag-count">0</em>)</button>
   </div>
 </header>
 
-<main id="top">
-  <section class="hero">
-    <div class="wrap">
-      <div>
-        <p class="eyebrow">The Clubhouse Collection</p>
-        <h1>Dressed for the <i>first tee</i>.</h1>
-        <p>Polos, rope-front caps and gold-finish details for the course. Made for the round and for the drink after it.</p>
-        <a class="cta" href="#apparel">Shop apparel <span aria-hidden="true">→</span></a>
-      </div>
-      <figure class="hero-art" style="margin:0">
-        <img src="img/ball-marker.webp" alt="Brushed gold Pars and Pickups ball marker with engraved script logo">
-        <figcaption>The Signature Ball Marker</figcaption>
-      </figure>
-    </div>
-  </section>
+<main id="view"></main>
 
-  <section class="section" id="apparel">
-    <div class="wrap">
-      <div class="sec-head"><h2>Apparel</h2><p>3 pieces</p></div>
-      <div class="grid">
-        <article class="card" data-name="Tour Polo">
-          <div class="tile">
-            <span class="tag">3 colors</span>
-            <img id="polo-img" src="img/polo-black.webp" alt="Tour Polo in Black">
-            <button class="add" type="button">Add to bag</button>
-          </div>
-          <div class="meta"><h3>The Tour Polo</h3><span class="price">$68</span><span class="note">Lightweight stretch knit, script logo at the chest and sleeve</span></div>
-          <div class="swatches" role="group" aria-label="Polo color">
-            <button type="button" style="background:#141414" aria-pressed="true" data-img="img/polo-black.webp" data-color="Black" aria-label="Black"></button>
-            <button type="button" style="background:#f4f2ee" aria-pressed="false" data-img="img/polo-white.webp" data-color="White" aria-label="White"></button>
-            <button type="button" style="background:#6a8fcf" aria-pressed="false" data-img="img/polo-blue.webp" data-color="Carolina Blue" aria-label="Carolina Blue"></button>
-            <span id="polo-color">Black</span>
-          </div>
-        </article>
-        <article class="card" data-name="Rope Snapback">
-          <div class="tile">
-            <img src="img/hat.webp" alt="Black rope-front snapback with circular Pars and Pickups patch and magnetic ball marker clip">
-            <button class="add" type="button">Add to bag</button>
-          </div>
-          <div class="meta"><h3>Rope Snapback</h3><span class="price">$38</span><span class="note">Laser-perforated panels, rope front, magnetic marker clip</span></div>
-          <div class="swatches"><span>Black / White rope</span></div>
-        </article>
-        <article class="card" data-name="Crew Socks">
-          <div class="tile">
-            <img src="img/socks.webp" alt="White ribbed crew socks with black Pars and Pickups script logo">
-            <button class="add" type="button">Add to bag</button>
-          </div>
-          <div class="meta"><h3>Crew Socks</h3><span class="price">$18</span><span class="note">Ribbed cotton crew, cushioned sole</span></div>
-          <div class="swatches"><span>White</span></div>
-        </article>
-      </div>
-    </div>
-  </section>
+<footer>
+  <div class="wrap">
+    <img src="img/logo.png" alt="Pars &amp; Pickups Golf">
+    <nav aria-label="Footer"><a href="#apparel">Apparel</a><a href="#bundle">Bundle</a><a href="#accessories">Accessories</a></nav>
+    <span>© Pars &amp; Pickups Golf</span>
+  </div>
+</footer>
 
-  <section class="section accessories" id="accessories">
-    <div class="wrap">
-      <div class="sec-head"><h2>Accessories</h2><p>For the bag</p></div>
-      <div class="grid">
-        <article class="card" data-name="Signature Ball Marker">
-          <div class="tile">
-            <span class="tag">New</span>
-            <img src="img/ball-marker.webp" alt="Brushed gold ball marker engraved with the Pars and Pickups logo and edge lettering">
-            <button class="add" type="button">Add to bag</button>
-          </div>
-          <div class="meta"><h3>Signature Ball Marker</h3><span class="price">$24</span><span class="note">Brushed gold finish, engraved face and edge</span></div>
-        </article>
-        <article class="card" data-name="Divot Tool, Gold">
-          <div class="tile">
-            <img src="img/divot-gold.webp" alt="Polished gold divot tool with scalloped grip edges and script logo">
-            <button class="add" type="button">Add to bag</button>
-          </div>
-          <div class="meta"><h3>Divot Tool · Gold</h3><span class="price">$32</span><span class="note">Polished gold, scalloped grip edges</span></div>
-        </article>
-        <article class="card" data-name="Divot Tool, Silver">
-          <div class="tile">
-            <img src="img/divot-silver.webp" alt="Brushed silver divot tool with scalloped grip edges and script logo">
-            <button class="add" type="button">Add to bag</button>
-          </div>
-          <div class="meta"><h3>Divot Tool · Silver</h3><span class="price">$28</span><span class="note">Brushed silver, scalloped grip edges</span></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer><div class="wrap"><span>© Pars &amp; Pickups Golf</span><span>Apparel · Accessories</span></div></footer>
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" aria-label="Your bag" aria-hidden="true">
+  <div class="drawer-head"><h2>Your Bag</h2><button type="button" id="close-bag">Close</button></div>
+  <div class="lines" id="lines"></div>
+  <div class="drawer-foot" id="drawer-foot"></div>
+</aside>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 (function () {
-  var count = 0, toast = document.getElementById('toast'), timer;
-  document.querySelectorAll('.add').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var card = btn.closest('.card'), name = card.dataset.name;
-      var color = card.querySelector('#polo-color');
-      if (color) name += ' · ' + color.textContent;
-      count++;
-      document.getElementById('bag-count').textContent = count;
-      toast.textContent = 'Added: ' + name;
-      toast.classList.add('show');
-      clearTimeout(timer);
-      timer = setTimeout(function () { toast.classList.remove('show'); }, 1800);
+  var POLO_SIZES = ['S', 'M', 'L', 'XL', 'XXL'];
+  var P = {
+    'black-polo': { name: 'Black Golf Polo', price: 85, cat: 'apparel', img: 'img/polo-black.webp', group: 'polo', color: 'Black', hex: '#141414', sizes: POLO_SIZES,
+      blurb: 'The everyday round polo in black, finished with a woven Pars & Pickups patch at the chest.',
+      details: ['Woven Pars & Pickups patch at the chest', 'Script logo on the left sleeve', 'Three-button placket', 'Branded label inside the collar'] },
+    'white-polo': { name: 'White Golf Polo', price: 85, cat: 'apparel', img: 'img/polo-white.webp', group: 'polo', color: 'White', hex: '#f4f2ee', sizes: POLO_SIZES,
+      blurb: 'Clean white with the script logo stitched in black. Made for summer rounds.',
+      details: ['Script logo at the chest', 'Script logo on the left sleeve', 'Three-button placket with black buttons', 'Branded label inside the collar'] },
+    'blue-polo': { name: 'Blue Golf Polo', price: 85, cat: 'apparel', img: 'img/polo-blue.webp', group: 'polo', color: 'Blue', hex: '#6a8fcf', sizes: POLO_SIZES,
+      blurb: 'A soft blue polo with the script logo in navy.',
+      details: ['Script logo at the chest', 'Script logo on the left sleeve', 'Three-button placket', 'Branded label inside the collar'] },
+    'black-hat': { name: 'Black Rope Hat', price: 65, cat: 'apparel', img: 'img/hat.webp',
+      blurb: 'Black rope hat with the circle patch, perforated side panels and a ball marker clip built in.',
+      details: ['Circular Pars & Pickups patch on the front', 'White rope across the front of the bill', 'Laser-perforated side panels', 'Magnetic ball marker clip on the side'] },
+    'gold-ball-marker': { name: 'Gold Ball Marker', price: 70, cat: 'accessories', img: 'img/ball-marker.webp', tag: 'Signature',
+      blurb: 'The signature piece. A heavy gold-finish marker with the script logo engraved into its face.',
+      details: ['Gold finish with a brushed face', 'Engraved Pars & Pickups script logo', '"PARS AND PICKUPS GOLF" lettered around the edge', 'Arrives in a clear protective case'] },
+    'bundle': { name: 'The Pars & Pickups Bundle', price: 210, compare: 220, cat: 'bundle', img: 'img/bundle.webp', tag: 'Save $10', sizes: POLO_SIZES, sizeLabel: 'Polo size',
+      blurb: 'The full kit in one order: the Black Golf Polo, the Black Rope Hat and the Gold Ball Marker.',
+      includes: ['black-polo', 'black-hat', 'gold-ball-marker'] },
+    'divot-tool': { name: 'Divot Tool', cat: 'accessories', soon: true, img: 'img/divot-gold.webp',
+      variants: [{ label: 'Gold', hex: '#d4b24c', img: 'img/divot-gold.webp' }, { label: 'Silver', hex: '#c9cbd0', img: 'img/divot-silver.webp' }],
+      blurb: 'A solid divot tool with scalloped grip edges and the script logo. Gold or silver.',
+      details: ['Polished gold or brushed silver finish', 'Scalloped grip edges', 'Pars & Pickups script logo'] },
+    'golf-towel': { name: 'Black Golf Towel', cat: 'accessories', soon: true, img: 'img/towel.webp',
+      blurb: 'A black waffle-weave towel with the logo stitched in white and a clip for the bag.',
+      details: ['Black waffle weave', 'Embroidered Pars & Pickups logo', 'Metal grommet with bag clip'], note: 'Image is a concept render.' },
+    'crew-socks': { name: 'Crew Socks', cat: 'accessories', soon: true, img: 'img/socks.webp',
+      blurb: 'White ribbed crew socks with the script logo in black.',
+      details: ['Ribbed crew cuff', 'Cushioned foot', 'Pars & Pickups script logo'] }
+  };
+  var APPAREL = ['black-polo', 'white-polo', 'blue-polo', 'black-hat'];
+  var ACCESSORIES = ['gold-ball-marker', 'divot-tool', 'golf-towel', 'crew-socks'];
+  var money = function (n) { return '$' + n.toFixed(2); };
+  var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); };
+  var view = document.getElementById('view');
+
+  function card(id) {
+    var p = P[id];
+    var tag = p.soon ? '<span class="tag soon">Coming soon</span>' : (p.tag ? '<span class="tag">' + esc(p.tag) + '</span>' : '');
+    var dots = p.variants ? '<span class="dots">' + p.variants.map(function (v) { return '<i style="background:' + v.hex + '"></i>'; }).join('') + '</span>' : '';
+    var price = p.soon ? '<span class="price soon">Coming soon</span>' : '<span class="price">' + money(p.price) + '</span>';
+    return '<a class="card" href="#' + id + '"><span class="tile">' + tag + '<img src="' + p.img + '" alt="' + esc(p.name) + '" loading="lazy"><span class="view">' + (p.soon ? 'Preview' : 'View') + '</span></span>' +
+      '<span class="meta"><h3>' + esc(p.name) + '</h3>' + price + dots + '</span></a>';
+  }
+
+  function home() {
+    var b = P.bundle;
+    return '' +
+    '<section class="hero"><div class="wrap"><div>' +
+      '<p class="eyebrow">Pars &amp; Pickups Golf</p>' +
+      '<h1>Dressed for the <i>first tee</i>.</h1>' +
+      '<p class="lede">Polos, rope hats and gold-finish details for the course. Made for the round and for the drink after it.</p>' +
+      '<div class="ctas"><a class="btn solid" href="#apparel">Shop apparel</a><a class="btn ghost" href="#bundle">The bundle · Save $10</a></div>' +
+    '</div><figure class="hero-art"><img src="img/ball-marker.webp" alt="Gold Pars and Pickups ball marker"><figcaption><a href="#gold-ball-marker">Gold Ball Marker · $70</a></figcaption></figure></div></section>' +
+
+    '<section class="section rule" id="apparel"><div class="wrap"><div class="sec-head"><h2>Apparel</h2><p>Polos &amp; headwear</p></div>' +
+      '<div class="grid">' + APPAREL.map(card).join('') + '</div></div></section>' +
+
+    '<section class="bundle-band" id="bundle"><div class="wrap">' +
+      '<a class="art" href="#bundle-detail" aria-label="View the bundle"><img src="img/bundle-wide.webp" alt="Black Golf Polo, Black Rope Hat and Gold Ball Marker together" loading="lazy"></a>' +
+      '<div><p class="eyebrow">Bundle &amp; save</p><h2>The Pars &amp; Pickups Bundle</h2>' +
+      '<ul class="includes">' + b.includes.map(function (i) { return '<li><span>' + esc(P[i].name) + '</span><span>' + money(P[i].price) + '</span></li>'; }).join('') + '</ul>' +
+      '<div class="price-row"><b>' + money(b.price) + '</b><s>' + money(b.compare) + '</s><span class="save">Save $10</span></div>' +
+      '<a class="btn solid" href="#bundle-detail">Shop the bundle</a></div>' +
+    '</div></section>' +
+
+    '<section class="section" id="accessories"><div class="wrap"><div class="sec-head"><h2>Accessories</h2><p>1 available · 3 coming soon</p></div>' +
+      '<div class="grid">' + ACCESSORIES.map(card).join('') + '</div></div></section>';
+  }
+
+  function product(id) {
+    var p = P[id], s = { size: null, qty: 1, variant: 0 };
+    var catName = p.cat === 'apparel' ? 'Apparel' : p.cat === 'bundle' ? 'Bundle' : 'Accessories';
+    var catHash = p.cat === 'bundle' ? 'bundle' : p.cat;
+    var priceHtml = p.soon ? '<span style="color:var(--muted);letter-spacing:.2em;font-size:13px;text-transform:uppercase">Coming soon</span>'
+      : money(p.price) + (p.compare ? ' <s>' + money(p.compare) + '</s> <span class="save">Save $' + (p.compare - p.price) + '</span>' : '');
+    var opts = '';
+    if (p.group) {
+      opts += '<div><div class="opt-label">Color <b>' + p.color + '</b></div><div class="swatches">' +
+        Object.keys(P).filter(function (k) { return P[k].group === p.group; }).map(function (k) {
+          return '<a href="#' + k + '" style="background:' + P[k].hex + '" aria-label="' + P[k].color + '" aria-current="' + (k === id) + '"></a>';
+        }).join('') + '</div></div>';
+    }
+    if (p.variants) {
+      opts += '<div><div class="opt-label">Finish <b id="vlabel">' + p.variants[0].label + '</b></div><div class="swatches">' +
+        p.variants.map(function (v, i) { return '<button type="button" data-v="' + i + '" style="background:' + v.hex + '" aria-label="' + v.label + '" aria-pressed="' + (i === 0) + '"></button>'; }).join('') + '</div></div>';
+    }
+    if (p.sizes) {
+      opts += '<div><div class="opt-label">' + (p.sizeLabel || 'Size') + ' <b id="slabel">Select</b></div><div class="sizes">' +
+        p.sizes.map(function (z) { return '<button type="button" data-size="' + z + '" aria-pressed="false">' + z + '</button>'; }).join('') + '</div></div>';
+    } else if (!p.soon && p.cat === 'apparel') {
+      opts += '<div><div class="opt-label">Size <b>One size</b></div></div>';
+    }
+    var buy = p.soon
+      ? '<button class="btn" type="button" disabled>Coming soon</button>'
+      : '<div class="buy"><div class="qty"><button type="button" id="minus" aria-label="Decrease quantity">−</button><output id="qty">1</output><button type="button" id="plus" aria-label="Increase quantity">+</button></div><button class="btn solid" type="button" id="add">Add to bag · ' + money(p.price) + '</button></div><p class="hint" id="hint"></p>';
+    var info = '';
+    if (p.includes) {
+      info += '<details open><summary>What\'s included</summary><ul>' + p.includes.map(function (i) { return '<li>' + esc(P[i].name) + ' (' + money(P[i].price) + ' on its own)</li>'; }).join('') + '</ul></details>';
+    } else {
+      info += '<details open><summary>Details</summary><ul>' + p.details.map(function (d) { return '<li>' + esc(d) + '</li>'; }).join('') + '</ul>' + (p.note ? '<p>' + esc(p.note) + '</p>' : '') + '</details>';
+    }
+    info += '<details><summary>Shipping &amp; returns</summary><p>Shipping rates and the return policy are shown at checkout on the live store.</p></details>';
+    var upsell = (!p.includes && (p.group === 'polo' || id === 'black-hat' || id === 'gold-ball-marker'))
+      ? '<div class="upsell"><img src="img/bundle.webp" alt=""><div><b>Get the full kit</b><span>Polo, hat and marker for $210. Save $10.</span><a href="#bundle-detail">View the bundle →</a></div></div>' : '';
+    var related = Object.keys(P).filter(function (k) { return k !== id && k !== 'bundle' && !P[k].soon; }).slice(0, 4);
+    if (related.length < 4) related = related.concat(['divot-tool']).slice(0, 4);
+
+    view.innerHTML =
+      '<div class="wrap"><div class="crumbs"><a href="#home">Shop</a><span>/</span><a href="#' + catHash + '">' + catName + '</a><span>/</span><span>' + esc(p.name) + '</span></div>' +
+      '<div class="pdp"><div class="tile">' + (p.soon ? '<span class="tag soon">Coming soon</span>' : (p.tag ? '<span class="tag">' + esc(p.tag) + '</span>' : '')) + '<img id="pimg" src="' + p.img + '" alt="' + esc(p.name) + '"></div>' +
+      '<div class="info"><div><p class="eyebrow">' + catName + '</p><h1>' + esc(p.name) + '</h1></div>' +
+      '<div class="p-price">' + priceHtml + '</div><p class="blurb">' + esc(p.blurb) + '</p>' + opts + buy + upsell + '<div>' + info + '</div></div></div></div>' +
+      '<section class="section rule"><div class="wrap"><div class="sec-head"><h2>You may also like</h2><p><a href="#home">Back to shop</a></p></div><div class="grid">' + related.map(card).join('') + '</div></div></section>';
+
+    view.querySelectorAll('[data-size]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        s.size = b.dataset.size;
+        view.querySelectorAll('[data-size]').forEach(function (o) { o.setAttribute('aria-pressed', o === b); });
+        document.getElementById('slabel').textContent = s.size;
+        var h = document.getElementById('hint'); if (h) h.textContent = '';
+      });
     });
-  });
-  var img = document.getElementById('polo-img'), label = document.getElementById('polo-color');
-  document.querySelectorAll('.swatches button[data-img]').forEach(function (b) {
-    b.addEventListener('click', function () {
-      document.querySelectorAll('.swatches button[data-img]').forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
-      img.src = b.dataset.img;
-      img.alt = 'Tour Polo in ' + b.dataset.color;
-      label.textContent = b.dataset.color;
+    view.querySelectorAll('[data-v]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        s.variant = +b.dataset.v; var v = p.variants[s.variant];
+        view.querySelectorAll('[data-v]').forEach(function (o) { o.setAttribute('aria-pressed', o === b); });
+        document.getElementById('pimg').src = v.img;
+        document.getElementById('vlabel').textContent = v.label;
+      });
     });
+    var q = document.getElementById('qty');
+    if (q) {
+      document.getElementById('minus').onclick = function () { s.qty = Math.max(1, s.qty - 1); q.textContent = s.qty; };
+      document.getElementById('plus').onclick = function () { s.qty = Math.min(9, s.qty + 1); q.textContent = s.qty; };
+      document.getElementById('add').onclick = function () {
+        if (p.sizes && !s.size) { document.getElementById('hint').textContent = 'Choose a ' + (p.sizeLabel || 'size').toLowerCase() + ' first.'; return; }
+        addToBag(id, s.size, s.qty);
+      };
+    }
+  }
+
+  /* Bag */
+  var bag = [];
+  function addToBag(id, size, qty) {
+    var key = id + '|' + (size || '');
+    var line = bag.find(function (l) { return l.key === key; });
+    if (line) line.qty += qty; else bag.push({ key: key, id: id, size: size, qty: qty });
+    renderBag(); toast('Added to bag: ' + P[id].name + (size ? ' · ' + size : ''));
+    openBag();
+  }
+  function renderBag() {
+    var n = bag.reduce(function (a, l) { return a + l.qty; }, 0);
+    document.getElementById('bag-count').textContent = n;
+    var lines = document.getElementById('lines'), foot = document.getElementById('drawer-foot');
+    if (!bag.length) {
+      lines.innerHTML = '<div class="empty"><span>Your bag is empty.</span><a class="btn" href="#apparel" data-close>Shop apparel</a></div>';
+      foot.innerHTML = '';
+      return;
+    }
+    lines.innerHTML = bag.map(function (l, i) {
+      var p = P[l.id];
+      return '<div class="line"><img src="' + p.img + '" alt=""><div><b>' + esc(p.name) + '</b><small>' + (l.size ? (p.sizeLabel || 'Size') + ' ' + l.size : (p.cat === 'apparel' ? 'One size' : '')) + '</small>' +
+        '<div class="lq"><button type="button" data-dec="' + i + '" aria-label="Remove one">−</button>' + l.qty + '<button type="button" data-inc="' + i + '" aria-label="Add one">+</button></div></div><span class="amt">' + money(p.price * l.qty) + '</span></div>';
+    }).join('');
+    var sub = bag.reduce(function (a, l) { return a + P[l.id].price * l.qty; }, 0);
+    foot.innerHTML = '<div class="subtotal"><span>Subtotal</span><span>' + money(sub) + '</span></div><button class="btn solid" type="button" disabled>Checkout</button><small>Preview only. Checkout runs on the live store.</small>';
+  }
+  document.getElementById('lines').addEventListener('click', function (e) {
+    var t = e.target;
+    if (t.dataset.inc) { bag[+t.dataset.inc].qty++; renderBag(); }
+    else if (t.dataset.dec) { var i = +t.dataset.dec; bag[i].qty--; if (!bag[i].qty) bag.splice(i, 1); renderBag(); }
+    else if (t.closest('[data-close]')) closeBag();
   });
+  var drawer = document.getElementById('drawer'), scrim = document.getElementById('scrim');
+  function openBag() { scrim.hidden = false; requestAnimationFrame(function () { scrim.classList.add('open'); drawer.classList.add('open'); }); drawer.setAttribute('aria-hidden', 'false'); document.body.classList.add('locked'); document.getElementById('close-bag').focus(); }
+  function closeBag() { scrim.classList.remove('open'); drawer.classList.remove('open'); drawer.setAttribute('aria-hidden', 'true'); document.body.classList.remove('locked'); setTimeout(function () { scrim.hidden = true; }, 300); }
+  document.getElementById('bag-btn').onclick = openBag;
+  document.getElementById('close-bag').onclick = closeBag;
+  scrim.onclick = closeBag;
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeBag(); });
+
+  var tt, toastEl = document.getElementById('toast');
+  function toast(msg) { toastEl.textContent = msg; toastEl.classList.add('show'); clearTimeout(tt); tt = setTimeout(function () { toastEl.classList.remove('show'); }, 2000); }
+
+  /* Routing: product ids open a product page; section names scroll on the home page */
+  var onHome = false;
+  function route() {
+    var h = (location.hash || '').slice(1);
+    if (h === 'bundle-detail') h = 'bundle-page';
+    if (h === 'bundle-page') { onHome = false; product('bundle'); window.scrollTo(0, 0); return; }
+    if (P[h] && h !== 'bundle') { onHome = false; product(h); window.scrollTo(0, 0); return; }
+    if (!onHome) { view.innerHTML = home(); onHome = true; }
+    var el = h && h !== 'home' ? document.getElementById(h) : null;
+    if (el) el.scrollIntoView(); else window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', function () { closeBag(); route(); });
+  renderBag();
+  route();
 })();
 </script>
