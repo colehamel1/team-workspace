@@ -89,6 +89,15 @@ nav a:hover { color: var(--ivory); }
 .dots { display: flex; gap: 7px; margin-top: 4px; }
 .dots i { width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgba(236,230,218,.35); }
 
+/* Accessories feature: tile keeps the same size as one grid card */
+.feature-copy { grid-column: span 3; align-self: center; display: flex; flex-direction: column; gap: 14px; padding-left: clamp(0px, 3vw, 40px); max-width: 640px; }
+.feature-copy h3 { font-family: var(--display); font-weight: 400; font-size: clamp(30px, 3.2vw, 44px); line-height: 1.1; margin: 0; }
+.feature-copy p { margin: 0; color: var(--muted); }
+.feature-copy ul { margin: 0 0 8px; padding-left: 18px; color: var(--muted); }
+@media (max-width: 1000px) { .feature-copy { grid-column: span 1; padding-left: 0; } }
+@media (max-width: 560px) { .grid.feature { grid-template-columns: 1fr; } .grid.feature .card { max-width: 340px; } }
+.drop .tile img { opacity: .92; }
+
 /* Bundle band */
 .bundle-band { background: linear-gradient(180deg, var(--raise), var(--ink)); border-block: 1px solid var(--line); }
 .bundle-band .wrap { display: grid; grid-template-columns: 1.25fr 1fr; gap: 48px; align-items: center; padding-block: 64px; }
@@ -182,7 +191,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 8px 24px; }
 <header>
   <div class="wrap">
     <a class="logo" href="#home" aria-label="Pars and Pickups Golf, home"><img src="img/logo.png" alt="Pars &amp; Pickups Golf"></a>
-    <nav aria-label="Shop"><a href="#apparel">Apparel</a><a href="#bundle">Bundle</a><a href="#accessories">Accessories</a></nav>
+    <nav aria-label="Shop"><a href="#apparel">Apparel</a><a href="#bundle">Bundle</a><a href="#accessories">Accessories</a><a href="#drop-2">Drop No. 2</a></nav>
     <button class="bag-btn" id="bag-btn" type="button" aria-controls="drawer">Bag (<em id="bag-count">0</em>)</button>
   </div>
 </header>
@@ -192,7 +201,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 8px 24px; }
 <footer>
   <div class="wrap">
     <img src="img/logo.png" alt="Pars &amp; Pickups Golf">
-    <nav aria-label="Footer"><a href="#apparel">Apparel</a><a href="#bundle">Bundle</a><a href="#accessories">Accessories</a></nav>
+    <nav aria-label="Footer"><a href="#apparel">Apparel</a><a href="#bundle">Bundle</a><a href="#accessories">Accessories</a><a href="#drop-2">Drop No. 2</a></nav>
     <span>© Pars &amp; Pickups Golf</span>
   </div>
 </footer>
@@ -227,19 +236,21 @@ footer nav { display: flex; flex-wrap: wrap; gap: 8px 24px; }
     'bundle': { name: 'The Pars & Pickups Bundle', price: 210, compare: 220, cat: 'bundle', img: 'img/bundle.webp', tag: 'Save $10', sizes: POLO_SIZES, sizeLabel: 'Polo size',
       blurb: 'The full kit in one order: the Black Golf Polo, the Black Rope Hat and the Gold Ball Marker.',
       includes: ['black-polo', 'black-hat', 'gold-ball-marker'] },
-    'divot-tool': { name: 'Divot Tool', cat: 'accessories', soon: true, img: 'img/divot-gold.webp',
-      variants: [{ label: 'Gold', hex: '#d4b24c', img: 'img/divot-gold.webp' }, { label: 'Silver', hex: '#c9cbd0', img: 'img/divot-silver.webp' }],
-      blurb: 'A solid divot tool with scalloped grip edges and the script logo. Gold or silver.',
-      details: ['Polished gold or brushed silver finish', 'Scalloped grip edges', 'Pars & Pickups script logo'] },
-    'golf-towel': { name: 'Black Golf Towel', cat: 'accessories', soon: true, img: 'img/towel.webp',
-      blurb: 'A black waffle-weave towel with the logo stitched in white and a clip for the bag.',
-      details: ['Black waffle weave', 'Embroidered Pars & Pickups logo', 'Metal grommet with bag clip'], note: 'Image is a concept render.' },
-    'crew-socks': { name: 'Crew Socks', cat: 'accessories', soon: true, img: 'img/socks.webp',
-      blurb: 'White ribbed crew socks with the script logo in black.',
-      details: ['Ribbed crew cuff', 'Cushioned foot', 'Pars & Pickups script logo'] }
+    'black-hoodie': { name: 'Black Logo Hoodie', cat: 'drop', soon: true, img: 'img/hoodie.webp',
+      blurb: 'A heavyweight black hoodie with a small script logo at the chest.',
+      details: ['Small Pars & Pickups script logo at the chest', 'Lined hood', 'Front kangaroo pocket', 'Ribbed cuffs and hem'] },
+    'golf-towel': { name: 'Black Golf Towel', cat: 'drop', soon: true, img: 'img/towel.webp',
+      blurb: 'A black waffle-weave golf towel with the script logo and a clip for the bag.',
+      details: ['Black waffle weave', 'Pars & Pickups script logo', 'Round leather-look tab with black carabiner clip'] },
+    'divot-gold': { name: 'Gold Divot Tool', cat: 'drop', soon: true, img: 'img/divot-gold.webp',
+      blurb: 'A polished gold divot tool with scalloped grip edges and the script logo.',
+      details: ['Polished gold finish', 'Scalloped grip edges', 'Pars & Pickups script logo'] },
+    'divot-silver': { name: 'Silver Divot Tool', cat: 'drop', soon: true, img: 'img/divot-silver.webp',
+      blurb: 'A brushed silver divot tool with scalloped grip edges and the script logo.',
+      details: ['Brushed silver finish', 'Scalloped grip edges', 'Pars & Pickups script logo'] }
   };
   var APPAREL = ['black-polo', 'white-polo', 'blue-polo', 'black-hat'];
-  var ACCESSORIES = ['gold-ball-marker', 'divot-tool', 'golf-towel', 'crew-socks'];
+  var DROP = ['black-hoodie', 'golf-towel', 'divot-gold', 'divot-silver'];
   var money = function (n) { return '$' + n.toFixed(2); };
   var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); };
   var view = document.getElementById('view');
@@ -274,14 +285,21 @@ footer nav { display: flex; flex-wrap: wrap; gap: 8px 24px; }
       '<a class="btn solid" href="#bundle-detail">Shop the bundle</a></div>' +
     '</div></section>' +
 
-    '<section class="section" id="accessories"><div class="wrap"><div class="sec-head"><h2>Accessories</h2><p>1 available · 3 coming soon</p></div>' +
-      '<div class="grid">' + ACCESSORIES.map(card).join('') + '</div></div></section>';
+    '<section class="section" id="accessories"><div class="wrap"><div class="sec-head"><h2>Accessories</h2><p>On-course details</p></div>' +
+      '<div class="grid feature">' + card('gold-ball-marker') +
+      '<div class="feature-copy"><p class="eyebrow">Engraved · Gold finish</p><h3>Gold Ball Marker</h3><p>' + esc(P['gold-ball-marker'].blurb) + '</p>' +
+      '<ul>' + P['gold-ball-marker'].details.map(function (d) { return '<li>' + esc(d) + '</li>'; }).join('') + '</ul>' +
+      '<div class="ctas"><button class="btn solid" type="button" id="quick-marker">Add to bag · $70.00</button><a class="btn ghost" href="#gold-ball-marker">Details</a></div></div>' +
+      '</div></div></section>' +
+
+    '<section class="section drop rule" id="drop-2"><div class="wrap"><div class="sec-head"><div><p class="eyebrow">Coming soon</p><h2>Drop No. 2</h2></div><p>4 pieces · Not yet available</p></div>' +
+      '<div class="grid">' + DROP.map(card).join('') + '</div></div></section>';
   }
 
   function product(id) {
     var p = P[id], s = { size: null, qty: 1, variant: 0 };
-    var catName = p.cat === 'apparel' ? 'Apparel' : p.cat === 'bundle' ? 'Bundle' : 'Accessories';
-    var catHash = p.cat === 'bundle' ? 'bundle' : p.cat;
+    var catName = { apparel: 'Apparel', bundle: 'Bundle', accessories: 'Accessories', drop: 'Drop No. 2' }[p.cat];
+    var catHash = p.cat === 'drop' ? 'drop-2' : p.cat;
     var priceHtml = p.soon ? '<span style="color:var(--muted);letter-spacing:.2em;font-size:13px;text-transform:uppercase">Coming soon</span>'
       : money(p.price) + (p.compare ? ' <s>' + money(p.compare) + '</s> <span class="save">Save $' + (p.compare - p.price) + '</span>' : '');
     var opts = '';
@@ -314,7 +332,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 8px 24px; }
     var upsell = (!p.includes && (p.group === 'polo' || id === 'black-hat' || id === 'gold-ball-marker'))
       ? '<div class="upsell"><img src="img/bundle.webp" alt=""><div><b>Get the full kit</b><span>Polo, hat and marker for $210. Save $10.</span><a href="#bundle-detail">View the bundle →</a></div></div>' : '';
     var related = Object.keys(P).filter(function (k) { return k !== id && k !== 'bundle' && !P[k].soon; }).slice(0, 4);
-    if (related.length < 4) related = related.concat(['divot-tool']).slice(0, 4);
+    if (p.soon) related = DROP.filter(function (k) { return k !== id; }).concat(['gold-ball-marker']);
 
     view.innerHTML =
       '<div class="wrap"><div class="crumbs"><a href="#home">Shop</a><span>/</span><a href="#' + catHash + '">' + catName + '</a><span>/</span><span>' + esc(p.name) + '</span></div>' +
@@ -400,7 +418,10 @@ footer nav { display: flex; flex-wrap: wrap; gap: 8px 24px; }
     if (h === 'bundle-detail') h = 'bundle-page';
     if (h === 'bundle-page') { onHome = false; product('bundle'); window.scrollTo(0, 0); return; }
     if (P[h] && h !== 'bundle') { onHome = false; product(h); window.scrollTo(0, 0); return; }
-    if (!onHome) { view.innerHTML = home(); onHome = true; }
+    if (!onHome) {
+      view.innerHTML = home(); onHome = true;
+      document.getElementById('quick-marker').onclick = function () { addToBag('gold-ball-marker', null, 1); };
+    }
     var el = h && h !== 'home' ? document.getElementById(h) : null;
     if (el) el.scrollIntoView(); else window.scrollTo(0, 0);
   }
