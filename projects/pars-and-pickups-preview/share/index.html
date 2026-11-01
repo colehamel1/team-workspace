@@ -108,6 +108,13 @@ nav a:hover { color: var(--ivory); }
 .meta .price.soon { color: var(--muted); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; }
 .dots { display: flex; gap: 7px; margin-top: 4px; }
 .dots i { width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgba(236,230,218,.35); }
+.dots { align-items: center; gap: 12px; margin-top: 8px; }
+.dots button { width: 18px; height: 18px; border-radius: 50%; border: 1px solid rgba(236,230,218,.35); padding: 0; cursor: pointer; box-shadow: 0 0 0 3px var(--ink); transition: box-shadow .2s; }
+.dots button[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--ink), 0 0 0 4px var(--gold); }
+.dots span { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+.grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 1000px) { .grid.three { gap: 32px 14px; } }
+@media (max-width: 640px) { .grid.three { grid-template-columns: minmax(0, 1fr); } }
 
 /* Accessories feature: tile keeps the same size as one grid card */
 .feature-copy { grid-column: span 3; align-self: center; display: flex; flex-direction: column; gap: 14px; padding-left: clamp(0px, 3vw, 40px); max-width: 640px; }
@@ -269,7 +276,11 @@ footer nav { display: flex; flex-wrap: wrap; gap: 8px 24px; }
       blurb: 'A brushed silver divot tool with scalloped grip edges and the script logo.',
       details: ['Brushed silver finish', 'Scalloped grip edges', 'Pars & Pickups script logo'] }
   };
-  var APPAREL = ['black-polo', 'white-polo', 'blue-polo', 'black-hat'];
+  P['crew-socks'] = { name: 'Crew Socks', price: 25, cat: 'apparel', img: 'img/socks.webp?v=5',
+    blurb: 'White ribbed crew socks with the script logo in black.',
+    details: ['Ribbed crew cuff', 'Cushioned foot', 'Pars & Pickups script logo in black'] };
+  var POLOS = ['black-polo', 'white-polo', 'blue-polo'];
+  var APPAREL = ['polo', 'black-hat', 'crew-socks'];
   var DROP = ['black-hoodie', 'golf-towel', 'divot-gold', 'divot-silver'];
   var money = function (n) { return '$' + n.toFixed(2); };
   var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); };
@@ -284,6 +295,15 @@ footer nav { display: flex; flex-wrap: wrap; gap: 8px 24px; }
       '<span class="meta"><h3>' + esc(p.name) + '</h3>' + price + dots + '</span></a>';
   }
 
+  function poloCard() {
+    var first = P[POLOS[0]];
+    return '<div class="card"><a class="tile" id="polo-link" href="#' + POLOS[0] + '"><span class="tag">3 colors</span><img id="polo-card-img" src="' + first.img + '" alt="Golf Polo in ' + first.color + '"><span class="view">View</span></a>' +
+      '<span class="meta"><h3><a id="polo-title" href="#' + POLOS[0] + '">Golf Polo</a></h3><span class="price">' + money(first.price) + '</span>' +
+      '<span class="dots" role="group" aria-label="Polo color">' + POLOS.map(function (k, i) {
+        return '<button type="button" data-polo="' + k + '" style="background:' + P[k].hex + '" aria-label="' + P[k].color + '" aria-pressed="' + (i === 0) + '"></button>';
+      }).join('') + '<span id="polo-color-name">' + first.color + '</span></span></span></div>';
+  }
+
   function home() {
     var b = P.bundle;
     return '' +
@@ -294,8 +314,8 @@ footer nav { display: flex; flex-wrap: wrap; gap: 8px 24px; }
       '<div class="ctas"><a class="btn solid" href="#apparel">Shop apparel</a><a class="btn ghost" href="#bundle">The bundle · Save $10</a></div>' +
     '</div><figure class="hero-art"><img src="img/ball-marker.webp?v=5" alt="Gold Pars and Pickups ball marker"><figcaption><a href="#gold-ball-marker">Gold Ball Marker · $70</a></figcaption></figure></div></section>' +
 
-    '<section class="section rule" id="apparel"><div class="wrap"><div class="sec-head"><h2>Apparel</h2><p>Polos &amp; headwear</p></div>' +
-      '<div class="grid">' + APPAREL.map(card).join('') + '</div></div></section>' +
+    '<section class="section rule" id="apparel"><div class="wrap"><div class="sec-head"><h2>Apparel</h2><p>Polos, hats &amp; socks</p></div>' +
+      '<div class="grid three">' + APPAREL.map(function (id) { return id === 'polo' ? poloCard() : card(id); }).join('') + '</div></div></section>' +
 
     '<section class="bundle-band" id="bundle"><div class="wrap">' +
       '<a class="art" href="#bundle-detail" aria-label="View the bundle"><img src="img/bundle-wide.webp?v=5" alt="Black Golf Polo, Black Rope Hat and Gold Ball Marker together" loading="lazy"></a>' +
@@ -441,6 +461,16 @@ footer nav { display: flex; flex-wrap: wrap; gap: 8px 24px; }
     if (!onHome) {
       view.innerHTML = home(); onHome = true;
       document.getElementById('quick-marker').onclick = function () { addToBag('gold-ball-marker', null, 1); };
+      view.querySelectorAll('[data-polo]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var k = b.dataset.polo, q = P[k];
+          view.querySelectorAll('[data-polo]').forEach(function (o) { o.setAttribute('aria-pressed', o === b); });
+          var img = document.getElementById('polo-card-img'); img.src = q.img; img.alt = 'Golf Polo in ' + q.color;
+          document.getElementById('polo-link').href = '#' + k;
+          document.getElementById('polo-title').href = '#' + k;
+          document.getElementById('polo-color-name').textContent = q.color;
+        });
+      });
     }
     var el = h && h !== 'home' ? document.getElementById(h) : null;
     if (el) el.scrollIntoView(); else window.scrollTo(0, 0);
