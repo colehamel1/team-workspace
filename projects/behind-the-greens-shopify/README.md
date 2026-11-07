@@ -2,6 +2,37 @@
 
 ---
 
+## Round 5 — hat discount popup (code BTG)
+
+Clicking any hat opens a popup: **"Cole has offered you a 30% discount"**
+and asks for a code. The right code is **BTG** (any capitalization). A
+wrong code gets "Sorry, that code isn't right" and no discount. With the
+code, the cart shows 30% off the total and checkout gets the code too.
+
+A product counts as a hat if its product type, a tag, or a word in its
+title is hat / hats / cap / caps / beanie / headwear.
+
+### One required step in Shopify admin
+
+The website can show the discount, but **Shopify checkout decides what
+people pay.** Create the code once: Shopify admin → Discounts → Create
+discount → Amount off order → code `BTG`, 30%, active. Without it,
+checkout charges full price.
+
+### Files to re-drop
+
+| File | What changed |
+|---|---|
+| `assets/btg-hat-discount.js` | New — the popup and the 30% math |
+| `assets/btg-cart-drawer.js` | Tells the popup when the cart refreshes |
+| `assets/btg-cart.css` | Popup + discount-line styles (select all, delete, paste) |
+| `sections/btg-cart-drawer.liquid` | Popup markup + discount lines in the cart |
+| `snippets/btg-product-card.liquid` | Marks hat cards |
+
+No new theme.liquid line needed — the popup rides along with the cart drawer.
+
+---
+
 ## Round 4 — cinematic hero video
 
 The homepage hero now supports a real autoplaying background video (the

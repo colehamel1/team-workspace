@@ -66,8 +66,23 @@
           <span class="btg-eyebrow">Subtotal</span>
           <span class="btg-display" data-btg-cart-subtotal>{{ cart.total_price | money }}</span>
         </div>
+        {%- comment -%}
+          Hat discount (code BTG, 30% off). Hidden until the visitor has
+          entered the code in the hat popup — btg-hat-discount.js fills in
+          the numbers from the pre-discount total below and unhides it.
+        {%- endcomment -%}
+        <div class="btg-hat-discount-lines" data-btg-hat-lines data-original-cents="{{ cart.original_total_price }}" hidden>
+          <div class="btg-cart-drawer__discount">
+            <span class="btg-eyebrow">Cole's Discount (BTG) &minus;30%</span>
+            <span data-btg-hat-discount-amount></span>
+          </div>
+          <div class="btg-cart-drawer__subtotal">
+            <span class="btg-eyebrow">Total</span>
+            <span class="btg-display" data-btg-hat-total></span>
+          </div>
+        </div>
         <p class="btg-cart-drawer__note">Shipping and taxes calculated at checkout.</p>
-        <form action="{{ routes.cart_url }}" method="post">
+        <form action="{{ routes.cart_url }}" method="post" data-btg-checkout-form>
           <button type="submit" class="btg-btn-primary" style="width:100%;">Checkout</button>
         </form>
         <div class="btg-cart-drawer__continue">
@@ -76,9 +91,41 @@
       </div>
     {%- endif -%}
   </aside>
+
+  {%- comment -%}
+    Hat discount popup. Opens when a visitor clicks any product card marked
+    as a hat (see snippets/btg-product-card.liquid). Logic lives in
+    assets/btg-hat-discount.js.
+  {%- endcomment -%}
+  <div class="btg-scrim" data-btg-hat-scrim hidden></div>
+  <div class="btg-popup btg-popup--badge" data-btg-hat-popup hidden aria-hidden="true" role="dialog" aria-labelledby="btg-hat-popup-title"
+       data-money-format="{{ shop.money_format | strip_html | escape }}" data-root="{{ routes.root_url }}">
+    <button type="button" class="btg-close-btn btg-popup__close" aria-label="Close" data-btg-hat-close>&times;</button>
+    <div class="btg-popup__body btg-popup__body--center">
+      <div class="btg-eyebrow" style="color:#C1922F; margin-bottom:10px;">A Gift From Cole</div>
+      <h2 class="btg-display btg-popup__offer" id="btg-hat-popup-title">Cole has offered you a 30% discount</h2>
+
+      <form class="btg-popup__form" data-btg-hat-form novalidate>
+        <p style="font-size:14px; line-height:1.6; color:#A79E86; margin:0 0 12px;" data-btg-hat-message>Enter your code to unlock 30% off your total.</p>
+        <input type="text" name="code" placeholder="Enter code" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Discount code" data-btg-hat-input>
+        <p class="btg-hat-error" data-btg-hat-error role="alert" hidden>Sorry, that code isn't right. No code, no discount.</p>
+        <button type="submit">Apply Code</button>
+        <button type="button" class="btg-hat-skip" data-btg-hat-skip>No code — keep shopping</button>
+      </form>
+
+      <div data-btg-hat-success hidden>
+        <div class="btg-popup__code">
+          <span class="btg-popup__code-value">BTG</span>
+          <span class="btg-eyebrow btg-popup__code-caption">30% Off Your Total</span>
+        </div>
+        <p style="font-size:14px; line-height:1.6; color:#A79E86; margin:20px 0 0;">Code accepted! Taking you to the hat&hellip;</p>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script src="{{ 'btg-cart-drawer.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'btg-hat-discount.js' | asset_url }}" defer="defer"></script>
 
 {% schema %}
 {

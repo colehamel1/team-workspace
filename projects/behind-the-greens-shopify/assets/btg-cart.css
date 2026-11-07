@@ -101,3 +101,16 @@
   .btg-popup__body--center { padding: 44px 28px 32px; }
   .btg-popup__offer { font-size: 28px; }
 }
+
+/* ---------- Hat discount popup (code BTG) ---------- */
+.btg-popup__form .btg-hat-skip {
+  background: none; color: #A79E86; padding: 6px; font-size: 10.5px;
+  text-decoration: underline; text-underline-offset: 3px;
+}
+.btg-popup__form .btg-hat-skip:hover { background: none; color: var(--btg-cream); }
+.btg-popup__form input[data-btg-hat-input] { text-align: center; letter-spacing: 0.2em; text-transform: uppercase; }
+.btg-hat-error { color: #E08A6E; font-size: 13px; margin: 0; }
+.btg-cart-drawer__discount {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 6px; color: var(--btg-forest-deep); font-size: 14px;
+}

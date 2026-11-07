@@ -17,9 +17,31 @@
       assign color_option = option
     endif
   endfor
+
+  comment
+    Hat detection for the hat discount popup (assets/btg-hat-discount.js).
+    A product counts as a hat if its type, a tag, or a word in its title is
+    hat / hats / cap / caps / beanie / headwear.
+  endcomment
+  assign is_hat = false
+  assign hat_words = 'hat,hats,cap,caps,beanie,beanies,headwear' | split: ','
+  assign hat_type = product.type | downcase | strip
+  assign hat_title = product.title | downcase | replace: '-', ' ' | prepend: ' ' | append: ' '
+  for word in hat_words
+    assign spaced_word = ' ' | append: word | append: ' '
+    if hat_type == word or hat_title contains spaced_word
+      assign is_hat = true
+    endif
+    for tag in product.tags
+      assign tag_lower = tag | downcase | strip
+      if tag_lower == word
+        assign is_hat = true
+      endif
+    endfor
+  endfor
 -%}
 
-<a href="{{ product.url }}" class="btg-card{% unless product.available %} btg-card--sold-out{% endunless %}">
+<a href="{{ product.url }}" class="btg-card{% unless product.available %} btg-card--sold-out{% endunless %}"{% if is_hat %} data-btg-hat{% endif %}>
   <div class="btg-card__media">
     {%- if product.featured_media -%}
       {{ product.featured_media | image_url: width: 800 | image_tag: loading: 'lazy', alt: product.featured_media.alt | default: product.title }}

@@ -57,6 +57,8 @@
     var wasOpen = current.classList.contains('is-open');
     current.outerHTML = newDrawer.outerHTML;
     if (wasOpen) openDrawer();
+    // Lets btg-hat-discount.js re-apply the 30% discount lines.
+    document.dispatchEvent(new CustomEvent('btg:cart:rendered'));
   }
 
   function refreshFromSections(sections) {
