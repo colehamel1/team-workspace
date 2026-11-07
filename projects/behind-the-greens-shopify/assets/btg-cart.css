@@ -117,3 +117,6 @@
 /* 30%-off price shown under hat prices once code BTG is entered */
 .btg-hat-price-line { display: block; margin-top: 4px; font-size: 13px; font-weight: 600; color: var(--btg-forest-deep); }
 .btg-hat-price-line s { font-weight: 400; color: var(--btg-muted); margin-right: 6px; }
+.btg-hat-deadline { display: flex; flex-direction: column; align-items: center; gap: 4px; margin: -6px 0 20px; }
+.btg-hat-deadline .btg-eyebrow { color: #E08A6E; font-size: 10.5px; }
+.btg-hat-deadline__clock { font-family: var(--btg-font-display); font-weight: 800; font-size: 30px; letter-spacing: 0.06em; color: var(--btg-cream); font-variant-numeric: tabular-nums; }

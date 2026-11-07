@@ -5,9 +5,13 @@
      It never blocks anything: "No code — keep shopping", the X, the dark
      background, or Escape all close it, and once closed it stays closed
      for the rest of that visit. Clicking a hat in the shop just opens it.
+   - Hat prices always show the 30%-off price underneath ("with code BTG").
    - Right code (BTG, any capitalization): the discount is remembered,
-     applied to the Shopify session via /discount/BTG, hat prices show the
-     30%-off price underneath, and the cart drawer shows 30% off the total.
+     applied to the Shopify session via /discount/BTG, and the cart drawer
+     shows 30% off the total.
+   - The popup counts down to DEADLINE, the real end date of the BTG code in
+     Shopify admin. After it passes, everything here switches itself off.
+     If you change the code's end date in Shopify, change DEADLINE too.
    - Wrong code: no discount. They can try again or close it.
 
    The price people actually PAY is set by Shopify checkout, using the real
@@ -17,10 +21,13 @@
   var PERCENT = 30;
   var STORE_KEY = 'btg_hat_discount';
   var DISMISSED_KEY = 'btg_hat_popup_dismissed';
+  var DEADLINE = Date.parse('2026-11-07T16:00:00Z'); // = BTG code's end date in Shopify
+
+  function expired() { return Date.now() >= DEADLINE; }
 
   var popup = document.querySelector('[data-btg-hat-popup]');
   var scrim = document.querySelector('[data-btg-hat-scrim]');
-  if (!popup) return;
+  if (!popup || expired()) return;
 
   var root = popup.getAttribute('data-root') || '/';
   if (root.slice(-1) !== '/') root += '/';
@@ -126,14 +133,26 @@
   }
 
   function applyEverywhere() {
-    if (!hasDiscount()) return;
-    applyToCart();
     applyToHatCards();
     applyToProductPage();
+    if (hasDiscount()) applyToCart();
   }
+
+  /* ---------- Countdown to the real deadline ---------- */
+  var countdownEl = popup.querySelector('[data-btg-hat-countdown]');
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function tick() {
+    var left = Math.max(0, DEADLINE - Date.now());
+    if (!left) { window.location.reload(); return; }
+    var h = Math.floor(left / 3600000), m = Math.floor(left / 60000) % 60, sec = Math.floor(left / 1000) % 60;
+    if (countdownEl) countdownEl.textContent = pad(h) + ':' + pad(m) + ':' + pad(sec);
+  }
+  var timer = null;
 
   /* ---------- Popup open / close ---------- */
   function open() {
+    tick();
+    if (!timer) timer = setInterval(tick, 1000);
     form.hidden = false;
     successEl.hidden = true;
     errorEl.hidden = true;
@@ -202,7 +221,20 @@
   document.addEventListener('btg:cart:rendered', applyEverywhere);
 
   /* ---------- Hat page: pop up on arrival ---------- */
-  if (popup.getAttribute('data-hat-page') === 'product' && !hasDiscount() && !wasDismissed()) {
+  // Shopify's cookie banner sits on top of everything on a first visit, so
+  // wait until the shopper has answered it — otherwise it covers our buttons.
+  function cookieBannerShowing() {
+    var b = document.getElementById('shopify-pc__banner');
+    if (!b) return false;
+    var r = b.getBoundingClientRect();
+    return r.width > 0 && r.height > 0 && getComputedStyle(b).visibility !== 'hidden' && getComputedStyle(b).display !== 'none';
+  }
+  function openWhenClear(tries) {
+    if (cookieBannerShowing() && tries < 240) { setTimeout(function () { openWhenClear(tries + 1); }, 500); return; }
     open();
+  }
+  if (popup.getAttribute('data-hat-page') === 'product' && !hasDiscount() && !wasDismissed()) {
+    // Short pause so the banner (if any) has time to appear before we check.
+    setTimeout(function () { openWhenClear(0); }, 600);
   }
 })();
