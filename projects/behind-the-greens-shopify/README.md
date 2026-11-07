@@ -4,7 +4,9 @@
 
 ## Round 5 — hat discount popup (code BTG)
 
-Clicking any hat opens a popup: **"Cole has offered you a 30% discount"**
+Opening the hat section (a hats/caps/headwear collection, the Headwear
+filter, or a hat's own page) pops it up immediately — and clicking any
+hat does too. It opens a popup: **"Cole has offered you a 30% discount"**
 and asks for a code. The right code is **BTG** (any capitalization). A
 wrong code gets "Sorry, that code isn't right" and no discount. With the
 code, the cart shows 30% off the total and checkout gets the code too.
@@ -25,6 +27,7 @@ checkout charges full price.
 |---|---|
 | `assets/btg-hat-discount.js` | New — the popup and the 30% math |
 | `assets/btg-cart-drawer.js` | Tells the popup when the cart refreshes |
+| `assets/btg-newsletter-popup.js` | Waits its turn so two popups never stack |
 | `assets/btg-cart.css` | Popup + discount-line styles (select all, delete, paste) |
 | `sections/btg-cart-drawer.liquid` | Popup markup + discount lines in the cart |
 | `snippets/btg-product-card.liquid` | Marks hat cards |

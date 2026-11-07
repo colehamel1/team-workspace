@@ -45,7 +45,11 @@
   if (justSucceeded) {
     open();
   } else if (!seen) {
-    setTimeout(open, delaySeconds * 1000);
+    setTimeout(function () {
+      // On the hat section the hat discount popup comes first — don't stack two popups.
+      if (document.querySelector('[data-btg-hat-popup].is-open')) return;
+      open();
+    }, delaySeconds * 1000);
   }
 
   document.addEventListener('click', function (e) {

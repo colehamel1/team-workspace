@@ -1,6 +1,8 @@
 /* Behind The Greens — hat discount popup.
 
-   Clicking any hat (a product card marked data-btg-hat) opens a popup:
+   Opening the hat section (a hats collection / Headwear filter / a hat's
+   own page) opens the popup immediately, and clicking any hat (a product
+   card marked data-btg-hat) opens it too:
    "Cole has offered you a 30% discount" and asks for a code.
      - Right code (BTG, any capitalization): the discount is remembered,
        applied to the Shopify session via /discount/BTG, and the cart
@@ -14,6 +16,7 @@
   var CODE = 'BTG';
   var PERCENT = 30;
   var STORE_KEY = 'btg_hat_discount';
+  var JUST_ASKED_KEY = 'btg_hat_just_asked';
 
   var popup = document.querySelector('[data-btg-hat-popup]');
   var scrim = document.querySelector('[data-btg-hat-scrim]');
@@ -96,8 +99,13 @@
   }
 
   function goToHat() {
-    if (pendingUrl) window.location.href = pendingUrl;
-    else close();
+    if (pendingUrl) {
+      // They already said "no code" on the way here — don't ask again on the hat's page.
+      try { sessionStorage.setItem(JUST_ASKED_KEY, '1'); } catch (e) { /* ignore */ }
+      window.location.href = pendingUrl;
+    } else {
+      close();
+    }
   }
 
   /* ---------- Clicks ---------- */
@@ -138,7 +146,7 @@
     successEl.hidden = false;
     // /discount/BTG tells Shopify to apply the code to this shopper's
     // session (so checkout takes the 30% off), then sends them on to the hat.
-    var next = pendingUrl || window.location.pathname;
+    var next = pendingUrl || (window.location.pathname + window.location.search);
     setTimeout(function () {
       window.location.href = root + 'discount/' + CODE + '?redirect=' + encodeURIComponent(next);
     }, 1200);
@@ -154,4 +162,15 @@
 
   applyToCart();
   document.addEventListener('btg:cart:rendered', applyToCart);
+
+  /* ---------- Hat section: pop up immediately ---------- */
+  var hatPage = popup.getAttribute('data-hat-page');
+  var justAsked = false;
+  try {
+    justAsked = sessionStorage.getItem(JUST_ASKED_KEY) === '1';
+    sessionStorage.removeItem(JUST_ASKED_KEY);
+  } catch (e) { /* ignore */ }
+  if (hatPage && !hasDiscount() && !(hatPage === 'product' && justAsked)) {
+    open(null);
+  }
 })();

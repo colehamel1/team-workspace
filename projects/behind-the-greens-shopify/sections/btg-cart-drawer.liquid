@@ -97,9 +97,35 @@
     as a hat (see snippets/btg-product-card.liquid). Logic lives in
     assets/btg-hat-discount.js.
   {%- endcomment -%}
+  {%- liquid
+    comment
+      Is this page the hat section? (a hats/caps/headwear collection, a
+      Headwear/Hats tag filter, or a single hat's product page). If so the
+      popup opens immediately on page load.
+    endcomment
+    assign hat_page = ''
+    assign hat_words = 'hat,hats,cap,caps,beanie,beanies,headwear' | split: ','
+    if template.name == 'collection' and collection
+      assign hat_text = collection.handle | replace: '-', ' ' | append: ' ' | append: collection.title | append: ' ' | append: collection.current_tags | downcase | replace: '-', ' ' | prepend: ' ' | append: ' '
+      for word in hat_words
+        assign spaced_word = ' ' | append: word | append: ' '
+        if hat_text contains spaced_word
+          assign hat_page = 'collection'
+        endif
+      endfor
+    elsif template.name == 'product' and product
+      assign hat_text = product.title | append: ' ' | append: product.type | append: ' ' | append: product.tags | downcase | replace: '-', ' ' | prepend: ' ' | append: ' '
+      for word in hat_words
+        assign spaced_word = ' ' | append: word | append: ' '
+        if hat_text contains spaced_word
+          assign hat_page = 'product'
+        endif
+      endfor
+    endif
+  -%}
   <div class="btg-scrim" data-btg-hat-scrim hidden></div>
   <div class="btg-popup btg-popup--badge" data-btg-hat-popup hidden aria-hidden="true" role="dialog" aria-labelledby="btg-hat-popup-title"
-       data-money-format="{{ shop.money_format | strip_html | escape }}" data-root="{{ routes.root_url }}">
+       data-money-format="{{ shop.money_format | strip_html | escape }}" data-root="{{ routes.root_url }}" data-hat-page="{{ hat_page }}">
     <button type="button" class="btg-close-btn btg-popup__close" aria-label="Close" data-btg-hat-close>&times;</button>
     <div class="btg-popup__body btg-popup__body--center">
       <div class="btg-eyebrow" style="color:#C1922F; margin-bottom:10px;">A Gift From Cole</div>
@@ -118,7 +144,7 @@
           <span class="btg-popup__code-value">BTG</span>
           <span class="btg-eyebrow btg-popup__code-caption">30% Off Your Total</span>
         </div>
-        <p style="font-size:14px; line-height:1.6; color:#A79E86; margin:20px 0 0;">Code accepted! Taking you to the hat&hellip;</p>
+        <p style="font-size:14px; line-height:1.6; color:#A79E86; margin:20px 0 0;">Code accepted! Your 30% off is unlocked&hellip;</p>
       </div>
     </div>
   </div>
