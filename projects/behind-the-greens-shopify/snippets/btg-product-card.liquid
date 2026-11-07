@@ -39,7 +39,8 @@
   endif
 
   comment
-    Hat detection for the hat discount popup (assets/btg-hat-discount.js).
+    Hat detection for the hat discount (assets/btg-hat-discount.js): once a
+    visitor has entered code BTG, hat cards show the 30%-off price.
     A product counts as a hat if its type, a tag, or a word in its title is
     hat / hats / cap / caps / beanie / headwear.
   endcomment
@@ -61,7 +62,7 @@
   endfor
 -%}
 
-<a href="{{ product.url }}" class="btg-card{% unless product.available %} btg-card--sold-out{% endunless %}{% if alt_image %} btg-card--has-alt{% endif %}{% if is_lifestyle %} btg-card--lifestyle{% endif %}"{% if is_hat %} data-btg-hat{% endif %}>
+<a href="{{ product.url }}" class="btg-card{% unless product.available %} btg-card--sold-out{% endunless %}{% if alt_image %} btg-card--has-alt{% endif %}{% if is_lifestyle %} btg-card--lifestyle{% endif %}"{% if is_hat %} data-btg-hat data-btg-hat-cents="{{ product.price_min }}"{% endif %}>
   <div class="btg-card__media">
     <div class="btg-card__track" data-btg-card-track>
       <div class="btg-card__frame">

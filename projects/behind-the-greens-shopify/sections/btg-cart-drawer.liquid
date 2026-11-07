@@ -93,27 +93,16 @@
   </aside>
 
   {%- comment -%}
-    Hat discount popup. Opens when a visitor clicks any product card marked
-    as a hat (see snippets/btg-product-card.liquid). Logic lives in
-    assets/btg-hat-discount.js.
+    Hat discount popup. Opens when a hat's own product page loads.
+    Logic lives in assets/btg-hat-discount.js.
   {%- endcomment -%}
   {%- liquid
     comment
-      Is this page the hat section? (a hats/caps/headwear collection, a
-      Headwear/Hats tag filter, or a single hat's product page). If so the
-      popup opens immediately on page load.
+      Is this a hat's product page? If so the popup opens on page load.
     endcomment
     assign hat_page = ''
     assign hat_words = 'hat,hats,cap,caps,beanie,beanies,headwear' | split: ','
-    if template.name == 'collection' and collection
-      assign hat_text = collection.handle | replace: '-', ' ' | append: ' ' | append: collection.title | append: ' ' | append: collection.current_tags | downcase | replace: '-', ' ' | prepend: ' ' | append: ' '
-      for word in hat_words
-        assign spaced_word = ' ' | append: word | append: ' '
-        if hat_text contains spaced_word
-          assign hat_page = 'collection'
-        endif
-      endfor
-    elsif template.name == 'product' and product
+    if template.name == 'product' and product
       assign hat_text = product.title | append: ' ' | append: product.type | append: ' ' | append: product.tags | downcase | replace: '-', ' ' | prepend: ' ' | append: ' '
       for word in hat_words
         assign spaced_word = ' ' | append: word | append: ' '

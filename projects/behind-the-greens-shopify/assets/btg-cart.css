@@ -114,3 +114,6 @@
   display: flex; justify-content: space-between; align-items: center;
   margin-bottom: 6px; color: var(--btg-forest-deep); font-size: 14px;
 }
+/* 30%-off price shown under hat prices once code BTG is entered */
+.btg-hat-price-line { display: block; margin-top: 4px; font-size: 13px; font-weight: 600; color: var(--btg-forest-deep); }
+.btg-hat-price-line s { font-weight: 400; color: var(--btg-muted); margin-right: 6px; }
