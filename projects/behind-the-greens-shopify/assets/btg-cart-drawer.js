@@ -33,6 +33,11 @@
     }, 300);
   }
 
+  document.addEventListener('keydown', function (e) {
+    var d = drawerEl();
+    if (e.key === 'Escape' && d && !d.hidden) closeDrawer();
+  });
+
   function updateHeaderCount(html) {
     var tmp = document.createElement('div');
     tmp.innerHTML = html;
@@ -72,8 +77,20 @@
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ line: line, quantity: quantity, sections: 'btg-cart-drawer,btg-header' })
     })
+      .then(function (r) { return r.json().then(function (data) { return { ok: r.ok, data: data }; }); })
+      .then(function (res) {
+        if (res.ok && res.data.sections) { refreshFromSections(res.data.sections); return; }
+        // e.g. a stock cap on "+": re-render the drawer from the real cart.
+        return refetchDrawer();
+      })
+      .catch(refetchDrawer);
+  }
+
+  function refetchDrawer() {
+    return fetch(root + '?sections=btg-cart-drawer,btg-header')
       .then(function (r) { return r.json(); })
-      .then(function (data) { if (data.sections) refreshFromSections(data.sections); });
+      .then(refreshFromSections)
+      .catch(function () {});
   }
 
   document.addEventListener('btg:cart:open', openDrawer);

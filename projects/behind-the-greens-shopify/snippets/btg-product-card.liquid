@@ -1,13 +1,16 @@
 {%- comment -%}
-  Behind The Greens product card — used on the collection grid, homepage
-  shop teaser, and PDP cross-sell. Pulls everything live from Shopify.
+  Behind The Greens product card — collection grid, homepage, PDP related.
+
+  Second image ("on the job"), in priority order:
+    1. Product metafield custom.lifestyle_image (the pinned "Lifestyle image"
+       field on each product in Shopify admin)
+    2. Any product image whose alt text starts with "Lifestyle"
+  With neither, the card simply shows the normal product photo (no hover swap).
+  Desktop (hover devices): crossfades to it on hover.
+  Touch devices: the card becomes a two-frame swipe with dot indicators.
+  Tapping still opens the product.
 
   Usage: {% render 'btg-product-card', product: product %}
-
-  Color swatches use the product's native "Color" option and its
-  merchant-configured swatch color (Shopify admin → product → Options →
-  swatches). If no swatch is set for a value, a neutral dot is shown
-  instead of guessing a color.
 {%- endcomment -%}
 
 {%- liquid
@@ -17,6 +20,23 @@
       assign color_option = option
     endif
   endfor
+
+  assign images = product.media | where: 'media_type', 'image'
+  assign alt_image = null
+  assign is_lifestyle = false
+  if product.metafields.custom.lifestyle_image.value != blank
+    assign alt_image = product.metafields.custom.lifestyle_image.value
+    assign is_lifestyle = true
+  else
+    for img in images
+      assign alt_text = img.alt | default: '' | downcase
+      if alt_text contains 'lifestyle' and img.id != product.featured_media.id
+        assign alt_image = img
+        assign is_lifestyle = true
+        break
+      endif
+    endfor
+  endif
 
   comment
     Hat detection for the hat discount popup (assets/btg-hat-discount.js).
@@ -41,39 +61,43 @@
   endfor
 -%}
 
-<a href="{{ product.url }}" class="btg-card{% unless product.available %} btg-card--sold-out{% endunless %}"{% if is_hat %} data-btg-hat{% endif %}>
+<a href="{{ product.url }}" class="btg-card{% unless product.available %} btg-card--sold-out{% endunless %}{% if alt_image %} btg-card--has-alt{% endif %}{% if is_lifestyle %} btg-card--lifestyle{% endif %}"{% if is_hat %} data-btg-hat{% endif %}>
   <div class="btg-card__media">
-    {%- if product.featured_media -%}
-      {{ product.featured_media | image_url: width: 800 | image_tag: loading: 'lazy', alt: product.featured_media.alt | default: product.title }}
-    {%- else -%}
-      {{ 'product-1' | placeholder_svg_tag }}
-    {%- endif -%}
+    <div class="btg-card__track" data-btg-card-track>
+      <div class="btg-card__frame">
+        {%- if product.featured_media -%}
+          {{ product.featured_media | image_url: width: 1400 | image_tag: loading: 'lazy', sizes: '(min-width: 1000px) 320px, (min-width: 601px) 44vw, 84vw', widths: '360, 540, 720, 900, 1080, 1400', alt: product.featured_media.alt | default: product.title }}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag }}
+        {%- endif -%}
+      </div>
+      {%- if alt_image -%}
+        <div class="btg-card__frame btg-card__frame--alt">
+          {%- assign alt_focus = product.metafields.custom.lifestyle_focus.value | default: 'center center' -%}
+          {%- assign alt_style = 'object-position: ' | append: alt_focus -%}
+          {{ alt_image | image_url: width: 1400 | image_tag: loading: 'lazy', decoding: 'async', sizes: '(min-width: 1000px) 320px, (min-width: 601px) 44vw, 84vw', widths: '360, 540, 720, 900, 1080, 1400', alt: '', style: alt_style }}
+        </div>
+      {%- endif -%}
+    </div>
     {%- unless product.available -%}
       <span class="btg-card__badge">Sold Out</span>
     {%- endunless -%}
   </div>
 
-  {%- if product.type != blank -%}
-    <div class="btg-eyebrow btg-card__cat">{{ product.type }}</div>
-  {%- endif -%}
-
-  <div class="btg-card__title">{{ product.title }}</div>
-
-  <div class="btg-card__meta">
-    <span class="btg-card__price">
-      {%- if product.price_varies -%}
-        {{ product.price_min | money }}
-      {%- else -%}
-        {{ product.price | money }}
+  <div class="btg-card__body">
+    <div>
+      <h3 class="btg-card__title">{{ product.metafields.custom.btg_name.value | default: product.title }}</h3>
+      {%- if product.metafields.custom.btg_subtitle.value != blank -%}
+        <div class="btg-card__sub">{{ product.metafields.custom.btg_subtitle.value }}</div>
+      {%- elsif color_option and color_option.values.size > 1 -%}
+        <div class="btg-card__sub">{{ color_option.values.size }} colors</div>
       {%- endif -%}
+      {%- if product.metafields.custom.film_title.value != blank -%}
+        <div class="btg-card__film">Seen in film &middot; {{ product.metafields.custom.film_title.value }}</div>
+      {%- endif -%}
+    </div>
+    <span class="btg-card__price">
+      {%- if product.price_varies -%}From {{ product.price_min | money }}{%- else -%}{{ product.price | money }}{%- endif -%}
     </span>
-    {%- if color_option -%}
-      <span class="btg-card__swatches">
-        {%- for value in color_option.values -%}
-          {%- capture swatch_color %}{% render 'btg-swatch-color', value: value %}{% endcapture -%}
-          <span class="btg-card__swatch" style="background: {{ swatch_color | strip }};" title="{{ value }}"></span>
-        {%- endfor -%}
-      </span>
-    {%- endif -%}
   </div>
 </a>
