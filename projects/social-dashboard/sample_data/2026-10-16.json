@@ -1,0 +1,41 @@
+{
+ "schema_version": 1,
+ "fetched_at": "2026-10-16T14:00:00Z",
+ "sample": true,
+ "accounts": [
+  {
+   "platform": "youtube",
+   "account_id": "sample-youtube",
+   "name": "Behind the Greens (sample)",
+   "followers": 3286,
+   "total_views": null,
+   "views_7d": 8440
+  },
+  {
+   "platform": "facebook",
+   "account_id": "sample-facebook",
+   "name": "Behind the Greens (sample)",
+   "followers": 2267,
+   "total_views": null,
+   "views_7d": 6077
+  },
+  {
+   "platform": "instagram",
+   "account_id": "sample-instagram",
+   "name": "Behind the Greens (sample)",
+   "followers": 10239,
+   "total_views": null,
+   "views_7d": 20821
+  },
+  {
+   "platform": "tiktok",
+   "account_id": "sample-tiktok",
+   "name": "Behind the Greens (sample)",
+   "followers": 19677,
+   "total_views": null,
+   "views_7d": 45999
+  }
+ ],
+ "posts": [],
+ "errors": []
+}

@@ -1,4 +1,12 @@
-.env
+# Secrets: .env and any copy of it (.env.bak, .env.tmp...) never go into git.
+.env*
+!.env.example
 venv/
 __pycache__/
 *.pyc
+
+# Social dashboard: your real stats and the built page stay on your computer.
+projects/social-dashboard/data/
+projects/social-dashboard/imports/
+projects/social-dashboard/dashboard.html
+*.tmp
