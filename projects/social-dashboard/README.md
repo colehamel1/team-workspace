@@ -12,7 +12,7 @@ From this folder, run:
 Then open `dashboard.html` in your browser and bookmark it. That's your tab.
 
 ## How it works
-- `refresh` (coming next) pulls your stats from each platform and saves a dated
+- `refresh.bat` pulls your stats from each platform and saves a dated
   snapshot in `data/`. Your real numbers stay on your computer and never go into git.
 - `build_dashboard.py` turns the snapshots into `dashboard.html`.
 - `post_tags.csv` holds a topic and format for each post. New posts get a guessed
@@ -23,7 +23,7 @@ Then open `dashboard.html` in your browser and bookmark it. That's your tab.
 
 ## Status
 - [x] Step 1: dashboard with sample numbers
-- [ ] Step 2: connect YouTube
+- [x] Step 2 code: connect YouTube (follow CONNECT_YOUTUBE.md on your computer)
 - [ ] Step 3: connect Facebook + Instagram
 - [ ] Step 4: connect TikTok
 - [ ] Step 5: one-click refresh (and an optional weekly auto-run)

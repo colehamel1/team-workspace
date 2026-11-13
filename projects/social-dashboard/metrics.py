@@ -166,7 +166,8 @@ def compute(snapshots, tags):
             delta = acc["followers"] - prev_acc["followers"]
         cards.append({
             "platform": pl, "connected": bool(acc) or bool(history),
-            "followers": acc.get("followers") if acc else None,
+            # if this refresh failed, fall back to the last number we had
+            "followers": acc.get("followers") if acc else (history[-1][1] if history else None),
             "delta": delta, "prev_date": prev["fetched_at"][:10] if prev else None,
             "views_7d": acc.get("views_7d") if acc else None,
             "history": history,
